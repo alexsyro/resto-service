@@ -42,13 +42,14 @@ module.exports = {
       portionSize: {
         field: 'portion_size',
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
       },
       price: {
         allowNull: false,
         type: Sequelize.FLOAT,
       },
-      img_path: {
+      imgPath: {
+        field: 'img_path',
         allowNull: true,
         type: Sequelize.TEXT,
       },
