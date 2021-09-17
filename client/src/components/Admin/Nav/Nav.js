@@ -14,6 +14,9 @@ function Nav(props) {
           <Link to="/menu">Menu</Link>
         </li>
         <li>
+          <Link to="/staff">Staff</Link>
+        </li>
+        <li>
           <Link to="/orders">Orders</Link>
         </li>
         <li>
