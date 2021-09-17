@@ -10,7 +10,7 @@ import Orders from './Main/Orders/Orders';
 function Admin() {
   return (
     <div className={styles.container}>
-        <Router>
+        <Router> 
       <Header />
       <SideMenu />
       <Switch>
