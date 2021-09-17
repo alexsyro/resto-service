@@ -1,6 +1,9 @@
 import React from 'react';
-
+import { useHistory } from 'react-router-dom'
 function Menu(props) {
+
+  const history = useHistory()
+
   return (
     <>
       <div >Салаты</div>
@@ -9,6 +12,8 @@ function Menu(props) {
       <div >Паста</div>
       <div >Десерты</div>
       <div >Коктейли</div>
+      <button onClick={() => history.goBack()}>Назад</button>
+
     </>
   );
 }
