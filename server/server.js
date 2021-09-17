@@ -49,9 +49,9 @@ server.use(express.json());
 server.post('/login', (req, res) => {
   const { credentials } = req.body;
   if (credentials.match(REGEXP_EMAIL_PATTERN)) {
-    res.redirect('/api/clients');
+    res.redirect(307, '/api/clients');
   } else {
-    res.redirect('/api/staff');
+    res.redirect(307, '/api/staff');
   }
 });
 
