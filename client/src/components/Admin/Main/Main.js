@@ -1,17 +1,26 @@
-import { Route, Switch } from 'react-router';
+import { Route, Switch, Link } from 'react-router-dom';
 import styles from './Main.module.scss';
 
 function Main() {
   return (
     <div className={styles.container}>
-      <Switch>
-        <Route to='/'>
-          <p>Главная страница админки</p>
-        </Route>
-        <Route to='/???'>
-          <p>Управление чем-то :)</p>
-        </Route>
-      </Switch>
+      <Link to="/menu">
+        <button type="button">
+          menu
+        </button>
+      </Link>
+
+      <Link to="/orders">
+        <button type="button">
+          orders
+        </button>
+      </Link>
+
+      <Link to="/staff">
+        <button type="button">
+          staff
+        </button>
+      </Link>
     </div>
   );
 }
