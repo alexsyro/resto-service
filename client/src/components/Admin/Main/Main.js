@@ -1,4 +1,3 @@
-import { Route, Switch } from 'react-router';
 import styles from './Main.module.scss';
 import Orders from './Orders/Orders';
 

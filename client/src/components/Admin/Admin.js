@@ -6,6 +6,7 @@ import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import Menu from './Menu/Menu';
 import Orders from './Main/Orders/Orders';
+import SaladsInfo from './Menu/items/Salads/SaladsInfo';
 
 function Admin() {
   return (
@@ -20,6 +21,9 @@ function Admin() {
         <Route path="/menu" exact>
           <Menu />
         </Route>
+        <Route exact path="/menu/:id">
+            <SaladsInfo/>
+          </Route>
         <Route path="/orders" exact>
           <Orders />
         </Route>
