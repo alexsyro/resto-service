@@ -1,10 +1,12 @@
 import styles from './Main.module.scss';
-import Orders from './Orders/Orders';
 
 function Main() {
   return (
     <div className={styles.container}>
-      <Orders />
+      <button>1</button>
+      <button>2</button>
+      <button>3</button>
+      <button>4</button>
     </div>
   );
 }
