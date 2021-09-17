@@ -4,13 +4,15 @@ const logger = require('morgan');
 const dotenv = require('dotenv');
 const cors = require('cors');
 
-//Routers
+// Routers
 const clientRouter = require('./routes/clients');
+const staffRouter = require('./routes/staff');
 
 // Инициализируем хранение переменных окружения в файл .env
 dotenv.config();
 
 const { PORT, SECRET } = process.env;
+const REGEXP_EMAIL_PATTERN = /[\s\S]+[@]{1}.+[.]{1}/gi;
 
 const server = express();
 
@@ -44,7 +46,18 @@ server.use(logger('dev'));
 server.use(express.urlencoded({ extended: false }));
 server.use(express.json());
 
+server.post('/login', (req, res) => {
+  const { credentials } = req.body;
+  if (credentials.match(REGEXP_EMAIL_PATTERN)) {
+    res.redirect('/api/clients');
+  } else {
+    res.redirect('/api/staff');
+  }
+});
+
+// Routers
 server.use('/api/clients', clientRouter);
+server.use('/api/staff', staffRouter);
 
 server.listen(PORT, () => {
   console.log(`${'\n'.repeat(10)}[------] SERVER STARTED AT PORT ${PORT} [------]\n`);
