@@ -1,7 +1,10 @@
 import { combineReducers } from 'redux';
+import getMenuReducer from './getMenuReducer';
+import staffReducer from './staffReducer';
 
 const rootReducer = combineReducers({
-  // Reducers
+  getMenuReducer,
+  staffReducer
 });
 
 export default rootReducer;
