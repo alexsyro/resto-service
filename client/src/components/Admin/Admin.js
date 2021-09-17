@@ -8,6 +8,7 @@ import Menu from './Menu/Menu';
 import Orders from './Orders/Orders'
 import Staff from './Staff/Staff'
 import Order from './Order/Order';
+import SaladsInfo from './Menu/items/Salads/SaladsInfo';
 
 function Admin() {
   return (
@@ -19,6 +20,9 @@ function Admin() {
         <Switch>
           <Route path="/" exact>
             <Main />
+          </Route>
+          <Route exact path="/menu/:id">
+            <SaladsInfo/>
           </Route>
           <Route path="/menu" exact>
             <Menu />
@@ -35,7 +39,6 @@ function Admin() {
         </Switch>
         <Footer />
       </Router >
-
     </div>
   );
 }

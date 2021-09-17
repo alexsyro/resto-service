@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 function Nav(props) {
   return (
-    <nav className="uk-navbar-container uk-margin">
+    <nav >
     <div className="uk-navbar-left">
 
-      <ul className="uk-navbar-nav">
+      <ul >
         <li>
           <Link to="/">Main</Link>
         </li>
