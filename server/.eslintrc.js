@@ -10,5 +10,6 @@ module.exports = {
   },
   rules: {
     'object-curly-newline': 'off',
+    'no-console': 'off',
   },
 };

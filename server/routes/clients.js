@@ -3,12 +3,12 @@ const bcrypt = require('bcrypt');
 
 const { Router } = express;
 const router = Router();
-const { Client, Staff } = require('../db/models');
+const { Client } = require('../db/models');
 
 // Регистрация
 router.post('/new', async (req, res) => {
+  console.log('[INCOMING BODY TO REG CLIENT]', req.body);
   const { name, email, phone, password, discountId } = req.body;
-
   try {
     const [, isNew] = await Client.findOrCreate({
       where: {
@@ -41,8 +41,8 @@ router.post('/new', async (req, res) => {
 
 // Логин
 router.post('/', async (req, res) => {
+  console.log('[INCOMING BODY TO LOGIN CLIENT]', req.body);
   const { credentials, password } = req.body;
-  console.log('DATA', req.body);
   // Если в строке находится email проверяем среди клиентов
   try {
     const user = await Client.findOne({ where: { email: credentials }, raw: true });

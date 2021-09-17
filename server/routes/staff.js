@@ -7,6 +7,7 @@ const { Staff } = require('../db/models');
 
 // Регистрация персонала
 router.post('/new', async (req, res) => {
+  console.log('[INCOMING BODY TO REG STAFF]', req.body);
   const { name, login, phone, password, postId } = req.body;
   try {
     const [, isNew] = await Staff.findOrCreate({
@@ -19,7 +20,7 @@ router.post('/new', async (req, res) => {
         login,
         phone,
         password: await bcrypt.hash(password, 10),
-        PostId: postId,
+        PostId: Number(postId),
       },
       raw: true,
     });
@@ -28,18 +29,19 @@ router.post('/new', async (req, res) => {
       const user = { name, login, phone, isAdmin: Number(postId) === 1 }; // postId 1 = admin
       req.session.isAuthorized = true;
       req.session.user = { user: { ...user, password: '' } };
-      res.json({ user }); // send user back
+      res.json({ user: { ...user, password: '' } }); // send user back
     } else {
       res.status(409).json({ error: 'User already exists', user: {} });
     }
   } catch (error) {
+    console.log(error);
     res.status(500).json({ error: error.message, user: {} });
   }
 });
 
 // Логин
 router.post('/', async (req, res) => {
-  console.log('DATA', req.body);
+  console.log('[INCOMING BODY TO LOGIN STAFF]', req.body);
   const { credentials, password } = req.body;
   try {
     const user = await Staff.findOne({ where: { login: credentials }, raw: true });
