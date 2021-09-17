@@ -1,10 +1,10 @@
 import { Route, Switch } from 'react-router';
-import styles from './Main.module.scss';
+import styles from './Staff.module.scss';
 
-function Main() {
+function Staff() {
   return (
     <div className={styles.container}>
-      <button>1</button>
+      <button >1</button>
       <button>2</button>
       <button>3</button>
       <button>4</button>
@@ -12,4 +12,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default Staff;
