@@ -1,4 +1,5 @@
 const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Category extends Model {
     /**
@@ -9,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate({ Subcategory }) {
       // define association here
       // Одна категория может включать в себя несколько подкатегорий
-      Category.hasMany(Subcategory)
+      Category.hasMany(Subcategory);
     }
   }
   Category.init(
