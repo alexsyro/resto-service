@@ -1,9 +1,10 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
+const { Op } = require('sequelize');
+const { Staff } = require('../db/models');
 
 const { Router } = express;
 const router = Router();
-const { Staff } = require('../db/models');
 
 // Регистрация персонала
 router.post('/new', async (req, res) => {
@@ -12,8 +13,7 @@ router.post('/new', async (req, res) => {
   try {
     const [, isNew] = await Staff.findOrCreate({
       where: {
-        login,
-        phone,
+        [Op.or]: [{ login }, { phone }],
       },
       defaults: {
         name,
