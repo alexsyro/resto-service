@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({ Client, Reservation, PositionOrder }) {
+    static associate({ Client, Reservation, OrderPosition }) {
       // define association here
       // Счёт может быть открыт только на одного клиента
       Order.belongsTo(Client);
@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       Order.belongsTo(Reservation);
       // В одном заказе может быть много блюд (В данном случае это сводная таблица,
       // которая хранит список id заказа - id блюда - количество)
-      Order.hasMany(PositionOrder);
+      Order.hasMany(OrderPosition);
     }
   }
   Order.init(
