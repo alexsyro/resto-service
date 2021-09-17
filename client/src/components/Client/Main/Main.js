@@ -1,4 +1,4 @@
-  import { Route, Switch } from 'react-router';
+import { Route, Switch } from 'react-router';
 import Content from '../Content/Content';
 import styles from './Main.module.scss';
 
@@ -6,19 +6,19 @@ function Main() {
   return (
     <div className={styles.container}>
       <Switch>
-        <Route exact to='/'>
+        <Route exact path='/'>
           <Content/>
         </Route>
-        <Route exact to='/about'>
+        <Route exact path='/about'>
           <p>О нас</p>
         </Route>
-        <Route exact to='/menu'>
+        <Route exact path='/menu'>
           <p>Меню</p>
         </Route>
-        <Route exact to='/gallery'>
+        <Route exact path='/gallery'>
           <p>Галерея</p>
         </Route>
-        <Route exact to='/contacts'>
+        <Route exact path='/contacts'>
           <p>Контакты</p>
         </Route>
       </Switch>
