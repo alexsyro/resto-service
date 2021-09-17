@@ -2,6 +2,7 @@ import { Route, Switch } from 'react-router';
 import Content from '../Content/Content';
 import styles from './Main.module.scss';
 import LoginForm from '../LoginForm/LoginForm';
+import RegForm from '../RegForm/RegForm';
 
 function Main() {
   return (
@@ -24,6 +25,9 @@ function Main() {
         </Route>
         <Route exact path="/login">
           <LoginForm />
+        </Route>
+        <Route exact path="/registration">
+          <RegForm />
         </Route>
       </Switch>
     </div>

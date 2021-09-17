@@ -7,7 +7,7 @@ export const getUserAC = (payload) => {
   }
 }
 
-export const sagaAC = () => {
+export const sagaLoginAC = () => {
   return {
     type: SAGA_FETCH_LOGIN
   }
