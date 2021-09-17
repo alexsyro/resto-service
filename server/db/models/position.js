@@ -6,10 +6,10 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({ Subcategorie, Measure, OrderPosition }) {
+    static associate({ Subcategory, Measure, OrderPosition }) {
       // define association here
       // блюдо может принадлежать только одной категории одновременно
-      Position.belongsTo(Subcategorie);
+      Position.belongsTo(Subcategory);
       // У блюда может быть только одна единица измерения
       Position.belongsTo(Measure);
       // Одно блюдо может находиться в нескольких заказах

@@ -6,12 +6,12 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({ Hall, Reserves }) {
+    static associate({ Hall, Reservation }) {
       // define association here
-      //Стол может быть только в одном зале
+      // Стол может быть только в одном зале
       Table.belongsTo(Hall);
-      //Один стол может быть зарезервирован несколько раз
-      Table.hasMany(Reserves);
+      // Один стол может быть зарезервирован несколько раз
+      Table.hasMany(Reservation);
     }
   }
   Table.init(
