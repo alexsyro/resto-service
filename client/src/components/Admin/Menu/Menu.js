@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { GET_MENU } from '../../../redux/actionTypes/actionType'
@@ -37,7 +38,6 @@ function Menu() {
       <div>{actualCategory === 'Паста' && <PastaList />} </div>
       <div>{actualCategory === 'Десерты' && <DessertsList />} </div>
       <div>{actualCategory === 'Коктейли' && <CocktailsList />} </div>
-
     </>
   );
 }

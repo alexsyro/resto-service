@@ -5,32 +5,40 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import Menu from './Menu/Menu';
-import Orders from './Main/Orders/Orders';
+import Orders from './Orders/Orders'
+import Staff from './Staff/Staff'
+import Order from './Order/Order';
 import SaladsInfo from './Menu/items/Salads/SaladsInfo';
 
 function Admin() {
   return (
     <div className={styles.container}>
-        <Router> 
-      <Header />
-      <SideMenu />
-      <Switch>
-        <Route  path="/" exact>
-          <Main />
-        </Route>
-        <Route path="/menu" exact>
-          <Menu />
-        </Route>
-        <Route exact path="/menu/:id">
+      <Router>
+        <Header />
+        <SideMenu />
+
+        <Switch>
+          <Route path="/" exact>
+            <Main />
+          </Route>
+          <Route exact path="/menu/:id">
             <SaladsInfo/>
           </Route>
-        <Route path="/orders" exact>
-          <Orders />
-        </Route>
-      </Switch>
-      <Footer />
-      </Router>
-        
+          <Route path="/menu" exact>
+            <Menu />
+          </Route>
+          <Route path="/orders" exact>
+            <Orders />
+          </Route>
+          <Route path="/staff/:id" exact>
+            <Order />
+          </Route>
+          <Route path="/staff" exact>
+            <Staff />
+          </Route>
+        </Switch>
+        <Footer />
+      </Router >
     </div>
   );
 }

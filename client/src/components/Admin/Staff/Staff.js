@@ -1,13 +1,13 @@
-import { Route, Switch } from 'react-router';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import styles from './Staff.module.scss';
 
 function Staff() {
+  const history = useHistory()
+
   return (
     <div className={styles.container}>
-      <button >1</button>
-      <button>2</button>
-      <button>3</button>
-      <button>4</button>
+      <p>Here's staff and some stuff....</p>
+      <button onClick={() => history.goBack()}>Назад</button>
     </div>
   );
 }
