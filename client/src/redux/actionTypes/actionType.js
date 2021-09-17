@@ -14,3 +14,7 @@ export const UPD_STAFF = 'UPD_STAFF'
 
 // удаляем стафф
 export const DEL_STAFF = 'DEL_STAFF'
+export const GET_USER = 'GET_USER';
+export const SAGA_FETCH_LOGIN = 'SAGA_FETCH_LOGIN';
+export const SAGA_FETCH_REG = 'SAGA_FETCH_REG';
+
