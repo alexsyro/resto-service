@@ -31,7 +31,7 @@ function Admin() {
         </Switch>
         <Footer />
       </Router >
-
+        
     </div>
   );
 }

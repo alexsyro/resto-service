@@ -8,16 +8,16 @@ function Nav(props) {
 
       <ul className="uk-navbar-nav">
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/">Main</Link>
         </li>
         <li>
-          <Link to="/restaurants">Restaurants</Link>
+          <Link to="/menu">Menu</Link>
         </li>
         <li>
-          <Link to="/login">Login</Link>
+          <Link to="/orders">Orders</Link>
         </li>
         <li>
-          <Link to="/register">Register</Link>
+          <Link to="/logout">Logout</Link>
         </li>
       </ul>
 
