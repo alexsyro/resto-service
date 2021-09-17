@@ -1,11 +1,11 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { getUserAC } from '../actionCreators/loginFormAC';
-import { SAGA_FETCH_LOGIN } from '../actionTypes/actionType';
+import { SAGA_FETCH_REG } from '../actionTypes/actionType';
 
 
 const fetchUsers = async () => {
   // тут должна быть деструктуризация
-  const res = fetch('http://localhost:1234/login', {
+  const res = fetch('http://localhost:1234/registration', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json'},
     body: {
@@ -21,6 +21,6 @@ function* workerUsers() {
     yield put(getUserAC(user))
   }
 
-export function* loginSaga() {
-  yield takeEvery(SAGA_FETCH_LOGIN, workerUsers)
+export function* regSaga() {
+  yield takeEvery(SAGA_FETCH_REG, workerUsers)
 }
