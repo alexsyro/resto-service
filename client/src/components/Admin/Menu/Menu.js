@@ -5,7 +5,10 @@ function Menu(props) {
     <>
       <div >Салаты</div>
       <div >Пицца</div>
-      <div >Three</div>
+      <div >Cупы</div>
+      <div >Паста</div>
+      <div >Десерты</div>
+      <div >Коктейли</div>
     </>
   );
 }
