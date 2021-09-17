@@ -1,13 +1,13 @@
-import { Route, Switch } from 'react-router';
+  import { Route, Switch } from 'react-router';
+import Content from '../Content/Content';
 import styles from './Main.module.scss';
 
 function Main() {
   return (
     <div className={styles.container}>
-      <p>It's main content section</p>
       <Switch>
         <Route exact to='/'>
-          <p>Главная страница</p>
+          <Content/>
         </Route>
         <Route exact to='/about'>
           <p>О нас</p>
