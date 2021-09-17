@@ -1,4 +1,5 @@
 const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Client extends Model {
     /**
@@ -6,12 +7,12 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({Discount, Order}) {
+    static associate({ Discount, Order }) {
       // define association here
       // У одного клиента может быть много заказов
-      Client.hasMany(Order)
-      //У клиента одновременно может быть только одна скидка
-      Client.belongsTo(Discount)
+      Client.hasMany(Order);
+      // У клиента одновременно может быть только одна скидка
+      Client.belongsTo(Discount);
     }
   }
   Client.init(

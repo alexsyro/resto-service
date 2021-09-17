@@ -1,4 +1,5 @@
 const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Position extends Model {
     /**
@@ -28,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
           onUpdate: 'CASCADE',
         },
       },
-      measure_id: {
+      MeasureId: {
         allowNull: false,
         field: 'measure_id',
         type: DataTypes.INTEGER,

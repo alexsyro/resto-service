@@ -1,5 +1,6 @@
 const express = require('express');
 const session = require('express-session');
+const SessionFileStore = require('session-file-store')(session);
 const logger = require('morgan');
 const dotenv = require('dotenv');
 const cors = require('cors');
@@ -7,6 +8,7 @@ const cors = require('cors');
 // Routers
 const clientRouter = require('./routes/clients');
 const staffRouter = require('./routes/staff');
+const menuRouter = require('./routes/menu');
 
 // Инициализируем хранение переменных окружения в файл .env
 dotenv.config();
@@ -17,6 +19,7 @@ const REGEXP_EMAIL_PATTERN = /[\s\S]+[@]{1}.+[.]{1}/gi;
 const server = express();
 
 const sessionConfig = {
+  store: new SessionFileStore(),
   name: 'user_sid',
   secret: SECRET,
   resave: true,
@@ -58,6 +61,7 @@ server.post('/login', (req, res) => {
 // Routers
 server.use('/api/clients', clientRouter);
 server.use('/api/staff', staffRouter);
+server.use('/api/menu', menuRouter);
 
 server.listen(PORT, () => {
   console.log(`${'\n'.repeat(10)}[------] SERVER STARTED AT PORT ${PORT} [------]\n`);

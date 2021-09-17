@@ -17,7 +17,7 @@ module.exports = {
           onUpdate: 'CASCADE',
         },
       },
-      measure_id: {
+      MeasureId: {
         allowNull: false,
         field: 'measure_id',
         type: Sequelize.INTEGER,
