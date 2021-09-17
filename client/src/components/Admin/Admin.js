@@ -9,6 +9,7 @@ import Orders from './Orders/Orders'
 import Staff from './Staff/Staff'
 import Order from './Order/Order';
 import SaladsInfo from './Menu/items/Salads/SaladsInfo';
+import WorkerInfo from './Staff/WorkerInfo';
 
 function Admin() {
   return (
@@ -31,7 +32,7 @@ function Admin() {
             <Orders />
           </Route>
           <Route path="/staff/:id" exact>
-            <Order />
+            <WorkerInfo />
           </Route>
           <Route path="/staff" exact>
             <Staff />
