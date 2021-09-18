@@ -1,13 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import RestTablesImg from '../../images/Tables/Rest.png';
 import styles from './Tables.module.scss';
 
-export default function RestTables() {
+export default function RestTables({ setSelectedTableId, selectedDateTime }) {
+  const [currTable, setCurrTable] = useState(null);
+
+  const selectTable = (event) => {
+    if (selectedDateTime) {
+      const { id } = event.target;
+      if (currTable) {
+        // Меняем цвет у предыдущего столика
+        currTable.attributes[1].value = 'cyan';
+      }
+      // Меняем цвет у выбранного столика
+      event.target.attributes[1].value = event.target.attributes[1].value === 'red' ? 'cyan' : 'red';
+      setCurrTable(event.target);
+      setSelectedTableId(id);
+    } else {
+      alert('Выберите пожалуйста дату и время и нажмите на кнопку выбрать')
+    }
+  };
   return (
     <div className={styles.svg} style={{ backgroundImage: `url(${RestTablesImg})` }}>
       <svg xmlns='http://www.w3.org/2000/svg' width='1000' height='700'>
         <path
           id='11'
+          onClick={selectTable}
           fill='cyan'
           fill-opacity='0.5'
           stroke='black'
@@ -20,6 +38,7 @@ export default function RestTables() {
         />
         <path
           id='12'
+          onClick={selectTable}
           fill='cyan'
           fill-opacity='0.5'
           stroke='black'
@@ -32,6 +51,7 @@ export default function RestTables() {
         />
         <path
           id='13'
+          onClick={selectTable}
           fill='cyan'
           fill-opacity='0.5'
           stroke='black'
@@ -44,6 +64,7 @@ export default function RestTables() {
         />
         <path
           id='21'
+          onClick={selectTable}
           fill='cyan'
           fill-opacity='0.5'
           stroke='black'
@@ -56,6 +77,7 @@ export default function RestTables() {
         />
         <path
           id='33'
+          onClick={selectTable}
           fill='cyan'
           fill-opacity='0.5'
           stroke='black'
@@ -75,6 +97,7 @@ export default function RestTables() {
         />
         <path
           id='43'
+          onClick={selectTable}
           fill='cyan'
           fill-opacity='0.5'
           stroke='black'
@@ -87,6 +110,7 @@ export default function RestTables() {
         />
         <path
           id='53'
+          onClick={selectTable}
           fill='cyan'
           fill-opacity='0.5'
           stroke='black'
@@ -99,6 +123,7 @@ export default function RestTables() {
         />
         <path
           id='62'
+          onClick={selectTable}
           fill='cyan'
           fill-opacity='0.5'
           stroke='black'

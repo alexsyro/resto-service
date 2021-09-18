@@ -1,14 +1,48 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import clubTablesImg from '../../images/Tables/Club.png';
-import styles from './Tables';
+import styles from './Tables.module.scss';
 
-export default function ClubTables() {
+export default function ClubTables({ setSelectedTableId, selectedDateTime }) {
+  const [currTable, setCurrTable] = useState(null);
+
+  const selectTable = (event) => {
+    if (selectedDateTime) {
+      const { id } = event.target;
+      if (currTable) {
+        // Меняем цвет у предыдущего столика
+        currTable.attributes[1].value = 'cyan';
+      }
+      // Меняем цвет у выбранного столика
+      if (event.target.reserved) {
+        event.target.attributes[1].value = event.target.attributes[1].value === 'red' ? 'cyan' : 'red';
+        setCurrTable(event.target);
+        setSelectedTableId(id);
+      } else {
+        alert('Столик забронирован');
+      }
+    } else {
+      alert('Выберите пожалуйста дату и время и нажмите на кнопку выбрать');
+    }
+  };
+
+  //Для проверки
+  let reservedTables = [];
+
+  useEffect(() => {
+    reservedTables = [114, 104, 115];
+    reservedTables.forEach((table) => {
+      document.getElementById(table).attributes[1].value = 'red';
+    });
+  }, []);
+
   return (
     <div className={styles.svg} style={{ backgroundImage: `url(${clubTablesImg})` }}>
-      <svg xmlns='http://www.w3.org/2000/svg' width='1000' height='700' >
+      <svg xmlns='http://www.w3.org/2000/svg' width='1000' height='700'>
         <path
           id='111'
-          fill='cyan'
+          onClick={selectTable}
+          reserved={reservedTables.includes(111)}
+          fill= 'cyan'
           fill-opacity='0.5'
           stroke='black'
           stroke-width='1'
@@ -20,6 +54,8 @@ export default function ClubTables() {
         />
         <path
           id='112'
+          onClick={selectTable}
+          reserved={reservedTables.includes(112)}
           fill='cyan'
           fill-opacity='0.5'
           stroke='black'
@@ -33,6 +69,8 @@ export default function ClubTables() {
 
         <path
           id='113'
+          onClick={selectTable}
+          reserved={reservedTables.includes(113)}
           fill='cyan'
           fill-opacity='0.5'
           stroke='black'
@@ -45,9 +83,8 @@ export default function ClubTables() {
         />
         <path
           id='114'
-          onClick={(event) => {
-            event.target.attributes[1].value = event.target.attributes[1].value === 'red' ? 'cyan' : 'red';
-          }}
+          onClick={selectTable}
+          reserved={reservedTables.includes(114)}
           fill='cyan'
           fill-opacity='0.5'
           stroke='black'
@@ -60,6 +97,8 @@ export default function ClubTables() {
         />
         <path
           id='115'
+          onClick={selectTable}
+          reserved={reservedTables.includes(115)}
           fill='cyan'
           fill-opacity='0.5'
           stroke='black'
@@ -72,6 +111,8 @@ export default function ClubTables() {
         />
         <path
           id='116'
+          onClick={selectTable}
+          reserved={reservedTables.includes(116)}
           fill='cyan'
           fill-opacity='0.5'
           stroke='black'
@@ -84,6 +125,8 @@ export default function ClubTables() {
         />
         <path
           id='101'
+          onClick={selectTable}
+          reserved={reservedTables.includes(101)}
           fill='cyan'
           fill-opacity='0.5'
           stroke='black'
@@ -96,6 +139,8 @@ export default function ClubTables() {
         />
         <path
           id='102'
+          onClick={selectTable}
+          reserved={reservedTables.includes(102)}
           fill='cyan'
           fill-opacity='0.5'
           stroke='black'
@@ -108,6 +153,8 @@ export default function ClubTables() {
         />
         <path
           id='103'
+          onClick={selectTable}
+          reserved={reservedTables.includes(103)}
           fill='cyan'
           fill-opacity='0.5'
           stroke='black'
@@ -120,6 +167,8 @@ export default function ClubTables() {
         />
         <path
           id='104'
+          onClick={selectTable}
+          reserved={reservedTables.includes(104)}
           fill='cyan'
           fill-opacity='0.5'
           stroke='black'
@@ -132,6 +181,8 @@ export default function ClubTables() {
         />
         <path
           id='105'
+          onClick={selectTable}
+          reserved={reservedTables.includes(105)}
           fill='cyan'
           fill-opacity='0.5'
           stroke='black'
@@ -144,6 +195,8 @@ export default function ClubTables() {
         />
         <path
           id='106'
+          onClick={selectTable}
+          reserved={reservedTables.includes(106)}
           fill='cyan'
           fill-opacity='0.5'
           stroke='black'

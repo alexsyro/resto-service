@@ -35,18 +35,20 @@ router.get('/', async (req, res) => {
       {
         model: Subcategory,
         attributes: ['id', 'name'],
-        include: [
-          {
-            model: Category,
-            attributes: ['id', 'name'],
-          },
-        ],
+        // include: [
+        //   {
+        //     model: Category,
+        //     attributes: ['id', 'name'],
+        //   },
+        // ],
       },
       {
         model: Measure,
-        attributes: ['id', 'type'],
+        attributes: ['type'],
+        // attributes: ['id', 'type'],
       },
     ],
+    raw: true,
   });
   res.json(hugeData);
 });

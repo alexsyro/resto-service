@@ -5,3 +5,12 @@
   height: 700;
   background-repeat: no-repeat;
 }
+
+.tableContainer {
+  display: flex;
+}
+
+.tableInfoContainer {
+  display: flex;
+  flex-direction: column;
+}

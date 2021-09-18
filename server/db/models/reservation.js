@@ -36,6 +36,7 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: 90,
       },
     },
+    // Добавить количество гостей на столик
     {
       sequelize,
       modelName: 'Reservation',
