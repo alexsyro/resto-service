@@ -16,6 +16,7 @@ import AddPastaForm from './Menu/items/Pasta/AddPastaForm';
 import AddPizzaForm from './Menu/items/Pizza/AddPizzaForm';
 import AddSaladForm from './Menu/items/Salads/AddSaladForm';
 import AddSoupForm from './Menu/items/Soups/AddSoupForm';
+import AddWorkerForm from './Staff/AddWorkerForm';
 
 function Admin() {
   return (
@@ -60,6 +61,9 @@ function Admin() {
           </Route>
           <Route path="/staff" exact>
             <Staff />
+          </Route>
+          <Route path="/staff/addworker" exact>
+            <AddWorkerForm />
           </Route>
         </Switch>
         <Footer />
