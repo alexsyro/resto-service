@@ -25,3 +25,11 @@ export const GET_USER = 'GET_USER';
 export const SAGA_FETCH_LOGIN = 'SAGA_FETCH_LOGIN';
 export const SAGA_FETCH_REG = 'SAGA_FETCH_REG';
 
+
+// orders
+export const GET_ORDERS = 'GET_ORDERS';
+export const UPDATE_ORDER = 'UPDATE_ORDER';
+export const COMPLETE_ORDER = 'COMPLETE_ORDER';
+export const DELETE_ORDER = 'DELETE_ORDER';
+
+

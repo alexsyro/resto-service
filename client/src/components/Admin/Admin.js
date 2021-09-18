@@ -6,8 +6,8 @@ import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import Menu from './Menu/Menu';
 import Orders from './Orders/Orders'
+import OrderInfo from './Orders/OrderInfo';
 import Staff from './Staff/Staff'
-import Order from './Order/Order';
 import SaladsInfo from './Menu/items/Salads/SaladsInfo';
 import WorkerInfo from './Staff/WorkerInfo';
 import AddCocktailForm from './Menu/items/Cocktails/AddCocktailForm';
@@ -55,6 +55,9 @@ function Admin() {
           </Route>
           <Route path="/orders" exact>
             <Orders />
+          </Route>
+          <Route path="/orders/edit/:id" exact>
+            <OrderInfo />
           </Route>
           <Route path="/staff/:id" exact>
             <WorkerInfo />
