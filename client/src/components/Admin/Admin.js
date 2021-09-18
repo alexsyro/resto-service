@@ -7,16 +7,13 @@ import Footer from './Footer/Footer';
 import Menu from './Menu/Menu';
 import Orders from './Orders/Orders'
 import Staff from './Staff/Staff'
-import Order from './Order/Order';
-import SaladsInfo from './Menu/items/Salads/SaladsInfo';
+// import Order from './Order/Order';
+// import SaladsInfo from './Menu/items/Salads/SaladsInfo';
 import WorkerInfo from './Staff/WorkerInfo';
 import AddCocktailForm from './Menu/items/Cocktails/AddCocktailForm';
-import AddDessertForm from './Menu/items/Desserts/AddDessertForm';
-import AddPastaForm from './Menu/items/Pasta/AddPastaForm';
-import AddPizzaForm from './Menu/items/Pizza/AddPizzaForm';
-import AddSaladForm from './Menu/items/Salads/AddSaladForm';
-import AddSoupForm from './Menu/items/Soups/AddSoupForm';
 import AddWorkerForm from './Staff/AddWorkerForm';
+import SubcategoryItem from './Menu/SubcategoryItem/SubcategoryItem';
+// import CocktailsInfo from './Menu/items/Cocktails/CocktailsInfo';
 
 function Admin() {
   return (
@@ -24,34 +21,18 @@ function Admin() {
       <Router>
         <Header />
         <SideMenu />
-
         <Switch>
           <Route path="/" exact>
             <Main />
           </Route>
-          <Route exact path="/menu/:id">
-            <SaladsInfo />
-          </Route>
           <Route path="/menu" exact>
             <Menu />
           </Route>
+          <Route path="/menu/:categoryName/:categoryId" exact>
+            <SubcategoryItem />
+          </Route>
           <Route path="/menu/addcocktail" exact>
             <AddCocktailForm />
-          </Route>
-          <Route path="/menu/adddeserts" exact>
-            <AddDessertForm />
-          </Route>
-          <Route path="/menu/addpasta" exact>
-            <AddPastaForm />
-          </Route>
-          <Route path="/menu/addpizza" exact>
-            <AddPizzaForm />
-          </Route>
-          <Route path="/menu/addsalad" exact>
-            <AddSaladForm />
-          </Route>
-          <Route path="/menu/addsoup" exact>
-            <AddSoupForm />
           </Route>
           <Route path="/orders" exact>
             <Orders />
