@@ -18,6 +18,11 @@ function Header() {
             </Link>
           </li>
           <li>
+            <Link className={styles.sidebar__links} to="/about">
+              О нас
+            </Link>
+          </li>
+          <li>
             <Link className={styles.sidebar__links} to="/menu">
               Меню
             </Link>
@@ -27,28 +32,28 @@ function Header() {
               Галерея
             </Link>
           </li>
-          <li>
-            <Link className={styles.sidebar__links} to="/about">
-              О нас
-            </Link>
-          </li>
+
           <li>
             <Link className={styles.sidebar__links} to="/contacts">
               Контакты
             </Link>
           </li>
-          <li>
-            <Link className={styles.sidebar__links} to="/login">
-              Вход
-            </Link>
-          </li>
-          <li>
-            <Link className={styles.sidebar__links} to="/registration">
-              Регистрация
-            </Link>
-          </li>
         </ul>
       </nav>
+
+      <div className={styles.navbar__container}>
+        <button className={styles.navbar__links} type="click">
+          <Link className={styles.navbar_btn} to="/book">
+            Забронировать
+          </Link>
+        </button>
+        <a className={styles.navbar__links}>
+          <Link to="/login">Вход</Link>
+        </a>
+        <a className={styles.navbar__links}>
+          <Link to="/registration">Регистрация</Link>
+        </a>
+      </div>
     </>
   )
 }
