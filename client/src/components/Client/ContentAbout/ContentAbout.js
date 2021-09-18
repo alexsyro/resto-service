@@ -7,7 +7,6 @@ function ContentAbout() {
   return (
     <div className={styles.main__container}>
       <div className={styles.about__img}>
-        {/* <img src="https://live-kitchen.ru/upload/59b7d17e20370.jpg" /> */}
       </div>
       <div className={styles.text_container}>
         <p className={styles.about__title}>О нас</p>
