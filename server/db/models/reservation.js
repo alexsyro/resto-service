@@ -16,7 +16,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   Reservation.init(
     {
-      table_id: {
+      TableId: {
+        field: 'table_id',
         allowNull: false,
         type: DataTypes.INTEGER,
         reference: {

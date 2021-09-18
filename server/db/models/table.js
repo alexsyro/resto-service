@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
       svgCoords: {
         allowNull: true,
         field: 'svg_coords',
-        type: DataTypes.text,
+        type: DataTypes.TEXT,
       },
     },
     {

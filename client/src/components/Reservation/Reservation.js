@@ -1,8 +1,5 @@
-import React, { useState } from 'react';
-import ClubTables from './ClubTables';
-import RestTables from './RestTables';
-import TableInfo from './TableInfo';
-import styles from './Tables.module.scss';
+import React, { useEffect, useState } from 'react';
+import styles from './Reservation.module.scss';
 
 //Текущая дата
 const CURR_DATE = new Date();
@@ -20,18 +17,14 @@ const formatDate = (timestamp = CURR_DATE.getTime()) => {
 const REST_HALL_ID = 1;
 const CLUB_HALL_ID = 2;
 
-export default function Tables() {
+export default function Reservation() {
+  let hallsArr;
   const today = formatDate();
   const maxDate = formatDate(CURR_DATE.getTime() + 1000 * 60 * 60 * 24 * 30);
 
   const [currHall, setCurrHall] = useState(REST_HALL_ID);
   const [selectedTableId, setSelectedTableId] = useState(null);
   const [selectedDateTime, setSelectedDateTime] = useState(null);
-
-  const hallToRender = {
-    2: <ClubTables setSelectedTableId={setSelectedTableId} selectedDateTime={selectedDateTime} />,
-    1: <RestTables setSelectedTableId={setSelectedTableId} selectedDateTime={selectedDateTime} />,
-  };
 
   // Выбор зала
   const hallSelect = (event) => {
@@ -52,6 +45,17 @@ export default function Tables() {
     const { reserved } = await response.json();
     console.log(reserved);
   };
+
+  //Получаем список залов
+  const fetchGetHalls = async () => {
+    const response = await fetch('http://localhost:1234/api/reservations/halls');
+    const { halls } = await response.json();
+    hallsArr = halls;
+  };
+
+  useEffect(() => {
+    fetchGetHalls();
+  }, []);
 
   return (
     <>
