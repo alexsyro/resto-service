@@ -12,21 +12,21 @@ function Main() {
           <Content />
         </Route>
         <Route exact path='/about'>
-          <p>О нас</p>
+          {/* <p>О нас</p> */}
         </Route>
         <Route exact path='/menu'>
-          <p>Меню</p>
+          {/* <p>Меню</p> */}
         </Route>
         <Route exact path='/gallery'>
-          <p>Галерея</p>
+          {/* <p>Галерея</p> */}
         </Route>
         <Route exact path='/contacts'>
-          <p>Контакты</p>
+          {/* <p>Контакты</p> */}
         </Route>
-        <Route exact path="/login">
+        <Route exact path='/login'>
           <LoginForm />
         </Route>
-        <Route exact path="/registration">
+        <Route exact path='/registration'>
           <RegForm />
         </Route>
       </Switch>

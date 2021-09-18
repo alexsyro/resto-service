@@ -8,8 +8,8 @@
   border: 0;
 }
 
-body {
-  font-size: clamp(1px, calc(100vw / 90), 22px);
+html {
+  font-size: clamp(7px, calc(100vw / 90), 22px);
   width: 100%;
 }
 
