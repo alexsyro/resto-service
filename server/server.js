@@ -9,12 +9,13 @@ const cors = require('cors');
 const clientRouter = require('./routes/clients');
 const staffRouter = require('./routes/staff');
 const menuRouter = require('./routes/menu');
+const ordersRouter = require('./routes/orders');
 const reserveRouter = require('./routes/reservations');
 
 // Инициализируем хранение переменных окружения в файл .env
 dotenv.config();
 
-const { PORT, SECRET } = process.env;
+const { PORT, SECRET_PHRASE } = process.env;
 const REGEXP_EMAIL_PATTERN = /[\s\S]+[@]{1}.+[.]{1}/gi;
 
 const server = express();
@@ -22,7 +23,7 @@ const server = express();
 const sessionConfig = {
   store: new SessionFileStore(),
   name: 'user_sid',
-  secret: SECRET,
+  secret: SECRET_PHRASE,
   resave: true,
   saveUninitialized: false,
   cookie: {
@@ -63,6 +64,7 @@ server.post('/login', (req, res) => {
 server.use('/api/clients', clientRouter);
 server.use('/api/staff', staffRouter);
 server.use('/api/menu', menuRouter);
+server.use('/api/orders', ordersRouter);
 server.use('/api/reservations', reserveRouter);
 
 server.listen(PORT, () => {
