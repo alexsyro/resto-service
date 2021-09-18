@@ -38,6 +38,11 @@
   transition: 0.3s;
 }
 
+.sidebar__links:hover {
+  color: white;
+  text-decoration: none;
+}
+
 .sidebar ul li:hover .sidebar__links {
   padding-left: 3rem;
 }
@@ -93,4 +98,19 @@ label #cancel {
 
 #check:checked ~ label #cancel {
   left: 11.8rem;
+}
+
+.navbar__container {
+  z-index: 1111;
+  position: fixed;
+  right: 0;
+}
+
+.navbar__links {
+  margin-right: 1rem;
+}
+
+.navbar_btn {
+  background: rgba($color: #1a1717, $alpha: 0.7);
+  color: white;
 }
