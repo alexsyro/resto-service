@@ -10,6 +10,7 @@ import Staff from './Staff/Staff'
 import Order from './Order/Order';
 import SaladsInfo from './Menu/items/Salads/SaladsInfo';
 import WorkerInfo from './Staff/WorkerInfo';
+import AddWorkerForm from './Staff/AddWorkerForm';
 
 function Admin() {
   return (
@@ -23,7 +24,7 @@ function Admin() {
             <Main />
           </Route>
           <Route exact path="/menu/:id">
-            <SaladsInfo/>
+            <SaladsInfo />
           </Route>
           <Route path="/menu" exact>
             <Menu />
@@ -36,6 +37,9 @@ function Admin() {
           </Route>
           <Route path="/staff" exact>
             <Staff />
+          </Route>
+          <Route path="/staff/addworker" exact>
+            <AddWorkerForm />
           </Route>
         </Switch>
         <Footer />
