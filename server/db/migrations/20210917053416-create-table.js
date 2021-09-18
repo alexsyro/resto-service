@@ -27,6 +27,11 @@ module.exports = {
         field: 'seats_limit',
         type: Sequelize.INTEGER,
       },
+      svgCoords: {
+        allowNull: true,
+        field: 'svg_coords',
+        type: Sequelize.TEXT,
+      },
       createdAt: {
         allowNull: true,
         type: Sequelize.DATE,

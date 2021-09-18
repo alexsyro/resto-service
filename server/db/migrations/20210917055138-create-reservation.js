@@ -21,6 +21,11 @@ module.exports = {
         field: 'date_time',
         type: Sequelize.DATE,
       },
+      guestCount: {
+        field: 'guest_count',
+        type: Sequelize.INTEGER,
+        defaultValue: 2,
+      },
       timeInterval: {
         field: 'time_interval',
         type: Sequelize.INTEGER,

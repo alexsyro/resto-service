@@ -30,13 +30,17 @@ module.exports = (sequelize, DataTypes) => {
         field: 'date_time',
         type: DataTypes.DATE,
       },
+      guestCount: {
+        field: 'guest_count',
+        type: DataTypes.INTEGER,
+        defaultValue: 2,
+      },
       timeInterval: {
         field: 'time_interval',
         type: DataTypes.INTEGER,
         defaultValue: 90,
       },
     },
-    // Добавить количество гостей на столик
     {
       sequelize,
       modelName: 'Reservation',
