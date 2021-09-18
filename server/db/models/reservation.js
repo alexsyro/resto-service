@@ -16,7 +16,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   Reservation.init(
     {
-      table_id: {
+      TableId: {
+        field: 'table_id',
         allowNull: false,
         type: DataTypes.INTEGER,
         reference: {
@@ -29,6 +30,11 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         field: 'date_time',
         type: DataTypes.DATE,
+      },
+      guestCount: {
+        field: 'guest_count',
+        type: DataTypes.INTEGER,
+        defaultValue: 2,
       },
       timeInterval: {
         field: 'time_interval',

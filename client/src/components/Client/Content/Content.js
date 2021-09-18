@@ -1,11 +1,9 @@
-import React from 'react';
+import React from 'react'
+import ContentVideo from '../ContentVideo/ContentVideo'
 
-function Content(props) {
-  return (
-    <div>
-      CONTENT
-    </div>
-  );
+
+function Content() {
+  return <ContentVideo />
 }
 
-export default Content;
+export default Content

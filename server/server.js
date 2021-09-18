@@ -10,6 +10,7 @@ const clientRouter = require('./routes/clients');
 const staffRouter = require('./routes/staff');
 const menuRouter = require('./routes/menu');
 const ordersRouter = require('./routes/orders');
+const reserveRouter = require('./routes/reservations');
 
 // Инициализируем хранение переменных окружения в файл .env
 dotenv.config();
@@ -64,6 +65,7 @@ server.use('/api/clients', clientRouter);
 server.use('/api/staff', staffRouter);
 server.use('/api/menu', menuRouter);
 server.use('/api/orders', ordersRouter);
+server.use('/api/reservations', reserveRouter);
 
 server.listen(PORT, () => {
   console.log(`${'\n'.repeat(10)}[------] SERVER STARTED AT PORT ${PORT} [------]\n`);

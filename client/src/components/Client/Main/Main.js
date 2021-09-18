@@ -3,6 +3,8 @@ import Content from '../Content/Content';
 import styles from './Main.module.scss';
 import LoginForm from '../LoginForm/LoginForm';
 import RegForm from '../RegForm/RegForm';
+import About from '../About/About';
+import Contacts from '../Contacts/Contacts';
 
 function Main() {
   return (
@@ -12,21 +14,21 @@ function Main() {
           <Content />
         </Route>
         <Route exact path='/about'>
-          <p>О нас</p>
+          <About />
         </Route>
         <Route exact path='/menu'>
-          <p>Меню</p>
+          {/* <p>Меню</p> */}
         </Route>
         <Route exact path='/gallery'>
-          <p>Галерея</p>
+          {/* <p>Галерея</p> */}
         </Route>
         <Route exact path='/contacts'>
-          <p>Контакты</p>
+          <Contacts />
         </Route>
-        <Route exact path="/login">
+        <Route exact path='/login'>
           <LoginForm />
         </Route>
-        <Route exact path="/registration">
+        <Route exact path='/registration'>
           <RegForm />
         </Route>
       </Switch>
