@@ -10,6 +10,13 @@ import Staff from './Staff/Staff'
 import Order from './Order/Order';
 import SaladsInfo from './Menu/items/Salads/SaladsInfo';
 import WorkerInfo from './Staff/WorkerInfo';
+import AddCocktailForm from './Menu/items/Cocktails/AddCocktailForm';
+import AddDessertForm from './Menu/items/Desserts/AddDessertForm';
+import AddPastaForm from './Menu/items/Pasta/AddPastaForm';
+import AddPizzaForm from './Menu/items/Pizza/AddPizzaForm';
+import AddSaladForm from './Menu/items/Salads/AddSaladForm';
+import AddSoupForm from './Menu/items/Soups/AddSoupForm';
+import AddWorkerForm from './Staff/AddWorkerForm';
 
 function Admin() {
   return (
@@ -23,10 +30,28 @@ function Admin() {
             <Main />
           </Route>
           <Route exact path="/menu/:id">
-            <SaladsInfo/>
+            <SaladsInfo />
           </Route>
           <Route path="/menu" exact>
             <Menu />
+          </Route>
+          <Route path="/menu/addcocktail" exact>
+            <AddCocktailForm />
+          </Route>
+          <Route path="/menu/adddeserts" exact>
+            <AddDessertForm />
+          </Route>
+          <Route path="/menu/addpasta" exact>
+            <AddPastaForm />
+          </Route>
+          <Route path="/menu/addpizza" exact>
+            <AddPizzaForm />
+          </Route>
+          <Route path="/menu/addsalad" exact>
+            <AddSaladForm />
+          </Route>
+          <Route path="/menu/addsoup" exact>
+            <AddSoupForm />
           </Route>
           <Route path="/orders" exact>
             <Orders />
@@ -36,6 +61,9 @@ function Admin() {
           </Route>
           <Route path="/staff" exact>
             <Staff />
+          </Route>
+          <Route path="/staff/addworker" exact>
+            <AddWorkerForm />
           </Route>
         </Switch>
         <Footer />
