@@ -3,29 +3,29 @@ import { Link } from "react-router-dom";
 
 function Nav(props) {
   return (
-    <nav >
-    <div className="uk-navbar-left">
+    <nav className="uk-navbar-container" uk-navbar='true'>
+      <div className="uk-navbar-left">
 
-      <ul >
-        <li>
-          <Link to="/">Main</Link>
-        </li>
-        <li>
-          <Link to="/menu">Menu</Link>
-        </li>
-        <li>
-          <Link to="/staff">Staff</Link>
-        </li>
-        <li>
-          <Link to="/orders">Orders</Link>
-        </li>
-        <li>
-          <Link to="/logout">Logout</Link>
-        </li>
-      </ul>
+        <ul className="uk-navbar-nav" >
+          <li className="uk-active">
+            <Link to="/">Main</Link>
+          </li>
+          <li className="uk-active">
+            <Link to="/menu">Menu</Link>
+          </li>
+          <li className="uk-active">
+            <Link to="/staff">Staff</Link>
+          </li>
+          <li className="uk-active">
+            <Link to="/orders">Orders</Link>
+          </li>
+          <li className="uk-active">
+            <Link to="/logout">Logout</Link>
+          </li>
+        </ul>
 
-    </div>
-  </nav>
+      </div>
+    </nav>
   );
 }
 

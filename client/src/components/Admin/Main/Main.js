@@ -3,21 +3,21 @@ import styles from './Main.module.scss';
 
 function Main() {
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} uk-button-group `}>
       <Link to="/menu">
-        <button type="button">
+        <button className='uk-button uk-button-primary' type="button">
           menu
         </button>
       </Link>
 
       <Link to="/orders">
-        <button type="button">
+        <button className='uk-button uk-button-primary' type="button">
           orders
         </button>
       </Link>
 
       <Link to="/staff">
-        <button type="button">
+        <button className='uk-button uk-button-primary' type="button">
           staff
         </button>
       </Link>
