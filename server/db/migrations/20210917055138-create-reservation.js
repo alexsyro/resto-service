@@ -17,6 +17,17 @@ module.exports = {
           onUpdate: 'CASCADE',
         },
       },
+      StateId: {
+        allowNull: false,
+        field: 'state_id',
+        type: Sequelize.INTEGER,
+        defaultValue: 1,
+        reference: {
+          model: 'States',
+          key: 'id',
+          onUpdate: 'CASCADE',
+        },
+      },
       dateTime: {
         allowNull: false,
         field: 'date_time',
@@ -26,6 +37,14 @@ module.exports = {
         field: 'guest_count',
         type: Sequelize.INTEGER,
         defaultValue: 2,
+      },
+      guestName: {
+        field: 'guest_name',
+        type: Sequelize.TEXT,
+      },
+      guestPhone: {
+        field: 'guest_phone',
+        type: Sequelize.TEXT,
       },
       timeInterval: {
         field: 'time_interval',

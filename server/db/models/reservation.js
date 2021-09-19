@@ -6,12 +6,12 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({ Table, Order }) {
+    static associate({ Table, State }) {
       // define association here
       // Зарезервирован может быть лишь один столик
       Reservation.belongsTo(Table);
       // И на один зарезервированный столик может быть несколько заказов (каждому клиенту свой счёт)
-      Reservation.hasMany(Order);
+      Reservation.belongsTo(State);
     }
   }
   Reservation.init(
@@ -26,6 +26,17 @@ module.exports = (sequelize, DataTypes) => {
           onUpdate: 'CASCADE',
         },
       },
+      StateId: {
+        allowNull: false,
+        field: 'state_id',
+        type: DataTypes.INTEGER,
+        defaultValue: 1,
+        reference: {
+          model: 'States',
+          key: 'id',
+          onUpdate: 'CASCADE',
+        },
+      },
       dateTime: {
         allowNull: false,
         field: 'date_time',
@@ -35,6 +46,14 @@ module.exports = (sequelize, DataTypes) => {
         field: 'guest_count',
         type: DataTypes.INTEGER,
         defaultValue: 2,
+      },
+      guestName: {
+        field: 'guest_name',
+        type: DataTypes.TEXT,
+      },
+      guestPhone: {
+        field: 'guest_phone',
+        type: DataTypes.TEXT,
       },
       timeInterval: {
         field: 'time_interval',

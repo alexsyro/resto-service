@@ -10,10 +10,12 @@ export default function TableInfo() {
 
   const createReservation = async (event) => {
     event.preventDefault();
-    const { guestCount } = event.target;
+    const { guestCount, guestName, guestPhone } = event.target;
     const dataToSend = {
-      tableId: selectedTable.id,
+      tableId: selectedTable.number,
       guestCount: guestCount.value,
+      guestName: guestName.value,
+      guestPhone: guestPhone.value,
       date: selectedDateTime.date,
       time: selectedDateTime.time,
     };
@@ -29,7 +31,8 @@ export default function TableInfo() {
       dispatch(setReservationAC({ reservation }));
       dispatch(resetReservSelectionAC());
       alert(
-        `Вы забронировали столик ${selectedTable.number} на ${selectedDateTime.date} в ${selectedDateTime.time} часов.`,
+        `${guestName.value} забронировали столик ${selectedTable.number} на ${selectedDateTime.date} 
+        в ${selectedDateTime.time} часов. Вам придёт смс, после подтверждения бронирования`,
       );
     }
   };
@@ -58,6 +61,16 @@ export default function TableInfo() {
                 defaultValue='2'
                 min='1'
                 max={selectedTable.seatsLimit}
+              />
+              <label htmlFor='guestName'>Ваше имя</label>
+              <input id='guestName' type='text' name='guestName' placeholder='Введите ваше имя' required />
+              <label htmlFor='guestPhone'>Ваше имя</label>
+              <input
+                id='guestPhone'
+                type='tel'
+                name='guestPhone'
+                placeholder='Введите ваш телефон'
+                required
               />
             </div>
             <button type='submit'>Забронировать</button>

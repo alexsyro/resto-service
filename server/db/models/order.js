@@ -7,12 +7,11 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({ Client, Reservation, OrderPosition }) {
+    static associate({ Client, OrderPosition, State }) {
       // define association here
       // Счёт может быть открыт только на одного клиента
       Order.belongsTo(Client);
-      // Один заказ принадлежит только одному зарезервированному столику
-      Order.belongsTo(Reservation);
+      Order.belongsTo(State);
       // В одном заказе может быть много блюд (В данном случае это сводная таблица,
       // которая хранит список id заказа - id блюда - количество)
       Order.hasMany(OrderPosition);
@@ -30,19 +29,16 @@ module.exports = (sequelize, DataTypes) => {
           onUpdate: 'CASCADE',
         },
       },
-      ReservationId: {
+      StateId: {
         allowNull: false,
-        field: 'reservation_id',
+        field: 'state_id',
         type: DataTypes.INTEGER,
+        defaultValue: 1,
         reference: {
-          model: 'Reservations',
+          model: 'States',
           key: 'id',
           onUpdate: 'CASCADE',
         },
-      },
-      status: {
-        allowNull: false,
-        type: DataTypes.TEXT,
       },
     },
     {
