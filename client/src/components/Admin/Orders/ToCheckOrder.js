@@ -34,7 +34,7 @@ function ToCheckOrder({ order }) {
 
       {order.completed ? null : <p>нуждается в обработке</p>}
       <Link to={`/orders/edit/${order.id}`} className="uk-button uk-button-default">Скорректировать</Link>
-      <button onClick={() => finishOrder()} className="uk-button uk-button-default"> перевести в статус обработанного</button>
+      <button onClick={() => finishOrder()} className="uk-button uk-button-primary"> перевести в статус обработанного</button>
     </li >
   );
 }
