@@ -1,8 +1,11 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-// import { sagaLoginAC } from '../../../redux/actionCreators/loginFormAC';
+import { sagaLoginAC } from '../../../redux/actionCreators/loginFormAC';
 import styles from './LoginForm.module.scss';
-import { GET_USER } from '../../../redux/actionTypes/actionType'
+
+// const checkEmptyFields = (fields) => {
+//   fields.every(field => field.value.length);
+// };
 
 function LoginForm() {
 
@@ -10,18 +13,21 @@ function LoginForm() {
 
   const loginSubmit = (e) => {
     e.preventDefault();
-    // dispatch(sagaLoginAC());
-    const { action, method, email, password } = e.target;
-    fetch(action, {
-      method,
-      headers: { 'Content-Type': 'application/json' },
-      body: {
+    const { email, password } = e.target;
+    // const fields = [email, password];
+    // const notEmpty = checkEmptyFields(fields);
+    // if(notEmpty) {
+      const user = {
         email: email.value,
-        password: password.value
+        password: password.value,
       }
-    })
-    .then(res => res.json())
-    .then(data => dispatch({type: GET_USER, action: data}))
+    const payload = user ;
+    dispatch(sagaLoginAC(payload));
+    // } 
+    // else {
+      // alert('Заполните все поля') 
+      // пока заглушка
+    // }
   };
 
   return (
