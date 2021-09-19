@@ -26,9 +26,6 @@ function Admin() {
           <Route path='/' exact>
             <Main />
           </Route>
-          <Route path='/menu/addcocktail' exact>
-            <AddCocktailForm />
-          </Route>
           <Route path='/menu/edit/:dishName/:dishId' exact>
             <DishInfo />
           </Route>
