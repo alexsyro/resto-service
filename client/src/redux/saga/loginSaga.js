@@ -4,9 +4,10 @@ import { SAGA_FETCH_LOGIN } from '../actionTypes/actionType';
 
 
 const fetchUsers = async (user) => {
-  const {email, password } = user.action;
-  const res = fetch('http://localhost:1234/login', {
-    method: 'POST',
+  const {email, password, action, method } = user.action; //работает на магии, не трогать
+  console.log(email, password, action, method)
+  const res = fetch(action, {
+    method,
     credential: true,
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ 

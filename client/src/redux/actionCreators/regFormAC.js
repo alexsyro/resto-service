@@ -7,8 +7,9 @@ export const getUserAC = (payload) => {
   }
 }
 
-export const sagaRegAC = () => {
+export const sagaRegAC = (action) => {
   return {
-    type: SAGA_FETCH_REG
+    type: SAGA_FETCH_REG,
+    action
   }
 }
