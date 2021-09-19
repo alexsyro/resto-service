@@ -53,6 +53,7 @@ function Header() {
         <a className={styles.navbar__links}>
           <Link to="/registration">Регистрация</Link>
         </a>
+        <Link className={styles.navbar__links} to="/cart">Корзина</Link>
       </div>
     </>
   )

@@ -3,6 +3,7 @@ import styles from './Content.module.scss'
 import ContentVideo from '../ContentVideo/ContentVideo'
 import ContentAbout from '../ContentAbout/ContentAbout'
 import ContentBook from '../ContentBook/ContentBook'
+import ContentSlider from '../ContentSlider/ContentSlider'
 
 function Content() {
   return (
@@ -10,6 +11,7 @@ function Content() {
       <ContentVideo />
       <ContentAbout />
       <ContentBook />
+      <ContentSlider/>
     </div>
   )
 }
