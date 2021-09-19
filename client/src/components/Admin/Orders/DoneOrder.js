@@ -8,7 +8,7 @@ function DoneOrder({ order }) {
       <p>phone:   {order['Client.phone']}</p>
       <p>number of table:   {order['Reservation.table_id']}</p>
       <p>date and time:   {order['Reservation.date_time']}</p>
-      {order.completed === 'checked' ? <p>обработан</p> : null}
+      {order.completed === 'Checked' ? <p>обработан</p> : null}
     </li>
   );
 }
