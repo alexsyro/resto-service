@@ -1,0 +1,47 @@
+.main__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.about__img {
+  background: url('https://live-kitchen.ru/upload/59b7d17e20370.jpg') no-repeat
+    center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width: 50%;
+  height: 70%;
+  margin-right: 2rem
+}
+
+.text_container {
+  width: 50%;
+}
+
+.about__title {
+  color: white;
+  font-size: 3rem;
+}
+
+.about__text {
+  color: white;
+  font-size: 1.3rem;
+}
+
+.about__btn {
+  background: none;
+  border: 0.15rem solid white;
+  padding: 0.4rem;
+}
+
+.about__btn__text {
+  text-transform: uppercase;
+  color: white;
+  background: none;
+  font-size: 1.3rem;
+}

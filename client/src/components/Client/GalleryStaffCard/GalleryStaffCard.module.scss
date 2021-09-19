@@ -1,0 +1,53 @@
+.card {
+  max-width: 19rem;
+  height: 27rem;
+  height: 15rem;
+  background: #fff;
+  margin: 2rem 1rem;
+  padding: 1rem 0.7rem;
+  display: flex;
+  border-radius: 0.3rem;
+  flex-direction: column;
+  box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.5);
+  transition: 0.3s ease-in-out;
+}
+
+.card:hover {
+  height: 27rem;
+}
+
+.card__content {
+  position: relative;
+  margin-top: -8rem;
+  padding: 0.7rem 1rem;
+  text-align: center;
+  color: #111;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 1;
+  transition: 0.3s ease-in-out;
+  transition-delay: 0.3s;
+}
+
+.imgBx {
+  position: relative;
+  background: #fff;
+  top: -4rem;
+  left: 0.35rem;
+  min-width: initial;
+  width: 17rem;
+  height: 17rem;
+  border-radius: 0.3rem;
+  z-index: 0;
+  box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.2);
+
+}
+
+.img {
+  max-width: 100%;
+  border-radius: 0.3rem;
+}
+
+.text {
+  color: black;
+}

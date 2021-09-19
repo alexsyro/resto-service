@@ -1,0 +1,12 @@
+.gallery__container {
+  position: relative;
+  width: 69rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 3rem 2rem 1rem;
+  background: #757577;
+  background: -moz-linear-gradient(top, #757577 0%, #061723 100%);
+  background: -webkit-linear-gradient(top, #757577 0%, #061723 100%);
+  background: linear-gradient(to bottom, #757577 0%, #061723 100%);
+}
