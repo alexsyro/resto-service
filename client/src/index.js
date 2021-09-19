@@ -6,7 +6,7 @@ import Admin from './components/Admin/Admin';
 import Client from './components/Client/Client';
 import store from './redux/store';
 
-const isAdmin = true;
+const isAdmin = false;
 
 ReactDOM.render(
   <React.StrictMode>

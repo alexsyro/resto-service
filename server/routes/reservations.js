@@ -49,13 +49,15 @@ router.get('/hall/:id', async (req, res) => {
 
 // Создание резерва столика
 router.post('/', async (req, res) => {
-  const { tableId, guestCount, date, time } = req.body;
+  const { tableId, guestCount, guestPhone, guestName, date, time } = req.body;
   const selectedDate = new Date(`${date}T${time}`);
   const reservation = await Reservation.create(
     {
       TableId: tableId,
       dateTime: selectedDate,
       guestCount,
+      guestName,
+      guestPhone,
       timeInterval: 90,
     },
     { raw: true },
