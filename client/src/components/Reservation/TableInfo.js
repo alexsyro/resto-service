@@ -1,5 +1,7 @@
-import styles from './Tables.module.scss';
+import styles from './Reservation.module.scss';
 
+
+// ПРОКИНУТЬ СТОЛИК ОТ САМОГО СТОЛА ДО ЭТОГО МЕСТА
 export default function TableInfo({ selectedTable: selectedTableId, selectedDateTime }) {
   const tables = [
     { id: 111, seatsLimit: 6 },

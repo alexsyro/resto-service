@@ -6,6 +6,7 @@ import Admin from './components/Admin/Admin';
 import Client from './components/Client/Client';
 import store from './redux/store';
 import Tables from './components/Tables/Tables';
+import Reservation from './components/Reservation/Reservation';
 
 const isAdmin = true;
 
@@ -15,7 +16,7 @@ ReactDOM.render(
       <Router>
         {/* Условный рендеринг isAdmin. */}
         {/* {isAdmin ? <Admin /> : <Client />} */}
-        <Tables />
+        <Reservation />
       </Router>
     </Provider>
   </React.StrictMode>,

@@ -11,8 +11,9 @@ router.get('/halls', async (req, res) => {
   res.json({ halls });
 });
 
-// Запрос на столики нужного зала
-router.get('/hall/:id', async (req, res) => {
+// Запрос статуса нужного столика
+router.get('/table/:id', async (req, res) => {
+  const { id } = req.params;
   const { date, time } = req.query;
   const selectedDate = new Date(`${date}T${time}`);
   const offset = Math.abs(selectedDate.getTimezoneOffset()) * 60 * 1000;
@@ -24,17 +25,36 @@ router.get('/hall/:id', async (req, res) => {
   selectedDate: ${selectedDate}
   endDate: ${endDate}
   --------`);
-  const tableForDate = await Reservation.findAll({
+  const reservedTablesForDate = await Reservation.findAll({
     where: {
-      dateTime: {
-        [Op.gt]: startDate,
-        [Op.lt]: endDate,
-      },
+      [Op.and]: [
+        { TableId: id },
+        {
+          dateTime: {
+            [Op.gt]: startDate,
+            [Op.lt]: endDate,
+          },
+        },
+      ],
     },
     raw: true,
   });
-  console.log('TABLES:::::', tableForDate);
-  res.json({ reserved: tableForDate });
+  const reserved = reservedTablesForDate.find((table) => table.id === id) === false;
+  console.log('reserved:', reserved);
+  res.json({ reserved });
+});
+
+// Запрос на столики нужного зала
+router.get('/hall/:id', async (req, res) => {
+  const { id } = req.params;
+  const tablesOfHall = await Table.findAll({
+    where: {
+      HallId: id,
+    },
+    raw: true,
+  });
+  console.log('TABLES:::::', tablesOfHall);
+  res.json({ tables: tablesOfHall });
 });
 
 // Создание резерва столика

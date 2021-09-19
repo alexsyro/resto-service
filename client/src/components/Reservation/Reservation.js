@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import Hall from './Hall';
+import TableInfo from './TableInfo';
 import styles from './Reservation.module.scss';
 
 //Текущая дата
@@ -13,24 +15,14 @@ const formatDate = (timestamp = CURR_DATE.getTime()) => {
   return `${year}-${month}-${day}`;
 };
 
-//Выбор нужного зала
-const REST_HALL_ID = 1;
-const CLUB_HALL_ID = 2;
-
 export default function Reservation() {
-  let hallsArr;
   const today = formatDate();
   const maxDate = formatDate(CURR_DATE.getTime() + 1000 * 60 * 60 * 24 * 30);
 
-  const [currHall, setCurrHall] = useState(REST_HALL_ID);
   const [selectedTableId, setSelectedTableId] = useState(null);
+  const [selectedHallId, setSelectedHallId] = useState(null);
   const [selectedDateTime, setSelectedDateTime] = useState(null);
-
-  // Выбор зала
-  const hallSelect = (event) => {
-    const { id } = event.target;
-    setCurrHall(Number(id));
-  };
+  const [hallsArray, setHallsArray] = useState({});
 
   // Необходимо сделать запрос на столики для текущей даты и посмотреть, какие свободны, а какие нет
   const dateTimeSelect = async (event) => {
@@ -38,24 +30,24 @@ export default function Reservation() {
     const { date, time } = event.target;
     const datetime = { date: date.value, time: time.value };
     setSelectedDateTime(datetime);
-    setCurrHall(Number(REST_HALL_ID));
-    const response = await fetch(
-      `http://localhost:1234/api/reservations/hall/${currHall}?date=${datetime.date}&time=${datetime.time}`,
-    );
-    const { reserved } = await response.json();
-    console.log(reserved);
   };
 
   //Получаем список залов
   const fetchGetHalls = async () => {
     const response = await fetch('http://localhost:1234/api/reservations/halls');
     const { halls } = await response.json();
-    hallsArr = halls;
+    setHallsArray(halls);
+    console.log('HALLS', hallsArray);
   };
 
   useEffect(() => {
     fetchGetHalls();
-  }, []);
+  }, [selectedDateTime]);
+
+  const selectHall = (event) => {
+    const { id } = event.target;
+    setSelectedHallId(id);
+  };
 
   return (
     <>
@@ -68,25 +60,28 @@ export default function Reservation() {
             <button type='submit'>Выбрать</button>
           </form>
         </div>
+        <div className='hallSelect'>
+          {selectedDateTime &&
+            hallsArray.length &&
+            hallsArray.map((hall) => (
+              <button key={hall.id} onClick={selectHall} id={hall.id} type='submit'>
+                {hall.name}
+              </button>
+            ))}
+        </div>
 
-        {selectedDateTime && (
-          <div>
-            <div className='hallSelect'>
-              <button onClick={hallSelect} id='1' selected type='submit'>
-                Ресторан
-              </button>
-              <button onClick={hallSelect} id='2' type='submit'>
-                Клуб
-              </button>
-            </div>
-            <div className={styles.tableContainer}>
-              {hallToRender[currHall]}
-              {selectedTableId && (
-                <TableInfo selectedDateTime={selectedDateTime} selectedTable={selectedTableId} />
-              )}
-            </div>
-          </div>
-        )}
+        <div className={styles.tableContainer}>
+          {selectedHallId && (
+            <Hall
+              id={selectedHallId}
+              selectedDateTime={selectedDateTime}
+              setSelectedTableId={setSelectedTableId}
+            />
+          )}
+          {selectedTableId && (
+            <TableInfo selectedDateTime={selectedDateTime} selectedTable={selectedTableId} />
+          )}
+        </div>
       </div>
     </>
   );
