@@ -13,15 +13,17 @@ function LoginForm() {
 
   const loginSubmit = (e) => {
     e.preventDefault();
-    const { email, password } = e.target;
+    const { action, method, email, password } = e.target;
     // const fields = [email, password];
-    // const notEmpty = checkEmptyFields(fields);
-    // if(notEmpty) {
+    // const Empty = checkEmptyFields(fields);
+    // if(Empty) {
       const user = {
+        action,
+        method,
         email: email.value,
         password: password.value,
       }
-    const payload = user ;
+    const payload = user;
     dispatch(sagaLoginAC(payload));
     // } 
     // else {
