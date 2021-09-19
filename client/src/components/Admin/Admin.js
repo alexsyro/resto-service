@@ -10,7 +10,7 @@ import OrderInfo from './Orders/OrderInfo';
 import Staff from './Staff/Staff'
 // import SaladsInfo from './Menu/items/Salads/SaladsInfo';
 import WorkerInfo from './Staff/WorkerInfo';
-import AddCocktailForm from './Menu/items/Cocktails/AddCocktailForm';
+// import AddCocktailForm from './Menu/items/Cocktails/AddCocktailForm';
 import AddWorkerForm from './Staff/AddWorkerForm';
 import SubcategoryItem from './Menu/SubcategoryItem/SubcategoryItem';
 import DishInfo from './Menu/DishInfo/DishInfo';

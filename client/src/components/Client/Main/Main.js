@@ -6,6 +6,7 @@ import RegForm from '../RegForm/RegForm';
 import About from '../About/About';
 import Contacts from '../Contacts/Contacts';
 import Reservation from '../Reservation/Reservation';
+import Gallery from '../Gallery/Gallery';
 
 function Main() {
   return (
@@ -21,7 +22,7 @@ function Main() {
           {/* <p>Меню</p> */}
         </Route>
         <Route exact path='/gallery'>
-          {/* <p>Галерея</p> */}
+          <Gallery />
         </Route>
         <Route exact path='/contacts'>
           <Contacts />
