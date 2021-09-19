@@ -1,8 +1,8 @@
 const orders = [
-  { client_id: 1, reservation_id: 1, status: 'Checked', createdAt: new Date() },
-  { client_id: 2, reservation_id: 2, status: 'toCheck', createdAt: new Date() },
-  { client_id: 3, reservation_id: 3, status: 'toCheck', createdAt: new Date() },
-  { client_id: 4, reservation_id: 4, status: 'toCheck', createdAt: new Date() },
+  { client_id: 1, state_id: 2, createdAt: new Date() },
+  { client_id: 2, state_id: 1, createdAt: new Date() },
+  { client_id: 3, state_id: 3, createdAt: new Date() },
+  { client_id: 4, state_id: 6, createdAt: new Date() },
 ];
 
 module.exports = orders;

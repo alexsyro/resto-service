@@ -17,19 +17,15 @@ module.exports = {
           onUpdate: 'CASCADE',
         },
       },
-      ReservationId: {
+      StateId: {
         allowNull: false,
-        field: 'reservation_id',
+        field: 'state_id',
         type: Sequelize.INTEGER,
         reference: {
-          model: 'Reservations',
+          model: 'States',
           key: 'id',
           onUpdate: 'CASCADE',
         },
-      },
-      status: {
-        allowNull: false,
-        type: Sequelize.TEXT,
       },
       createdAt: {
         allowNull: true,
