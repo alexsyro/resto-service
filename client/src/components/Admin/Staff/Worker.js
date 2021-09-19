@@ -9,7 +9,7 @@ function Worker({ person }) {
   const deleteWorker = () => {    
     dispatch({ type: DEL_STAFF, payload: person.id })
     // console.log('delete')
-    fetch(`http://localhost:1234/api/menu/delete/${person.id}`, {
+    fetch(`http://localhost:1234/api/staff/delete/${person.id}`, {
       method: 'DELETE',
     })
     .then(console.log)

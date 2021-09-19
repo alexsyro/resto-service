@@ -8,14 +8,15 @@ import Menu from './Menu/Menu';
 import Orders from './Orders/Orders';
 import OrderInfo from './Orders/OrderInfo';
 import Staff from './Staff/Staff';
-// import SaladsInfo from './Menu/items/Salads/SaladsInfo';
 import WorkerInfo from './Staff/WorkerInfo';
-// import AddCocktailForm from './Menu/items/Cocktails/AddCocktailForm';
 import AddWorkerForm from './Staff/AddWorkerForm';
 import SubcategoryItem from './Menu/SubcategoryItem/SubcategoryItem';
 import DishInfo from './Menu/DishInfo/DishInfo';
 import AddDishForm from './Menu/AddDishForm/AddDishForm';
-// import CocktailsInfo from './Menu/items/Cocktails/CocktailsInfo';
+import UsersPage from './UsersPage/UsersPage'
+import ClientInfo from './UsersPage/ClientInfo';
+import AddClientForm from './UsersPage/AddClientForm';
+
 
 function Admin() {
   return (
@@ -55,6 +56,15 @@ function Admin() {
           </Route>
           <Route path='/staff' exact>
             <Staff />
+          </Route>
+          <Route path='/clients' exact>
+            <UsersPage />
+          </Route>
+          <Route path='/clients/edit/:clientId' exact>
+            <ClientInfo />
+          </Route>
+          <Route exact path='/clients/addclient'>
+            <AddClientForm />
           </Route>
         </Switch>
         <Footer />

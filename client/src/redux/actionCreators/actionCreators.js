@@ -1,5 +1,4 @@
 import {
-  UPD_CARD,
   RESERVATION_SELECT_TABLE,
   RESERVATION_SELECT_HALL,
   RESERVATION_SELECT_DATETIME,
@@ -7,12 +6,6 @@ import {
   RESERVATION_SET_RESERVATION,
 } from '../actionTypes/actionType';
 
-export const updCardAC = (payload) => {
-  return {
-    type: UPD_CARD,
-    payload,
-  };
-};
 
 // RESERVATIONS
 export const selectReservDateTimeAC = (payload) => {
