@@ -64,6 +64,11 @@ server.post('/login', (req, res) => {
   }
 });
 
+server.get('/logout', (req, res) => {
+  req.session.destroy();
+  res.clearCookie('user_sid');
+});
+
 // Routers
 server.use('/api/clients', clientRouter);
 server.use('/api/staff', staffRouter);

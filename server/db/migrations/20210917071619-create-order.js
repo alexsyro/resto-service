@@ -28,6 +28,16 @@ module.exports = {
           onUpdate: 'CASCADE',
         },
       },
+      ReservationId: {
+        allowNull: false,
+        field: 'reservation_id',
+        type: Sequelize.INTEGER,
+        reference: {
+          model: 'States',
+          key: 'id',
+          onUpdate: 'CASCADE',
+        },
+      },
       createdAt: {
         allowNull: true,
         type: Sequelize.DATE,
