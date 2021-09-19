@@ -6,8 +6,7 @@ export const GET_DISHES = 'GET_DISHES'
 
 
 // обновляем карточку блюда в меню
-export const UPD_COCKTAIL = 'UPD_COCKTAIL'
-export const GET_COCTAILS = 'GET_COCTAILS';
+export const UPD_DISH = 'UPD_DISH'
 
 export const GET_DESSERTS = 'GET_DESSERTS';
 export const GET_PASTA = 'GET_PASTA';
@@ -18,7 +17,7 @@ export const GET_SOUPS = 'GET_SOUPS';
 // обновляем карточку блюда в меню
 export const UPD_CARD = 'UPD_CARD';
 //удаляем карточку блюда в меню
-export const DEL_CARD = 'DEL_CARD';
+export const DEL_DISH = 'DEL_DISH'
 
 
 //получаем список персонала
