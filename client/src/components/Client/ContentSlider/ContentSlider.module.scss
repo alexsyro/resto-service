@@ -77,21 +77,114 @@ input[name='r'] {
 }
 
 .slider__btn {
-  position: absolute;
+  position: relative;
   top: 90%;
   left: 50%;
   transform: translate(-50%, -30%);
 
   background: none;
-  border: 0.15rem solid white;
   padding: 0.4rem;
 }
 
+.slider__btn:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 0;
+  height: 0;
+  background: transparent;
+  border: 2px solid transparent;
+}
+
+.slider__btn:hover:before {
+  animation: animate 1s linear forwards;
+}
+
+@keyframes animate {
+  0% {
+    width: 0;
+    height: 0;
+    border-top-color: #fff;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+  }
+
+  50% {
+    width: 100%;
+    height: 0;
+    border-top-color: #fff;
+    border-right-color: #fff;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+  }
+
+  100% {
+    width: 100%;
+    height: 100%;
+    border-top-color: #fff;
+    border-right-color: #fff;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+  }
+}
+
+.slider__btn:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 0;
+  height: 0;
+  background: transparent;
+  border: 2px solid transparent;
+}
+
+.slider__btn:hover:after {
+  animation: animate2 1s linear forwards;
+  
+}
+
+@keyframes animate2 {
+  0% {
+    width: 0;
+    height: 0;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: #fff;
+  }
+
+  50% {
+    width: 0;
+    height: 100%;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: #fff;
+    border-left-color: #fff;
+  }
+
+  100% {
+    width: 100%;
+    height: 100%;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: #fff;
+    border-left-color: #fff;
+  }
+}
+
 .slider__btn__text {
+  z-index: 1000;
+  position: relative;
   text-transform: uppercase;
-  color: white;
+  color: rgb(192, 179, 179);
   background: none;
   font-size: 1.3rem;
+  transition: all 1s linear;
 }
 
 .slider__btn__text:hover {

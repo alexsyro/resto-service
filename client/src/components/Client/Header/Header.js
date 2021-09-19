@@ -42,17 +42,21 @@ function Header() {
       </nav>
 
       <div className={styles.navbar__container}>
-        <button className={styles.navbar__links} type="click">
-          <Link className={styles.navbar_btn} to="/book">
+        <p className={styles.navbar__links}>
+          <Link className={styles.navbar__link} to="/book">
             Забронировать
           </Link>
-        </button>
-        <a className={styles.navbar__links}>
-          <Link to="/login">Вход</Link>
-        </a>
-        <a className={styles.navbar__links}>
-          <Link to="/registration">Регистрация</Link>
-        </a>
+        </p>
+        <p className={styles.navbar__links}>
+          <Link className={styles.navbar__link} to="/login">
+            Вход
+          </Link>
+        </p>
+        <p className={styles.navbar__links}>
+          <Link className={styles.navbar__link} to="/registration">
+            Регистрация
+          </Link>
+        </p>
       </div>
     </>
   )
