@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { setReservationAC, resetReservSelectionAC } from '../../redux/actionCreators/actionCreators';
+import { setReservationAC, resetReservSelectionAC } from '../../../redux/actionCreators/actionCreators';
 
 import styles from './Reservation.module.scss';
 
@@ -17,15 +17,17 @@ export default function TableInfo() {
       date: selectedDateTime.date,
       time: selectedDateTime.time,
     };
-    const response = await fetch('http://localhost:1234/api/reservations', {
+    const url = 'http://localhost:1234/api/reservations';
+    const response = await fetch(url, {
       method: 'POST',
+      credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(dataToSend),
     });
     if (response.status === 200) {
       const { reservation } = await response.json();
       dispatch(setReservationAC({ reservation }));
-      dispatch(resetReservSelectionAC())
+      dispatch(resetReservSelectionAC());
       alert(
         `Вы забронировали столик ${selectedTable.number} на ${selectedDateTime.date} в ${selectedDateTime.time} часов.`,
       );

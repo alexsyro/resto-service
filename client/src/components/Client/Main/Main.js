@@ -5,6 +5,7 @@ import LoginForm from '../LoginForm/LoginForm';
 import RegForm from '../RegForm/RegForm';
 import About from '../About/About';
 import Contacts from '../Contacts/Contacts';
+import Reservation from '../Reservation/Reservation';
 
 function Main() {
   return (
@@ -30,6 +31,9 @@ function Main() {
         </Route>
         <Route exact path='/registration'>
           <RegForm />
+        </Route>
+        <Route exact path='/book'>
+          <Reservation />
         </Route>
       </Switch>
     </div>

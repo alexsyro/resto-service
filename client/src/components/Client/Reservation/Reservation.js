@@ -4,7 +4,7 @@ import {
   selectReservHallAC,
   selectReservDateTimeAC,
   resetReservSelectionAC,
-} from '../../redux/actionCreators/actionCreators';
+} from '../../../redux/actionCreators/actionCreators';
 import Hall from './Hall';
 import TableInfo from './TableInfo';
 import styles from './Reservation.module.scss';
@@ -40,7 +40,8 @@ export default function Reservation() {
 
   //Получаем список залов
   const fetchGetHalls = async () => {
-    const response = await fetch('http://localhost:1234/api/reservations/halls');
+    const url = 'http://localhost:1234/api/reservations/halls';
+    const response = await fetch(url, { credentials: 'include' });
     const { halls } = await response.json();
     setHallsArray(halls);
   };
