@@ -1,23 +1,18 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { setReservationAC, resetReservSelectionAC } from '../../redux/actionCreators/actionCreators';
+
 import styles from './Reservation.module.scss';
 
-
 // ПРОКИНУТЬ СТОЛИК ОТ САМОГО СТОЛА ДО ЭТОГО МЕСТА
-export default function TableInfo({ selectedTable: selectedTableId, selectedDateTime }) {
-  const tables = [
-    { id: 111, seatsLimit: 6 },
-    { id: 11, seatsLimit: 6 },
-    { id: 12, seatsLimit: 5 },
-    { id: 13, seatsLimit: 3 },
-    { id: 21, seatsLimit: 4 },
-  ];
-
-  const currTable = tables.find((table) => table.id === Number(selectedTableId));
+export default function TableInfo() {
+  const dispatch = useDispatch();
+  const { selectedTable, selectedDateTime } = useSelector((state) => state.reservationReducer);
 
   const createReservation = async (event) => {
     event.preventDefault();
     const { guestCount } = event.target;
     const dataToSend = {
-      tableId: currTable.id,
+      tableId: selectedTable.id,
       guestCount: guestCount.value,
       date: selectedDateTime.date,
       time: selectedDateTime.time,
@@ -28,16 +23,19 @@ export default function TableInfo({ selectedTable: selectedTableId, selectedDate
       body: JSON.stringify(dataToSend),
     });
     if (response.status === 200) {
+      const { reservation } = await response.json();
+      dispatch(setReservationAC({ reservation }));
+      dispatch(resetReservSelectionAC())
       alert(
-        `Вы забронировали столик ${currTable.id} на ${selectedDateTime.date} в ${selectedDateTime.time} часов.`,
+        `Вы забронировали столик ${selectedTable.number} на ${selectedDateTime.date} в ${selectedDateTime.time} часов.`,
       );
     }
   };
 
   return (
     <div className={styles.tableInfoContainer}>
-      <h3>{`Столик №${currTable.id}`}</h3>
-      <h4>{`Максимальная вместимость: ${currTable.seatsLimit}`}</h4>
+      <h3>{`Столик №${selectedTable.id}`}</h3>
+      <h4>{`Максимальная вместимость: ${selectedTable.seatsLimit}`}</h4>
       <hr></hr>
       {selectedDateTime ? (
         <>
@@ -57,7 +55,7 @@ export default function TableInfo({ selectedTable: selectedTableId, selectedDate
                 placeholder='Количество гостей'
                 defaultValue='2'
                 min='1'
-                max={currTable.seatsLimit}
+                max={selectedTable.seatsLimit}
               />
             </div>
             <button type='submit'>Забронировать</button>

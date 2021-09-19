@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectReservTableAC } from '../../redux/actionCreators/actionCreators';
 
-export default function Table({ table, selectedDateTime, setSelectedTableId }) {
-  const [currTable, setCurrTable] = useState(null);
+export default function Table({ table }) {
+  const dispatch = useDispatch();
+  const { selectedDateTime, selectedTable } = useSelector((state) => state.reservationReducer);
+
   const [isReserved, setisReserved] = useState(false);
 
   const fetchGetState = async () => {
@@ -12,21 +16,12 @@ export default function Table({ table, selectedDateTime, setSelectedTableId }) {
     console.log('RESE', reserved, isReserved);
   };
 
-  const selectTable = (event) => {
+  const selectTable = () => {
     if (selectedDateTime) {
-      const { id } = event.target;
-      console.log('IDDDDDD', id);
-      if (currTable) {
-        // Меняем цвет у предыдущего столика
-        currTable.attributes[1].value = 'cyan';
-      }
-      // Меняем цвет у выбранного столика
       if (isReserved) {
         alert('Столик забронирован');
       } else {
-        event.target.attributes[1].value = event.target.attributes[1].value === 'red' ? 'cyan' : 'red';
-        setCurrTable(event.target);
-        setSelectedTableId(id);
+        dispatch(selectReservTableAC({ table }));
       }
     } else {
       alert('Выберите пожалуйста дату и время и нажмите на кнопку выбрать');
@@ -41,7 +36,7 @@ export default function Table({ table, selectedDateTime, setSelectedTableId }) {
         <path
           id={table.number}
           onClick={selectTable}
-          fill='cyan'
+          fill={table.id === selectedTable?.id ? 'cyan' : isReserved ? 'red' : 'green'}
           fillOpacity='0.5'
           stroke='black'
           strokeWidth='1'

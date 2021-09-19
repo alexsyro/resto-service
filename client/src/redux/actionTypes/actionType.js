@@ -1,27 +1,33 @@
 // получаем все меню
-export const GET_MENU = 'GET_MENU'
+export const GET_MENU = 'GET_MENU';
 
-export const GET_COCTAILS = 'GET_COCTAILS'
-export const GET_DESSERTS = 'GET_DESSERTS'
-export const GET_PASTA = 'GET_PASTA'
-export const GET_PIZZA = 'GET_PIZZA'
-export const GET_SALADS = 'GET_SALADS'
-export const GET_SOUPS = 'GET_SOUPS'
+export const GET_COCTAILS = 'GET_COCTAILS';
+export const GET_DESSERTS = 'GET_DESSERTS';
+export const GET_PASTA = 'GET_PASTA';
+export const GET_PIZZA = 'GET_PIZZA';
+export const GET_SALADS = 'GET_SALADS';
+export const GET_SOUPS = 'GET_SOUPS';
 
 // обновляем карточку блюда в меню
-export const UPD_CARD = 'UPD_CARD'
+export const UPD_CARD = 'UPD_CARD';
 //удаляем карточку блюда в меню
-export const DEL_CARD = 'DEL_CARD'
+export const DEL_CARD = 'DEL_CARD';
 
 //получаем список персонала
-export const GET_STAFF = 'GET_STAFF'
+export const GET_STAFF = 'GET_STAFF';
 
 // изменяем информацию о стафф
-export const UPD_STAFF = 'UPD_STAFF'
+export const UPD_STAFF = 'UPD_STAFF';
 
 // удаляем стафф
-export const DEL_STAFF = 'DEL_STAFF'
+export const DEL_STAFF = 'DEL_STAFF';
 export const GET_USER = 'GET_USER';
 export const SAGA_FETCH_LOGIN = 'SAGA_FETCH_LOGIN';
 export const SAGA_FETCH_REG = 'SAGA_FETCH_REG';
 
+// Работаем с резервированием
+export const RESERVATION_SELECT_DATETIME = 'RESERVATION_SELECT_DATETIME';
+export const RESERVATION_SELECT_HALL = 'RESERVATION_SELECT_HALL';
+export const RESERVATION_SELECT_TABLE = 'RESERVATION_SELECT_TABLE';
+export const RESERVATION_SET_RESERVATION = 'RESERVATION_SET_RESERVATION'
+export const RESERVATION_RESET_CURRENT_SELECTION = 'RESERVATION_RESET_CURRENT_SELECTION';
