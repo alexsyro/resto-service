@@ -51,6 +51,49 @@ router.post('/new', async (req, res) => {
   }
 });
 
+// Изменение
+router.put('/:id', async (req, res) => {
+  const { id } = req.params;
+  const { file } = req.files;
+  const { name, password, phone, position } = req.body;
+  try {
+    const staff = await Staff.findOne({ where: { id } });
+    staff.name = name || staff.name;
+    staff.password = password || staff.password;
+    staff.phone = phone || staff.phone;
+    staff.PostId = position || staff.PostId;
+    if (file) {
+      const image = await File.create(
+        {
+          name: `${name}`,
+          type: file.mimetype,
+          size: file.size,
+          data: file.data,
+        },
+        { raw: true },
+      );
+      staff.FileId = image.id;
+    }
+    staff.save();
+    res.json({ staff });
+  } catch (err) {
+    console.log('------------ERROR', new Date(), err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Удаление персонала
+router.delete('/', async (req, res) => {
+  const { id } = req.params;
+  try {
+    await Staff.destroy({ where: { id } });
+    res.json({ deleted: true });
+  } catch (err) {
+    console.log('------------ERROR', new Date(), err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // Логин
 router.post('/', async (req, res) => {
   console.log('[INCOMING BODY TO LOGIN STAFF]', req.body);
