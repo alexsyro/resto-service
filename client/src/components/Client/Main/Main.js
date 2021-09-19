@@ -7,6 +7,7 @@ import About from '../About/About';
 import Contacts from '../Contacts/Contacts';
 import Reservation from '../Reservation/Reservation';
 import Gallery from '../Gallery/Gallery';
+import Cart from '../Cart/Cart';
 
 function Main() {
   return (
@@ -35,6 +36,9 @@ function Main() {
         </Route>
         <Route exact path='/book'>
           <Reservation />
+        </Route>
+        <Route exact path='/cart'>
+          <Cart />
         </Route>
       </Switch>
     </div>
