@@ -10,8 +10,8 @@ function StaffList(props) {
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/users')
       .then((res) => res.json())
-      .then((data) => dispatch({ type: GET_STAFF, payload: data }))
-  }, [dispatch]) // запросом получаем все меню из бд
+      .then((data) => dispatch({ type: GET_STAFF, payload: data.slice(0,4) }))
+  }, [dispatch]) // запросом получаем весь стафф из бд
 
   const staffList = useSelector((state) => state.staffReducer.staff); 
 

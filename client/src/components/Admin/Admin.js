@@ -6,10 +6,14 @@ import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import Menu from './Menu/Menu';
 import Orders from './Orders/Orders'
+import OrderInfo from './Orders/OrderInfo';
 import Staff from './Staff/Staff'
-import Order from './Order/Order';
-import SaladsInfo from './Menu/items/Salads/SaladsInfo';
+// import SaladsInfo from './Menu/items/Salads/SaladsInfo';
 import WorkerInfo from './Staff/WorkerInfo';
+import AddCocktailForm from './Menu/items/Cocktails/AddCocktailForm';
+import AddWorkerForm from './Staff/AddWorkerForm';
+import SubcategoryItem from './Menu/SubcategoryItem/SubcategoryItem';
+// import CocktailsInfo from './Menu/items/Cocktails/CocktailsInfo';
 
 function Admin() {
   return (
@@ -17,25 +21,33 @@ function Admin() {
       <Router>
         <Header />
         <SideMenu />
-
         <Switch>
           <Route path="/" exact>
             <Main />
           </Route>
-          <Route exact path="/menu/:id">
-            <SaladsInfo/>
-          </Route>
           <Route path="/menu" exact>
             <Menu />
           </Route>
+          <Route path="/menu/:categoryName/:categoryId" exact>
+            <SubcategoryItem />
+          </Route>
+          <Route path="/menu/addcocktail" exact>
+            <AddCocktailForm />
+          </Route>
           <Route path="/orders" exact>
             <Orders />
+          </Route>
+          <Route path="/orders/edit/:id" exact>
+            <OrderInfo />
           </Route>
           <Route path="/staff/:id" exact>
             <WorkerInfo />
           </Route>
           <Route path="/staff" exact>
             <Staff />
+          </Route>
+          <Route path="/staff/addworker" exact>
+            <AddWorkerForm />
           </Route>
         </Switch>
         <Footer />

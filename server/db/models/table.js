@@ -36,6 +36,11 @@ module.exports = (sequelize, DataTypes) => {
         field: 'seats_limit',
         type: DataTypes.INTEGER,
       },
+      svgCoords: {
+        allowNull: true,
+        field: 'svg_coords',
+        type: DataTypes.TEXT,
+      },
     },
     {
       sequelize,

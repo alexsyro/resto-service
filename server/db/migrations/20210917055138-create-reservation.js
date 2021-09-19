@@ -7,7 +7,8 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      table_id: {
+      TableId: {
+        field: 'table_id',
         allowNull: false,
         type: Sequelize.INTEGER,
         reference: {
@@ -20,6 +21,11 @@ module.exports = {
         allowNull: false,
         field: 'date_time',
         type: Sequelize.DATE,
+      },
+      guestCount: {
+        field: 'guest_count',
+        type: Sequelize.INTEGER,
+        defaultValue: 2,
       },
       timeInterval: {
         field: 'time_interval',
