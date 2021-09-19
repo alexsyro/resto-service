@@ -27,6 +27,7 @@ export default function Table({ table }) {
     }
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => fetchGetState(), [selectedDateTime]);
 
   return (
