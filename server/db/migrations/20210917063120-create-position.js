@@ -48,10 +48,15 @@ module.exports = {
         allowNull: false,
         type: Sequelize.FLOAT,
       },
-      imgPath: {
-        field: 'img_path',
+      FileId: {
+        field: 'file_id',
         allowNull: true,
-        type: Sequelize.TEXT,
+        type: Sequelize.INTEGER,
+        reference: {
+          model: 'Files',
+          key: 'id',
+          onUpdate: 'CASCADE',
+        },
       },
       createdAt: {
         allowNull: true,

@@ -1,6 +1,7 @@
 const express = require('express');
 const session = require('express-session');
 const SessionFileStore = require('session-file-store')(session);
+const fileUpload = require('express-fileupload');
 const logger = require('morgan');
 const dotenv = require('dotenv');
 const cors = require('cors');
@@ -43,6 +44,9 @@ const corsOptions = {
 
 // Разрешаем cors
 server.use(cors(corsOptions));
+
+// Парсит файлы из запросов
+server.use(fileUpload());
 
 // Logger to console
 server.use(logger('dev'));
