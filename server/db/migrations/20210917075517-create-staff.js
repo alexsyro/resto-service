@@ -34,9 +34,15 @@ module.exports = {
         allowNull: true,
         type: Sequelize.TEXT,
       },
-      photo: {
+      FileId: {
+        field: 'file_id',
         allowNull: true,
-        type: Sequelize.BLOB,
+        type: Sequelize.INTEGER,
+        reference: {
+          model: 'Files',
+          key: 'id',
+          onUpdate: 'CASCADE',
+        },
       },
       createdAt: {
         allowNull: true,
