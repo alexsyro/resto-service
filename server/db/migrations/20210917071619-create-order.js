@@ -21,6 +21,7 @@ module.exports = {
         allowNull: false,
         field: 'state_id',
         type: Sequelize.INTEGER,
+        defaultValue: 1,
         reference: {
           model: 'States',
           key: 'id',

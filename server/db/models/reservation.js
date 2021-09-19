@@ -30,6 +30,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         field: 'state_id',
         type: DataTypes.INTEGER,
+        defaultValue: 1,
         reference: {
           model: 'States',
           key: 'id',
