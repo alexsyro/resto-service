@@ -7,7 +7,7 @@ const positions = [
     kcal: 100,
     portion_size: 280,
     price: 390,
-    img_path: 'img/menu/1.jpg',
+    file_id: 1,
     createdAt: new Date(),
   },
   {
@@ -18,7 +18,7 @@ const positions = [
     kcal: 100,
     portion_size: 250,
     price: 570,
-    img_path: 'img/menu/2.jpg',
+    file_id: 2,
     createdAt: new Date(),
   },
   {
@@ -29,7 +29,7 @@ const positions = [
     kcal: 100,
     portion_size: 350,
     price: 370,
-    img_path: 'img/menu/3.jpg',
+    file_id: 1,
     createdAt: new Date(),
   },
   {
@@ -40,7 +40,7 @@ const positions = [
     kcal: 100,
     portion_size: 300,
     price: 320,
-    img_path: 'img/menu/4.jpg',
+    file_id: 1,
     createdAt: new Date(),
   },
   {
@@ -51,7 +51,7 @@ const positions = [
     kcal: 100,
     portion_size: 200,
     price: 610,
-    img_path: 'img/menu/5.jpg',
+    file_id: 1,
     createdAt: new Date(),
   },
   {
@@ -62,7 +62,7 @@ const positions = [
     kcal: 100,
     portion_size: 220,
     price: 490,
-    img_path: 'img/menu/6.jpg',
+    file_id: 1,
     createdAt: new Date(),
   },
   {
@@ -73,7 +73,7 @@ const positions = [
     kcal: 100,
     portion_size: 60,
     price: 100,
-    img_path: 'img/menu/7.jpg',
+    file_id: 1,
     createdAt: new Date(),
   },
   {
@@ -84,7 +84,7 @@ const positions = [
     kcal: 100,
     portion_size: 300,
     price: 180,
-    img_path: 'img/menu/8.jpg',
+    file_id: 1,
     createdAt: new Date(),
   },
   {
@@ -95,7 +95,7 @@ const positions = [
     kcal: 100,
     portion_size: 600,
     price: 180,
-    img_path: 'img/menu/9.jpg',
+    file_id: 1,
     createdAt: new Date(),
   },
   {
@@ -106,7 +106,7 @@ const positions = [
     kcal: 100,
     portion_size: 600,
     price: 180,
-    img_path: 'img/menu/10.jpg',
+    file_id: 1,
     createdAt: new Date(),
   },
   {
@@ -117,7 +117,7 @@ const positions = [
     kcal: 100,
     portion_size: 250,
     price: 60,
-    img_path: 'img/menu/11.jpg',
+    file_id: 1,
     createdAt: new Date(),
   },
   {
@@ -128,7 +128,7 @@ const positions = [
     kcal: 100,
     portion_size: 250,
     price: 60,
-    img_path: 'img/menu/12.jpg',
+    file_id: 1,
     createdAt: new Date(),
   },
   {
@@ -139,7 +139,7 @@ const positions = [
     kcal: 100,
     portion_size: 0.33,
     price: 250,
-    img_path: 'img/menu/13.jpg',
+    file_id: 1,
     createdAt: new Date(),
   },
   {
@@ -150,7 +150,7 @@ const positions = [
     kcal: 100,
     portion_size: 0.5,
     price: 350,
-    img_path: 'img/menu/14.jpg',
+    file_id: 1,
     createdAt: new Date(),
   },
   {
@@ -161,7 +161,7 @@ const positions = [
     kcal: 100,
     portion_size: 15,
     price: 1000,
-    img_path: 'img/menu/15.jpg',
+    file_id: 1,
     createdAt: new Date(),
   },
   {
@@ -172,7 +172,7 @@ const positions = [
     kcal: 100,
     portion_size: 50,
     price: 270,
-    img_path: 'img/menu/16.jpg',
+    file_id: 1,
     createdAt: new Date(),
   },
   {
@@ -183,7 +183,7 @@ const positions = [
     kcal: 100,
     portion_size: 1,
     price: 340,
-    img_path: 'img/menu/17.jpg',
+    file_id: 1,
     createdAt: new Date(),
   },
   {
@@ -194,7 +194,7 @@ const positions = [
     kcal: 100,
     portion_size: 1,
     price: 6900,
-    img_path: 'img/menu/18.jpg',
+    file_id: 1,
     createdAt: new Date(),
   },
   {
@@ -205,7 +205,7 @@ const positions = [
     kcal: 100,
     portion_size: 1,
     price: 270,
-    img_path: 'img/menu/19.jpg',
+    file_id: 1,
     createdAt: new Date(),
   },
   {
@@ -216,7 +216,7 @@ const positions = [
     kcal: 100,
     portion_size: 1,
     price: 5500,
-    img_path: 'img/menu/20.jpg',
+    file_id: 1,
     createdAt: new Date(),
   },
 ];
