@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({ Subcategory, Measure, OrderPosition }) {
+    static associate({ Subcategory, Measure, OrderPosition, File }) {
       // define association here
       // блюдо может принадлежать только одной категории одновременно
       Position.belongsTo(Subcategory);
@@ -15,6 +15,8 @@ module.exports = (sequelize, DataTypes) => {
       Position.belongsTo(Measure);
       // Одно блюдо может находиться в нескольких заказах
       Position.hasMany(OrderPosition);
+      // У позиции может быть только одно фото
+      Position.belongsTo(File);
     }
   }
   Position.init(
@@ -60,10 +62,15 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.FLOAT,
       },
-      imgPath: {
-        field: 'img_path',
+      FileId: {
+        field: 'file_id',
         allowNull: true,
-        type: DataTypes.TEXT,
+        type: DataTypes.INTEGER,
+        reference: {
+          model: 'Files',
+          key: 'id',
+          onUpdate: 'CASCADE',
+        },
       },
     },
     {

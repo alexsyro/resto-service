@@ -1,16 +1,24 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const { Op } = require('sequelize');
-const { Staff } = require('../db/models');
+const { Staff, File } = require('../db/models');
+const file = require('../db/models/file');
 
 const { Router } = express;
 const router = Router();
 
 // Регистрация персонала
 router.post('/new', async (req, res) => {
-  console.log('[INCOMING BODY TO REG STAFF]', req.body);
+  console.log('[INCOMING BODY TO REG STAFF]', req.files, req.body);
+  const { photo } = req.files;
   const { name, login, phone, password, postId } = req.body;
   try {
+    const image = await File.create({
+      name: `${name}`,
+      type: photo.mimetype,
+      size: photo.size,
+      data: photo.data,
+    });
     const [, isNew] = await Staff.findOrCreate({
       where: {
         [Op.or]: [{ login }, { phone }],
@@ -21,6 +29,7 @@ router.post('/new', async (req, res) => {
         phone,
         password: await bcrypt.hash(password, 10),
         PostId: Number(postId),
+        FileId: image.id,
       },
       raw: true,
     });
@@ -28,8 +37,8 @@ router.post('/new', async (req, res) => {
     if (isNew) {
       const user = { name, login, phone, isAdmin: Number(postId) === 1 }; // postId 1 = admin
       req.session.isAuthorized = true;
-      req.session.user = { user: { ...user, password: '' } };
-      res.json({ user: { ...user, password: '' } }); // send user back
+      req.session.user = user;
+      res.json({ user }); // send user back
     } else {
       res.status(409).json({ error: 'User already exists', user: {} });
     }

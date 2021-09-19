@@ -6,10 +6,12 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({ Post }) {
+    static associate({ Post, File }) {
       // define association here
       // Один человек может занимать только одну должность.
       Staff.belongsTo(Post);
+      // Человек соответствует только одной фотке
+      Staff.belongsTo(File);
     }
   }
   Staff.init(
@@ -40,6 +42,16 @@ module.exports = (sequelize, DataTypes) => {
       phone: {
         allowNull: true,
         type: DataTypes.TEXT,
+      },
+      FileId: {
+        field: 'file_id',
+        allowNull: true,
+        type: DataTypes.INTEGER,
+        reference: {
+          model: 'Files',
+          key: 'id',
+          onUpdate: 'CASCADE',
+        },
       },
     },
     {

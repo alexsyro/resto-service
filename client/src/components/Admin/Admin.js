@@ -25,29 +25,29 @@ function Admin() {
           <Route path="/" exact>
             <Main />
           </Route>
-          <Route path="/menu" exact>
-            <Menu />
+          <Route path="/menu/addcocktail" exact>
+            <AddCocktailForm />
           </Route>
           <Route path="/menu/:categoryName/:categoryId" exact>
             <SubcategoryItem />
           </Route>
-          <Route path="/menu/addcocktail" exact>
-            <AddCocktailForm />
+          <Route path="/menu" exact>
+            <Menu />
+          </Route>
+          <Route path="/orders/edit/:id" exact>
+            <OrderInfo />
           </Route>
           <Route path="/orders" exact>
             <Orders />
           </Route>
-          <Route path="/orders/edit/:id" exact>
-            <OrderInfo />
+          <Route exact path="/staff/addworker" >
+            <AddWorkerForm />
           </Route>
           <Route path="/staff/:id" exact>
             <WorkerInfo />
           </Route>
           <Route path="/staff" exact>
             <Staff />
-          </Route>
-          <Route path="/staff/addworker" exact>
-            <AddWorkerForm />
           </Route>
         </Switch>
         <Footer />

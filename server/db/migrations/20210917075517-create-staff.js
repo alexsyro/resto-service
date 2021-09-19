@@ -34,6 +34,16 @@ module.exports = {
         allowNull: true,
         type: Sequelize.TEXT,
       },
+      FileId: {
+        field: 'file_id',
+        allowNull: true,
+        type: Sequelize.INTEGER,
+        reference: {
+          model: 'Files',
+          key: 'id',
+          onUpdate: 'CASCADE',
+        },
+      },
       createdAt: {
         allowNull: true,
         type: Sequelize.DATE,
