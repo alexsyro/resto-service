@@ -6,12 +6,14 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({ Table, State }) {
+    static associate({ Table, State, Order }) {
       // define association here
       // Зарезервирован может быть лишь один столик
       Reservation.belongsTo(Table);
       // И на один зарезервированный столик может быть несколько заказов (каждому клиенту свой счёт)
       Reservation.belongsTo(State);
+      // На одно резервирование может приходиться только один заказ
+      Reservation.hasOne(Order);
     }
   }
   Reservation.init(
