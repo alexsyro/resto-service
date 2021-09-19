@@ -22,7 +22,7 @@ function Orders() {
     // здесь fetch (сага) в базу для получения списка заказов (причем только тех, что в обработке)
   })
 
-  const finishedOrders = useSelector(state => state.ordersReducer.orders?.filter(el => el.status === "checked"))
+  const finishedOrders = useSelector(state => state.ordersReducer.orders?.filter(el => el.status === "Checked"))
   const toCheckOrders = useSelector(state => state.ordersReducer.orders?.filter(el => el.status === "toCheck"))
 
   return (
@@ -31,7 +31,7 @@ function Orders() {
       <h2>Заказы, ожидающие обработки </h2>
       {toCheckOrders.length ? <ul className="uk-list uk-list-striped"> {toCheckOrders.map((order) => <ToCheckOrder key={order.id} order={order} />)} </ul> : null}
 
-      <button className='uk-button uk-button-default' onClick={() => setCompletedList(prev => !prev)}>Вывести список завершенных(обработанных) заказов</button>
+      {completedList ? <button className='uk-button uk-button-default' onClick={() => setCompletedList(prev => !prev)}> Скрыть список завершенных(обработанных) заказов</button> : <button className='uk-button uk-button-default' onClick={() => setCompletedList(prev => !prev)}>Вывести список завершенных(обработанных) заказов</button>}
       <br />
       {completedList && finishedOrders.length ? <ul className="uk-list uk-list-striped"> {finishedOrders.map((order) => <DoneOrder key={order.id} order={order} />)}</ul> : null}
       <br />

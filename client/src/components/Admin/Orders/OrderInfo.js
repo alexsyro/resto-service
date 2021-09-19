@@ -35,13 +35,13 @@ function OrderInfo() {
     console.log(updateOrder);
 
     fetch('http://localhost:1234/api/orders/edit', {
-      method: 'PUT', // *GET, POST, PUT, DELETE, etc.
-      mode: 'cors', // no-cors, *cors, same-origin
-      credentials: 'include', // include, *same-origin, omit
+      method: 'PUT',
+      mode: 'cors', 
+      credentials: 'include', 
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(updateOrder) // body data type must match "Content-Type" header
+      body: JSON.stringify(updateOrder) 
     })
       .then(res => res.json())
       .then(console.log)

@@ -25,7 +25,7 @@ const ordersReducer = (state = initialState, action) => {
       return {
         ...state, orders: state.orders.map((order) => {
           if (order.id === action.payload.id) {
-            return { ...order, status: 'checked' }
+            return { ...order, status: 'Checked' }
           } else {
             return order
           }
