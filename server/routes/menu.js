@@ -2,27 +2,102 @@ const express = require('express');
 
 const { Router } = express;
 const router = Router();
-const { Position, Subcategory, Category, Measure } = require('../db/models');
+const { Position, Subcategory, Category, Measure, File } = require('../db/models');
+
+// Добавление Блюда
+router.post('/', async (req, res) => {
+  const { file } = req.files;
+  const { name, description, kcal, portionSize, price, categoryId } = req.body;
+  try {
+    const image = await File.create(
+      {
+        name: `${name}`,
+        type: file.mimetype,
+        size: file.size,
+        data: file.data,
+      },
+      { raw: true },
+    );
+    const position = await Position.create({
+      name,
+      description,
+      kcal,
+      portionSize,
+      price,
+      CategoryId: categoryId,
+      FileId: image.id,
+    });
+
+    res.json({ position });
+  } catch (err) {
+    console.log('------------ERROR', new Date(), err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Изменение
+router.put('/:id', async (req, res) => {
+  const { id } = req.params;
+  const { file } = req.files;
+  const { name, description, kcal, portionSize, price, categoryId, measureId } = req.body;
+  try {
+    const position = await Position.findOne({ where: { id } });
+    position.name = name || position.name;
+    position.description = description || position.description;
+    position.kcal = kcal || position.kcal;
+    position.price = price || position.price;
+    position.categoryId = categoryId || position.categoryId;
+    position.portionSize = portionSize || position.portionSize;
+    position.MeasureId = measureId || position.MeasureId;
+
+    if (file) {
+      const image = await File.create(
+        {
+          name: `${name}`,
+          type: file.mimetype,
+          size: file.size,
+          data: file.data,
+        },
+        { raw: true },
+      );
+      position.FileId = image.id;
+    }
+    position.save();
+    res.json({ position });
+  } catch (err) {
+    console.log('------------ERROR', new Date(), err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Удаление
+router.delete('/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    await Position.destroy({ where: { id } });
+    res.json({ deleted: true });
+  } catch (err) {
+    console.log('------------ERROR', new Date(), err);
+    res.status(500).json({ error: err.message });
+  }
+});
 
 // Все блюда
 router.get('/', async (req, res) => {
   const hugeData = await Position.findAll({
-    attributes: ['id', 'name', 'description', 'kcal', 'portionSize', 'price', 'imgPath'],
+    attributes: ['id', 'name', 'description', 'kcal', 'portionSize', 'price'],
     include: [
       {
         model: Subcategory,
         attributes: ['id', 'name'],
-        // include: [
-        //   {
-        //     model: Category,
-        //     attributes: ['id', 'name'],
-        //   },
-        // ],
       },
       {
         model: Measure,
         attributes: ['type'],
-        // attributes: ['id', 'type'],
+      },
+      {
+        model: File,
+        attributes: ['type', 'data', 'name'],
       },
     ],
     raw: true,
@@ -34,7 +109,7 @@ router.get('/', async (req, res) => {
 router.get('/categories/:id', async (req, res) => {
   const { id } = req.params;
   const positions = await Position.findAll({
-    attributes: ['id', 'name', 'description', 'kcal', 'portionSize', 'price', 'imgPath'],
+    attributes: ['id', 'name', 'description', 'kcal', 'portionSize', 'price'],
     where: {
       SubcategoryId: id,
     },
@@ -46,6 +121,10 @@ router.get('/categories/:id', async (req, res) => {
       {
         model: Measure,
         attributes: ['type'],
+      },
+      {
+        model: File,
+        attributes: ['type', 'data', 'name'],
       },
     ],
     raw: true,

@@ -10,7 +10,7 @@ import OrderInfo from './Orders/OrderInfo';
 import Staff from './Staff/Staff';
 // import SaladsInfo from './Menu/items/Salads/SaladsInfo';
 import WorkerInfo from './Staff/WorkerInfo';
-import AddCocktailForm from './Menu/items/Cocktails/AddCocktailForm';
+// import AddCocktailForm from './Menu/items/Cocktails/AddCocktailForm';
 import AddWorkerForm from './Staff/AddWorkerForm';
 import SubcategoryItem from './Menu/SubcategoryItem/SubcategoryItem';
 import DishInfo from './Menu/DishInfo/DishInfo';
@@ -26,9 +26,6 @@ function Admin() {
         <Switch>
           <Route path='/' exact>
             <Main />
-          </Route>
-          <Route path='/menu/addcocktail' exact>
-            <AddCocktailForm />
           </Route>
           <Route path='/menu/edit/:dishName/:dishId' exact>
             <DishInfo />
@@ -46,13 +43,14 @@ function Admin() {
           <Route path='/orders/edit/:id' exact>
             <OrderInfo />
           </Route>
+
           <Route path='/orders' exact>
             <Orders />
           </Route>
           <Route exact path='/staff/addworker'>
             <AddWorkerForm />
           </Route>
-          <Route path='/staff/:id' exact>
+          <Route path='/staff/edit/:staffId' exact>
             <WorkerInfo />
           </Route>
           <Route path='/staff' exact>

@@ -36,7 +36,7 @@ function About() {
         <span className={styles.about__span}>Познакомьтесь</span>
         <h1 className={styles.about__h1}>C НАШИМ ШЕФ-ПОВАРОМ</h1>
         <div className={styles.about__foodCard}>
-        <img src="	https://ilmilanese.ru/wp-content/uploads/2018/03/marco_chef2.jpg" alt="card img" />
+        <img src="https://ilmilanese.ru/wp-content/uploads/2018/03/marco_chef2.jpg" alt="card img" />
         <p className={styles.about__p}>Я помню, как бабушка каждое воскресенье делала домашнюю 
         пасту, вручную раскатывая тесто. А заправляла соусом со свининой. Этот вкус дества, 
         пожалуй, похож на счастье. И бабушка все готовила исключительно вкусно</p>

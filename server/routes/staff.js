@@ -2,23 +2,26 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const { Op } = require('sequelize');
 const { Staff, File } = require('../db/models');
-const file = require('../db/models/file');
 
 const { Router } = express;
 const router = Router();
 
 // Регистрация персонала
 router.post('/new', async (req, res) => {
-  console.log('[INCOMING BODY TO REG STAFF]', req.files, req.body);
-  const { photo } = req.files;
-  const { name, login, phone, password, postId } = req.body;
+  const { file } = req.files;
+  console.log('[INCOMING BODY TO REG STA]', file);
+  const { name, login, phone, password, position } = req.body;
   try {
-    const image = await File.create({
-      name: `${name}`,
-      type: photo.mimetype,
-      size: photo.size,
-      data: photo.data,
-    });
+    const image = await File.create(
+      {
+        name: `${name}`,
+        type: file.mimetype,
+        size: file.size,
+        data: file.data,
+      },
+      { raw: true },
+    );
+    console.log('-----------------IMAGE CREATED', image.id, name, login, phone, password, position);
     const [, isNew] = await Staff.findOrCreate({
       where: {
         [Op.or]: [{ login }, { phone }],
@@ -28,14 +31,14 @@ router.post('/new', async (req, res) => {
         login,
         phone,
         password: await bcrypt.hash(password, 10),
-        PostId: Number(postId),
+        PostId: Number(position),
         FileId: image.id,
       },
       raw: true,
     });
     // If new - that's ok? Proceed to session creating
     if (isNew) {
-      const user = { name, login, phone, isAdmin: Number(postId) === 1 }; // postId 1 = admin
+      const user = { name, login, phone, isAdmin: Number(position) === 1 }; // postId 1 = admin
       req.session.isAuthorized = true;
       req.session.user = user;
       res.json({ user }); // send user back
@@ -45,6 +48,49 @@ router.post('/new', async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: error.message, user: {} });
+  }
+});
+
+// Изменение
+router.put('/:id', async (req, res) => {
+  const { id } = req.params;
+  const { file } = req.files;
+  const { name, password, phone, position } = req.body;
+  try {
+    const staff = await Staff.findOne({ where: { id } });
+    staff.name = name || staff.name;
+    staff.password = password || staff.password;
+    staff.phone = phone || staff.phone;
+    staff.PostId = position || staff.PostId;
+    if (file) {
+      const image = await File.create(
+        {
+          name: `${name}`,
+          type: file.mimetype,
+          size: file.size,
+          data: file.data,
+        },
+        { raw: true },
+      );
+      staff.FileId = image.id;
+    }
+    staff.save();
+    res.json({ staff });
+  } catch (err) {
+    console.log('------------ERROR', new Date(), err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Удаление персонала
+router.delete('/', async (req, res) => {
+  const { id } = req.params;
+  try {
+    await Staff.destroy({ where: { id } });
+    res.json({ deleted: true });
+  } catch (err) {
+    console.log('------------ERROR', new Date(), err);
+    res.status(500).json({ error: err.message });
   }
 });
 
