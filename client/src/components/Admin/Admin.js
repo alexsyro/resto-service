@@ -10,7 +10,6 @@ import OrderInfo from './Orders/OrderInfo';
 import Staff from './Staff/Staff'
 // import SaladsInfo from './Menu/items/Salads/SaladsInfo';
 import WorkerInfo from './Staff/WorkerInfo';
-import AddCocktailForm from './Menu/items/Cocktails/AddCocktailForm';
 import AddWorkerForm from './Staff/AddWorkerForm';
 import SubcategoryItem from './Menu/SubcategoryItem/SubcategoryItem';
 import DishInfo from './Menu/DishInfo/DishInfo';
@@ -45,7 +44,7 @@ function Admin() {
           <Route path="/orders/edit/:id" exact>
             <OrderInfo />
           </Route>
-          <Route path="/staff/:id" exact>
+          <Route path="/staff/edit/:staffId" exact>
             <WorkerInfo />
           </Route>
           <Route path="/staff" exact>
