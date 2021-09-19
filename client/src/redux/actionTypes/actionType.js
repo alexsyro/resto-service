@@ -1,16 +1,15 @@
 // получаем все меню
 export const GET_CATEGORY = 'GET_CATEGORY'
-export const GET_COCTAILS = 'GET_COCTAILS'
 export const GET_MENU = 'GET_MENU'
 export const GET_DISHES = 'GET_DISHES'
 
 
 // обновляем карточку блюда в меню
-export const UPD_COCKTAIL = 'UPD_COCKTAIL'
+export const UPD_DISH = 'UPD_DISH'
 
 
 //удаляем карточку блюда в меню
-export const DEL_CARD = 'DEL_CARD'
+export const DEL_DISH = 'DEL_DISH'
 
 
 //получаем список персонала
