@@ -27,14 +27,16 @@ function Orders() {
 
   return (
     <div className={styles.container}>
-      <button onClick={() => history.goBack()}>Назад</button>
 
       <h2>Заказы, ожидающие обработки </h2>
-      {toCheckOrders.length ? <ul> {toCheckOrders.map((order) => <ToCheckOrder key={order.id} order={order} />)} </ul> : null}
+      {toCheckOrders.length ? <ul className="uk-list uk-list-striped"> {toCheckOrders.map((order) => <ToCheckOrder key={order.id} order={order} />)} </ul> : null}
 
-      <button onClick={() => setCompletedList(prev => !prev)}>Вывести список завершенных(обработанных) заказов</button>
+      <button className='uk-button uk-button-default' onClick={() => setCompletedList(prev => !prev)}>Вывести список завершенных(обработанных) заказов</button>
       <br />
-      {completedList && finishedOrders.length ? <ul> {finishedOrders.map((order) => <DoneOrder key={order.id} order={order} />)}</ul> : null}
+      {completedList && finishedOrders.length ? <ul className="uk-list uk-list-striped"> {finishedOrders.map((order) => <DoneOrder key={order.id} order={order} />)}</ul> : null}
+      <br />
+      <button className='uk-button uk-button-default' onClick={() => history.goBack()}>Назад</button>
+
     </div >
   );
 }

@@ -7,11 +7,16 @@ function Staff() {
 
 
   return (
-    <div className={styles.container}>
-      <StaffList />
-      <button onClick={() => history.goBack()}>Назад</button>
+    <>
+      <div className={styles.container}>
+        <StaffList />
+      </div>
+      <br />
+      <button className='uk-button uk-button-default' onClick={() => history.goBack()}>Назад</button>
+      <br />
+      <br />
       <Link to={'/staff/addworker'} className="uk-button uk-button-default"><button>Добавить работника</button></Link>
-    </div>
+    </>
   );
 }
 
