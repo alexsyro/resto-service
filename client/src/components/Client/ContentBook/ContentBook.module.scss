@@ -20,8 +20,8 @@
 }
 
 .book__right {
-  background: url('https://kartinkin.net/uploads/posts/2021-07/1627200487_11-kartinkin-com-p-temnii-fon-dlya-restorana-krasivo-14.jpg') no-repeat
-    center;
+  background: url('https://kartinkin.net/uploads/posts/2021-07/1627200487_11-kartinkin-com-p-temnii-fon-dlya-restorana-krasivo-14.jpg')
+    no-repeat center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -53,4 +53,9 @@
   color: white;
   background: none;
   font-size: 1.3rem;
+}
+
+.book__btn__text:hover {
+  color: white;
+  text-decoration: none;
 }

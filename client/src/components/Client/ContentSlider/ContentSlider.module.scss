@@ -1,0 +1,100 @@
+.main__container {
+  position: relative;
+  height: 100vh;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.slider {
+  position: absolute;
+  width: 100%;
+  height: 70%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+}
+
+.navigation {
+  position: absolute;
+  bottom: 0.4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+}
+
+.bar {
+  height: 0.5rem;
+  width: 2rem;
+  margin: 0.4rem;
+  cursor: pointer;
+  background-color: white;
+  opacity: 0.5;
+  border-radius: 0.3rem;
+  transition: all 0.3s ease;
+}
+
+.bar:hover {
+  opacity: 0.8;
+  transform: scale(1.1);
+}
+
+input[name='r'] {
+  position: absolute;
+  visibility: hidden;
+}
+
+.slides {
+  width: 400%;
+  height: 100%;
+  display: flex;
+}
+
+.slide {
+  width: 25%;
+  transition: all 0.6s ease;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#r1:checked ~ .s1 {
+  margin-left: 0;
+}
+
+#r2:checked ~ .s1 {
+  margin-left: -25%;
+}
+
+#r3:checked ~ .s1 {
+  margin-left: -50%;
+}
+#r4:checked ~ .s1 {
+  margin-left: -75%;
+}
+
+.slider__btn {
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -30%);
+
+  background: none;
+  border: 0.15rem solid white;
+  padding: 0.4rem;
+}
+
+.slider__btn__text {
+  text-transform: uppercase;
+  color: white;
+  background: none;
+  font-size: 1.3rem;
+}
+
+.slider__btn__text:hover {
+  color: white;
+  text-decoration: none;
+}
