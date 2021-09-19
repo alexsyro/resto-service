@@ -17,6 +17,9 @@ function Nav(props) {
             <Link to="/staff">Staff</Link>
           </li>
           <li className="uk-active">
+            <Link to="/clients">Clients</Link>
+          </li>
+          <li className="uk-active">
             <Link to="/orders">Orders</Link>
           </li>
           <li className="uk-active">

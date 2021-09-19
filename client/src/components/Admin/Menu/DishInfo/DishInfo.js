@@ -46,7 +46,7 @@ function DishInfo() {
     })
     .then(console.log('update')) //cделать редирект на главную страницу с блюдами
   }
-  //updCardAC(updateCard)
+ 
 
   return (
     <div>

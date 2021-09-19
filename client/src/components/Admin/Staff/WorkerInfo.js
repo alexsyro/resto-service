@@ -13,7 +13,7 @@ import {UPD_STAFF} from '../../../redux/actionTypes/actionType'
 
     const allStaff = useSelector((state) => state.staffReducer.staff);
     const currentWorker = allStaff.find((worker) => worker.id === +staffId);
-    console.log(currentWorker, 'currentSaladsItem')
+    console.log(currentWorker, 'currentWorker')
 
     
     const inputName = useRef(null)

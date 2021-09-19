@@ -1,34 +1,20 @@
-// получаем все меню
-
+// работаем с меню
 export const GET_CATEGORY = 'GET_CATEGORY'
-export const GET_MENU = 'GET_MENU'
 export const GET_DISHES = 'GET_DISHES'
-
-
-// обновляем карточку блюда в меню
 export const UPD_DISH = 'UPD_DISH'
-
-export const GET_DESSERTS = 'GET_DESSERTS';
-export const GET_PASTA = 'GET_PASTA';
-export const GET_PIZZA = 'GET_PIZZA';
-export const GET_SALADS = 'GET_SALADS';
-export const GET_SOUPS = 'GET_SOUPS';
-
-// обновляем карточку блюда в меню
-export const UPD_CARD = 'UPD_CARD';
-//удаляем карточку блюда в меню
 export const DEL_DISH = 'DEL_DISH'
 
 
-//получаем список персонала
+//работаем с персоналом
 export const GET_STAFF = 'GET_STAFF';
-
-// изменяем информацию о стафф
-
 export const UPD_STAFF = 'UPD_STAFF'
-
-// удаляем стафф
 export const DEL_STAFF = 'DEL_STAFF';
+
+// работаем с клиентами
+export const GET_CLIENTS = 'GET_CLIENTS'
+export const UPD_CLIENTS = 'UPD_CLIENTS'
+export const DEL_CLIENTS = 'DEL_CLIENTS'
+
 export const GET_USER = 'GET_USER';
 
 //AT client fetch
