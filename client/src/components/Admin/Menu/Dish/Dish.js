@@ -10,7 +10,7 @@ function Dish({ dish }) {
   const deleteDish = () => {    
     dispatch({ type: DEL_DISH, payload: dish.id })
     // console.log('delete')
-    fetch(`http://localhost:1234/api/menu/edit/${dish.name}/${dish.id}`, {
+    fetch(`http://localhost:1234/api/menu/delete/${dish.name}/${dish.id}`, {
       method: 'DELETE',
     })
     .then(console.log)

@@ -10,7 +10,7 @@ function AddWorkerForm() {
   const addWorker = (e) => {
     e.preventDefault();
 
-    const { action, method, name, position, login, password } = e.target;
+    const { action, method, name, position, login, password, phone } = e.target;
     fetch(action, {
       method,
       headers: { 'Content-Type': 'application/json' },
@@ -18,7 +18,8 @@ function AddWorkerForm() {
         name: name.value,
         position: position.value,
         login: login.value,
-        password: password.value
+        password: password.value,
+        phone: phone.value,
       }
     })
       .then(res => res.json())
@@ -27,10 +28,11 @@ function AddWorkerForm() {
 
   return (
     <form onSubmit={addWorker} action="http://localhost:1234/addworker" method="POST" name="addWorkerForm" >
-      <input type="text" name="name" placeholder=" Enter full name" />
-      <input type="text" name="position" placeholder="Enter the position" />
-      <input type="text" name="login" placeholder="Enter login" />
-      <input type="text" name="password" placeholder="Enter password" />
+      <input type="text" name="name" placeholder="Имя сотрудника" />
+      <input type="text" name="position" placeholder="Должность" />
+      <input type="text" name="phone" placeholder="Телефон" />
+      <input type="text" name="login" placeholder="Логин" />
+      <input type="text" name="phone" placeholder="Пароль" />
       <button type="submit">Добавить</button>
     </form>
   );
