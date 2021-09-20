@@ -49,15 +49,13 @@ router.get('/', async (req, res) => {
 
 router.put('/done', async (req, res) => {
   const { id } = req.body;
-  // код ниже не меняет базу данных...
-
   const orderToChange = await Order.findOne({
     where: {
       id,
     },
   });
-  orderToChange.dataValues.StateId = 2;
-  await orderToChange.save();
+  orderToChange.StateId = 2;
+  orderToChange.save();
 
   res.json({ message: 'Вы успешно подтвердили заказ' });
 });
