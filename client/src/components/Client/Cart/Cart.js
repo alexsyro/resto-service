@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import CartPosition from './CartPosition';
 
 export default function Cart() {
   const [fullPrice, setFullPrice] = useState(0);
+
+  const { cart } = useSelector((state) => state.cartReducer);
+  console.log(cart, 'cartItems')
   // Вытаскиваем коризну из reducer
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  let cart = [
-    { id: 1, name: 'Сладкие помидоры', quantity: 1, price: 390 },
-    { id: 2, name: 'Буррата', quantity: 1, price: 570 },
-  ];
   // И вытаскиваем текущего пользователя из базы
   let user = { id: 1, name: 'Бларвер', phone: '77777777', discount: 5, isAuthorized: true };
 
@@ -17,7 +17,7 @@ export default function Cart() {
     //   Фетч на бек с резервированием (создаётся в базе первым) и содержимым корзины(создаётся после создания заказа)
     //   Содержимое в виде
     //   {
-    //     orders:
+    //     orders: 
     //     {
     //       'PositionId': 'id',
     //       'quanity': 'Number',
@@ -32,6 +32,8 @@ export default function Cart() {
     const price = cart.reduce((acc, position) => acc + Number(position.price) * Number(position.quantity), 0);
     setFullPrice(price - (price * user.discount) / 100);
   }, [cart]);
+
+  const total = useSelector((state) => state.cartReducer.cart);
 
   if (cart) {
     return (
@@ -54,7 +56,7 @@ export default function Cart() {
           (acc, position) => acc + Number(position.price) * Number(position.quantity),
           0,
         )} руб.`}</h2>
-        <h2>{`Цена с учётом вашей скидки ${user.discount}% - ${fullPrice} руб.`}</h2>
+        <h2>{`Цена с учётом вашей скидки ${user.discount}% - ${total.quantity} руб.`}</h2>
         <button type='submit'>OФормить предварительный заказ</button>
       </form>
     );
