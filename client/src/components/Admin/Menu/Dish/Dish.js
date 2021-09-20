@@ -8,8 +8,6 @@ function Dish({ dish }) {
   let { data } = dish['File.data'];
   let base64 = new Buffer(data).toString('base64');
   let type = dish['File.type'];
-  // let url = file.readAsDataURL(base64)
-  console.log('DDDDDDDDDDDDDDDIIIIIIIIIIIIIIIIIIIIIISSSSSSSSSSSSSSSSHHHHHHHHHHHH', Object.keys(dish));
 
   const dispatch = useDispatch();
 

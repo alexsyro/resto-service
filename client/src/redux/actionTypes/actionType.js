@@ -5,6 +5,7 @@ export const GET_MEASURES = 'GET_MEASURES'
 export const UPD_DISH = 'UPD_DISH'
 export const DEL_DISH = 'DEL_DISH'
 export const SAGA_FETCH_CATEGORYLIST = 'SAGA_FETCH_CATEGORYLIST';
+export const ADD_TOCART = 'ADD_TOCART'
 
 
 //работаем с персоналом
