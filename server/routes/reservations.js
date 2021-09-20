@@ -31,6 +31,7 @@ router.get('/table/:id', async (req, res) => {
     },
     raw: true,
   });
+  // console.log('RESERVED TABLES::::::::::::::::::::::::', reservedTablesForDate);
   const reserved = reservedTablesForDate.length > 0;
   res.json({ reserved });
 });
