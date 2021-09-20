@@ -6,7 +6,8 @@ import ordersReducer from './ordersReducer';
 import menuReducer from './menuReducer';
 import reservationReducer from './reservationReducer';
 import dishesReducer from './dishesReducer';
-import clientsReducer from './сlientsReducer';
+import clientsReducer from './сlientsReducer'
+import adminReservationReducer from './adminReservationReducer'
 import cartReducer from './cartReducer';
 
 const rootReducer = combineReducers({
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   reservationReducer,
   dishesReducer,
   clientsReducer,
+  adminReservationReducer,
   cartReducer,
 });
 
