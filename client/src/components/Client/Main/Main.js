@@ -9,6 +9,8 @@ import Reservation from '../Reservation/Reservation';
 import Gallery from '../Gallery/Gallery';
 import Cart from '../Cart/Cart';
 import Payment from '../Payment/Payment';
+import Menu from '../Menu/Menu';
+import SubcategoryItem from '../SubcategoryItem/SubcategoryItem';
 
 function Main() {
   return (
@@ -20,8 +22,11 @@ function Main() {
         <Route exact path='/about'>
           <About />
         </Route>
-        <Route exact path='/menu'>
-          {/* <p>Меню</p> */}
+        <Route path='/menu' exact>
+          <Menu />
+        </Route>
+        <Route path='/menu/:categoryName/:categoryId' exact>
+          <SubcategoryItem />
         </Route>
         <Route exact path='/gallery'>
           <Gallery />
