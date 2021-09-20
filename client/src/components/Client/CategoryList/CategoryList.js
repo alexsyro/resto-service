@@ -1,15 +1,13 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {GET_CATEGORY} from '../../../redux/actionTypes/actionType'
 import Category from '../Category/Category';
+import {categoryListAC} from '../../../redux/actionCreators/categoryListAC'
 
 function CategoryList() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetch('http://localhost:1234/api/menu/categories')
-    .then((res) => res.json())
-    .then((categories) =>  dispatch({ type: GET_CATEGORY, payload: categories }))
+    dispatch(categoryListAC())
   }, [dispatch]);
 
   const allCategories =  useSelector((state) => state.menuReducer.menu);
