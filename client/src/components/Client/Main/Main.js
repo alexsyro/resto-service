@@ -11,6 +11,7 @@ import Cart from '../Cart/Cart';
 import Payment from '../Payment/Payment';
 import Menu from '../Menu/Menu';
 import SubcategoryItem from '../SubcategoryItem/SubcategoryItem';
+import Profile from '../Profile/Profile';
 
 function Main() {
   return (
@@ -39,6 +40,9 @@ function Main() {
         </Route>
         <Route exact path='/registration'>
           <RegForm />
+        </Route>
+        <Route exact path='/profile'>
+          <Profile />
         </Route>
         <Route exact path='/book'>
           <Reservation />
