@@ -2,10 +2,28 @@ const express = require('express');
 
 const { Router } = express;
 const router = Router();
-const { State, Order, OrderPosition, Reservation, Client } = require('../db/models');
+const { Reservation, Table, State, Order, Client, OrderPosition } = require('../db/models');
 
 // Запрос на категории с подкатегориями
 router.get('/', async (req, res) => {
+  const reservations = await Reservation.findAll({
+    attributes: ['id', 'table_id', 'state_id', 'date_time', 'guest_count', 'guest_name', 'guest_phone', 'time_interval'],
+    include: [
+      {
+        model: Table,
+        key: 'id',
+        attributes: ['id', 'hall_id', 'number', 'seats_limit'],
+      },
+      {
+        model: State,
+        key: 'id',
+        attributes: ['id', 'state'],
+      },
+    ],
+    raw: true,
+  });
+  console.log(reservations);
+
   const orders = await Order.findAll({
     attributes: ['id', 'client_id', 'reservation_id', 'state_id'],
     include: [
@@ -20,11 +38,6 @@ router.get('/', async (req, res) => {
         attributes: ['id', 'table_id', 'date_time', 'state_id', 'guest_count', 'guest_name', 'guest_phone', 'time_interval'],
       },
       {
-        model: OrderPosition,
-        key: 'id',
-        attributes: ['order_id', 'position_id', 'quantity'],
-      },
-      {
         model: State,
         key: 'id',
         attributes: ['id', 'state'],
@@ -32,8 +45,8 @@ router.get('/', async (req, res) => {
     ],
     raw: true,
   });
-  console.log(orders);
-  res.json(orders);
+  console.log('orders:   ', orders, 'reservations:   ', reservations);
+  res.json({ orders, reservations });
 });
 
 router.put('/done', async (req, res) => {

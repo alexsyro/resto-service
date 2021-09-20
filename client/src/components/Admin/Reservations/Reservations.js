@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import styles from './Orders.module.scss';
+import styles from './Reservations.module.scss';
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import * as ordersAC from '../../../redux/actionCreators/ordersAC'
-import DoneOrder from './DoneOrder'
-import ToCheckOrder from './ToCheckOrder'
+import * as reservationsAC from '../../../redux/actionCreators/reservationsAC'
+import DoneOrder from './DoneReservations'
+import ToCheckOrder from './ToCheckReservation'
 
 
-function Orders() {
+function Reservations() {
   const [completedList, setCompletedList] = useState(false)
   const history = useHistory();
   const dispatch = useDispatch()
@@ -23,12 +23,11 @@ function Orders() {
           if (!idToDelete.includes(reservation.id)) {
             return true
           }
-          return false
         })
 
-        console.log('allOrders*******', allOrders, '\nreservationsWithoutOrders******', reservationsWithoutOrders);
+        console.log('reservationsWithoutOrders******', reservationsWithoutOrders);
         // const ordersToRender = 
-        // dispatch(ordersAC.getOrdersAC(allOrders))
+        // dispatch(reservationsAC.getReservationsAC(allOrders))
       })
     // здесь fetch (сага) в базу для получения списка заказов (причем только тех, что в обработке)
   })
@@ -52,4 +51,4 @@ function Orders() {
   );
 }
 
-export default Orders;
+export default Reservations;
