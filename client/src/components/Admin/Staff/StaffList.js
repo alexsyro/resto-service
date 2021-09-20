@@ -6,13 +6,12 @@ import Worker from './Worker';
 function StaffList(props) {
 
   const dispatch = useDispatch();
-  //'https://jsonplaceholder.typicode.com/users'
- // `http://localhost:1234/api/staff`
+
   useEffect(() => {
-    fetch(`http://localhost:1234/api/staff`)
+    fetch(`http://localhost:1234/api/staff/`)
       .then((res) => res.json())
-      .then((data) => dispatch({ type: GET_STAFF, payload: data.slice(0,4) }))
-  }, [dispatch]) // запросом получаем весь стафф из бд
+      .then(({staffs}) => dispatch({type: GET_STAFF, payload: staffs}))
+  }, [dispatch]) // запросом получаем весь стафф из бд //dispatch({type: GET_STAFF, payload: staffs})
 
   const staffList = useSelector((state) => state.staffReducer.staff); 
   console.log(staffList,'STAFF')
@@ -20,7 +19,7 @@ function StaffList(props) {
   //живой поиск по списку работников
   const [value, setValue] = useState('')
 
-  const filteredWorkers = staffList.filter((worker) => {
+  const filteredWorkers = staffList?.filter((worker) => {
     return worker.name.toLowerCase().includes(value.toLowerCase())
   })
 
