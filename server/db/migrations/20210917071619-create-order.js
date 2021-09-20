@@ -29,7 +29,7 @@ module.exports = {
         },
       },
       ReservationId: {
-        allowNull: false,
+        allowNull: true,
         field: 'reservation_id',
         type: Sequelize.INTEGER,
         reference: {

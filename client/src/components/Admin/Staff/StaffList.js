@@ -1,26 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { GET_STAFF } from '../../../redux/actionTypes/actionType'
+import { GET_STAFF, GET_POSITIONS } from '../../../redux/actionTypes/actionType'
 import Worker from './Worker';
 
 function StaffList(props) {
 
   const dispatch = useDispatch();
-  //'https://jsonplaceholder.typicode.com/users'
- // `http://localhost:1234/api/staff`
+
   useEffect(() => {
-    fetch(`http://localhost:1234/api/staff`)
+    fetch(`http://localhost:1234/api/staff/`)
       .then((res) => res.json())
-      .then((data) => dispatch({ type: GET_STAFF, payload: data.slice(0,4) }))
-  }, [dispatch]) // запросом получаем весь стафф из бд
+      .then(({staffs}) => dispatch({type: GET_STAFF, payload: staffs}))
+  }, [dispatch]) // запросом получаем весь стафф из бд //dispatch({type: GET_STAFF, payload: staffs})
 
   const staffList = useSelector((state) => state.staffReducer.staff); 
   console.log(staffList,'STAFF')
 
+  fetch('http://localhost:1234/api/staff/posts')
+    .then((res) => res.json())
+    .then(({posts}) =>  dispatch({ type: GET_POSITIONS, payload: posts }))
+
   //живой поиск по списку работников
   const [value, setValue] = useState('')
 
-  const filteredWorkers = staffList.filter((worker) => {
+  const filteredWorkers = staffList?.filter((worker) => {
     return worker.name.toLowerCase().includes(value.toLowerCase())
   })
 

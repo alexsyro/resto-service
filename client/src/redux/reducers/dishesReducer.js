@@ -1,6 +1,6 @@
-import { GET_DISHES, UPD_DISH, DEL_DISH } from '../actionTypes/actionType';
+import { GET_DISHES, UPD_DISH, DEL_DISH, GET_MEASURES } from '../actionTypes/actionType';
 
-const initialState = { dishes: [] };
+const initialState = { dishes: [], measures: [] };
 
 const dishesReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -9,6 +9,13 @@ const dishesReducer = (state = initialState, action) => {
         return state;
       } else {
         return { ...state, dishes: action.payload.positions };
+      }
+    case GET_MEASURES:
+      console.log(action.payload);
+      if (state.measures.length) {
+        return state;
+      } else {
+        return { ...state, measures: action.payload };
       }
     case UPD_DISH:
       return {

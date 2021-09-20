@@ -6,6 +6,8 @@ import styles from './Reservation.module.scss';
 // ПРОКИНУТЬ СТОЛИК ОТ САМОГО СТОЛА ДО ЭТОГО МЕСТА
 export default function TableInfo() {
   const dispatch = useDispatch();
+  // const user = { name: 'Иммануил', phone: '8800200600' }; // брать из редьюса
+  const user = null;
   const { selectedTable, selectedDateTime } = useSelector((state) => state.reservationReducer);
 
   const createReservation = async (event) => {
@@ -62,16 +64,28 @@ export default function TableInfo() {
                 min='1'
                 max={selectedTable.seatsLimit}
               />
-              <label htmlFor='guestName'>Ваше имя</label>
-              <input id='guestName' type='text' name='guestName' placeholder='Введите ваше имя' required />
-              <label htmlFor='guestPhone'>Ваше имя</label>
-              <input
-                id='guestPhone'
-                type='tel'
-                name='guestPhone'
-                placeholder='Введите ваш телефон'
-                required
-              />
+              {user ? (
+                <p>Вы можете сделать предзаказ блюд, после бронирования :)</p>
+              ) : (
+                <>
+                  <label htmlFor='guestName'>Ваше имя</label>
+                  <input
+                    id='guestName'
+                    type='text'
+                    name='guestName'
+                    placeholder='Введите ваше имя'
+                    required
+                  />
+                  <label htmlFor='guestPhone'>Ваш телефон</label>
+                  <input
+                    id='guestPhone'
+                    type='tel'
+                    name='guestPhone'
+                    placeholder='Введите ваш телефон'
+                    required
+                  />
+                </>
+              )}
             </div>
             <button type='submit'>Забронировать</button>
           </form>
