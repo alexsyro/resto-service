@@ -16,7 +16,8 @@ import AddDishForm from './Menu/AddDishForm/AddDishForm';
 import UsersPage from './UsersPage/UsersPage'
 import ClientInfo from './UsersPage/ClientInfo';
 import AddClientForm from './UsersPage/AddClientForm';
-
+import Reservation from '../Admin/Reservations/Reservations';
+import ReservationInfo from '../Admin/Reservations/ReservationInfo';
 
 function Admin() {
   return (
@@ -44,9 +45,14 @@ function Admin() {
           <Route path='/orders/edit/:id' exact>
             <OrderInfo />
           </Route>
-
+          <Route path='/reservations/edit/:id' exact>
+            <ReservationInfo />
+          </Route>
           <Route path='/orders' exact>
             <Orders />
+          </Route>
+          <Route path='/reservations' exact>
+            <Reservation />
           </Route>
           <Route exact path='/staff/addworker'>
             <AddWorkerForm />

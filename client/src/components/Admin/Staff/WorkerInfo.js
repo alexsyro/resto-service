@@ -36,7 +36,7 @@ import {UPD_STAFF} from '../../../redux/actionTypes/actionType'
       console.log(updateWorker);
       dispatch({type: UPD_STAFF, payload: updateWorker})
 
-      fetch(`http://localhost:1234/api/edit/${staffId}`, {
+      fetch(`http://localhost:1234/api/staff/${staffId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'

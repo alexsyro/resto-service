@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Orders.module.scss';
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import * as ordersAC from '../../../redux/actionCreators/ordersAC'
 import DoneOrder from './DoneOrder'
 import ToCheckOrder from './ToCheckOrder'
@@ -15,15 +15,15 @@ function Orders() {
   useEffect(() => {
     fetch('http://localhost:1234/api/orders')
       .then(res => res.json())
-      .then(allOrders => {
-        console.log(allOrders);
+      .then(data => {
+        const allOrders = [...data.orders];
         dispatch(ordersAC.getOrdersAC(allOrders))
       })
     // здесь fetch (сага) в базу для получения списка заказов (причем только тех, что в обработке)
   })
 
-  const finishedOrders = useSelector(state => state.ordersReducer.orders?.filter(el => el.status === "Checked"))
-  const toCheckOrders = useSelector(state => state.ordersReducer.orders?.filter(el => el.status === "toCheck"))
+  const finishedOrders = useSelector(state => state.ordersReducer.orders?.filter(el => el['state_id'] === 2 || el['state_id'] === 6))
+  const toCheckOrders = useSelector(state => state.ordersReducer.orders?.filter(el => el['state_id'] === 1));
 
   return (
     <div className={styles.container}>

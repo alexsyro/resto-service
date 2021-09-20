@@ -44,7 +44,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       ReservationId: {
-        allowNull: false,
+        allowNull: true,
         field: 'reservation_id',
         type: DataTypes.INTEGER,
         reference: {

@@ -8,6 +8,10 @@ import Contacts from '../Contacts/Contacts';
 import Reservation from '../Reservation/Reservation';
 import Gallery from '../Gallery/Gallery';
 import Cart from '../Cart/Cart';
+import Payment from '../Payment/Payment';
+import Menu from '../Menu/Menu';
+import SubcategoryItemClient from '../SubcategoryItem/SubcategoryItemClient';
+import Profile from '../Profile/Profile';
 
 function Main() {
   return (
@@ -19,8 +23,11 @@ function Main() {
         <Route exact path='/about'>
           <About />
         </Route>
-        <Route exact path='/menu'>
-          {/* <p>Меню</p> */}
+        <Route path='/menu' exact>
+          <Menu />
+        </Route>
+        <Route path='/menu/:categoryName/:categoryId' exact>
+          <SubcategoryItemClient />
         </Route>
         <Route exact path='/gallery'>
           <Gallery />
@@ -34,11 +41,17 @@ function Main() {
         <Route exact path='/registration'>
           <RegForm />
         </Route>
+        <Route exact path='/profile'>
+          <Profile />
+        </Route>
         <Route exact path='/book'>
           <Reservation />
         </Route>
         <Route exact path='/cart'>
           <Cart />
+        </Route>
+        <Route exact path='/payment'>
+          <Payment />
         </Route>
       </Switch>
     </div>

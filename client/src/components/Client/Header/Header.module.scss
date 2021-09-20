@@ -110,12 +110,18 @@ label #cancel {
 }
 
 .navbar__links {
+  padding-left: 20px;
+  padding-right: 20px;
   margin: 0;
   margin-top: 0.5rem;
   margin-right: 1rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
+  border: 1px solid rgba(50, 50, 50, 0.6);
 }
 .navbar__links:first-child {
   text-transform: uppercase;
+  background-color: rgba(100, 0, 0, 0.6);
 }
 
 .navbar__link {
@@ -143,7 +149,6 @@ label #cancel {
   100% {
     width: 100%;
     border-bottom-color: #fff;
-    
   }
 }
 
