@@ -6,14 +6,14 @@ import Admin from './components/Admin/Admin';
 import Client from './components/Client/Client';
 import store from './redux/store';
 
-const isAdmin = false;
+const isAdmin = true;
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <Router>
         {/* Условный рендеринг isAdmin. */}
-        {isAdmin ? <Client /> : <Client />}
+        {isAdmin ? <Admin /> : <Client />}
       </Router>
     </Provider>
   </React.StrictMode>,
