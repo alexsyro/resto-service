@@ -18,7 +18,7 @@ router.get('/measures', async (req, res) => {
 // Добавление Блюда
 router.post('/', async (req, res) => {
   const { file } = req.files;
-  const { name, description, kcal, portionSize, price, categoryId } = req.body;
+  const { name, description, kcal, portionSize, price, categoryId, measureId } = req.body;
   try {
     const image = await File.create(
       {
@@ -37,6 +37,7 @@ router.post('/', async (req, res) => {
       price,
       CategoryId: categoryId,
       FileId: image.id,
+      MeasureId: measureId,
     });
 
     res.json({ position });
