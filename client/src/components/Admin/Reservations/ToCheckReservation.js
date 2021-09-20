@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import * as ordersAC from '../../../redux/actionCreators/ordersAC'
+// import * as ordersAC from '../../../redux/actionCreators/ordersAC'
 
 function ToCheckReservation({ reservation }) {
   const dispatch = useDispatch()
@@ -18,7 +18,7 @@ function ToCheckReservation({ reservation }) {
       .then(res => res.json())
       .then(console.log)
 
-    dispatch(ordersAC.completeOrderAC({ id: reservation.id }))
+    // dispatch(ordersAC.completeOrderAC({ id: reservation.id }))
   }
 
   return (
