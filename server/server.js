@@ -58,8 +58,10 @@ server.use(express.json());
 server.post('/login', (req, res) => {
   const { credentials } = req.body;
   if (credentials.match(REGEXP_EMAIL_PATTERN)) {
+    console.log('REDIRECTED TO CLIENTS', req.session);
     res.redirect(307, '/api/clients');
   } else {
+    console.log('REDIRECTED TO STAFF', req.session);
     res.redirect(307, '/api/staff');
   }
 });

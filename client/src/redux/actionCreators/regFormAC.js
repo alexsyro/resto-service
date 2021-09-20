@@ -1,15 +1,15 @@
-import { GET_USER, SAGA_FETCH_REG } from '../actionTypes/actionType'
+import { GET_USER, SAGA_FETCH_REG } from '../actionTypes/actionType';
 
 export const getUserAC = (payload) => {
   return {
     type: GET_USER,
-    payload
-  }
-}
+    payload,
+  };
+};
 
-export const sagaRegAC = (action) => {
+export const sagaRegAC = (payload) => {
   return {
     type: SAGA_FETCH_REG,
-    action
-  }
-}
+    payload,
+  };
+};

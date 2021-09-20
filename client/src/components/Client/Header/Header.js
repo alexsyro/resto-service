@@ -1,8 +1,9 @@
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
 
 function Header() {
-  let user = { isAuth: true };
+  const { user } = useSelector((state) => state.usersReducer);
   return (
     <>
       <input type='checkbox' id={styles.check} />

@@ -23,7 +23,7 @@ function SubcategoryItem(props) {
 
   return (
     <>
-      {dishes.map((dish) => <Dish key={dish.id} dish={dish} />)}
+      {dishes?.map((dish) => <Dish key={dish.id} dish={dish} />)}
     </>
   );
 }
