@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './Reservations.module.scss';
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import * as reservationsAC from '../../../redux/actionCreators/reservationsAC'
+// import * as reservationsAC from '../../../redux/actionCreators/reservationsAC'
 import DoneOrder from './DoneReservations'
 import ToCheckOrder from './ToCheckReservation'
 

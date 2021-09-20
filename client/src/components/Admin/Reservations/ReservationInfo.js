@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { useParams, useHistory } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
-import * as ordersAC from '../../../redux/actionCreators/ordersAC'
+// import * as ordersAC from '../../../redux/actionCreators/ordersAC'
 
 
 function ReservationInfo() {
@@ -46,7 +46,7 @@ function ReservationInfo() {
       .then(res => res.json())
       .then(console.log)
 
-    dispatch(ordersAC.updateOrderAC(updateOrder))
+    // dispatch(ordersAC.updateOrderAC(updateOrder))
   }
 
   return (

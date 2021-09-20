@@ -17,24 +17,13 @@ function Orders() {
       .then(res => res.json())
       .then(data => {
         const allOrders = [...data.orders];
-        const idToDelete = allOrders.map(el => el['Reservation.id'])
-        const allReservations = [...data.reservations];
-        const reservationsWithoutOrders = allReservations.filter(reservation => {
-          if (!idToDelete.includes(reservation.id)) {
-            return true
-          }
-          return false
-        })
-
-        console.log('allOrders*******', allOrders, '\nreservationsWithoutOrders******', reservationsWithoutOrders);
-        // const ordersToRender = 
-        // dispatch(ordersAC.getOrdersAC(allOrders))
+        dispatch(ordersAC.getOrdersAC(allOrders))
       })
     // здесь fetch (сага) в базу для получения списка заказов (причем только тех, что в обработке)
   })
 
-  const finishedOrders = useSelector(state => state.ordersReducer.orders?.filter(el => el['State.id'] === 2))
-  const toCheckOrders = useSelector(state => state.ordersReducer.orders?.filter(el => el['State.id'] === 1 || el['State.id'] === 6));
+  const finishedOrders = useSelector(state => state.ordersReducer.orders?.filter(el => el['state_id'] === 2 || el['state_id'] === 6))
+  const toCheckOrders = useSelector(state => state.ordersReducer.orders?.filter(el => el['state_id'] === 1));
 
   return (
     <div className={styles.container}>
