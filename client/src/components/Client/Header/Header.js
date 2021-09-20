@@ -61,6 +61,11 @@ function Header() {
                 Выйти
               </Link>
             </p>
+            <p className={styles.navbar__links}>
+              <Link className={styles.navbar__link} to='/cart'>
+                Корзина
+              </Link>
+            </p>
           </>
         ) : (
           <>
@@ -76,12 +81,6 @@ function Header() {
             </p>
           </>
         )}
-
-        <p className={styles.navbar__links}>
-          <Link className={styles.navbar__link} to='/cart'>
-            Корзина
-          </Link>
-        </p>
       </div>
     </>
   );
