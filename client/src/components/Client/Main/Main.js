@@ -10,7 +10,7 @@ import Gallery from '../Gallery/Gallery';
 import Cart from '../Cart/Cart';
 import Payment from '../Payment/Payment';
 import Menu from '../Menu/Menu';
-import SubcategoryItem from '../SubcategoryItem/SubcategoryItem';
+import SubcategoryItemClient from '../SubcategoryItem/SubcategoryItemClient';
 
 function Main() {
   return (
@@ -26,7 +26,7 @@ function Main() {
           <Menu />
         </Route>
         <Route path='/menu/:categoryName/:categoryId' exact>
-          <SubcategoryItem />
+          <SubcategoryItemClient />
         </Route>
         <Route exact path='/gallery'>
           <Gallery />

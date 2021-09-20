@@ -5,7 +5,7 @@ function Header() {
   return (
     <>
       <input type='checkbox' id={styles.check} />
-      <label for={styles.check}>
+      <label htmlFor={styles.check}>
         <i className='fas fa-bars' id={styles.btn}></i>
         <i className='fas fa-times' id={styles.cancel}></i>
       </label>

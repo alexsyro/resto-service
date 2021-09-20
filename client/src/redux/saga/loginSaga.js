@@ -6,16 +6,16 @@ import { SAGA_FETCH_LOGIN } from '../actionTypes/actionType';
 const fetchUsers = async (user) => {
   const {email, password, action, method } = user.action; //работает на магии, не трогать
   console.log(email, password, action, method)
-  const res = fetch(action, {
+  const res = await fetch(action, {
     method,
     credential: true,
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ 
-      credentials: email.value,
-      password: password.value
+      credentials: email,
+      password: password
      })
   })
-  const resJson = res.json();
+  const resJson = await res.json();
   return resJson;
 }
 
