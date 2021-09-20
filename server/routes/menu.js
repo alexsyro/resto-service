@@ -7,7 +7,7 @@ const { Position, Subcategory, Category, Measure, File } = require('../db/models
 // Запрос единиц измерения
 router.get('/measures', async (req, res) => {
   try {
-    const measures = await Measure.findAll({ raw: true });
+    const measures = await Measure.findAll({ attributes: ['id', 'type'], raw: true });
     res.json({ measures });
   } catch (err) {
     console.log('------------ERROR', new Date(), err);
