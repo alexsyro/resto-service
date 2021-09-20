@@ -12,6 +12,7 @@ export default function Table({ table }) {
     const url = `http://localhost:1234/api/reservations/table/${table.id}?date=${selectedDateTime.date}&time=${selectedDateTime.time}`;
     const response = await fetch(url, { credentials: 'include' });
     const { reserved } = await response.json();
+    console.log('');
     setisReserved(reserved);
   };
 
