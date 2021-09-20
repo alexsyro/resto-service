@@ -1,6 +1,6 @@
 const reservations = [
   {
-    table_id: 11,
+    table_id: 1,
     date_time: '2021-09-20 18:00:00.505+03',
     guest_count: 1,
     guest_name: 'Олег',
@@ -10,7 +10,7 @@ const reservations = [
     createdAt: new Date(),
   },
   {
-    table_id: 112,
+    table_id: 15,
     date_time: '2021-09-21 21:00:00.505+03',
     guest_count: 5,
     guest_name: 'Еремей',
@@ -20,7 +20,7 @@ const reservations = [
     createdAt: new Date(),
   },
   {
-    table_id: 113,
+    table_id: 9,
     date_time: '2021-09-22 19:30:00.505+03',
     guest_count: 2,
     guest_name: 'Матриславль',
@@ -40,7 +40,7 @@ const reservations = [
     createdAt: new Date(),
   },
   {
-    table_id: 115,
+    table_id: 39,
     date_time: '2021-09-20 18:30:00.505+03',
     guest_count: 1,
     guest_name: 'Вернизад',
@@ -60,7 +60,7 @@ const reservations = [
     createdAt: new Date(),
   },
   {
-    table_id: 116,
+    table_id: 30,
     date_time: '2021-09-21 18:30:00.505+03',
     guest_count: 1,
     guest_name: 'Али Тигр',
