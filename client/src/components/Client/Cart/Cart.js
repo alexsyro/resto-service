@@ -34,6 +34,7 @@ export default function Cart() {
   }, [cart]);
 
   const total = useSelector((state) => state.cartReducer.cart);
+  console.log(total, 'TOTAL')
 
   if (cart) {
     return (
@@ -56,7 +57,7 @@ export default function Cart() {
           (acc, position) => acc + Number(position.price) * Number(position.quantity),
           0,
         )} руб.`}</h2>
-        <h2>{`Цена с учётом вашей скидки ${user.discount}% - ${total.quantity} руб.`}</h2>
+        <h2>{`Цена с учётом вашей скидки ${user.discount}% - ${fullPrice} руб.`}</h2>
         <button type='submit'>OФормить предварительный заказ</button>
       </form>
     );
