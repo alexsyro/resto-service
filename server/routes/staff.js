@@ -1,10 +1,20 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const { Op } = require('sequelize');
-const { Staff, File } = require('../db/models');
+const { Staff, File, Post } = require('../db/models');
 
 const { Router } = express;
 const router = Router();
+
+router.get('/posts', async (req, res) => {
+  try {
+    const posts = await Post.findAll({ attributes: ['id', 'name'], raw: true });
+    res.json({ posts });
+  } catch (err) {
+    console.log('------------ERROR', new Date(), err);
+    res.status(500).json({ error: err.message });
+  }
+});
 
 router.get('/', async (req, res) => {
   try {
@@ -20,7 +30,7 @@ router.get('/', async (req, res) => {
 router.post('/new', async (req, res) => {
   const { file } = req.files;
   console.log('[INCOMING BODY TO REG STA]', file);
-  const { name, login, phone, password, position } = req.body;
+  const { name, login, phone, password, postId } = req.body;
   try {
     const image = await File.create(
       {
@@ -31,7 +41,7 @@ router.post('/new', async (req, res) => {
       },
       { raw: true },
     );
-    console.log('-----------------IMAGE CREATED', image.id, name, login, phone, password, position);
+    console.log('-----------------IMAGE CREATED', image.id, name, login, phone, password);
     const [, isNew] = await Staff.findOrCreate({
       where: {
         [Op.or]: [{ login }, { phone }],
@@ -41,14 +51,14 @@ router.post('/new', async (req, res) => {
         login,
         phone,
         password: await bcrypt.hash(password, 10),
-        PostId: Number(position),
+        PostId: postId,
         FileId: image.id,
       },
       raw: true,
     });
     // If new - that's ok? Proceed to session creating
     if (isNew) {
-      const user = { name, login, phone, isAdmin: Number(position) === 1 }; // postId 1 = admin
+      const user = { name, login, phone, isAdmin: Number(postId) === 1 }; // postId 1 = admin
       req.session.isAuthorized = true;
       req.session.user = user;
       res.json({ user }); // send user back

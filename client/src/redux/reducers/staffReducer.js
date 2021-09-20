@@ -1,6 +1,6 @@
-import { GET_STAFF, UPD_STAFF, DEL_STAFF } from '../actionTypes/actionType';
+import { GET_STAFF, UPD_STAFF, DEL_STAFF, GET_POSITIONS } from '../actionTypes/actionType';
 
-const initialState = { staff: [] };
+const initialState = { staff: [], positions: [] };
 
 const staffReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -9,6 +9,13 @@ const staffReducer = (state = initialState, action) => {
         return state;
       } else {
         return { ...state, staff: action.payload };
+      }
+
+    case GET_POSITIONS:
+      if (state.positions.length) {
+        return state;
+      } else {
+        return { ...state, positions: action.payload };
       }
 
     case UPD_STAFF:

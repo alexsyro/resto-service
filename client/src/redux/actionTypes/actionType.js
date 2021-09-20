@@ -8,6 +8,7 @@ export const DEL_DISH = 'DEL_DISH'
 
 //работаем с персоналом
 export const GET_STAFF = 'GET_STAFF';
+export const GET_POSITIONS = 'GET_POSITIONS'
 export const UPD_STAFF = 'UPD_STAFF'
 export const DEL_STAFF = 'DEL_STAFF';
 
