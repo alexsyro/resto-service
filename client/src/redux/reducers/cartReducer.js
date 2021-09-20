@@ -10,7 +10,7 @@ const initialState = { cart: [] };
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case CART_ADD_POSITION:
-      if (state.carts.find((position) => position.id === action.payload.id)) {
+      if (state.cart.find((position) => position.id === action.payload.id)) {
         return {
           ...state,
           cart: state.cart.map((position) => {

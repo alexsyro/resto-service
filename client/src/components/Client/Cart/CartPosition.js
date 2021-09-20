@@ -11,8 +11,14 @@ export default function CartPosition({ position }) {
     event.preventDefault();
     const { value } = event.target;
     setQuantity(value);
-    dispatch(cartChangeQuantity(value))
+    const payload = {
+      quantity:value,
+      id:position.id,
+    }
+    dispatch(cartChangeQuantity(payload))
   };
+   
+ 
 
   return (
     <tr>
