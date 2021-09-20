@@ -21,7 +21,8 @@ function AddDishForm() {
         description: description.value,
         kcal: kcal.value,
         portionSize: portionSize.value,
-        price: price.value
+        price: price.value,
+        categoryId: categoryId,
       }
     })
       .then(res => res.json())

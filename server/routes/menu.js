@@ -4,6 +4,17 @@ const { Router } = express;
 const router = Router();
 const { Position, Subcategory, Category, Measure, File } = require('../db/models');
 
+// Запрос единиц измерения
+router.get('/measures', async (req, res) => {
+  try {
+    const measures = await Measure.findAll({ raw: true });
+    res.json({ measures });
+  } catch (err) {
+    console.log('------------ERROR', new Date(), err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // Добавление Блюда
 router.post('/', async (req, res) => {
   const { file } = req.files;
@@ -38,19 +49,25 @@ router.post('/', async (req, res) => {
 // Изменение
 router.put('/:id', async (req, res) => {
   const { id } = req.params;
-  const { file } = req.files;
-  const { name, description, kcal, portionSize, price, categoryId, measureId } = req.body;
+  const { name, description, kcal, portionSize, price } = req.body;
+  console.log(
+    'AAAAAAAAAAAAA::::::::::::::::::::::::::::::::::::::',
+    name,
+    description,
+    kcal,
+    portionSize,
+    price,
+  );
   try {
     const position = await Position.findOne({ where: { id } });
     position.name = name || position.name;
     position.description = description || position.description;
     position.kcal = kcal || position.kcal;
     position.price = price || position.price;
-    position.categoryId = categoryId || position.categoryId;
     position.portionSize = portionSize || position.portionSize;
-    position.MeasureId = measureId || position.MeasureId;
 
-    if (file) {
+    if (req.file) {
+      const { file } = req.files;
       const image = await File.create(
         {
           name: `${name}`,
@@ -63,6 +80,7 @@ router.put('/:id', async (req, res) => {
       position.FileId = image.id;
     }
     position.save();
+    console.log('EDIT::::::::::::::', position);
     res.json({ position });
   } catch (err) {
     console.log('------------ERROR', new Date(), err);
