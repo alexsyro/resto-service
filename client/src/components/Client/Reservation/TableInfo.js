@@ -12,7 +12,7 @@ export default function TableInfo() {
     event.preventDefault();
     const { guestCount, guestName, guestPhone } = event.target;
     const dataToSend = {
-      tableId: selectedTable.number,
+      tableId: selectedTable.id,
       guestCount: guestCount.value,
       guestName: guestName.value,
       guestPhone: guestPhone.value,
@@ -39,7 +39,7 @@ export default function TableInfo() {
 
   return (
     <div className={styles.tableInfoContainer}>
-      <h3>{`Столик №${selectedTable.id}`}</h3>
+      <h3>{`Столик №${selectedTable.number}`}</h3>
       <h4>{`Максимальная вместимость: ${selectedTable.seatsLimit}`}</h4>
       <hr></hr>
       {selectedDateTime ? (
