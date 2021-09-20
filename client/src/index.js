@@ -13,7 +13,7 @@ ReactDOM.render(
     <Provider store={store}>
       <Router>
         {/* Условный рендеринг isAdmin. */}
-        {isAdmin ? <Admin /> : <Client />}
+        {isAdmin ? <Client /> : <Client />}
       </Router>
     </Provider>
   </React.StrictMode>,
