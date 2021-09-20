@@ -2,12 +2,12 @@ const express = require('express');
 
 const { Router } = express;
 const router = Router();
-const { Position, Subcategory, Category, Measure, Order, OrderPosition, Reservation, Client, Discounts } = require('../db/models');
+const { State, Order, OrderPosition, Reservation, Client } = require('../db/models');
 
 // Запрос на категории с подкатегориями
 router.get('/', async (req, res) => {
   const orders = await Order.findAll({
-    attributes: ['id', 'client_id', 'reservation_id', 'status'],
+    attributes: ['id', 'client_id', 'reservation_id', 'state_id'],
     include: [
       {
         model: Client,
@@ -17,12 +17,17 @@ router.get('/', async (req, res) => {
       {
         model: Reservation,
         key: 'id',
-        attributes: ['id', 'table_id', 'date_time'],
+        attributes: ['id', 'table_id', 'date_time', 'state_id', 'guest_count', 'guest_name', 'guest_phone', 'time_interval'],
       },
       {
         model: OrderPosition,
         key: 'id',
         attributes: ['order_id', 'position_id', 'quantity'],
+      },
+      {
+        model: State,
+        key: 'id',
+        attributes: ['id', 'state'],
       },
     ],
     raw: true,
@@ -33,7 +38,7 @@ router.get('/', async (req, res) => {
 
 router.put('/done', async (req, res) => {
   const { id } = req.body;
-  await Order.update({ status: 'checked' }, {
+  await Order.update({ state_id: 2 }, {
     where: {
       id,
     },

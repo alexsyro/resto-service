@@ -22,8 +22,8 @@ function Orders() {
     // здесь fetch (сага) в базу для получения списка заказов (причем только тех, что в обработке)
   })
 
-  const finishedOrders = useSelector(state => state.ordersReducer.orders?.filter(el => el.status === "Checked"))
-  const toCheckOrders = useSelector(state => state.ordersReducer.orders?.filter(el => el.status === "toCheck"))
+  const finishedOrders = useSelector(state => state.ordersReducer.orders?.filter(el => el['State.id'] === 2))
+  const toCheckOrders = useSelector(state => state.ordersReducer.orders?.filter(el => el['State.id'] === 1 || el['State.id'] === 6));
 
   return (
     <div className={styles.container}>
