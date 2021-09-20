@@ -1,6 +1,7 @@
 // работаем с меню
 export const GET_CATEGORY = 'GET_CATEGORY'
 export const GET_DISHES = 'GET_DISHES'
+export const GET_MEASURES = 'GET_MEASURES'
 export const UPD_DISH = 'UPD_DISH'
 export const DEL_DISH = 'DEL_DISH'
 

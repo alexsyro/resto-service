@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {GET_CATEGORY} from '../../../../redux/actionTypes/actionType'
+import {GET_CATEGORY, GET_MEASURES} from '../../../../redux/actionTypes/actionType'
 import Category from '../Category/Category';
 
 function CategoryList(props) {
@@ -12,6 +12,12 @@ function CategoryList(props) {
     .then((res) => res.json())
     .then((categories) =>  dispatch({ type: GET_CATEGORY, payload: categories }))
   }, [dispatch]);
+
+
+    fetch('http://localhost:1234/api/menu/measures')
+    .then((res) => res.json())
+    .then(({measures}) =>  dispatch({ type: GET_MEASURES, payload: measures }))
+  
 
   const allCategories =  useSelector((state) => state.menuReducer.menu);
 
