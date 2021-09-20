@@ -6,6 +6,16 @@ const { Staff, File } = require('../db/models');
 const { Router } = express;
 const router = Router();
 
+router.get('/', async (req, res) => {
+  try {
+    const staffs = await Staff.findAll({ raw: true });
+    res.json({ staffs });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: error.message, user: {} });
+  }
+});
+
 // Регистрация персонала
 router.post('/new', async (req, res) => {
   const { file } = req.files;
@@ -83,7 +93,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // Удаление персонала
-router.delete('/', async (req, res) => {
+router.delete('/:id', async (req, res) => {
   const { id } = req.params;
   try {
     await Staff.destroy({ where: { id } });
