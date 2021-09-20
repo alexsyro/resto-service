@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ADD_TOCART } from '../../../redux/actionTypes/actionType';
+import { cartAddPositionAC } from '../../../redux/actionCreators/cartAC'
 
 function Dish({ dish }) {
 
@@ -17,9 +17,10 @@ function Dish({ dish }) {
     // console.log(currentDish, 'currentDish');
     const payload = {
       id: currentDish.id,
-      name: currentDish.name
+      name: currentDish.name,
+      price: currentDish.price,
     }
-    dispatch({ type: ADD_TOCART, payload  })
+    dispatch(cartAddPositionAC(payload))
   }
 
 
