@@ -8,6 +8,7 @@ import Contacts from '../Contacts/Contacts';
 import Reservation from '../Reservation/Reservation';
 import Gallery from '../Gallery/Gallery';
 import Cart from '../Cart/Cart';
+import Payment from '../Payment/Payment';
 
 function Main() {
   return (
@@ -39,6 +40,9 @@ function Main() {
         </Route>
         <Route exact path='/cart'>
           <Cart />
+        </Route>
+        <Route exact path='/payment'>
+          <Payment />
         </Route>
       </Switch>
     </div>
