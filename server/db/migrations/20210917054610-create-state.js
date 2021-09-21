@@ -9,7 +9,7 @@ module.exports = {
       },
       state: {
         allowNull: false,
-        type: Sequelize.ENUM('ВЫПОЛНЕН', 'РЕЗЕРВ', 'ПОДТВЕРЖДЁН', 'НЕПОДТВЕРЖДЁН', 'ОТМЕНЁН', 'ДОСТАВКА', 'ОПЛАЧЕН'),
+        type: Sequelize.ENUM('ВЫПОЛНЕН', 'ПРЕДЗАКАЗ', 'ПОДТВЕРЖДЁН', 'НЕПОДТВЕРЖДЁН', 'ОТМЕНЁН', 'ДОСТАВКА', 'ОПЛАЧЕН'),
       },
       createdAt: {
         allowNull: true,
