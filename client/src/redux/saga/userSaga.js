@@ -1,5 +1,6 @@
 import { call, put, takeEvery, all } from 'redux-saga/effects';
-import { authUserAC, logoutUserAC } from '../actionCreators/actionCreators';
+import { authUserAC, logoutUserAC, clearReservationAC } from '../actionCreators/actionCreators';
+import { cartCleanAC } from '../actionCreators/cartAC';
 import { SAGA_FETCH_REG, SAGA_FETCH_LOGIN, SAGA_FETCH_LOGOUT } from '../actionTypes/sagaTypes';
 
 // Логин юзера
@@ -65,7 +66,6 @@ function* registrationWatcher() {
 
 // Логаут юзера
 const fetchLogoutUser = async () => {
-  console.log('LOOOOOOOOOOOGOOOOUT FETCH');
   const res = await fetch('http://localhost:1234/logout', {
     credentials: 'include',
   });
@@ -78,8 +78,9 @@ const fetchLogoutUser = async () => {
 function* workerLogoutUser() {
   try {
     yield call(fetchLogoutUser);
-    console.log('IIIIIIIIIIIIII');
     yield put(logoutUserAC());
+    yield put(clearReservationAC());
+    yield put(cartCleanAC());
   } catch (err) {
     console.error(err);
   }
@@ -92,4 +93,3 @@ function* logOutWatcher() {
 export default function* watcherUserSaga() {
   yield all([logInWatcher(), logOutWatcher(), registrationWatcher()]);
 }
-

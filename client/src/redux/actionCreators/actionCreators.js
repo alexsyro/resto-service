@@ -11,6 +11,7 @@ import {
   DELETE_RESERVATION,
   AUTH_USER,
   LOGOUT_USER,
+  CANCEL_RESERVATION
 } from '../actionTypes/actionType';
 
 // Регистрация и логин пользователя
@@ -91,6 +92,13 @@ export const completeReservationAC = (payload) => {
 export const deleteReservationAC = (payload) => {
   return {
     type: DELETE_RESERVATION,
+    payload,
+  };
+};
+
+export const cancelReservationAC = (payload) => {
+  return {
+    type: CANCEL_RESERVATION,
     payload,
   };
 };

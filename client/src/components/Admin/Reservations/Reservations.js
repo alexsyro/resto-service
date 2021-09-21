@@ -61,7 +61,7 @@ function Reservations() {
 
   const finishedReservations = useSelector(state => state.reservationReducer.reservations?.filter(reservation => [2, 6, 7].includes(reservation['State.id'])));
 
-  const toCheckReservations = useSelector(state => state.reservationReducer.reservations?.filter(reservation => [1, 4, 5].includes(reservation['State.id'])));
+  const toCheckReservations = useSelector(state => state.reservationReducer.reservations?.filter(reservation => [1, 3, 4, 5].includes(reservation['State.id'])));
 
   return (
     <div className={styles.container}>

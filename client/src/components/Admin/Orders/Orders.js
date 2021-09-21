@@ -51,14 +51,14 @@ function Orders() {
   })
 
   const finishedOrders = useSelector(state => state.ordersReducer.orders?.filter(order => [2, 6, 7].includes(order['state_id'])));
-  const toCheckOrders = useSelector(state => state.ordersReducer.orders?.filter(order => [1, 4, 5].includes(order['state_id'])));
+  const toCheckOrders = useSelector(state => state.ordersReducer.orders?.filter(order => [1, 3, 4, 5].includes(order['state_id'])));
   return (
     <div className={styles.container}>
 
       <h2>Заказы, ожидающие обработки </h2>
       {toCheckOrders.length ? <ul className="uk-list uk-list-striped"> {toCheckOrders.map((order) => <ToCheckOrder key={order.id} order={order} />)} </ul> : null}
 
-      {completedList ? <button className='uk-button uk-button-default' onClick={() => setCompletedList(prev => !prev)}> Скрыть список завершенных(обработанных) заказов</button> : <button className='uk-button uk-button-default' onClick={() => setCompletedList(prev => !prev)}>Вывести список завершенных(обработанных) заказов</button>}
+      <button className='uk-button uk-button-default' onClick={() => setCompletedList(prev => !prev)}> {completedList ? 'Скрыть' : 'Вывести'} список завершенных(обработанных) заказов</button>
       <br />
       {completedList && finishedOrders.length ? <ul className="uk-list uk-list-striped"> {finishedOrders.map((order) => <DoneOrder key={order.id} order={order} />)}</ul> : null}
       <br />

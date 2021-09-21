@@ -16,6 +16,12 @@ function Main() {
         </button>
       </Link>
 
+      <Link to="/reservations">
+        <button className='uk-button uk-button-primary' type="button">
+          reservations
+        </button>
+      </Link>
+
       <Link to="/staff">
         <button className='uk-button uk-button-primary' type="button">
           staff

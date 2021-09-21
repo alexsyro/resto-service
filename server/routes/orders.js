@@ -42,6 +42,10 @@ router.get('/', async (req, res) => {
           'guest_phone',
           'time_interval',
         ],
+        include: {
+          model: Table,
+          attributes: ['number'],
+        },
       },
       {
         model: State,
@@ -65,7 +69,6 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   const { reservation, user, cart, StateId } = req.body.order;
-  console.log('ORDEEEEER', req.body, user);
   const order = await Order.create({
     ClientId: user.id,
     StateId,
@@ -81,7 +84,6 @@ router.post('/', async (req, res) => {
     return orderPosition;
   });
   const orderPositions = await Promise.all(promissesArrayOfOrderPositions);
-  console.log('ORDEEEEER::::::::::::::::::::.0', order, orderPositions);
   res.json({ order, orderPositions });
 });
 
@@ -94,14 +96,28 @@ router.put('/done', async (req, res) => {
   });
   orderToChange.StateId = 2;
   await orderToChange.save();
-
+  // API для СМС
   res.json({ message: 'Вы успешно подтвердили заказ' });
 });
 
-router.put('/edit', async (req, res) => {
-  const { id } = req.body;
+router.put('/:id', async (req, res) => {
+  const { id } = req.params;
   // нужно изменить базу
   res.json({ message: 'Вы успешно изменили заказ' });
+});
+
+router.put('/сancel', async (req, res) => {
+  const { id } = req.body;
+  const orderToChange = await Order.findOne({
+    where: {
+      id,
+    },
+  });
+  console.log(orderToChange);
+  orderToChange.StateId = 7;
+  await orderToChange.save();
+
+  res.json({ message: 'Вы успешно отменили заказ' });
 });
 
 module.exports = router;
