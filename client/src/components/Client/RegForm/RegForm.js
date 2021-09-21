@@ -33,13 +33,33 @@ function RegForm() {
   };
 
   return (
-    <form className={styles.center} name='regForm' onSubmit={regSubmit}>
-      <input type='text' name='name' placeholder='Name' />
-      <input type='text' name='email' placeholder='Email' />
-      <input type='phone' name='phone' placeholder='Enter your phone' />
-      <input type='password' name='password' placeholder='Enter your password' />
-      <button type='submit'>Зарегистрироваться</button>
-    </form>
+    <div className={styles.back__block}>
+      <div className={styles.black__div}>
+        <form className={styles.center__form} name='regForm' onSubmit={regSubmit}>
+          <div className={styles.group}>
+            <input type='text' name='name' required />
+            <span className={styles.bar}></span>
+            <label>Ваше имя</label>
+          </div>
+          <div className={styles.group}>
+            <input type='text' name='email' required />
+            <span className={styles.bar}></span>
+            <label>Ваш email</label>
+          </div>
+          <div className={styles.group}>
+            <input type='phone' name='phone' required />
+            <span className={styles.bar}></span>
+            <label>Ваш номер телефона</label>
+          </div>
+          <div className={styles.group}>
+            <input type='password' name='password' required />
+            <span className={styles.bar}></span>
+            <label>Пароль</label>
+          </div>
+          <button type='submit'>Зарегистрироваться</button>
+        </form>
+      </div>
+    </div>
   );
 }
 

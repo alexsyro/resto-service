@@ -1,3 +1,116 @@
-.center {
-  margin-top: 30%;
+.back__block{
+  height: 100vh;
+  width: 98.8vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url(../../../images/main_header.jpg)  center no-repeat;
+  background-size:contain;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  .black__div {
+    width: 40vw;
+    height: 50vh;
+    z-index: 1;
+    background: black;
+    border-radius: 4rem;
+    justify-content: center;
+    align-items: center;
+    .center__form{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .group:first-child {
+        margin-top: 2rem;
+      }
+      .group {
+        position: relative;
+        margin-top: 1.5rem;
+        input {
+          border-radius: 0.5rem;
+          font-size: 1rem;
+          padding: 0.2rem;
+          display: block;
+          width: 15rem;
+          border: none;
+          border-bottom: 1px solid #ccc;
+        }
+        input:focus {
+          outline: none;
+        }
+        label {
+          color: #999;
+          font-size: 1rem;
+          font-weight: bold;
+          position: absolute;
+          pointer-events: none;
+          left: 0.6rem;
+          top: 0.1rem;
+          transition: 0.5s ease all;
+          -moz-transition: 0.5s ease all;
+          -webkit-transition: 0.5s ease all;
+        }
+        
+        /* active state */
+        input:focus ~ label, input:valid ~ label {
+          top: -1.3rem;
+          font-size: 1rem;
+          color: #e6e5b1;
+        }
+        
+        
+        /* BOTTOM BARS ================================= */
+        .bar {
+          position: relative;
+          display: block;
+          width: 15rem;
+        }
+        .bar:before, .bar:after {
+          content: "";
+          height: 0.1rem;
+          width: 0;
+          bottom: 0;
+          position: absolute;
+          background: #000000;
+          transition: 0.5s ease all;
+          -moz-transition: 0.5s ease all;
+          -webkit-transition: 0.5s ease all;
+        }
+        .bar:before {
+          left: 50%;
+        }
+        .bar:after {
+          right: 50%;
+        }
+        
+        /* active state */
+        input:focus ~ .bar:before,
+        input:focus ~ .bar:after {
+          width: 50%;
+        }
+      }
+      button {
+        margin-top: 2rem;
+      }
+
+    }
+
+  }
 }
+
+.back__block::before {
+  content: '';
+  position: absolute; /* Абсолютное позиционирование */
+  left: 0; right: 0; top: 0; bottom: 0;
+  z-index: 0;
+  background: rgba(27, 3, 3, 0.2)  center no-repeat;
+  background-size:contain;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  backdrop-filter: blur(4px);
+}
+
+
