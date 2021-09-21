@@ -38,14 +38,15 @@ export default function Cart() {
   const makeOrder = async (event) => {
     event.preventDefault();
     console.log(reservation);
-    const orderData = { user, cart, reservation };
-    const response = await fetch('http://localhost:1234/orders', {
+    const orderData = { user, cart, reservation, StateId: orderType };
+    console.log('ORDEEEER', orderData);
+    const response = await fetch('http://localhost:1234/api/orders', {
       method: 'POST',
       credentials: 'include',
+      headers: { 'Content-Type': 'application/json'},
       body: JSON.stringify({ order: orderData }),
     });
-    if (response.status === 200){
-      
+    if (response.status === 200) {
       dispatch(clearReservationAC());
       dispatch(cartCleanAC());
     }

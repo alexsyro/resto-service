@@ -33,7 +33,15 @@ router.get('/', async (req, res) => {
       {
         model: Reservation,
         key: 'id',
-        attributes: ['id', 'table_id', 'date_time', 'guest_count', 'guest_name', 'guest_phone', 'time_interval'],
+        attributes: [
+          'id',
+          'table_id',
+          'date_time',
+          'guest_count',
+          'guest_name',
+          'guest_phone',
+          'time_interval',
+        ],
       },
       {
         model: State,
@@ -43,7 +51,7 @@ router.get('/', async (req, res) => {
       {
         model: OrderPosition,
         key: 'id',
-        attributes: ['id','quantity'],
+        attributes: ['id', 'quantity'],
         include: {
           model: Position,
           attributes: ['name', 'price'],
@@ -53,6 +61,28 @@ router.get('/', async (req, res) => {
     raw: false,
   });
   res.json({ orders, reservations });
+});
+
+router.post('/', async (req, res) => {
+  const { reservation, user, cart, StateId } = req.body.order;
+  console.log('ORDEEEEER', req.body);
+  const order = await Order.create({
+    ClientId: user.id,
+    StateId,
+    ReservationId: reservation.id || null,
+  });
+
+  const promissesArrayOfOrderPositions = cart.map(async (position) => {
+    const orderPosition = await OrderPosition.create({
+      OrderId: order.id,
+      PositionId: position.id,
+      quantity: position.quantity,
+    });
+    return orderPosition;
+  });
+  const orderPositions = await Promise.all(promissesArrayOfOrderPositions);
+  console.log('ORDEEEEER::::::::::::::::::::.0', order, orderPositions);
+  res.json({ order, orderPositions });
 });
 
 router.put('/done', async (req, res) => {
