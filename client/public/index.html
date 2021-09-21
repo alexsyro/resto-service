@@ -11,127 +11,127 @@
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
     integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
   <link rel="stylesheet" href="index.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital@0;1&display=swap" rel="stylesheet">
   <title>Resto service</title>
   <script src="https://unpkg.com/react-yandex-maps/dist/production/react-yandex-maps.umd.js"></script>
-  <script
-      type="text/javascript"
-      src="https://sandbox.web.squarecdn.com/v1/square.js"
-    ></script>
-    <script>
-      const appId = 'sandbox-sq0idb-y7nUDbMrlxDiIf-95po4Dw';
-      const locationId = 'L4972PSJTAMG7';
+  <script type="text/javascript" src="https://sandbox.web.squarecdn.com/v1/square.js"></script>
+  <script>
+    const appId = 'sandbox-sq0idb-y7nUDbMrlxDiIf-95po4Dw';
+    const locationId = 'L4972PSJTAMG7';
 
-      async function initializeCard(payments) {
-        const card = await payments.card();
-        await card.attach('#card-container');
+    async function initializeCard(payments) {
+      const card = await payments.card();
+      await card.attach('#card-container');
 
-        return card;
+      return card;
+    }
+
+    async function createPayment(token) {
+      const body = JSON.stringify({
+        locationId,
+        sourceId: token,
+      });
+
+      const paymentResponse = await fetch('/pay', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body,
+      });
+
+      if (paymentResponse.ok) {
+        return paymentResponse.json();
       }
 
-      async function createPayment(token) {
-        const body = JSON.stringify({
-          locationId,
-          sourceId: token,
-        });
+      const errorBody = await paymentResponse.text();
+      throw new Error(errorBody);
+    }
 
-        const paymentResponse = await fetch('/pay', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body,
-        });
-
-        if (paymentResponse.ok) {
-          return paymentResponse.json();
+    async function tokenize(paymentMethod) {
+      const tokenResult = await paymentMethod.tokenize();
+      if (tokenResult.status === 'OK') {
+        return tokenResult.token;
+      } else {
+        let errorMessage = `Tokenization failed with status: ${tokenResult.status}`;
+        if (tokenResult.errors) {
+          errorMessage += ` and errors: ${JSON.stringify(
+            tokenResult.errors
+          )}`;
         }
 
-        const errorBody = await paymentResponse.text();
-        throw new Error(errorBody);
+        throw new Error(errorMessage);
+      }
+    }
+
+    // status is either SUCCESS or FAILURE;
+    function displayPaymentResults(status) {
+      const statusContainer = document.getElementById(
+        'payment-status-container'
+      );
+      if (status === 'SUCCESS') {
+        statusContainer.classList.remove('is-failure');
+        statusContainer.classList.add('is-success');
+      } else {
+        statusContainer.classList.remove('is-success');
+        statusContainer.classList.add('is-failure');
       }
 
-      async function tokenize(paymentMethod) {
-        const tokenResult = await paymentMethod.tokenize();
-        if (tokenResult.status === 'OK') {
-          return tokenResult.token;
-        } else {
-          let errorMessage = `Tokenization failed with status: ${tokenResult.status}`;
-          if (tokenResult.errors) {
-            errorMessage += ` and errors: ${JSON.stringify(
-              tokenResult.errors
-            )}`;
-          }
+      statusContainer.style.visibility = 'visible';
+    }
 
-          throw new Error(errorMessage);
-        }
+    document.addEventListener('DOMContentLoaded', async function () {
+      if (!window.Square) {
+        throw new Error('Square.js failed to load properly');
       }
 
-      // status is either SUCCESS or FAILURE;
-      function displayPaymentResults(status) {
+      let payments;
+      try {
+        payments = window.Square.payments(appId, locationId);
+      } catch {
         const statusContainer = document.getElementById(
           'payment-status-container'
         );
-        if (status === 'SUCCESS') {
-          statusContainer.classList.remove('is-failure');
-          statusContainer.classList.add('is-success');
-        } else {
-          statusContainer.classList.remove('is-success');
-          statusContainer.classList.add('is-failure');
-        }
-
+        statusContainer.className = 'missing-credentials';
         statusContainer.style.visibility = 'visible';
+        return;
       }
 
-      document.addEventListener('DOMContentLoaded', async function () {
-        if (!window.Square) {
-          throw new Error('Square.js failed to load properly');
-        }
+      let card;
+      try {
+        card = await initializeCard(payments);
+      } catch (e) {
+        console.error('Initializing Card failed', e);
+        return;
+      }
 
-        let payments;
-        try {
-          payments = window.Square.payments(appId, locationId);
-        } catch {
-          const statusContainer = document.getElementById(
-            'payment-status-container'
-          );
-          statusContainer.className = 'missing-credentials';
-          statusContainer.style.visibility = 'visible';
-          return;
-        }
+      // Checkpoint 2.
+      async function handlePaymentMethodSubmission(event, paymentMethod) {
+        event.preventDefault();
 
-        let card;
         try {
-          card = await initializeCard(payments);
+          // disable the submit button as we await tokenization and make a payment request.
+          cardButton.disabled = true;
+          const token = await tokenize(paymentMethod);
+          const paymentResults = await createPayment(token);
+          displayPaymentResults('SUCCESS');
+
+          console.debug('Payment Success', paymentResults);
         } catch (e) {
-          console.error('Initializing Card failed', e);
-          return;
+          cardButton.disabled = false;
+          displayPaymentResults('FAILURE');
+          console.error(e.message);
         }
+      }
 
-        // Checkpoint 2.
-        async function handlePaymentMethodSubmission(event, paymentMethod) {
-          event.preventDefault();
-
-          try {
-            // disable the submit button as we await tokenization and make a payment request.
-            cardButton.disabled = true;
-            const token = await tokenize(paymentMethod);
-            const paymentResults = await createPayment(token);
-            displayPaymentResults('SUCCESS');
-
-            console.debug('Payment Success', paymentResults);
-          } catch (e) {
-            cardButton.disabled = false;
-            displayPaymentResults('FAILURE');
-            console.error(e.message);
-          }
-        }
-
-        const cardButton = document.getElementById('card-button');
-        cardButton.addEventListener('click', async function (event) {
-          await handlePaymentMethodSubmission(event, card);
-        });
+      const cardButton = document.getElementById('card-button');
+      cardButton.addEventListener('click', async function (event) {
+        await handlePaymentMethodSubmission(event, card);
       });
-    </script>
+    });
+  </script>
 </head>
 
 <body>
