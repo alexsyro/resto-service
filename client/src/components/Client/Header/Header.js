@@ -1,11 +1,21 @@
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
+import { sagaLogoutAC } from '../../../redux/actionCreators/sagaAC';
 import styles from './Header.module.scss';
 
 function Header() {
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.usersReducer);
+  const history = useHistory();
+
+  const logoutHandler = () => {
+    dispatch(sagaLogoutAC());
+    history.push('/');
+  };
   return (
     <>
       <input type='checkbox' id={styles.check} />
-      <label for={styles.check}>
+      <label htmlFor={styles.check}>
         <i className='fas fa-bars' id={styles.btn}></i>
         <i className='fas fa-times' id={styles.cancel}></i>
       </label>
@@ -42,28 +52,43 @@ function Header() {
       </nav>
 
       <div className={styles.navbar__container}>
-
         <p className={styles.navbar__links}>
-          <Link className={styles.navbar__link} to="/book">
+          <Link className={styles.navbar__link} to='/book'>
             Забронировать
           </Link>
         </p>
-        <p className={styles.navbar__links}>
-          <Link className={styles.navbar__link} to="/login">
-            Вход
-          </Link>
-        </p>
-        <p className={styles.navbar__links}>
-          <Link className={styles.navbar__link} to="/registration">
-            Регистрация
-          </Link>
-        </p>
-        <p className={styles.navbar__links}>
-          <Link className={styles.navbar__link} to='/cart'>
-          Корзина
-          </Link>
-        </p>
-
+        {user.isAuth ? (
+          <>
+            <p className={styles.navbar__links}>
+              <Link className={styles.navbar__link} to='/profile'>
+                Личный кабинет
+              </Link>
+            </p>
+            <p className={styles.navbar__links}>
+              <button onClick={logoutHandler} type='submit' className={styles.navbar__link}>
+                Выйти
+              </button>
+            </p>
+            <p className={styles.navbar__links}>
+              <Link className={styles.navbar__link} to='/cart'>
+                Корзина
+              </Link>
+            </p>
+          </>
+        ) : (
+          <>
+            <p className={styles.navbar__links}>
+              <Link className={styles.navbar__link} to='/login'>
+                Вход
+              </Link>
+            </p>
+            <p className={styles.navbar__links}>
+              <Link className={styles.navbar__link} to='/registration'>
+                Регистрация
+              </Link>
+            </p>
+          </>
+        )}
       </div>
     </>
   );

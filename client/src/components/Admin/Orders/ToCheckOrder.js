@@ -17,7 +17,6 @@ function ToCheckOrder({ order }) {
     })
       .then(res => res.json())
       .then(console.log)
-
     dispatch(ordersAC.completeOrderAC({ id: order.id }))
   }
 

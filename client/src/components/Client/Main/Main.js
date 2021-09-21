@@ -10,7 +10,8 @@ import Gallery from '../Gallery/Gallery';
 import Cart from '../Cart/Cart';
 import Payment from '../Payment/Payment';
 import Menu from '../Menu/Menu';
-import SubcategoryItem from '../SubcategoryItem/SubcategoryItem';
+import SubcategoryItemClient from '../SubcategoryItem/SubcategoryItemClient';
+import Profile from '../Profile/Profile';
 
 function Main() {
   return (
@@ -26,7 +27,7 @@ function Main() {
           <Menu />
         </Route>
         <Route path='/menu/:categoryName/:categoryId' exact>
-          <SubcategoryItem />
+          <SubcategoryItemClient />
         </Route>
         <Route exact path='/gallery'>
           <Gallery />
@@ -39,6 +40,9 @@ function Main() {
         </Route>
         <Route exact path='/registration'>
           <RegForm />
+        </Route>
+        <Route exact path='/profile'>
+          <Profile />
         </Route>
         <Route exact path='/book'>
           <Reservation />

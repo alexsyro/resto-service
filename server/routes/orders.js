@@ -2,12 +2,12 @@ const express = require('express');
 
 const { Router } = express;
 const router = Router();
-const { Reservation, Table, State, Order, Client, OrderPosition } = require('../db/models');
+const { Reservation, Table, State, Order, Client, OrderPosition, Position } = require('../db/models');
 
 // Запрос на категории с подкатегориями
 router.get('/', async (req, res) => {
   const reservations = await Reservation.findAll({
-    attributes: ['id', 'table_id', 'state_id', 'date_time', 'guest_count', 'guest_name', 'guest_phone', 'time_interval'],
+    attributes: ['id', 'table_id', 'date_time', 'guest_count', 'guest_name', 'guest_phone', 'time_interval'],
     include: [
       {
         model: Table,
@@ -22,7 +22,6 @@ router.get('/', async (req, res) => {
     ],
     raw: true,
   });
-  console.log(reservations);
 
   const orders = await Order.findAll({
     attributes: ['id', 'client_id', 'reservation_id', 'state_id'],
@@ -35,37 +34,44 @@ router.get('/', async (req, res) => {
       {
         model: Reservation,
         key: 'id',
-        attributes: ['id', 'table_id', 'date_time', 'state_id', 'guest_count', 'guest_name', 'guest_phone', 'time_interval'],
+        attributes: ['id', 'table_id', 'date_time', 'guest_count', 'guest_name', 'guest_phone', 'time_interval'],
       },
       {
         model: State,
         key: 'id',
-        attributes: ['id', 'state'],
+        attributes: ['state'],
+      },
+      {
+        model: OrderPosition,
+        key: 'id',
+        attributes: ['id','quantity'],
+        include: {
+          model: Position,
+          attributes: ['name', 'price'],
+        },
       },
     ],
-    raw: true,
+    raw: false,
   });
-  console.log('orders:   ', orders, 'reservations:   ', reservations);
   res.json({ orders, reservations });
 });
 
 router.put('/done', async (req, res) => {
   const { id } = req.body;
-  await Order.update({ state_id: 2 }, {
+  const orderToChange = await Order.findOne({
     where: {
       id,
     },
   });
+  orderToChange.StateId = 2;
+  orderToChange.save();
+
   res.json({ message: 'Вы успешно подтвердили заказ' });
 });
 
 router.put('/edit', async (req, res) => {
   const { id } = req.body;
-  await Order.update({ status: 'toCheck' }, {
-    where: {
-      id,
-    },
-  });
+  // нужно изменить базу
   res.json({ message: 'Вы успешно изменили заказ' });
 });
 
