@@ -1,12 +1,13 @@
 import React from 'react';
 import styles from './About.module.scss';
+import main_header from '../../../images/main_header.jpg';
 
 function About() {
   return (
     <div className={styles.about__container}>
       <div className={styles.about__header}>
         <img className={styles.about__img}
-          src="https://media-cdn.tripadvisor.com/media/photo-s/14/d3/f4/72/caption.jpg"
+          src={main_header}
           alt="about header" />
         <h1 className={styles.about_h1}>
           <span className={styles.about__span}>О</span>
