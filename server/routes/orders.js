@@ -94,12 +94,12 @@ router.put('/done', async (req, res) => {
   });
   orderToChange.StateId = 2;
   await orderToChange.save();
-
+  // API для СМС
   res.json({ message: 'Вы успешно подтвердили заказ' });
 });
 
-router.put('/edit', async (req, res) => {
-  const { id } = req.body;
+router.put('/:id', async (req, res) => {
+  const { id } = req.params;
   // нужно изменить базу
   res.json({ message: 'Вы успешно изменили заказ' });
 });
