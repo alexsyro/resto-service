@@ -1,14 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { setReservationAC, resetReservSelectionAC } from '../../../redux/actionCreators/actionCreators';
-
 import styles from './Reservation.module.scss';
 
-// ПРОКИНУТЬ СТОЛИК ОТ САМОГО СТОЛА ДО ЭТОГО МЕСТА
 export default function TableInfo() {
   const dispatch = useDispatch();
-  // const user = { name: 'Иммануил', phone: '8800200600' }; // брать из редьюса
-  const user = null;
+  const { user } = useSelector((state) => state.usersReducer);
   const { selectedTable, selectedDateTime } = useSelector((state) => state.reservationReducer);
+  const history = useHistory();
 
   const createReservation = async (event) => {
     event.preventDefault();
@@ -16,8 +15,8 @@ export default function TableInfo() {
     const dataToSend = {
       tableId: selectedTable.id,
       guestCount: guestCount.value,
-      guestName: guestName.value,
-      guestPhone: guestPhone.value,
+      guestName: user.isAuth ? user.name : guestName.value,
+      guestPhone: user.isAuth ? user.phone : guestPhone.value,
       date: selectedDateTime.date,
       time: selectedDateTime.time,
     };
@@ -33,9 +32,12 @@ export default function TableInfo() {
       dispatch(setReservationAC({ reservation }));
       dispatch(resetReservSelectionAC());
       alert(
-        `${guestName.value} забронировали столик ${selectedTable.number} на ${selectedDateTime.date} 
+        `${user.isAuth ? user.name : guestName.value} забронировали столик ${selectedTable.number} на ${
+          selectedDateTime.date
+        } 
         в ${selectedDateTime.time} часов. Вам придёт смс, после подтверждения бронирования`,
       );
+      history.push('/');
     }
   };
 

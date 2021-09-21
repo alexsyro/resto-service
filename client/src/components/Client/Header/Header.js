@@ -1,9 +1,17 @@
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
+import { sagaLogoutAC } from '../../../redux/actionCreators/sagaAC';
 import styles from './Header.module.scss';
 
 function Header() {
+  const dispatch = useDispatch();
   const { user } = useSelector((state) => state.usersReducer);
+  const history = useHistory();
+
+  const logoutHandler = () => {
+    dispatch(sagaLogoutAC());
+    history.push('/');
+  };
   return (
     <>
       <input type='checkbox' id={styles.check} />
@@ -57,9 +65,9 @@ function Header() {
               </Link>
             </p>
             <p className={styles.navbar__links}>
-              <Link className={styles.navbar__link} to='/logout'>
+              <button onClick={logoutHandler} type='submit' className={styles.navbar__link}>
                 Выйти
-              </Link>
+              </button>
             </p>
             <p className={styles.navbar__links}>
               <Link className={styles.navbar__link} to='/cart'>

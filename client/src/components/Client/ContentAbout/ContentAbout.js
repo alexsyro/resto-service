@@ -6,6 +6,7 @@ import styles from './ContentAbout.module.scss'
 function ContentAbout() {
   return (
     <div className={styles.main__container}>
+     
       <div className={styles.about__img}>
       </div>
       <div className={styles.text_container}>

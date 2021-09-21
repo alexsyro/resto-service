@@ -67,8 +67,10 @@ server.post('/login', (req, res) => {
 });
 
 server.get('/logout', (req, res) => {
+  console.log(`USER ${req.session.user.name} IS LOGOUT AT ${new Date()}`);
   req.session.destroy();
   res.clearCookie('user_sid');
+  res.json({ message: 'OK' });
 });
 
 // Routers

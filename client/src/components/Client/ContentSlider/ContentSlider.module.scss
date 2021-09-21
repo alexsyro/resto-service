@@ -1,8 +1,9 @@
 .main__container {
   position: relative;
-  height: 100vh;
-  width: 80%;
-  margin: 0 auto;
+  align-items: space-between;
+  height: 50vh;
+  width: 70%;
+  margin: 0 auto 6rem;
 }
 
 .slider {
@@ -17,7 +18,7 @@
 
 .navigation {
   position: absolute;
-  bottom: 0.4rem;
+  bottom: 1.7rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -27,9 +28,10 @@
   height: 0.5rem;
   width: 2rem;
   margin: 0.4rem;
+  // margin-top: 2rem;
   cursor: pointer;
-  background-color: white;
-  opacity: 0.5;
+  background-color: #DCCA87;
+  // opacity: 0.5;
   border-radius: 0.3rem;
   transition: all 0.3s ease;
 }
@@ -45,7 +47,7 @@ input[name='r'] {
 }
 
 .slides {
-  width: 400%;
+  width: 410%;
   height: 100%;
   display: flex;
 }
@@ -56,9 +58,11 @@ input[name='r'] {
 }
 
 .slide img {
-  width: 100%;
+  width: 23.4%;
   height: 100%;
+  margin-right: 1rem;
   object-fit: cover;
+  // object-fit: 5rem;
 }
 
 #r1:checked ~ .s1 {
@@ -78,10 +82,9 @@ input[name='r'] {
 
 .slider__btn {
   position: relative;
-  top: 90%;
+  top: 100%;
   left: 50%;
   transform: translate(-50%, -30%);
-
   background: none;
   padding: 0.4rem;
 }
@@ -136,7 +139,6 @@ input[name='r'] {
   position: absolute;
   top: 0;
   left: 0;
-
   width: 0;
   height: 0;
   background: transparent;
@@ -144,8 +146,7 @@ input[name='r'] {
 }
 
 .slider__btn:hover:after {
-  animation: animate2 1s linear forwards;
-  
+  animation: animate2 1s linear forwards;  
 }
 
 @keyframes animate2 {
@@ -179,12 +180,13 @@ input[name='r'] {
 
 .slider__btn__text {
   z-index: 1000;
-  position: relative;
+  // position: relative;
   text-transform: uppercase;
   color: rgb(192, 179, 179);
   background: none;
   font-size: 1.3rem;
   transition: all 1s linear;
+
 }
 
 .slider__btn__text:hover {

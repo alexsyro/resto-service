@@ -94,7 +94,7 @@ router.put('/:id', async (req, res) => {
       );
       staff.FileId = image.id;
     }
-    staff.save();
+    await staff.save();
     res.json({ staff });
   } catch (err) {
     console.log('------------ERROR', new Date(), err);

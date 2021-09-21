@@ -11,7 +11,7 @@ router.post('/new', async (req, res) => {
   console.log('[INCOMING BODY TO REG CLIENT]', req.body);
   const { name, email, phone, password, discountId } = req.body;
   try {
-    const [, isNew] = await Client.findOrCreate({
+    const [userEntry, isNew] = await Client.findOrCreate({
       where: {
         [Op.or]: [{ email }, { phone }],
       },
@@ -26,9 +26,9 @@ router.post('/new', async (req, res) => {
     });
     // If new - that's ok? Proceed to session creating
     if (isNew) {
-      const user = { name, email, phone, isAdmin: false, discount: discountId || 1 };
+      const user = { ...userEntry.dataValues, password: ''};
       req.session.isAuthorized = true;
-      req.session.user = { user: { ...user, password: '' } };
+      req.session.user = user;
       res.json({ user }); // send user back
     } else {
       res.status(409).json({ error: 'User already exists', user: {} });

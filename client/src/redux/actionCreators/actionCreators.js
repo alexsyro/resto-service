@@ -4,8 +4,28 @@ import {
   RESERVATION_SELECT_DATETIME,
   RESERVATION_RESET_CURRENT_SELECTION,
   RESERVATION_SET_RESERVATION,
+  RESERVATION_CLEAR_CURRENT,
+  GET_RESERVATIONS,
+  UPDATE_RESERVATION,
+  COMPLETE_RESERVATION,
+  DELETE_RESERVATION,
+  AUTH_USER,
+  LOGOUT_USER,
 } from '../actionTypes/actionType';
 
+// Регистрация и логин пользователя
+export const authUserAC = (payload) => {
+  return {
+    type: AUTH_USER,
+    payload,
+  };
+};
+
+export const logoutUserAC = () => {
+  return {
+    type: LOGOUT_USER,
+  };
+};
 
 // RESERVATIONS
 export const selectReservDateTimeAC = (payload) => {
@@ -39,5 +59,38 @@ export const setReservationAC = (payload) => {
 export const resetReservSelectionAC = () => {
   return {
     type: RESERVATION_RESET_CURRENT_SELECTION,
+  };
+};
+export const clearReservationAC = () => {
+  return {
+    type: RESERVATION_CLEAR_CURRENT,
+  };
+};
+
+export const getReservationsAC = (payload) => {
+  return {
+    type: GET_RESERVATIONS,
+    payload,
+  };
+};
+
+export const updateReservationAC = (payload) => {
+  return {
+    type: UPDATE_RESERVATION,
+    payload,
+  };
+};
+
+export const completeReservationAC = (payload) => {
+  return {
+    type: COMPLETE_RESERVATION,
+    payload,
+  };
+};
+
+export const deleteReservationAC = (payload) => {
+  return {
+    type: DELETE_RESERVATION,
+    payload,
   };
 };
