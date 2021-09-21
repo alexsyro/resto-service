@@ -41,10 +41,10 @@ function Orders() {
       .then(res => res.json())
       .then(data => {
         const allOrders = [...data.orders];
-
-        const ordersForState = allOrders.map(el => {
-          return { ...el, timeFormat: myDateParse(el['Reservation.date_time']) }
+        const ordersForState = allOrders.map(order => {
+          return { ...order, timeFormat: myDateParse(order.Reservation.date_time) }
         });
+        console.log(ordersForState);
         dispatch(ordersAC.getOrdersAC(ordersForState))
       })
     // здесь fetch (сага) в базу для получения списка заказов (причем только тех, что в обработке)
