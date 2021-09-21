@@ -2,7 +2,7 @@ const express = require('express');
 
 const { Router } = express;
 const router = Router();
-const { Reservation, Table, State, Order, Client, OrderPosition } = require('../db/models');
+const { Reservation, Table, State, Order, Client, OrderPosition, Position } = require('../db/models');
 
 // Запрос на категории с подкатегориями
 router.get('/', async (req, res) => {
@@ -41,8 +41,17 @@ router.get('/', async (req, res) => {
         key: 'id',
         attributes: ['state'],
       },
+      {
+        model: OrderPosition,
+        key: 'id',
+        attributes: ['id','quantity'],
+        include: {
+          model: Position,
+          attributes: ['name', 'price'],
+        },
+      },
     ],
-    raw: true,
+    raw: false,
   });
   res.json({ orders, reservations });
 });
