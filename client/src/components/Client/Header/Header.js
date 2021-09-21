@@ -15,12 +15,12 @@ function Header() {
   return (
     <>
       <input type='checkbox' id={styles.check} />
-      <label htmlFor={styles.check}>
+      <label htmlFor={styles.check} >
         <i className='fas fa-bars' id={styles.btn}></i>
         <i className='fas fa-times' id={styles.cancel}></i>
       </label>
       <nav className={styles.sidebar}>
-        <header>Restaurant</header>
+        <header>Точка</header>
         <ul>
           <li>
             <Link className={styles.sidebar__links} to='/'>
@@ -37,12 +37,6 @@ function Header() {
               Меню
             </Link>
           </li>
-          <li>
-            <Link className={styles.sidebar__links} to='/gallery'>
-              Галерея
-            </Link>
-          </li>
-
           <li>
             <Link className={styles.sidebar__links} to='/contacts'>
               Контакты

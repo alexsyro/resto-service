@@ -29,9 +29,9 @@ function Main() {
         <Route path='/menu/:categoryName/:categoryId' exact>
           <SubcategoryItemClient />
         </Route>
-        <Route exact path='/gallery'>
+        {/* <Route exact path='/gallery'>
           <Gallery />
-        </Route>
+        </Route> */}
         <Route exact path='/contacts'>
           <Contacts />
         </Route>
