@@ -20,8 +20,24 @@ function ToCheckReservation({ reservation }) {
     dispatch(reservationsAC.completeReservationAC({ id: reservation.id }))
   }
 
+  const cancelReservation = () => {
+    fetch('http://localhost:1234/api/reservations/cancel', {
+      method: 'PUT', // *GET, POST, PUT, DELETE, etc.
+      mode: 'cors', // no-cors, *cors, same-origin
+      credentials: 'include', // include, *same-origin, omit
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ id: reservation.id }) // body data type must match "Content-Type" header
+    })
+      .then(res => res.json())
+      .then(console.log)
+    dispatch(reservationsAC.cancelReservationAC({ id: reservation.id }))
+  }
+
   return (
     <li>
+      <button onClick={() => finishReservation()} className="uk-button uk-button-primary"> перевести в статус подтвержденного</button>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <span>Номер заказа:   {reservation.id}</span>
         <span>Имя клиента:  {reservation.guest_name}</span>
@@ -37,8 +53,8 @@ function ToCheckReservation({ reservation }) {
       <p>Статус заказа:   {reservation['State.state']}</p>
 
 
-      <Link to={`/reservations/edit/${reservation.id}`} className="uk-button uk-button-default">Скорректировать</Link>
-      <button onClick={() => finishReservation()} className="uk-button uk-button-primary"> перевести в статус подтвержденного</button>
+      <button onClick={() => cancelReservation()} className="uk-button uk-button-default">Отменить резерв</button>
+
     </li >
   );
 }

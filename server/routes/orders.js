@@ -42,6 +42,10 @@ router.get('/', async (req, res) => {
           'guest_phone',
           'time_interval',
         ],
+        include: {
+          model: Table,
+          attributes: ['number'],
+        },
       },
       {
         model: State,
@@ -102,6 +106,20 @@ router.put('/edit', async (req, res) => {
   const { id } = req.body;
   // нужно изменить базу
   res.json({ message: 'Вы успешно изменили заказ' });
+});
+
+router.put('/сancel', async (req, res) => {
+  const { id } = req.body;
+  const orderToChange = await Order.findOne({
+    where: {
+      id,
+    },
+  });
+  console.log(orderToChange);
+  orderToChange.StateId = 7;
+  await orderToChange.save();
+
+  res.json({ message: 'Вы успешно отменили заказ' });
 });
 
 module.exports = router;
