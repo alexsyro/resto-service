@@ -5,7 +5,7 @@ const initialState = { user: { isAuth: false } };
 const usersReducer = (state = initialState, action) => {
   switch (action.type) {
     case AUTH_USER:
-      return { ...state, user: { ...action.payload, isAuth: true } };
+      return { ...state, user: { ...action.payload.user, isAuth: true } };
     case LOGOUT_USER:
       return { ...state, user: { isAuth: false } };
     default:

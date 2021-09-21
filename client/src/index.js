@@ -9,13 +9,13 @@ import store from './redux/store';
 const isAdmin = false;
 
 ReactDOM.render(
-  <React.StrictMode>
+  <>
     <Provider store={store}>
       <Router>
         {/* Условный рендеринг isAdmin. */}
         {isAdmin ? <Admin /> : <Client />}
       </Router>
     </Provider>
-  </React.StrictMode>,
+  </>,
   document.getElementById('root'),
 );
