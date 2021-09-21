@@ -10,9 +10,9 @@
   header {
     font-size: 1.8rem;
     line-height: 4.6rem;
-    margin-top: 1.5rem;
     color: white;
     text-align: center;
+    background-color: rgba($color: #1a1717, $alpha: 0.6);
     user-select: none;
   }
   ul {
@@ -30,10 +30,6 @@
       border-bottom: 1px solid black;
     }
   }
-}
-
-.sidebar__logo {
-  width: 80%;
 }
 
 .sidebar__links {
