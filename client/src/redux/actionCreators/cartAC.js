@@ -25,7 +25,7 @@ export const cartCleanAC = () => {
   };
 };
 
-export const cartChangeQuantity = (payload) => {
+export const cartChangeQuantityAC = (payload) => {
   return {
     type: CART_CHANGE_QUANTITY,
     payload,

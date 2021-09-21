@@ -4,6 +4,7 @@ import ContentVideo from '../ContentVideo/ContentVideo'
 import ContentAbout from '../ContentAbout/ContentAbout'
 import ContentBook from '../ContentBook/ContentBook'
 import ContentSlider from '../ContentSlider/ContentSlider'
+import Footer from '../Footer/Footer'
 
 function Content() {
   return (
