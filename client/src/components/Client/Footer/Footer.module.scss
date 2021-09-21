@@ -1,7 +1,6 @@
 .container {
-  position: fixed;
-  bottom: 0;
   width: 100%;
+<<<<<<< HEAD
 
   height: 30vh;
   display: flex;
@@ -9,11 +8,22 @@
   align-items: flex-start;
   background: #0C0C0C;
 
+=======
+  height: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(17, 16, 16);
+>>>>>>> cartOrder
 }
 
 .footer__link {
-  height: 1.5rem;
-  width: 1.5rem;
+  width: 2.5rem;
+}
+
+.hours {
+  display: flex;
+  flex-direction: column;
 }
 
 
