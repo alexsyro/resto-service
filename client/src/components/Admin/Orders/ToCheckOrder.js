@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import * as ordersAC from '../../../redux/actionCreators/ordersAC'
 
 function ToCheckOrder({ order }) {
   const dispatch = useDispatch()
-
+  const [menuList, setMenuList] = useState(false)
   const finishOrder = () => {
     fetch('http://localhost:1234/api/orders/done', {
       method: 'PUT', // *GET, POST, PUT, DELETE, etc.
@@ -34,10 +34,9 @@ function ToCheckOrder({ order }) {
         <span>Время бронирования: {`${order.timeFormat.hours}:${order.timeFormat.minutes}`}</span>
         <span>Количество гостей:   {order.Reservation.guest_count}</span>
       </div>
-      <p>Позиции меню</p>
+      <button className='uk-button uk-button-small' onClick={() => setMenuList(prev => !prev)}> {menuList ? 'Скрыть' : 'Вывести'} список заказанных блюд</button>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-
-        <ol>
+        {menuList && <ol>
           {order.OrderPositions.map(position => {
             return <li key={position.id}>
               <p>{`Блюдо: ${position.Position.name}`}</p>
@@ -47,7 +46,7 @@ function ToCheckOrder({ order }) {
               <hr />
             </li>
           })}
-        </ol>
+        </ol>}
       </div>
       <p>Статус заказа:   {order.State.state}</p>
       <p>Общая стоимость заказа: {order.OrderPositions.reduce((acc, sum) => {

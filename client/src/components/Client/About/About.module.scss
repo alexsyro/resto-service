@@ -1,41 +1,118 @@
-.about__container {
-  background: #0C0C0C;
-  height: 50vh;
-  // background: -moz-linear-gradient(top, #757577 0%, #061723 100%);
-  // background: -webkit-linear-gradient(top, #757577 0%, #061723 100%);
-  // background: linear-gradient(to bottom, #757577 0%, #061723 100%);
+.ab__container{
+  height: auto;
+  margin: 0 auto 5rem;
+  width: 70%;
 }
 
-// .about__header {
-//   background: url('https://media-cdn.tripadvisor.com/media/photo-s/14/d3/f4/72/caption.jpg') no-repeat
-//   center;
-// -webkit-background-size: cover;
-// -moz-background-size: cover;
-// -o-background-size: cover;
-// background-size: cover;
+.main__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80vh;
+  margin: 0 auto;  
+}
+
+.about__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  width: 100%;
   
-// }
+  .paragraph {
+    width: 100%;
+    height: 30rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+  
+}
+
+.pictures__container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25rem;
+  width: 100%;
+
+  .first__img {
+    background: url('https://gluten.org/wp-content/uploads/2019/10/Chef-GFFS-Restaurant.jpg') no-repeat
+      center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: 20rem;
+    width: 50%;
+    height: 70%;
+    margin-left: 8rem;
+    margin-bottom: 10rem;
+  }
+  
+  .second__img {
+    background: url('https://hardcore-electric.com/wp-content/uploads/chef-in-restaurant-kitchen.jpg') no-repeat
+      center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: 20rem;
+    width: 50%;
+    height: 70%;
+    margin-right: 8rem;
+    margin-bottom: 10rem;
+  }
+}
+
+
 
 .about__img {
-  
+  background: url('https://ilmilanese.ru/wp-content/uploads/2018/04/about_1.jpg') no-repeat
+    center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: 20rem;
+  width: 50%;
+  height: 70%;
+  margin-right: 6rem;
 }
 
-.about_h1 {
 
+.chef__img {
+  background: url('https://www.wmj.ru/imgs/2018/11/30/12/2840413/3aab19cf4b7400ec528ed1c278a0bda868019248.jpg') no-repeat
+    center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: 35rem;
+  width: 50%;
+  height: 70%;
+  margin-right: 3rem;
 }
 
-.about__span {
 
+.text_container {
+  width: 50%;
+  margin-right: 2rem;
 }
 
-.about__foodCard {
-
+.about__title {
+  color: #DCCA87;
+  font-size: 3rem;
 }
 
-.about__p {
-
+.about__text {
+  color: #AAAAAA;
+  font-size: 1.3rem;
 }
 
-.borderImg {
-
+.paragraph {
+  width: 100%;
+  height: 30rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
 }
