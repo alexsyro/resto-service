@@ -58,7 +58,7 @@ function Orders() {
       <h2>Заказы, ожидающие обработки </h2>
       {toCheckOrders.length ? <ul className="uk-list uk-list-striped"> {toCheckOrders.map((order) => <ToCheckOrder key={order.id} order={order} />)} </ul> : null}
 
-      {completedList ? <button className='uk-button uk-button-default' onClick={() => setCompletedList(prev => !prev)}> Скрыть список завершенных(обработанных) заказов</button> : <button className='uk-button uk-button-default' onClick={() => setCompletedList(prev => !prev)}>Вывести список завершенных(обработанных) заказов</button>}
+      <button className='uk-button uk-button-default' onClick={() => setCompletedList(prev => !prev)}> {completedList ? 'Скрыть' : 'Вывести'} список завершенных(обработанных) заказов</button>
       <br />
       {completedList && finishedOrders.length ? <ul className="uk-list uk-list-striped"> {finishedOrders.map((order) => <DoneOrder key={order.id} order={order} />)}</ul> : null}
       <br />

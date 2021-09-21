@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function DoneOrder({ order }) {
+  const [menuList, setMenuList] = useState(false)
+
   return (
     <li>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -14,12 +16,11 @@ function DoneOrder({ order }) {
         <span>Время бронирования: {`${order.timeFormat.hours}:${order.timeFormat.minutes}`}</span>
         <span>Количество гостей:   {order.Reservation.guest_count}</span>
       </div>
-      <p>Позиции меню</p>
+      <button className='uk-button uk-button-small' onClick={() => setMenuList(prev => !prev)}> {menuList ? 'Скрыть' : 'Вывести'} список заказанных блюд</button>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-
-        <ol>
+        {menuList && <ol>
           {order.OrderPositions.map(position => {
-            return <li>
+            return <li key={position.id}>
               <p>{`Блюдо: ${position.Position.name}`}</p>
               <p>{`Цена: ${position.Position.price} рублей`}</p>
               <p>{`Количество: ${position.quantity}`}</p>
@@ -27,7 +28,7 @@ function DoneOrder({ order }) {
               <hr />
             </li>
           })}
-        </ol>
+        </ol>}
       </div>
       <p>Статус заказа:   {order.State.state}</p>
       <p>Общая стоимость заказа: {order.OrderPositions.reduce((acc, sum) => {
