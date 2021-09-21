@@ -65,7 +65,6 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   const { reservation, user, cart, StateId } = req.body.order;
-  console.log('ORDEEEEER', req.body, user);
   const order = await Order.create({
     ClientId: user.id,
     StateId,
@@ -81,7 +80,6 @@ router.post('/', async (req, res) => {
     return orderPosition;
   });
   const orderPositions = await Promise.all(promissesArrayOfOrderPositions);
-  console.log('ORDEEEEER::::::::::::::::::::.0', order, orderPositions);
   res.json({ order, orderPositions });
 });
 
