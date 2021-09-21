@@ -48,11 +48,11 @@ function ContentSlider() {
           <label for={styles.r4} className={styles.bar}></label>
         </div>
 
-      {/* <button className={styles.slider__btn}>
+      <button className={styles.slider__btn}>
         <Link className={styles.slider__btn__text} to="/menu">
           Меню
         </Link>
-      </button> */}
+      </button>
     </div>
   )
 }
