@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { sagaRegAC } from '../../../redux/actionCreators/regFormAC';
+import { sagaRegAC } from '../../../redux/actionCreators/sagaAC';
 import styles from './RegForm.module.scss';
 
 const checkEmptyFields = (fields) => fields.every((field) => field.value.length);

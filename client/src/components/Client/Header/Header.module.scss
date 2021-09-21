@@ -4,34 +4,33 @@
   width: 13.5rem;
   left: -13.5rem;
   height: 100%;
-
   background-color: rgba($color: #000000, $alpha: 0.6);
-
   transition: all 0.5s ease;
-}
 
-.sidebar header {
-  font-size: 1.8rem;
-  line-height: 4.6rem;
-  color: white;
-  text-align: center;
-  background-color: rgba($color: #1a1717, $alpha: 0.6);
-  user-select: none;
-}
-.sidebar ul {
-  color: white;
-}
+  header {
+    font-size: 1.8rem;
+    line-height: 4.6rem;
+    color: white;
+    text-align: center;
+    background-color: rgba($color: #1a1717, $alpha: 0.6);
+    user-select: none;
+  }
+   ul {
+    color: white;
 
-.sidebar ul li {
-  position: relative;
-  right: 1.2rem;
-  display: block;
-  width: 100%;
-  height: 100%;
-  line-height: 4rem;
-  font-size: 1.4rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  border-bottom: 1px solid black;
+     li {
+      position: relative;
+      right: 1.2rem;
+      display: block;
+      width: 100%;
+      height: 100%;
+      line-height: 4rem;
+      font-size: 1.4rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid black;
+    }
+  }
+
 }
 
 .sidebar__links {
