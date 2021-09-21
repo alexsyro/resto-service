@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import {cartChangeQuantityAC} from '../../../redux/actionCreators/cartAC'
+import { useDispatch } from 'react-redux';
+import {cartChangeQuantityAC, cartRemovePositionAC} from '../../../redux/actionCreators/cartAC'
 
 export default function CartPosition({ position }) {
   const [quantity, setQuantity] = useState(position.quantity);
@@ -17,6 +17,13 @@ export default function CartPosition({ position }) {
     }
     dispatch(cartChangeQuantityAC(payload))
   }; 
+  const removeItem = (event) => {
+    event.preventDefault();
+    const payload = {
+      id:position.id,
+    }
+    dispatch(cartRemovePositionAC(payload))
+  }; 
 
   return (
     <tr>
@@ -32,6 +39,7 @@ export default function CartPosition({ position }) {
           max='10'
         />
       </td>
+      <td><button onClick={removeItem}>Удалить</button></td>
       <td>{position.price}</td>
       <td>{Number(quantity) * Number(position.price)}</td>
     </tr>

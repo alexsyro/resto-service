@@ -18,11 +18,19 @@ a {
 }
 
 body {
-  background-color: black;
+  background-color: #0c0c0c;
   font-family: 'Montserrat', sans-serif;
 }
 
-p, h1, h2, h3, h4, h5, h6, span, button {
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+button {
   margin: 0;
   padding: 0;
 }

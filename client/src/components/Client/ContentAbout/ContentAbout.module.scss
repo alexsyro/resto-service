@@ -37,6 +37,7 @@
 }
 
 .about__btn {
+  margin-top: 0.8rem;
   position: relative;
   background: none;
   padding: 0.4rem;
@@ -102,7 +103,6 @@
 
 .about__btn:hover:after {
   animation: animate2 1s linear forwards;
-  animation-delay: 1s;
 }
 
 @keyframes animate2 {
@@ -137,14 +137,12 @@
 .about__btn__text {
   z-index: 1000;
   position: relative;
-  text-transform: uppercase;
   color: #DCCA87;
-  // color: rgb(192, 179, 179);
   background: none;
   font-size: 1.3rem;
   transition: all 1s linear;
 }
 .about__btn__text:hover {
-  color: white;
+  color: #DCCA87;
   text-decoration: none;
 }

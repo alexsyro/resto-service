@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { GET_STAFF, GET_POSITIONS } from '../../../redux/actionTypes/actionType'
 import Worker from './Worker';
 
-function StaffList(props) {
+function StaffList() {
 
   const dispatch = useDispatch();
 
@@ -30,7 +30,7 @@ function StaffList(props) {
   return (
     <>
       <input onChange={(event)=> setValue(event.target.value)} type="text" placeholder="Введите имя"></input>
-       { filteredWorkers.map((person) => <Worker key={person.id} person={person} />) }
+       { filteredWorkers?.map((person) => <Worker key={person.id} person={person} />) }
     </>
   );
 }

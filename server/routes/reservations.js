@@ -121,6 +121,18 @@ router.put('/done', async (req, res) => {
   res.json({ message: 'Вы успешно подтвердили заказ' });
 });
 
+router.put('/cancel', async (req, res) => {
+  const { id } = req.body;
+  const reservationToChange = await Reservation.findOne({
+    where: {
+      id,
+    },
+  });
+  reservationToChange.StateId = 7;
+  await reservationToChange.save();
+  res.json({ message: 'Вы успешно отменили резерв' });
+});
+
 // router.put('/edit', async (req, res) => {
 //   const { id } = req.body;
 // нужно изменить базу
