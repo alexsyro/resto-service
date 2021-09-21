@@ -58,7 +58,7 @@ export default function Cart() {
   }, [cart]);
 
   const total = useSelector((state) => state.cartReducer.cart);
-  console.log(total, 'TOTAL')
+  console.log(total, 'TOTAL');
 
   if (cart.length) {
     return (
@@ -96,15 +96,12 @@ export default function Cart() {
           />
           <label htmlFor='scales'>Предварительный заказ</label>
         </div>
-
         <h2>{`Всего блюд на сумму: ${cart.reduce(
           (acc, position) => acc + Number(position.price) * Number(position.quantity),
           0,
         )} руб.`}</h2>
-<<<<<<< HEAD
         <h2>{`Цена с учётом вашей скидки ${user.discount}% - ${fullPrice} руб.`}</h2>
         <button type='submit'>OФормить предварительный заказ</button>
-=======
         {user.DiscountId !== 1 && (
           <h2>{`Цена с учётом вашей скидки ${user.discount}% - ${total.quantity} руб.`}</h2>
         )}
@@ -118,7 +115,7 @@ export default function Cart() {
             заказ
           </p>
         )}
->>>>>>> cartOrder
+        >>>>>>> cartOrder
       </form>
     );
   } else {
