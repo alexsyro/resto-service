@@ -5,7 +5,9 @@ import {
   CART_CHANGE_QUANTITY,
 } from '../actionTypes/actionType';
 
-const initialState = { cart: [] };
+const localCart = JSON.parse(localStorage.getItem('cart'));
+console.log('LOCALCART', localCart);
+const initialState = localCart ? { cart: localCart } : { cart: [] };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
@@ -29,7 +31,7 @@ export default function reducer(state = initialState, action) {
         ...state,
         cart: state.cart.map((position) => {
           if (position.id === action.payload.id) {
-            position.quantity = action.payload.quantity;
+            position.quantity = Number(action.payload.quantity);
           }
           return position;
         }),

@@ -1,6 +1,7 @@
 import { AUTH_USER, LOGOUT_USER } from '../actionTypes/actionType';
 
-const initialState = { user: { isAuth: false } };
+const localUser = JSON.parse(localStorage.getItem('user'))
+const initialState = localUser || { user: { isAuth: false } };
 
 const usersReducer = (state = initialState, action) => {
   switch (action.type) {
