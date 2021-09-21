@@ -8,8 +8,23 @@ import {
   UPDATE_RESERVATION,
   COMPLETE_RESERVATION,
   DELETE_RESERVATION
+  AUTH_USER,
+  LOGOUT_USER,
 } from '../actionTypes/actionType';
 
+// Регистрация и логин пользователя
+export const authUserAC = (payload) => {
+  return {
+    type: AUTH_USER,
+    payload,
+  };
+};
+
+export const logoutUserAC = () => {
+  return {
+    type: LOGOUT_USER,
+  };
+};
 
 // RESERVATIONS
 export const selectReservDateTimeAC = (payload) => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
-import { sagaLoginAC } from '../../../redux/actionCreators/loginFormAC';
+import { sagaLoginAC } from '../../../redux/actionCreators/sagaAC';
 import styles from './LoginForm.module.scss';
 
 function LoginForm() {

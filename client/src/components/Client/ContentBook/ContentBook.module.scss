@@ -1,52 +1,241 @@
+// .main__container {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   height: 100vh;
+//   width: 80%;
+//   margin: 0 auto;
+// }
+
+// .book__left {
+//   width: 49%;
+// }
+
+// .book__right {
+//   width: 49%;
+// }
+
+// .book__left_content {
+//   text-align: right;
+// }
+
+// .book__right {
+//   background: url('https://kartinkin.net/uploads/posts/2021-07/1627200487_11-kartinkin-com-p-temnii-fon-dlya-restorana-krasivo-14.jpg')
+//     no-repeat center;
+//   -webkit-background-size: cover;
+//   -moz-background-size: cover;
+//   -o-background-size: cover;
+//   background-size: cover;
+//   width: 50%;
+//   height: 70%;
+
+//   margin-left: 2rem;
+// }
+
+// .left_title {
+//   color: white;
+//   font-size: 3rem;
+// }
+
+// .left_text {
+//   color: white;
+//   font-size: 1.3rem;
+// }
+
+// .book__btn {
+//   position: relative;
+//   background: none;
+//   padding: 0.4rem;
+// }
+
+// .book__btn:before {
+//   content: '';
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+
+//   width: 0;
+//   height: 0;
+//   background: transparent;
+//   border: 2px solid transparent;
+// }
+
+// .book__btn:hover:before {
+//   animation: animate 1s linear forwards;
+//   animation-delay: 1s;
+// }
+
+// @keyframes animate {
+//   0% {
+//     width: 0;
+//     height: 0;
+//     border-top-color: #fff;
+//     border-right-color: transparent;
+//     border-bottom-color: transparent;
+//     border-left-color: transparent;
+//   }
+
+//   50% {
+//     width: 100%;
+//     height: 0;
+//     border-top-color: #fff;
+//     border-right-color: #fff;
+//     border-bottom-color: transparent;
+//     border-left-color: transparent;
+//   }
+
+//   100% {
+//     width: 100%;
+//     height: 100%;
+//     border-top-color: #fff;
+//     border-right-color: #fff;
+//     border-bottom-color: transparent;
+//     border-left-color: transparent;
+//   }
+// }
+
+// .book__btn:after {
+//   content: '';
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+
+//   width: 0;
+//   height: 0;
+//   background: transparent;
+//   border: 2px solid transparent;
+// }
+
+// .book__btn:hover:after {
+//   animation: animate2 1s linear forwards;
+  
+// }
+
+// @keyframes animate2 {
+//   0% {
+//     width: 0;
+//     height: 0;
+//     border-top-color: transparent;
+//     border-right-color: transparent;
+//     border-bottom-color: transparent;
+//     border-left-color: #fff;
+//   }
+
+//   50% {
+//     width: 0;
+//     height: 100%;
+//     border-top-color: transparent;
+//     border-right-color: transparent;
+//     border-bottom-color: #fff;
+//     border-left-color: #fff;
+//   }
+
+//   100% {
+//     width: 100%;
+//     height: 100%;
+//     border-top-color: transparent;
+//     border-right-color: transparent;
+//     border-bottom-color: #fff;
+//     border-left-color: #fff;
+//   }
+// }
+
+
+// .book__btn__text {
+//   z-index: 1000;
+//   position: relative;
+//   text-transform: uppercase;
+//   color: rgb(192, 179, 179);
+//   background: none;
+//   font-size: 1.3rem;
+//   transition: all 1s linear;
+// }
+
+// .book__btn__text:hover {
+//   color: white;
+//   text-decoration: none;
+// }
+
+
+
 .main__container {
   display: flex;
-  justify-content: center;
   align-items: center;
-  height: 100vh;
-  width: 80%;
+  height: 80vh;
+  width: 70%;
   margin: 0 auto;
+
+  .all{
+    margin-left: 2rem;
+    display: flex;
+    flex-direction: column;
+    position: right;  
+    width: 49%;
+    
+  }
+  
+  
 }
 
-.book__left {
-  width: 49%;
-}
 
 .book__right {
   width: 49%;
 }
 
-.book__left_content {
-  text-align: right;
-}
-
 .book__right {
-  background: url('https://kartinkin.net/uploads/posts/2021-07/1627200487_11-kartinkin-com-p-temnii-fon-dlya-restorana-krasivo-14.jpg')
+  background: url('https://psv4.userapi.com/c534536/u144953147/docs/d41/8518aee9d9e4/img.png?extra=TeyqC0TcgeezcJOWXxmUVlF8K-Tw0Kd4LrdftchM309R280Sd1Z5DjkHFjT9OC0R25yx27CMP52si_8j6gEwMYdX5A5csGJoVFA3E3JDShX5WABsXQITJbqz5WLQNR2l1jtHKCz67ljPEglGKuZQ-w5O')
     no-repeat center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;
+  background-size: 20rem;
   width: 50%;
-  height: 70%;
+  height: 60%;
 
-  margin-left: 2rem;
+  margin-left: 0rem;
 }
 
-.left_title {
-  color: white;
-  font-size: 3rem;
-}
+.book__left_content {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 
-.left_text {
-  color: white;
-  font-size: 1.3rem;
-}
+  .left_title {
+    color: #DCCA87;
+    font-size: 3rem;
+  }
+  
+  .left_text {
+    color: #AAAAAA;
+    font-size: 1.3rem;
+  }
+
 
 .book__btn {
   position: relative;
   background: none;
   padding: 0.4rem;
 }
+}
+
+
+
+// .left_title {
+//   color: white;
+//   font-size: 3rem;
+// }
+
+// .left_text {
+//   color: white;
+//   font-size: 1.3rem;
+// }
+
+// .book__btn {
+//   position: relative;
+//   background: none;
+//   padding: 0.4rem;
+// }
 
 .book__btn:before {
   content: '';
@@ -69,7 +258,7 @@
   0% {
     width: 0;
     height: 0;
-    border-top-color: #fff;
+    border-top-color: #DCCA87;
     border-right-color: transparent;
     border-bottom-color: transparent;
     border-left-color: transparent;
@@ -78,8 +267,8 @@
   50% {
     width: 100%;
     height: 0;
-    border-top-color: #fff;
-    border-right-color: #fff;
+    border-top-color: #DCCA87;
+    border-right-color: #DCCA87;
     border-bottom-color: transparent;
     border-left-color: transparent;
   }
@@ -87,8 +276,8 @@
   100% {
     width: 100%;
     height: 100%;
-    border-top-color: #fff;
-    border-right-color: #fff;
+    border-top-color: #DCCA87;
+    border-right-color: #DCCA87;
     border-bottom-color: transparent;
     border-left-color: transparent;
   }
@@ -118,7 +307,7 @@
     border-top-color: transparent;
     border-right-color: transparent;
     border-bottom-color: transparent;
-    border-left-color: #fff;
+    border-left-color: #DCCA87;
   }
 
   50% {
@@ -126,8 +315,8 @@
     height: 100%;
     border-top-color: transparent;
     border-right-color: transparent;
-    border-bottom-color: #fff;
-    border-left-color: #fff;
+    border-bottom-color: #DCCA87;
+    border-left-color: #DCCA87;
   }
 
   100% {
@@ -135,8 +324,8 @@
     height: 100%;
     border-top-color: transparent;
     border-right-color: transparent;
-    border-bottom-color: #fff;
-    border-left-color: #fff;
+    border-bottom-color: #DCCA87;
+    border-left-color: #DCCA87;
   }
 }
 
@@ -145,13 +334,13 @@
   z-index: 1000;
   position: relative;
   text-transform: uppercase;
-  color: rgb(192, 179, 179);
+  color: #DCCA87;
   background: none;
   font-size: 1.3rem;
   transition: all 1s linear;
 }
 
 .book__btn__text:hover {
-  color: white;
+  color: #DCCA87;
   text-decoration: none;
 }

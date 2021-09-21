@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {cartChangeQuantity} from '../../../redux/actionCreators/cartAC'
+import {cartChangeQuantityAC} from '../../../redux/actionCreators/cartAC'
 
 export default function CartPosition({ position }) {
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(position.quantity);
   const dispatch = useDispatch();
 
   const changeQuantity = (event) => {
@@ -15,10 +15,8 @@ export default function CartPosition({ position }) {
       quantity:value,
       id:position.id,
     }
-    dispatch(cartChangeQuantity(payload))
-  };
-   
- 
+    dispatch(cartChangeQuantityAC(payload))
+  }; 
 
   return (
     <tr>
@@ -29,7 +27,7 @@ export default function CartPosition({ position }) {
           onChange={changeQuantity}
           type='number'
           defaultValue='1'
-          // value={quantity}
+          value={quantity}
           min='1'
           max='10'
         />
