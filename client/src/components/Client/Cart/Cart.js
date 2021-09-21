@@ -1,13 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
+import { clearReservationAC } from '../../../redux/actionCreators/actionCreators';
+import { cartCleanAC } from '../../../redux/actionCreators/cartAC';
 import CartPosition from './CartPosition';
 
 const TYPE_PREORDER = 5;
 const TYPE_DELIVERY = 4;
 
 export default function Cart() {
-  console.log('CART RENDER HAPPENNING');
+  const dispatch = useDispatch();
   const { user } = useSelector((state) => state.usersReducer);
   const { cart } = useSelector((state) => state.cartReducer);
   const { reservation } = useSelector((state) => state.reservationReducer);
@@ -25,19 +27,28 @@ export default function Cart() {
   }
 
   const orderTypeHandler = (event) => {
-    // event.preventDefault();
     console.log('EVENT', event);
     if (event.target.id === 'preorder') {
       setOrderType(TYPE_PREORDER);
     } else if (event.target.id === 'delivery') {
       setOrderType(TYPE_DELIVERY);
     }
-    // console.log('orderType', orderType);
   };
 
-  const makeOrder = (event) => {
+  const makeOrder = async (event) => {
     event.preventDefault();
     console.log(reservation);
+    const orderData = { user, cart, reservation };
+    const response = await fetch('http://localhost:1234/orders', {
+      method: 'POST',
+      credentials: 'include',
+      body: JSON.stringify({ order: orderData }),
+    });
+    if (response.status === 200){
+      
+      dispatch(clearReservationAC());
+      dispatch(cartCleanAC());
+    }
     //   Фетч на бек с резервированием (создаётся в базе первым) и содержимым корзины(создаётся после создания заказа)
     //   Содержимое в виде
     //   {
@@ -100,8 +111,6 @@ export default function Cart() {
           (acc, position) => acc + Number(position.price) * Number(position.quantity),
           0,
         )} руб.`}</h2>
-        <h2>{`Цена с учётом вашей скидки ${user.discount}% - ${fullPrice} руб.`}</h2>
-        <button type='submit'>OФормить предварительный заказ</button>
         {user.DiscountId !== 1 && (
           <h2>{`Цена с учётом вашей скидки ${user.discount}% - ${total.quantity} руб.`}</h2>
         )}
@@ -115,7 +124,6 @@ export default function Cart() {
             заказ
           </p>
         )}
-        >>>>>>> cartOrder
       </form>
     );
   } else {
