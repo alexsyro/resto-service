@@ -1,13 +1,14 @@
 import React from 'react';
 import styles from './Contacts.module.scss';
 import { YMaps, Map, ZoomControl, Placemark } from 'react-yandex-maps';
+import main_header from '../../../images/main_header.jpg';
 
 function Contacts() {
   return (
     <div className={styles.contacts__container}>
       <div className={styles.contacts__header}>
         <img className={styles.contacts__img}
-          src="https://ilmilanese.ru/wp-content/uploads/2018/03/interior.jpg"
+          src={main_header}
           alt="contacts header" />
         <span className={styles.contacts__span}>Наши</span>
         <h1 className={styles.contacts_h1}>
