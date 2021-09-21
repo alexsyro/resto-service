@@ -65,7 +65,7 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   const { reservation, user, cart, StateId } = req.body.order;
-  console.log('ORDEEEEER', req.body);
+  console.log('ORDEEEEER', req.body, user);
   const order = await Order.create({
     ClientId: user.id,
     StateId,
