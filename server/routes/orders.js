@@ -4,7 +4,6 @@ const { Router } = express;
 const router = Router();
 const { Reservation, Table, State, Order, Client, OrderPosition, Position } = require('../db/models');
 
-// Запрос на категории с подкатегориями
 router.get('/', async (req, res) => {
   const reservations = await Reservation.findAll({
     attributes: ['id', 'table_id', 'date_time', 'guest_count', 'guest_name', 'guest_phone', 'time_interval'],
@@ -64,7 +63,7 @@ router.put('/done', async (req, res) => {
     },
   });
   orderToChange.StateId = 2;
-  orderToChange.save();
+  await orderToChange.save();
 
   res.json({ message: 'Вы успешно подтвердили заказ' });
 });

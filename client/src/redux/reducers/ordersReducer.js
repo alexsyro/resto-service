@@ -15,7 +15,7 @@ const ordersReducer = (state = initialState, action) => {
       return {
         ...state, orders: state.orders.map((order) => {
           if (order.id === action.payload.id) {
-            return { ...order, userId: action.payload.inputUserId, title: action.payload.inputTitle }
+            return { ...order }
           } else {
             return order
           }
@@ -25,7 +25,7 @@ const ordersReducer = (state = initialState, action) => {
       return {
         ...state, orders: state.orders.map((order) => {
           if (order.id === action.payload.id) {
-            return { ...order, state_id: 2 }
+            return { ...order, state_id: 2, 'State.state': 'ПОДТВЕРЖДЁН' }
           } else {
             return order
           }

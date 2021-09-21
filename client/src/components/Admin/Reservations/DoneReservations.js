@@ -1,14 +1,21 @@
 import React from 'react';
 
-function DoneReservations({ reservations }) {
+function DoneReservations({ reservation }) {
   return (
     <li>
-      <p>id:   {reservations.id}</p>
-      <p>name:  {reservations['Client.name']}</p>
-      <p>phone:   {reservations['Client.phone']}</p>
-      <p>number of table:   {reservations['Reservation.table_id']}</p>
-      <p>date and time:   {reservations['Reservation.date_time']}</p>
-      {reservations.completed === 'Checked' ? <p>обработан</p> : null}
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <span>Номер заказа:   {reservation.id}</span>
+        <span>Имя клиента:  {reservation.guest_name}</span>
+        <span>Телефон клиента:   {reservation.guest_phone}</span>
+      </div>
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <span>Номер столика:   {reservation.table_id}</span>
+        <span>Дата бронирования: {`${reservation.timeFormat.day}  ${reservation.timeFormat.month}, ${reservation.timeFormat.year}`}</span>
+        <span>Время бронирования: {`${reservation.timeFormat.hours}:${reservation.timeFormat.minutes}`}</span>
+        <span>Количество гостей:   {reservation.guest_count}</span>
+      </div>
+
+      <p>Статус заказа:   {reservation['State.state']}</p>
     </li>
   );
 }
