@@ -81,7 +81,7 @@ router.put('/:id', async (req, res) => {
       );
       position.FileId = image.id;
     }
-    position.save();
+    await position.save();
     console.log('EDIT::::::::::::::', position);
     res.json({ position });
   } catch (err) {

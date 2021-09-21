@@ -5,6 +5,7 @@ import * as ordersAC from '../../../redux/actionCreators/ordersAC'
 
 function ToCheckOrder({ order }) {
   const dispatch = useDispatch()
+
   const finishOrder = () => {
     fetch('http://localhost:1234/api/orders/done', {
       method: 'PUT', // *GET, POST, PUT, DELETE, etc.
@@ -22,17 +23,22 @@ function ToCheckOrder({ order }) {
 
   return (
     <li>
-      <p>id:   {order.id}</p>
-      <p>name:  {order['Client.name']}</p>
-      <p>phone:   {order['Client.phone']}</p>
-      <p>number of table:   {order['Reservation.table_id']}</p>
-      <p>date and time:   {order['Reservation.date_time']}</p>
-      <p>Quantity:   {order['OrderPositions.quantity']}</p>
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <span>Номер заказа:   {order.id}</span>
+        <span>Имя клиента:  {order['Client.name']}</span>
+        <span>Телефон клиента:   {order['Client.phone']}</span>
+      </div>
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <span>Номер столика:   {order['Reservation.table_id']}</span>
+        <span>Дата бронирования: {`${order.timeFormat.day}  ${order.timeFormat.month}, ${order.timeFormat.year}`}</span>
+        <span>Время бронирования: {`${order.timeFormat.hours}:${order.timeFormat.minutes}`}</span>
+        <span>Количество гостей:   {order['Reservation.guest_count']}</span>
+      </div>
+
+      <p>Статус заказа:   {order['State.state']}</p>
 
 
-
-      {order.completed ? null : <p>нуждается в обработке</p>}
-      <Link to={`/orders/edit/${order.id}`} className="uk-button uk-button-default">Скорректировать</Link>
+      <Link to={`/reservations/edit/${order.id}`} className="uk-button uk-button-default">Скорректировать</Link>
       <button onClick={() => finishOrder()} className="uk-button uk-button-primary"> перевести в статус подтвержденного</button>
     </li >
   );

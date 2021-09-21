@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-// import * as ordersAC from '../../../redux/actionCreators/ordersAC'
+import * as reservationsAC from '../../../redux/actionCreators/actionCreators'
 
 function ToCheckReservation({ reservation }) {
   const dispatch = useDispatch()
-  const finishOrder = () => {
-    fetch('http://localhost:1234/api/orders/done', {
+  const finishReservation = () => {
+    fetch('http://localhost:1234/api/reservations/done', {
       method: 'PUT', // *GET, POST, PUT, DELETE, etc.
       mode: 'cors', // no-cors, *cors, same-origin
       credentials: 'include', // include, *same-origin, omit
@@ -17,24 +17,28 @@ function ToCheckReservation({ reservation }) {
     })
       .then(res => res.json())
       .then(console.log)
-
-    // dispatch(ordersAC.completeOrderAC({ id: reservation.id }))
+    dispatch(reservationsAC.completeReservationAC({ id: reservation.id }))
   }
 
   return (
     <li>
-      <p>id:   {reservation.id}</p>
-      <p>name:  {reservation['Client.name']}</p>
-      <p>phone:   {reservation['Client.phone']}</p>
-      <p>number of table:   {reservation['Reservation.table_id']}</p>
-      <p>date and time:   {reservation['Reservation.date_time']}</p>
-      <p>Quantity:   {reservation['OrderPositions.quantity']}</p>
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <span>Номер заказа:   {reservation.id}</span>
+        <span>Имя клиента:  {reservation.guest_name}</span>
+        <span>Телефон клиента:   {reservation.guest_phone}</span>
+      </div>
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <span>Номер столика:   {reservation.table_id}</span>
+        <span>Дата бронирования: {`${reservation.timeFormat.day}  ${reservation.timeFormat.month}, ${reservation.timeFormat.year}`}</span>
+        <span>Время бронирования: {`${reservation.timeFormat.hours}:${reservation.timeFormat.minutes}`}</span>
+        <span>Количество гостей:   {reservation.guest_count}</span>
+      </div>
+
+      <p>Статус заказа:   {reservation['State.state']}</p>
 
 
-
-      {reservation.completed ? null : <p>нуждается в обработке</p>}
-      <Link to={`/orders/edit/${reservation.id}`} className="uk-button uk-button-default">Скорректировать</Link>
-      <button onClick={() => finishOrder()} className="uk-button uk-button-primary"> перевести в статус подтвержденного</button>
+      <Link to={`/reservations/edit/${reservation.id}`} className="uk-button uk-button-default">Скорректировать</Link>
+      <button onClick={() => finishReservation()} className="uk-button uk-button-primary"> перевести в статус подтвержденного</button>
     </li >
   );
 }

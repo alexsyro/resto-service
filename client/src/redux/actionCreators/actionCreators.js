@@ -4,6 +4,10 @@ import {
   RESERVATION_SELECT_DATETIME,
   RESERVATION_RESET_CURRENT_SELECTION,
   RESERVATION_SET_RESERVATION,
+  GET_RESERVATIONS,
+  UPDATE_RESERVATION,
+  COMPLETE_RESERVATION,
+  DELETE_RESERVATION
 } from '../actionTypes/actionType';
 
 
@@ -39,5 +43,33 @@ export const setReservationAC = (payload) => {
 export const resetReservSelectionAC = () => {
   return {
     type: RESERVATION_RESET_CURRENT_SELECTION,
+  };
+};
+
+export const getReservationsAC = (payload) => {
+  return {
+    type: GET_RESERVATIONS,
+    payload,
+  };
+};
+
+export const updateReservationAC = (payload) => {
+  return {
+    type: UPDATE_RESERVATION,
+    payload,
+  };
+};
+
+export const completeReservationAC = (payload) => {
+  return {
+    type: COMPLETE_RESERVATION,
+    payload,
+  };
+};
+
+export const deleteReservationAC = (payload) => {
+  return {
+    type: DELETE_RESERVATION,
+    payload,
   };
 };
