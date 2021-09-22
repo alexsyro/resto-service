@@ -17,7 +17,7 @@ router.get('/posts', async (req, res) => {
   }
 });
 
-router.get('/', async (req, res) => {
+router.get('/', checkStaff, async (req, res) => {
   try {
     const staffs = await Staff.findAll({ raw: true });
     res.json({ staffs });
@@ -28,7 +28,7 @@ router.get('/', async (req, res) => {
 });
 
 // Регистрация персонала
-router.post('/new', async (req, res) => {
+router.post('/new', checkStaff, async (req, res) => {
   const { file } = req.files;
   console.log('[INCOMING BODY TO REG STA]', file);
   const { name, login, phone, password, postId } = req.body;
@@ -73,7 +73,7 @@ router.post('/new', async (req, res) => {
 });
 
 // Изменение
-router.put('/:id', async (req, res) => {
+router.put('/:id', checkStaff, async (req, res) => {
   const { id } = req.params;
   const { file } = req.files;
   const { name, password, phone, position } = req.body;
@@ -104,7 +104,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // Удаление персонала
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', checkStaff, async (req, res) => {
   const { id } = req.params;
   try {
     await Staff.destroy({ where: { id } });
