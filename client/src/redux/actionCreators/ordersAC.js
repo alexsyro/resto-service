@@ -35,6 +35,13 @@ export const cancelOrderAC = (payload) => {
   }
 }
 
+export const deleteOrderPositionAC = (payload) => {
+  return {
+    type: actionTypes.DELETE_ORDER_POSITION,
+    payload
+  }
+}
+
 // when saga'll be ready to use
 // export const sagaOrdersAC = () => {
 //   return {
