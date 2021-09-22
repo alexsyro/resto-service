@@ -47,12 +47,10 @@ function OrderInfo() {
           <input ref={inputReservationId} className="uk-input" type="number" defaultValue={currentOrder['Reservation.id']} placeholder="номер резервирования столика" />
         </div> */}
 
-
         <div className="uk-margin">
           <label htmlFor="reservation-select">Выберите нужное резервирование:</label>
-          <select className=".uk-select" defaultValue={id} id="reservation-select" onChange={ }>
-            <option value="">--Please choose an option--</option>
-            {reservationsToSelect.map(el => <option value={el.id} key={el['id']}>{`номер резерва:${el.id}, номер столика: ${el['Table.id']}`}</option>)}
+          <select className=".uk-select" defaultValue={id} id="reservation-select" onChange={(event) => setSelectValue(event.target.value)}>
+            {reservationsToSelect.map(el => <option value={el.id} key={el['id']}>{`номер резерва:${el.id}, номер столика: ${el['Table.number']}`}</option>)}
           </select>
         </div>
 
