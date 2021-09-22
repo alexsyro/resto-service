@@ -3,6 +3,8 @@ import styles from './Orders.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import * as ordersAC from '../../../redux/actionCreators/ordersAC';
+import * as reservationsAC from '../../../redux/actionCreators/actionCreators';
+
 import DoneOrder from './DoneOrder';
 import ToCheckOrder from './ToCheckOrder';
 
@@ -43,11 +45,29 @@ function Orders() {
         const ordersForState = allOrders.map((order) => {
           return { ...order, timeFormat: myDateParse(order.Reservation.date_time) };
         });
-        console.log(ordersForState);
         dispatch(ordersAC.getOrdersAC(ordersForState));
       });
+
+    fetch('http://localhost:1234/api/reservations', { credentials: 'include' })
+      .then((res) => res.json())
+      .then((data) => {
+        const allOrders = [...data.orders];
+        const idToDelete = allOrders.map((el) => el['Reservation.id']);
+        const allReservations = [...data.reservations];
+        const reservationsWithoutOrders = allReservations.filter((reservation) => {
+          if (!idToDelete.includes(reservation.id)) {
+            return true;
+          }
+        });
+
+        const reservationsForState = reservationsWithoutOrders.map((reservation) => {
+          return { ...reservation, timeFormat: myDateParse(reservation.date_time) };
+        });
+
+        dispatch(reservationsAC.getReservationsAC(reservationsForState));
+      });
     // здесь fetch (сага) в базу для получения списка заказов (причем только тех, что в обработке)
-  });
+  }, []);
 
   const finishedOrders = useSelector((state) =>
     state.ordersReducer.orders?.filter((order) => [2, 6, 7].includes(order['state_id'])),

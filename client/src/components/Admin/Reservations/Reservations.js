@@ -57,7 +57,7 @@ function Reservations() {
         dispatch(reservationsAC.getReservationsAC(reservationsForState));
       });
     // здесь fetch (сага) в базу для получения списка заказов (причем только тех, что в обработке)
-  });
+  }, [dispatch]);
 
   const finishedReservations = useSelector((state) =>
     state.reservationReducer.reservations?.filter((reservation) =>

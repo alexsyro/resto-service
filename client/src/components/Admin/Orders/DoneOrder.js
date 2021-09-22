@@ -10,12 +10,15 @@ function DoneOrder({ order }) {
         <span>Имя клиента:  {order.Client.name}</span>
         <span>Телефон клиента:   {order.Client.phone}</span>
       </div>
+      <hr />
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <span>Номер резерва столика:   {order.Reservation.id}</span>
         <span>Номер столика:   {order.Reservation.table_id}</span>
         <span>Дата бронирования: {`${order.timeFormat.day}  ${order.timeFormat.month}, ${order.timeFormat.year}`}</span>
         <span>Время бронирования: {`${order.timeFormat.hours}:${order.timeFormat.minutes}`}</span>
         <span>Количество гостей:   {order.Reservation.guest_count}</span>
       </div>
+      <hr />
       <button className='uk-button uk-button-small' onClick={() => setMenuList(prev => !prev)}> {menuList ? 'Скрыть' : 'Вывести'} список заказанных блюд</button>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         {menuList && <ol>

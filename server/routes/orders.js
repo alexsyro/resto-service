@@ -144,8 +144,9 @@ router.put('/cancel', checkStaff, async (req, res) => {
 });
 
 router.delete('/position', checkStaff, async (req, res) => {
+/////////////////
   try {
-    const { id, position_id } = req.body;
+    const { id } = req.body;
     console.log(id);
     const orderToChange = await Order.findOne({
       where: {
@@ -194,6 +195,30 @@ router.put('/edit/:id', checkStaff, async (req, res) => {
     console.log(`::::::::::::::::::::::DATABASE ERROR: ${error.message}`);
     res.status(500).json({ error: error.message, user: { isAuth: false } });
   }
+////////////////////////
+  const { id } = req.body;
+  const orderPositionToDelete = await OrderPosition.findOne({
+    where: {
+      id,
+    },
+  });
+  await orderPositionToDelete.destroy();
+  res.json({ message: 'Вы успешно удалили меню из заказа заказ' });
+});
+
+router.put('/edit/:id', checkStaff, async (req, res) => {
+  const { id } = req.params;
+  const { ReservationId } = req.body;
+  console.log(id, ReservationId);
+  const orderToChange = await Order.findOne({
+    where: {
+      id,
+    },
+  });
+  orderToChange.ReservationId = ReservationId;
+  await orderToChange.save();
+  res.json({ message: 'Вы успешно изменили заказ' });
+////////////////////////////
 });
 
 module.exports = router;

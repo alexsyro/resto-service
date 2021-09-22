@@ -6,6 +6,7 @@ import * as ordersAC from '../../../redux/actionCreators/ordersAC'
 function ToCheckOrder({ order }) {
   const dispatch = useDispatch()
   const [menuList, setMenuList] = useState(false)
+
   const finishOrder = () => {
     fetch('http://localhost:1234/api/orders/done', {
       method: 'PUT', // *GET, POST, PUT, DELETE, etc.
@@ -44,7 +45,7 @@ function ToCheckOrder({ order }) {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ id: order.id, position_id }) // body data type must match "Content-Type" header
+      body: JSON.stringify({ id: position_id }) // body data type must match "Content-Type" header
     })
       .then(res => res.json())
       .then(console.log)
@@ -59,12 +60,15 @@ function ToCheckOrder({ order }) {
         <span>Имя клиента:  {order.Client.name}</span>
         <span>Телефон клиента:   {order.Client.phone}</span>
       </div>
+      <hr />
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <span>Номер столика:   {order.Reservation.Table.number}</span>
+        <span>Номер резерва столика:   {order.Reservation.id}</span>
+        {order.Reservation.Table ? <span>Номер столика:   {order.Reservation.Table.number}</span> : null}
         <span>Дата бронирования: {`${order.timeFormat.day}  ${order.timeFormat.month}, ${order.timeFormat.year}`}</span>
         <span>Время бронирования: {`${order.timeFormat.hours}:${order.timeFormat.minutes}`}</span>
         <span>Количество гостей:   {order.Reservation.guest_count}</span>
       </div>
+      <hr />
       <button className='uk-button uk-button-small' onClick={() => setMenuList(prev => !prev)}> {menuList ? 'Скрыть' : 'Вывести'} список заказанных блюд</button>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         {menuList && <ol>
@@ -88,7 +92,7 @@ function ToCheckOrder({ order }) {
       </p>
 
       <button onClick={() => cancelOrder()} className="uk-button uk-button-primary"> Отменить заказ</button>
-      <Link to={`/orders/${order.id}`} className="uk-button uk-button-default">Скорректировать</Link>
+      <Link to={`/orders/${order.id}`} className="uk-button uk-button-default">Изменить резервирование столика</Link>
 
     </li >
   );
