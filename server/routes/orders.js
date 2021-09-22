@@ -100,24 +100,23 @@ router.put('/done', async (req, res) => {
   res.json({ message: 'Вы успешно подтвердили заказ' });
 });
 
-router.put('/:id', async (req, res) => {
-  const { id } = req.params;
-  // нужно изменить базу
-  res.json({ message: 'Вы успешно изменили заказ' });
-});
-
-router.put('/сancel', async (req, res) => {
+router.put('/cancel', async (req, res) => {
   const { id } = req.body;
+  console.log(id);
   const orderToChange = await Order.findOne({
     where: {
       id,
     },
   });
-  console.log(orderToChange);
   orderToChange.StateId = 7;
   await orderToChange.save();
-
   res.json({ message: 'Вы успешно отменили заказ' });
+});
+
+router.put('/edit/:id', async (req, res) => {
+  const { id } = req.params;
+  // нужно изменить базу
+  res.json({ message: 'Вы успешно изменили заказ' });
 });
 
 module.exports = router;
