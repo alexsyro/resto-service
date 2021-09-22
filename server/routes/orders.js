@@ -144,41 +144,14 @@ router.put('/cancel', checkStaff, async (req, res) => {
 });
 
 router.delete('/position', checkStaff, async (req, res) => {
-/////////////////
   try {
     const { id } = req.body;
-    console.log(id);
-    const orderToChange = await Order.findOne({
+    const orderPositionToDelete = await OrderPosition.findOne({
       where: {
         id,
       },
-      include: [
-        {
-          model: Reservation,
-          key: 'id',
-          attributes: [
-            'id',
-            'table_id',
-            'date_time',
-            'guest_count',
-            'guest_name',
-            'guest_phone',
-            'time_interval',
-          ],
-        },
-        {
-          model: OrderPosition,
-          key: 'id',
-          attributes: ['id', 'quantity'],
-          include: {
-            model: Position,
-            attributes: ['name', 'price'],
-          },
-        },
-      ],
     });
-    console.log(orderToChange);
-    // await orderToChange.save();
+    await orderPositionToDelete.destroy();
     res.json({ message: 'Вы успешно удалили меню из заказа заказ' });
   } catch (error) {
     console.log(`::::::::::::::::::::::DATABASE ERROR: ${error.message}`);
@@ -189,36 +162,20 @@ router.delete('/position', checkStaff, async (req, res) => {
 router.put('/edit/:id', checkStaff, async (req, res) => {
   try {
     const { id } = req.params;
-    // нужно изменить базу
+    const { ReservationId } = req.body;
+    console.log(id, ReservationId);
+    const orderToChange = await Order.findOne({
+      where: {
+        id,
+      },
+    });
+    orderToChange.ReservationId = ReservationId;
+    await orderToChange.save();
     res.json({ message: 'Вы успешно изменили заказ' });
   } catch (error) {
     console.log(`::::::::::::::::::::::DATABASE ERROR: ${error.message}`);
     res.status(500).json({ error: error.message, user: { isAuth: false } });
   }
-////////////////////////
-  const { id } = req.body;
-  const orderPositionToDelete = await OrderPosition.findOne({
-    where: {
-      id,
-    },
-  });
-  await orderPositionToDelete.destroy();
-  res.json({ message: 'Вы успешно удалили меню из заказа заказ' });
-});
-
-router.put('/edit/:id', checkStaff, async (req, res) => {
-  const { id } = req.params;
-  const { ReservationId } = req.body;
-  console.log(id, ReservationId);
-  const orderToChange = await Order.findOne({
-    where: {
-      id,
-    },
-  });
-  orderToChange.ReservationId = ReservationId;
-  await orderToChange.save();
-  res.json({ message: 'Вы успешно изменили заказ' });
-////////////////////////////
 });
 
 module.exports = router;
