@@ -4,6 +4,7 @@ import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import { GET_DISHES } from '../../../../redux/actionTypes/actionType';
 import Dish from '../Dish/Dish';
+import styles from './SubcategoryItem.module.scss'
 
 function SubcategoryItem(props) {
   const dispatch = useDispatch();
@@ -19,14 +20,16 @@ function SubcategoryItem(props) {
   console.log(dishes, 'DISHES');
 
   return (
-    <>
+    <div>
+    <div className={styles.dish__block}>
       {dishes.map((dish) => (
         <Dish key={dish.id} dish={dish} />
       ))}
+    </div>
       <Link to={`/menu/subcategory/${categoryId}/new`} className='uk-button uk-button-default'>
         Добавить позицию
       </Link>
-    </>
+    </div>
   );
 }
 
