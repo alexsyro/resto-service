@@ -71,10 +71,10 @@ export default function Cart() {
   if (cart && cart.length) {
     return (
 
-      <div className={styles.container}>
+      <div className={styles.fullCart}>
         <form className={styles.form} onSubmit={makeOrder}>
           <h3 className={styles.order}>Корзина</h3>
-          <h4 >Ваш заказ:</h4>
+          <p className={styles.your_order}>Ваш заказ:</p>
           <table className={styles.table}>
             <thead className={styles.table_nav}>
               <tr className={styles.table_cell}>
@@ -91,17 +91,26 @@ export default function Cart() {
               ))}
             </tbody>
           </table>
-          <h4>Выберете тип заказа:</h4>
+
+          <p className={styles.total}>{`Всего блюд на сумму:  ${cart.reduce(
+            (acc, position) => acc + Number(position.price) * Number(position.quantity),
+            0,
+          )} руб.`}</p>
+           {user.DiscountId !== 1 && (
+            <p className={styles.bonus}>{`Цена с учётом вашей скидки ${user.discount}% - ${total.quantity} руб.`}</p>
+          )}
+
+          <p className={styles.type_of_order}>Выберете тип заказа:</p>
           <div className={styles.inputs}>
 
-            <input
+            <input className={styles.one_input}
               onChange={orderTypeHandler}
               type='checkbox'
               id='delivery'
               checked={orderType === TYPE_DELIVERY}
             />
             <label className={styles.input} htmlFor='scales'>Доставка</label>
-            <input
+            <input className={styles.one_input}
               onChange={orderTypeHandler}
               type='checkbox'
               id='preorder'
@@ -109,23 +118,18 @@ export default function Cart() {
             />
             <label htmlFor='scales'>Предварительный заказ</label>
           </div>
-          <h4 className={styles.total}>{`Всего блюд на сумму: ${cart.reduce(
-            (acc, position) => acc + Number(position.price) * Number(position.quantity),
-            0,
-          )} руб.`}</h4>
-          {user.DiscountId !== 1 && (
-            <h4>{`Цена с учётом вашей скидки ${user.discount}% - ${total.quantity} руб.`}</h4>
-          )}
+
           {orderType === TYPE_DELIVERY ? (
             <button type='submit'>Oформить доставку</button>
           ) : checkOrderPossibility() ? (
             <button type='submit'>Оплатить</button>
           ) : (
-            <p>
+            <p className={styles.option}>
               Вам необходимо <Link to='/book'>забронировать</Link> столик, прежде чем делать предварительный
               заказ
             </p>
           )}
+
         </form>
       </div>
 

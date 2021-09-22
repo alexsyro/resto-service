@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 import ComponentSwitcher from './components/ComponentSwitcher';
 
+
 ReactDOM.render(
   <>
     <Provider store={store}>
