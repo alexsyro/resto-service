@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { clearReservationAC } from '../../../redux/actionCreators/actionCreators';
 import { cartCleanAC } from '../../../redux/actionCreators/cartAC';
 import CartPosition from './CartPosition';
@@ -44,7 +44,7 @@ export default function Cart() {
     const response = await fetch('http://localhost:1234/api/orders', {
       method: 'POST',
       credentials: 'include',
-      headers: { 'Content-Type': 'application/json'},
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ order: orderData }),
     });
     if (response.status === 200) {
@@ -76,12 +76,13 @@ export default function Cart() {
 
   if (cart?.length) {
     return (
-      <form onSubmit={makeOrder}>
-        <h3>Ваш заказ:</h3>
-        <table>
-          <thead>
-            <tr>
-              <td>Название</td>
+      <form className={styles.form} onSubmit={makeOrder}>
+        <h3 className={styles.order}>Корзина</h3>
+        <h4 >Ваш заказ:</h4>
+        <table className={styles.table}>
+          <thead className={styles.table_nav}>
+            <tr className={styles.table_cell}>
+              <td className={styles.cell}>Название</td>
               <td>Количество</td>
               <td>Удалить</td>
               <td>Цена</td>
@@ -94,15 +95,16 @@ export default function Cart() {
             ))}
           </tbody>
         </table>
-        <div>
-          <h2>Выберете тип заказа</h2>
+        <h4>Выберете тип заказа:</h4>
+        <div className={styles.inputs}>
+
           <input
             onChange={orderTypeHandler}
             type='checkbox'
             id='delivery'
             checked={orderType === TYPE_DELIVERY}
           />
-          <label htmlFor='scales'>Доставка</label>
+          <label className={styles.input} htmlFor='scales'>Доставка</label>
           <input
             onChange={orderTypeHandler}
             type='checkbox'
@@ -111,12 +113,12 @@ export default function Cart() {
           />
           <label htmlFor='scales'>Предварительный заказ</label>
         </div>
-        <h2>{`Всего блюд на сумму: ${cart.reduce(
+        <h4 className={styles.total}>{`Всего блюд на сумму: ${cart.reduce(
           (acc, position) => acc + Number(position.price) * Number(position.quantity),
           0,
-        )} руб.`}</h2>
+        )} руб.`}</h4>
         {user.DiscountId !== 1 && (
-          <h2>{`Цена с учётом вашей скидки ${user.discount}% - ${total.quantity} руб.`}</h2>
+          <h4>{`Цена с учётом вашей скидки ${user.discount}% - ${total.quantity} руб.`}</h4>
         )}
         {orderType === TYPE_DELIVERY ? (
           <button type='submit'>Oформить доставку</button>

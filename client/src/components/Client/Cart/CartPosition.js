@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {cartChangeQuantityAC, cartRemovePositionAC} from '../../../redux/actionCreators/cartAC'
 import styles from './CartPosition.module.scss';
 
+
 export default function CartPosition({ position }) {
   const [quantity, setQuantity] = useState(position.quantity);
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ export default function CartPosition({ position }) {
   }; 
 
   return (
-    <div className={styles.table}>
+    // <div className={styles.table}>
     <tr >
       <td>{position.name}</td>
       <td>
@@ -46,7 +47,7 @@ export default function CartPosition({ position }) {
       <td>{position.price}</td>
       <td>{Number(quantity) * Number(position.price)}</td>
     </tr>
-    </div>
+    // </div>
     
   );
 }
