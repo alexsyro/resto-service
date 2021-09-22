@@ -1,6 +1,29 @@
 
-.form{
+.container {
+
+  margin-top: 15rem;
+  margin-bottom: 5rem;
   
+  .empty {
+    height: 15vh;
+    align-items: center;
+    justify-content: center;
+    margin-top: 8.2rem;
+  }
+}
+
+.fullCart{
+  margin: 0 auto;
+text-align: left;
+  margin-top:  0rem;
+ min-height: 100vh;
+ margin-bottom: 3rem;
+ height: auto;
+}
+
+.form{
+   width: 40rem;
+   height: auto;
   .order{
     margin-top: 5rem;
   }
@@ -8,8 +31,7 @@
   .table{
     display: table-cell;
     margin: 0rem;
-    border-spacing: 1rem;
-    text-align: start;
+    border-spacing: 0rem 1rem ; //первый парамерт горизонтально второй вертикально   
   }
   
   .table_nav{
@@ -17,25 +39,9 @@
   }
 }
 
-.empty{
-  height: 37.5vh;
-  align-items: center;
-  justify-content: center;
-
-.container {
-
-  margin-top: 15rem;
-  margin-bottom: 5rem;
-  
-  .empty {
-    height: 37.5vh;
-    align-items: center;
-    justify-content: center;
-    margin-top: 15rem;
-  }
-}
-
 td {
+  // text-align: left;
+
   white-space: wrap;
   width: 7rem;
   text-align: start;
@@ -48,7 +54,33 @@ h3{
 .input{
  margin-right: 1rem;
 }
+.inputs{
+ margin-top: 0.5rem;
+}
 
 .total{
   margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.option{
+  margin-top: 0.3rem;
+}
+
+.bonus{
+  margin-bottom:1rem;
+  font-size: 1rem;
+}
+
+.type_of_order{
+  font-size: 1rem;
+}
+
+.your_order{
+  font-size: 1rem;
+}
+
+.one_input{
+  margin-right: 0.5rem;
 }
