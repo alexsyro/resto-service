@@ -43,12 +43,13 @@
 }
 
 .sidebar__links:hover {
-  color: white;
+  color: #cfa670;
   text-decoration: none;
 }
 
 .sidebar ul li:hover .sidebar__links {
   padding-left: 3rem;
+
 }
 
 #check {
@@ -119,14 +120,20 @@ label #cancel {
   margin-right: 1rem;
   background-color: rgba(0, 0, 0, 0.6);
   border-radius: 5px;
-  border: 1px solid rgba(50, 50, 50, 0.6);
+
+  // border: 1px solid rgba(50, 50, 50, 0.6);
+
 }
 .navbar__links:first-child {
-  background-color: rgba(100, 0, 0, 0.6);
+  background-color: #204d488a;
+}
+
+.navbar__links:first-child:hover {
+  background-color: #cfa670;
 }
 
 .navbar__link {
-  font-size: 1rem;
+  font-size: 1.1rem;
   background: none;
   cursor: pointer;
   position: relative;
@@ -142,7 +149,7 @@ label #cancel {
   bottom: -0.1rem;
   width: 0;
   height: 0;
-  border: 2px solid transparent;
+  border: 1px solid transparent;
 }
 
 .navbar__link:hover:after {

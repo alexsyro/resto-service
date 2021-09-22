@@ -67,7 +67,7 @@ export default function TableInfo() {
                 max={selectedTable.seatsLimit}
               />
               {user.isAuth ? (
-                <p>Вы можете сделать предзаказ блюд, после бронирования :)</p>
+                <p>Вы можете сделать предзаказ блюд, после бронирования </p>
               ) : (
                 <>
                   <label htmlFor='guestName'>Ваше имя</label>
