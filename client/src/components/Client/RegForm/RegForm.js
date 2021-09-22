@@ -26,7 +26,7 @@ function RegForm() {
       };
       const payload = user;
       dispatch(sagaRegAC(payload));
-      history.push('/menu');
+      history.push('/');
     } else {
       alert('Заполните все поля');
     }

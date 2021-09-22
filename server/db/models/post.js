@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       name: {
         allowNull: false,
-        type: DataTypes.ENUM('admin', 'manager', 'waiter', 'bartender'),
+        type: DataTypes.ENUM('Администратор', 'Менеджер', 'Официант', 'Бармен', 'Повар'),
         unique: true,
       },
     },

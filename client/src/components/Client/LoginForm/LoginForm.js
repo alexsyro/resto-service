@@ -17,7 +17,7 @@ const history = useHistory()
       }
     const payload = user;
     dispatch(sagaLoginAC(payload));
-      history.push('/book')
+      history.push('/')
   };
 
   return (
