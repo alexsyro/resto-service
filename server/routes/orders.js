@@ -39,7 +39,7 @@ router.get('/', checkStaff, async (req, res) => {
       raw: true,
     });
 
-    await Order.findAll({
+    const orders = await Order.findAll({
       attributes: ['id', 'client_id', 'reservation_id', 'state_id'],
       include: [
         {
