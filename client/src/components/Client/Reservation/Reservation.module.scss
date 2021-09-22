@@ -71,6 +71,20 @@
   margin-bottom: 2rem;
 }
 
+.info_button{
+  height: 1.5rem;
+  width: 7.5rem;
+  border-radius: 0.2rem;
+  margin-right: 1.5rem;
+  margin-top: 1rem;
+  font-family: 'Comfortaa', cursive;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color:#fff;
+  background-color: #cfa670;
+  margin-bottom: 2rem;
+}
+
 .tableContainer{
   display: flex;
   flex-direction: column;
@@ -84,7 +98,34 @@
   color:#fff;
 }
 
+.text_last{
+  font-family: 'Comfortaa', cursive;
+  // font-size: 0.8rem;
+  // font-weight: bold;
+  color:#fff;
+  margin-bottom: 1rem;
+}
+
 .info_header{
   font-family: 'Oswald', cursive;
   color:#fff;
 }
+
+.info_guests{
+  font-family: 'Oswald', cursive;
+  color:#fff;
+}
+
+.info_book{
+  font-family: 'Oswald', cursive;
+  color:#fff;
+  margin-bottom: 1.5rem;
+}
+
+.info_input{
+  margin-left: 1rem;
+  font-size: 1rem;
+  border-radius: 00.3rem;
+  
+}
+

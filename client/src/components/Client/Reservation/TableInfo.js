@@ -43,21 +43,21 @@ export default function TableInfo() {
 
   return (
     <div className={styles.tableInfoContainer}>
-      <h3>{`Столик №${selectedTable.number}`}</h3>
-      <h4>{`Максимальная вместимость: ${selectedTable.seatsLimit}`}</h4>
+      <h3 className={styles.info_header}>{`Столик № ${selectedTable.number}`}</h3>
+      <h4 className={styles.info_header}>{`Максимальная вместимость: ${selectedTable.seatsLimit}`}</h4>
       <hr></hr>
       {selectedDateTime ? (
         <>
-          <h3>{`Забронировать на ${selectedDateTime.date} в ${selectedDateTime.time}`}</h3>
+          <h4 className={styles.info_book}>{`Забронировать на ${selectedDateTime.date} в ${selectedDateTime.time}`}</h4>
           <div>
             <p className={styles.text}>С вами также свяжется наш администратор для подтверждения бронирования.</p>
             <p className={styles.text}>Предупреждаем вас, что бронь будет снята, </p>
-            <p className={styles.text}> если наш администратор не сможет до вас дозвониться в течении часа</p>
+            <p className={styles.text_last}> если наш администратор не сможет до вас дозвониться в течении часа</p>
           </div>
           <form onSubmit={createReservation}>
             <div>
-              <label className={styles.info_header} htmlFor='guestCount'>Выберите количество гостей:</label>
-              <input
+              <label className={styles.info_guests} htmlFor='guestCount'>Выберите количество гостей:</label>
+              <input className={styles.info_input}
                 id='guestCount'
                 type='number'
                 name='guestCount'
@@ -67,7 +67,7 @@ export default function TableInfo() {
                 max={selectedTable.seatsLimit}
               />
               {user.isAuth ? (
-                <p>Вы можете сделать предзаказ блюд, после бронирования </p>
+                <p className={styles.text}>Вы можете сделать предзаказ блюд, после бронирования </p>
               ) : (
                 <>
                   <label htmlFor='guestName'>Ваше имя</label>
@@ -89,7 +89,7 @@ export default function TableInfo() {
                 </>
               )}
             </div>
-            <button type='submit'>Забронировать</button>
+            <button className={styles.info_button} type='submit'>Забронировать</button>
           </form>
         </>
       ) : (
