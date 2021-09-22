@@ -4,6 +4,7 @@ const qs = require('qs');
 const checkStaff = require('../middlewares/staffValidation');
 const { Reservation, Table, State, Order, Client, OrderPosition, Position } = require('../db/models');
 const isAuthenticated = require('../middlewares/authenticationValidation');
+const mailer = require('../nodemailer');
 
 const { BEARER } = process.env;
 
@@ -130,6 +131,14 @@ router.put('/done', checkStaff, async (req, res) => {
       },
       raw: true,
     });
+
+    // const message = {
+    //   from: 'Ресторан Точка',
+    //   to: 'musvk@yandex.ru',
+    //   subject: 'Подтверждение бронирования',
+    //   text: 'Уважаемый, вот Ваш стол!',
+    // };
+    // mailer(message);
 
     // const myHeaders = new Headers();
     // myHeaders.append(
