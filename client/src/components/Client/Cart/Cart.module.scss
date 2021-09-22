@@ -15,7 +15,7 @@
 
 .fullCart{
   margin: 0 auto;
-text-align: left;
+  text-align: left;
   margin-top:  0rem;
  min-height: 76vh;
  margin-bottom: 3rem;
@@ -23,10 +23,13 @@ text-align: left;
 }
 
 .form{
-   width: 40rem;
+   width: 45rem;
    height: auto;
   .order{
     margin-top: 5rem;
+    color: #fff;
+    font-family: 'Oswald', cursive;
+    font-size: 1.7rem;
   }
 
   .table {
@@ -41,10 +44,8 @@ text-align: left;
 }
 
 td {
-  // text-align: left;
-
   white-space: wrap;
-  width: 7rem;
+  width: 9rem;
   text-align: start;
 }
 
@@ -57,31 +58,79 @@ h3 {
 }
 .inputs{
  margin-top: 0.5rem;
+ color: #fff;
+  font-family: 'Comfortaa', cursive;
 }
 
 .total {
   margin-top: 1rem;
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  color: #fff;
+  font-family: 'Oswald', cursive;
 }
 
 .option{
   margin-top: 0.3rem;
+  color: #fff;
+  font-family: 'Comfortaa', cursive;
 }
 
 .bonus{
   margin-bottom:1rem;
   font-size: 1rem;
+  color: #fff;
+  font-family: 'Comfortaa', cursive;
 }
 
 .type_of_order{
   font-size: 1rem;
+  color: #fff;
+  font-family: 'Oswald', cursive;
+  margin-top: 2rem;
 }
 
 .your_order{
   font-size: 1rem;
+  font-family: 'Oswald', cursive;
+  color: #fff;
+  margin-top: 2rem;
 }
 
 .one_input{
   margin-right: 0.5rem;
+  color: #fff;
+  font-family: 'Comfortaa', cursive;
+}
+
+.table_cell{
+  color: #fff;
+  font-family: 'Comfortaa', cursive;
+}
+
+
+.shipping{
+  height: 1.5rem;
+  width: 6rem;
+  position: relative;
+  left: 11%;
+  transform: translateX(-50%);
+  width: 10rem;
+  border-radius: 0.3rem;
+  background-color: #cfa670;
+  color:#fff;
+  margin-top: 0.2rem;
+}
+
+.pay{
+  height: 1.5rem;
+  width: 6rem;
+  position: relative;
+  left: 11%;
+  transform: translateX(-50%);
+  width: 10rem;
+  border-radius: 0.3rem;
+  background-color: #cfa670;
+  color:#fff;
+  margin-top: 0.2rem;
 }

@@ -33,7 +33,7 @@ export default function CartPosition({ position }) {
     <tr >
       <td>{position.name}</td>
       <td>
-        <input
+        <input className={styles.scale}
           name='quantity'
           onChange={changeQuantity}
           type='number'
@@ -43,7 +43,7 @@ export default function CartPosition({ position }) {
           max='10'
         />
       </td>
-      <td><button onClick={removeItem}>Удалить</button></td>
+      <td><button className={styles.delete} onClick={removeItem}>Удалить</button></td>
       <td>{position.price}</td>
       <td>{Number(quantity) * Number(position.price)}</td>
     </tr>
