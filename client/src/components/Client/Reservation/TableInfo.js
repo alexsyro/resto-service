@@ -50,13 +50,13 @@ export default function TableInfo() {
         <>
           <h3>{`Забронировать на ${selectedDateTime.date} в ${selectedDateTime.time}`}</h3>
           <div>
-            <p>С вами также свяжется наш администратор для подтверждения бронирования.</p>
-            <p>Предупреждаем вас, что бронь будет снята, </p>
-            <p> если наш администратор не сможет до вас дозвониться в течении часа</p>
+            <p className={styles.text}>С вами также свяжется наш администратор для подтверждения бронирования.</p>
+            <p className={styles.text}>Предупреждаем вас, что бронь будет снята, </p>
+            <p className={styles.text}> если наш администратор не сможет до вас дозвониться в течении часа</p>
           </div>
           <form onSubmit={createReservation}>
             <div>
-              <label htmlFor='guestCount'>Выберите количество гостей:</label>
+              <label className={styles.info_header} htmlFor='guestCount'>Выберите количество гостей:</label>
               <input
                 id='guestCount'
                 type='number'

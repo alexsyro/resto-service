@@ -15,6 +15,7 @@
 
 .mainContainer{
   height:auto;
+
   // width:70%;
 
   // width: 70%;
@@ -28,6 +29,9 @@
 
 .pick_date{
   margin-bottom: 0.5rem;
+  color: #fff;
+  font-family: 'Oswald', cursive;
+  font-size: 1.1rem;
 }
 
 .input_date{
@@ -46,6 +50,11 @@
   height: 1.5rem;
   width: 5.5rem;
   border-radius: 0.2rem;
+  background-color: #2b68608a;
+  font-size: 0.8rem;
+  color:#fff;
+  font-family: 'Comfortaa', cursive;
+  font-weight: bold;
 }
 
 .pick_room{
@@ -54,10 +63,28 @@
   border-radius: 0.2rem;
   margin-right: 1.5rem;
   margin-top: 1rem;
+  font-family: 'Comfortaa', cursive;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color:#fff;
+  background-color: #cfa670;
+  margin-bottom: 2rem;
 }
 
 .tableContainer{
   display: flex;
   flex-direction: column;
   height: auto;
+}
+
+.text{
+  font-family: 'Comfortaa', cursive;
+  // font-size: 0.8rem;
+  // font-weight: bold;
+  color:#fff;
+}
+
+.info_header{
+  font-family: 'Oswald', cursive;
+  color:#fff;
 }
