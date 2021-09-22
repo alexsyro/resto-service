@@ -4,6 +4,7 @@ const { Router } = express;
 const router = Router();
 const { Position, Subcategory, Category, Measure, File } = require('../db/models');
 const isAuthenticated = require('../middlewares/authenticationValidation');
+const checkStaff = require('../middlewares/staffValidation');
 
 // Запрос единиц измерения
 router.get('/measures', async (req, res) => {
@@ -17,7 +18,7 @@ router.get('/measures', async (req, res) => {
 });
 
 // Добавление Блюда
-router.post('/', isAuthenticated, async (req, res) => {
+router.post('/', checkStaff, async (req, res) => {
   const { file } = req.files;
   const { name, description, kcal, portionSize, price, categoryId, measureId } = req.body;
   console.log(name, description, kcal, portionSize, price, categoryId, measureId);
@@ -50,7 +51,7 @@ router.post('/', isAuthenticated, async (req, res) => {
 });
 
 // Изменение
-router.put('/:id', isAuthenticated, async (req, res) => {
+router.put('/:id', checkStaff, async (req, res) => {
   const { id } = req.params;
   const { name, description, kcal, portionSize, price } = req.body;
   console.log(
@@ -92,7 +93,7 @@ router.put('/:id', isAuthenticated, async (req, res) => {
 });
 
 // Удаление
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', checkStaff, async (req, res) => {
   const { id } = req.params;
   try {
     await Position.destroy({ where: { id } });

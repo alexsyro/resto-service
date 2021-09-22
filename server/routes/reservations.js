@@ -4,6 +4,7 @@ const { Op } = require('sequelize');
 const { Router } = express;
 const router = Router();
 const { Reservation, Table, Hall, State, Client, Order } = require('../db/models');
+const checkStaff = require('../middlewares/staffValidation');
 
 // Список всех залов
 router.get('/halls', async (req, res) => {
@@ -66,7 +67,7 @@ router.post('/', async (req, res) => {
   res.json({ reservation });
 });
 
-router.get('/', async (req, res) => {
+router.get('/', checkStaff, async (req, res) => {
   const reservations = await Reservation.findAll({
     attributes: ['id', 'table_id', 'date_time', 'guest_count', 'guest_name', 'guest_phone', 'time_interval'],
     include: [
@@ -95,7 +96,15 @@ router.get('/', async (req, res) => {
       {
         model: Reservation,
         key: 'id',
-        attributes: ['id', 'table_id', 'date_time', 'guest_count', 'guest_name', 'guest_phone', 'time_interval'],
+        attributes: [
+          'id',
+          'table_id',
+          'date_time',
+          'guest_count',
+          'guest_name',
+          'guest_phone',
+          'time_interval',
+        ],
       },
       {
         model: State,
@@ -108,7 +117,7 @@ router.get('/', async (req, res) => {
   res.json({ orders, reservations });
 });
 
-router.put('/done', async (req, res) => {
+router.put('/done', checkStaff, async (req, res) => {
   const { id } = req.body;
   const reservationToChange = await Reservation.findOne({
     where: {
@@ -121,7 +130,7 @@ router.put('/done', async (req, res) => {
   res.json({ message: 'Вы успешно подтвердили заказ' });
 });
 
-router.put('/cancel', async (req, res) => {
+router.put('/cancel', checkStaff, async (req, res) => {
   const { id } = req.body;
   const reservationToChange = await Reservation.findOne({
     where: {
