@@ -18,7 +18,7 @@ export default function Profile() {
     <div className={styles.profile__container}>
       <form onSubmit={onClickHandler}>
         <div className={styles.entry}>
-          <p>Полное имя</p>
+          <p>Полное имя: </p>
           {editMode ? (
             <input type="text" name="name" defaultValue={user.name} />
           ) : (
@@ -26,7 +26,7 @@ export default function Profile() {
           )}
         </div>
         <div className={styles.entry}>
-          <p>Почта</p>
+          <p>Почта: </p>
           {editMode ? (
             <input type="text" name="email" defaultValue={user.email} />
           ) : (
@@ -34,7 +34,7 @@ export default function Profile() {
           )}
         </div>
         <div className={styles.entry}>
-          <p>Телефон</p>
+          <p>Телефон: </p>
           {editMode ? (
             <input type="tel" name="phone" defaultValue={user.phone} />
           ) : (
@@ -44,7 +44,7 @@ export default function Profile() {
         <div className={styles.entry}>
           {editMode && (
             <>
-              <p>Пароль</p>
+              <p>Пароль: </p>
               <input type="password" name="password" />
             </>
           )}
