@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function Subcategory({ subcategory}) {
   return (
     <div>
-      <Link to={`/menu/${subcategory.name}/${subcategory.id}`} className="uk-button uk-button-default">
+      <Link to={`/menu/${subcategory.name}/${subcategory.id}`} >
         <li>{subcategory.name}</li>
       </Link>
     </div>

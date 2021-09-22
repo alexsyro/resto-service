@@ -129,7 +129,7 @@ export default function Cart() {
   } else {
     return (
       <div className={styles.container}>
-        <h2>Корзина пуста</h2>
+       <h2 className={styles.empty}>Ваша корзина пуста</h2>
       </div>
     );
   }

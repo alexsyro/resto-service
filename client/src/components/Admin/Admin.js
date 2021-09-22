@@ -78,7 +78,7 @@ function Admin() {
           </Route>
 
         </Switch>
-        <Footer />
+        {/* <Footer /> */}
       </Router>
     </div>
   );

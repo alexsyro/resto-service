@@ -1,4 +1,11 @@
 .container {
   margin-top: 15rem;
   margin-bottom: 5rem;
+  
+  .empty {
+    height: 37.5vh;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15rem;
+  }
 }
