@@ -17,6 +17,7 @@ import UsersPage from './UsersPage/UsersPage'
 import ClientInfo from './UsersPage/ClientInfo';
 import AddClientForm from './UsersPage/AddClientForm';
 import Reservation from '../Admin/Reservations/Reservations';
+import Reserve from '../Admin/Reserve/Reserve';
 import ReservationInfo from '../Admin/Reservations/ReservationInfo';
 import NoMatch from './NoMatch/NoMatch'
 
@@ -25,7 +26,7 @@ function Admin() {
     <div className={styles.container}>
       <Router>
         <Header />
-        <SideMenu />
+        {/* <SideMenu /> */}
         <Switch>
           <Route path='/' exact>
             <Main />
@@ -52,7 +53,8 @@ function Admin() {
             <Orders />
           </Route>
           <Route path='/reservations' exact>
-            <Reservation />
+            {/* <Reservation /> */}
+            <Reserve />
           </Route>
           <Route exact path='/staff/new'>
             <AddWorkerForm />

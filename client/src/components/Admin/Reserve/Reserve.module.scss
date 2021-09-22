@@ -1,0 +1,39 @@
+.container {
+  background-color: white;
+
+  .hoverRow {
+    background-color: white;
+  }
+
+  .hoverRow:hover {
+    background-color: green;
+  }
+
+  table {
+    // background-color: gray;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    border: 1px solid black;
+
+    thead {
+      background-color: gray;
+      td {
+        text-align: center;
+        font-weight: bold;
+        color: black;
+      }
+    }
+
+    tbody {
+      border: 2px solid black;
+      tr {
+        background-color: white;
+
+        td {
+          color: black;
+          text-align: center;
+        }
+      }
+    }
+  }
+}

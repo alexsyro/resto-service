@@ -41,7 +41,7 @@ function Orders() {
     fetch('http://localhost:1234/api/orders', { credentials: 'include' })
       .then((res) => res.json())
       .then((data) => {
-        const allOrders = [...data.orders];
+        const allOrders = data.orders;
         const ordersForState = allOrders.map((order) => {
           return { ...order, timeFormat: myDateParse(order.Reservation.date_time) };
         });
