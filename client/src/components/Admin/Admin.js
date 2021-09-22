@@ -73,7 +73,7 @@ function Admin() {
             <AddClientForm />
           </Route>
         </Switch>
-        <Footer />
+        {/* <Footer /> */}
       </Router>
     </div>
   );

@@ -4,6 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { clearReservationAC } from '../../../redux/actionCreators/actionCreators';
 import { cartCleanAC } from '../../../redux/actionCreators/cartAC';
 import CartPosition from './CartPosition';
+import styles from './Cart.module.scss';
 
 const TYPE_PREORDER = 5;
 const TYPE_DELIVERY = 4;
@@ -128,6 +129,6 @@ export default function Cart() {
       </form>
     );
   } else {
-    return <h2>Корзина пуста</h2>;
+    return <h2 className={styles.empty}>Ваша корзина пуста</h2>;
   }
 }

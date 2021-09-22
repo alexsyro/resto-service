@@ -1,5 +1,7 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import CategoryList from '../CategoryList/CategoryList'
+import styles from './Menu.module.scss'
+import menu from '../../../images/menu.png'
 
 function Menu() {
 
@@ -8,12 +10,30 @@ function Menu() {
 
   return (
     <>
-      <div onClick={() => setActualCategory('Салаты')}> MENU</div>
+      {/* <div onClick={() => setActualCategory('Салаты')}> MENU</div> */}
 
       {/* условный рендеринг ниже */}
 
-      <div>{actualCategory === 'MENU' && <CategoryList />} </div>
-    
+      <div className={styles.container}>
+        <div >
+          <img className={styles.pic}
+            src={menu}
+            alt="menu" />
+        </div>
+
+        <div className={styles.block}>
+
+        <div className={styles.categories}>
+          {actualCategory === 'MENU' && <CategoryList />}
+        </div>
+
+        <div className={styles.menu_picture}>
+        </div>
+
+        </div>
+
+      </div>
+
     </>
   );
 }
