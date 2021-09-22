@@ -7,7 +7,7 @@ function ClientList(props) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetch(`http://localhost:1234/api/clients`)
+    fetch(`http://localhost:1234/api/clients`, { credentials: 'include' })
       .then((res) => res.json())
       .then((data) => dispatch({ type: GET_CLIENTS, payload: data }));
   }, [dispatch]);
