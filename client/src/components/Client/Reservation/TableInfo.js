@@ -66,7 +66,7 @@ export default function TableInfo() {
                 min='1'
                 max={selectedTable.seatsLimit}
               />
-              {user ? (
+              {user.isAuth ? (
                 <p>Вы можете сделать предзаказ блюд, после бронирования :)</p>
               ) : (
                 <>

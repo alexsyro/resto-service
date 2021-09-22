@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const { Op } = require('sequelize');
 const { Staff, File, Post } = require('../db/models');
+const checkStaff = require('../middlewares/staffValidation');
 
 const { Router } = express;
 const router = Router();
@@ -16,7 +17,7 @@ router.get('/posts', async (req, res) => {
   }
 });
 
-router.get('/', async (req, res) => {
+router.get('/', checkStaff, async (req, res) => {
   try {
     const staffs = await Staff.findAll({ raw: true });
     res.json({ staffs });
@@ -27,7 +28,7 @@ router.get('/', async (req, res) => {
 });
 
 // Регистрация персонала
-router.post('/new', async (req, res) => {
+router.post('/new', checkStaff, async (req, res) => {
   const { file } = req.files;
   console.log('[INCOMING BODY TO REG STA]', file);
   const { name, login, phone, password, postId } = req.body;
@@ -72,7 +73,7 @@ router.post('/new', async (req, res) => {
 });
 
 // Изменение
-router.put('/:id', async (req, res) => {
+router.put('/:id', checkStaff, async (req, res) => {
   const { id } = req.params;
   const { file } = req.files;
   const { name, password, phone, position } = req.body;
@@ -103,7 +104,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // Удаление персонала
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', checkStaff, async (req, res) => {
   const { id } = req.params;
   try {
     await Staff.destroy({ where: { id } });
@@ -125,23 +126,25 @@ router.post('/', async (req, res) => {
       if (await bcrypt.compare(password, user.password)) {
         // Если пароль подходит, то пишем юзера в сессию
         req.session.isAuthorized = true;
+        let userData = { ...user, isStaff: true, isAuth: true, password: '' };
         if (user.PostId === 1) {
           // post_id 1 - это Админ
-          req.session.user = { ...user, isAdmin: true, password: '' };
+          userData = { ...userData, isAdmin: true };
         } else {
-          req.session.user = { ...user, isAdmin: false, password: '' };
+          userData = { ...userData, isAdmin: false };
         }
-        res.json({ user: { ...user, password: '' } });
+        req.session.user = userData;
+        res.json({ user: { ...userData } });
       } else {
         // Если не подходит - кидаем на фронт ошибку
-        res.status(403).json({ error: 'Wrong password', user: {} });
+        res.status(403).json({ error: 'Wrong password', user: { isAuth: false } });
       }
     } else {
       // Если такого пользователя не существует, кидам на фронт ошибку
-      res.status(404).json({ error: 'User not found', user: {} });
+      res.status(404).json({ error: 'User not found', user: { isAuth: false } });
     }
   } catch (error) {
-    res.status(500).json({ error: error.message, user: {} });
+    res.status(500).json({ error: error.message, user: { isAuth: false } });
   }
 });
 

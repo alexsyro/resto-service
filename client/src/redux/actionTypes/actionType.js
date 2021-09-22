@@ -33,6 +33,7 @@ export const UPDATE_ORDER = 'UPDATE_ORDER';
 export const COMPLETE_ORDER = 'COMPLETE_ORDER';
 export const DELETE_ORDER = 'DELETE_ORDER';
 export const CANCEL_ORDER = 'CANCEL_ORDER';
+export const DELETE_ORDER_POSITION = 'DELETE_ORDER_POSITION';
 
 
 // Работаем с резервированием

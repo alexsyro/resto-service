@@ -15,7 +15,7 @@ function Staff() {
       <button className='uk-button uk-button-default' onClick={() => history.goBack()}>Назад</button>
       <br />
       <br />
-      <Link to={'/staff/addworker'} className="uk-button uk-button-default"><button>Добавить работника</button></Link>
+      <Link to={'/staff/new'} className="uk-button uk-button-default"><button>Добавить работника</button></Link>
     </>
   );
 }

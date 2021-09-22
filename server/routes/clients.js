@@ -26,16 +26,16 @@ router.post('/new', async (req, res) => {
     });
     // If new - that's ok? Proceed to session creating
     if (isNew) {
-      const user = { ...userEntry.dataValues, password: ''};
+      const user = { ...userEntry.dataValues, password: '', isAdmin: false, isAuth: true, isStaff: false };
       req.session.isAuthorized = true;
       req.session.user = user;
       res.json({ user }); // send user back
     } else {
-      res.status(409).json({ error: 'User already exists', user: {} });
+      res.status(409).json({ error: 'User already exists', user: { isAuth: false } });
     }
   } catch (error) {
     console.log(error);
-    res.status(500).json({ error: error.message, user: {} });
+    res.status(500).json({ error: error.message, user: { isAuth: false } });
   }
 });
 
@@ -52,18 +52,18 @@ router.post('/', async (req, res) => {
       if (await bcrypt.compare(password, user.password)) {
         // Если пароль подходит, то пишем юзера в сессию
         req.session.isAuthorized = true;
-        req.session.user = { ...user, isAdmin: false, password: '' };
-        res.json({ user: { ...user, password: '' } });
+        req.session.user = { ...user, isAdmin: false, password: '', isAuth: true, isStaff: false };
+        res.json({ user: { ...user, password: '' }, isStaff: false });
       } else {
         // Если не подходит - кидаем на фронт ошибку
-        res.status(403).json({ error: 'Wrong password', user: {} });
+        res.status(403).json({ error: 'Wrong password', user: { isAuth: false } });
       }
     } else {
       // Если такого пользователя не существует, кидам на фронт ошибку
-      res.status(404).json({ error: 'User not found', user: {} });
+      res.status(404).json({ error: 'User not found', user: { isAuth: false } });
     }
   } catch (error) {
-    res.status(500).json({ error: error.message, user: {} });
+    res.status(500).json({ error: error.message, user: { isAuth: false } });
   }
 });
 

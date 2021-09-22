@@ -19,7 +19,7 @@ function Client({ client }) {
       <p>{client.name}</p>
       <p>{client.email}</p>
       <p>{client.phone}</p>
-      <Link to={`/clients/edit/${client.id}`} className="uk-button uk-button-default">Редактировать</Link>
+      <Link to={`/clients/${client.id}`} className="uk-button uk-button-default">Редактировать</Link>
       <button onClick={deleteClient}>Удалить</button>
     </div>
   );

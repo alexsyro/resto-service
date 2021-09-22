@@ -9,7 +9,7 @@ module.exports = {
       },
       name: {
         allowNull: false,
-        type: Sequelize.ENUM('admin', 'manager', 'waiter', 'bartender'),
+        type: Sequelize.ENUM('Администратор', 'Менеджер', 'Официант', 'Бармен', 'Повар'),
         unique: true,
       },
       createdAt: {

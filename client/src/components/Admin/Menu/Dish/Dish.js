@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import { DEL_DISH } from '../../../../redux/actionTypes/actionType';
 
 function Dish({ dish }) {
-
   let { data } = dish['File.data'];
   let base64 = new Buffer(data).toString('base64');
   let type = dish['File.type'];
@@ -16,6 +15,7 @@ function Dish({ dish }) {
     // console.log('delete')
     fetch(`http://localhost:1234/api/menu/${dish.id}`, {
       method: 'DELETE',
+      credentials: 'include',
     }).then(console.log);
   };
 
@@ -27,7 +27,7 @@ function Dish({ dish }) {
       <p>{dish.kcal}</p>
       <p>{dish.portionSize}</p>
       <p>{dish.price}</p>
-      <Link to={`/menu/edit/${dish.name}/${dish.id}`} className='uk-button uk-button-default'>
+      <Link to={`/menu/position/${dish.id}`} className='uk-button uk-button-default'>
         <button>Редактировать</button>
       </Link>
       <button onClick={deleteDish}>Удалить</button>

@@ -3,7 +3,7 @@ import SideMenu from './SideMenu/SideMenu';
 import styles from './Admin.module.scss';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Header from './Header/Header';
-import Footer from './Footer/Footer';
+// import Footer from './Footer/Footer';
 import Menu from './Menu/Menu';
 import Orders from './Orders/Orders';
 import OrderInfo from './Orders/OrderInfo';
@@ -30,23 +30,22 @@ function Admin() {
           <Route path='/' exact>
             <Main />
           </Route>
-          <Route path='/menu/edit/:dishName/:dishId' exact>
+          <Route path='/menu/position/:dishId' exact>
             <DishInfo />
           </Route>
-          <Route path='/menu/:categoryName/:categoryId' exact>
+          <Route path='/menu/subcategory/:categoryId' exact>
             <SubcategoryItem />
           </Route>
-
-          <Route path='/menu/add/:categoryName/:categoryId' exact>
+          <Route path='/menu/subcategory/:categoryId/new' exact>
             <AddDishForm />
           </Route>
           <Route path='/menu' exact>
             <Menu />
           </Route>
-          <Route path='/orders/edit/:id' exact>
+          <Route path='/orders/:id' exact>
             <OrderInfo />
           </Route>
-          <Route path='/reservations/edit/:id' exact>
+          <Route path='/reservations/:id' exact>
             <ReservationInfo />
           </Route>
           <Route path='/orders' exact>
@@ -55,10 +54,10 @@ function Admin() {
           <Route path='/reservations' exact>
             <Reservation />
           </Route>
-          <Route exact path='/staff/addworker'>
+          <Route exact path='/staff/new'>
             <AddWorkerForm />
           </Route>
-          <Route path='/staff/edit/:staffId' exact>
+          <Route path='/staff/:staffId' exact>
             <WorkerInfo />
           </Route>
           <Route path='/staff' exact>
@@ -67,18 +66,17 @@ function Admin() {
           <Route path='/clients' exact>
             <UsersPage />
           </Route>
-          <Route path='/clients/edit/:clientId' exact>
+          <Route path='/clients/:clientId' exact>
             <ClientInfo />
           </Route>
-          <Route exact path='/clients/addclient'>
+          <Route exact path='/clients/new'>
             <AddClientForm />
           </Route>
           <Route>
             <NoMatch />
           </Route>
-
         </Switch>
-        <Footer />
+        {/* <Footer /> */}
       </Router>
     </div>
   );
