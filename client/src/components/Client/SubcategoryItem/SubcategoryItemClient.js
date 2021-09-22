@@ -26,7 +26,9 @@ function SubcategoryItem(props) {
   return (
     <>
       <button className={styles.back} onClick={() => history.goBack()}>Назад</button>
-      {dishes?.map((dish) => <Dish key={dish.id} dish={dish} />)}
+      <div className={styles.main_container}>
+        {dishes?.map((dish) => <Dish key={dish.id} dish={dish} />)}
+      </div>
     </>
   );
 }

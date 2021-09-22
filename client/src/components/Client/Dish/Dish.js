@@ -24,14 +24,14 @@ function Dish({ dish }) {
 
   return (
     <div className={styles.container}>
-      <img src={`data:${type};base64,${base64}`} width='250' height='200' alt='IMG' />
-      <p>{dish.name}</p>
-      <p>{dish.description}</p>
-      <p>Ккал: {dish.kcal}</p>
-      <p>Размер порции: {dish.portionSize}</p>
-      <p> Цена: {dish.price}</p>
+      <img  className={styles.img} src={`data:${type};base64,${base64}`}  alt='IMG' />
+      <p className={styles.dish_title} >{dish.name}</p>
+      <p className={styles.description}>{dish.description}</p>
+      <p className={styles.kcal}>Ккал: {dish.kcal}</p>
+      <p className={styles.portionSize}>Размер порции: {dish.portionSize}</p>
+      <p className={styles.text}> Цена: {dish.price}</p>
       {user?.isAuth && (
-        <button onClick={addToCart} type='text'>
+        <button className={styles.dish_button} onClick={addToCart} type='text'>
           Добавить в корзину
         </button>
       )}
