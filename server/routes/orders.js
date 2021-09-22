@@ -2,6 +2,7 @@ const express = require('express');
 const checkStaff = require('../middlewares/staffValidation');
 const { Reservation, Table, State, Order, Client, OrderPosition, Position, User } = require('../db/models');
 const isAuthenticated = require('../middlewares/authenticationValidation');
+const mailer = require('../nodemailer');
 
 const { Router } = express;
 const router = Router();
@@ -126,7 +127,15 @@ router.put('/done', checkStaff, async (req, res) => {
       },
       raw: true,
     });
-    
+
+    // const message = {
+    //   from: 'Ресторан Точка',
+    //   to: 'musvk@yandex.ru',
+    //   subject: 'Подтверждение бронирования',
+    //   text: 'Уважаемый, вот Ваш стол!',
+    // };
+    // mailer(message);
+
     res.json({ message: 'Вы успешно подтвердили заказ' });
   } catch (error) {
     console.log(`::::::::::::::::::::::DATABASE ERROR: ${error.message}`);
