@@ -35,6 +35,21 @@ const ordersReducer = (state = initialState, action) => {
     case actionTypes.DELETE_ORDER:
       return { ...state, orders: state.orders.filter((order) => order.id !== action.payload) }
 
+    case actionTypes.DELETE_ORDER_POSITION:
+      return {
+        ...state, orders: [...state.orders].map(order => {
+          return {
+            ...order, OrderPositions: [...order.OrderPositions].filter(position => {
+              if (position.id !== action.payload.id) {
+                return true
+              } else {
+                return false
+              }
+            })
+          }
+        })
+      }
+
     case actionTypes.CANCEL_ORDER:
       return {
         ...state, orders: state.orders.map((order) => {

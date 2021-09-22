@@ -21,7 +21,7 @@ function Header() {
         <i className='fas fa-times' id={styles.cancel}></i>
       </label>
       <nav className={styles.sidebar}>
-        <header><img className={styles.sidebar__logo} src={logo}/></header>
+        <header><img className={styles.sidebar__logo} src={logo} alt='IMG'/></header>
         <ul>
           <li>
             <Link className={styles.sidebar__links} to='/'>

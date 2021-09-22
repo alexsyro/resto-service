@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import * as reservationsAC from '../../../redux/actionCreators/actionCreators'
 
 function ToCheckReservation({ reservation }) {

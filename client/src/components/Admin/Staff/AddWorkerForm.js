@@ -41,12 +41,13 @@ function AddWorkerForm() {
       formData.append('postId', postId.value);
       fetch(action, {
         method,
+        credentials: 'include',
         body: formData,
       })
         .then((res) => res.json())
         .then((data) => dispatch({ type: GET_STAFF, action: data }));
     } else {
-      alert('Не правильный формат телефона')
+      alert('Не правильный формат телефона');
     }
   };
 

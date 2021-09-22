@@ -3,6 +3,7 @@ const express = require('express');
 const { Router } = express;
 const router = Router();
 const { Position, Subcategory, Category, Measure, File } = require('../db/models');
+const isAuthenticated = require('../middlewares/authenticationValidation');
 
 // Запрос единиц измерения
 router.get('/measures', async (req, res) => {
@@ -16,7 +17,7 @@ router.get('/measures', async (req, res) => {
 });
 
 // Добавление Блюда
-router.post('/', async (req, res) => {
+router.post('/', isAuthenticated, async (req, res) => {
   const { file } = req.files;
   const { name, description, kcal, portionSize, price, categoryId, measureId } = req.body;
   console.log(name, description, kcal, portionSize, price, categoryId, measureId);
@@ -49,7 +50,7 @@ router.post('/', async (req, res) => {
 });
 
 // Изменение
-router.put('/:id', async (req, res) => {
+router.put('/:id', isAuthenticated, async (req, res) => {
   const { id } = req.params;
   const { name, description, kcal, portionSize, price } = req.body;
   console.log(

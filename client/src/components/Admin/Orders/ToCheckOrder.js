@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import * as ordersAC from '../../../redux/actionCreators/ordersAC'
 
 function ToCheckOrder({ order }) {
@@ -36,6 +36,21 @@ function ToCheckOrder({ order }) {
     dispatch(ordersAC.cancelOrderAC({ id: order.id }))
   }
 
+  const cancelPosition = (position_id) => {
+    fetch('http://localhost:1234/api/orders/position', {
+      method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
+      mode: 'cors', // no-cors, *cors, same-origin
+      credentials: 'include', // include, *same-origin, omit
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ id: order.id, position_id }) // body data type must match "Content-Type" header
+    })
+      .then(res => res.json())
+      .then(console.log)
+    dispatch(ordersAC.deleteOrderPositionAC({ id: position_id }))
+  }
+
   return (
     <li>
       <button onClick={() => finishOrder()} className="uk-button uk-button-primary"> перевести в статус подтвержденного</button>
@@ -59,6 +74,8 @@ function ToCheckOrder({ order }) {
               <p>{`Цена: ${position.Position.price} рублей`}</p>
               <p>{`Количество: ${position.quantity}`}</p>
               <p>{`Итого: ${position.Position.price * position.quantity} рублей`}</p>
+              <button onClick={() => cancelPosition(position.id)} className="uk-button uk-button-primary"> Удалить блюдо</button>
+
               <hr />
             </li>
           })}
@@ -71,7 +88,7 @@ function ToCheckOrder({ order }) {
       </p>
 
       <button onClick={() => cancelOrder()} className="uk-button uk-button-primary"> Отменить заказ</button>
-      <Link to={`/reservations/edit/${order.id}`} className="uk-button uk-button-default">Скорректировать</Link>
+      <Link to={`/orders/${order.id}`} className="uk-button uk-button-default">Скорректировать</Link>
 
     </li >
   );

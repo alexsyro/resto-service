@@ -7,7 +7,7 @@ function DishInfo() {
   const dispatch = useDispatch();
 
   const history = useHistory();
-  const { dishName, dishId } = useParams();
+  const { dishId } = useParams();
 
   const dishes = useSelector((state) => state.dishesReducer.dishes);
   console.log(dishes);
@@ -33,6 +33,7 @@ function DishInfo() {
 
     fetch(`http://localhost:1234/api/menu/${dishId}`, {
       method: 'PUT',
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
       },
