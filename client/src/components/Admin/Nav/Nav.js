@@ -1,35 +1,43 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
+import { sagaLogoutAC } from '../../../redux/actionCreators/sagaAC';
 
 function Nav(props) {
-  return (
-    <nav className="uk-navbar-container" uk-navbar='true'>
-      <div className="uk-navbar-left">
+  const dispatch = useDispatch();
+  const history = useHistory();
 
-        <ul className="uk-navbar-nav" >
-          <li className="uk-active">
-            <Link to="/">Main</Link>
+  const logoutHandler = (event) => {
+    event.preventDefault();
+    dispatch(sagaLogoutAC());
+    history.push('/');
+  };
+  return (
+    <nav className='uk-navbar-container' uk-navbar='true'>
+      <div className='uk-navbar-left'>
+        <ul className='uk-navbar-nav'>
+          <li className='uk-active'>
+            <Link to='/'>Главная</Link>
           </li>
-          <li className="uk-active">
-            <Link to="/menu">Menu</Link>
+          <li className='uk-active'>
+            <Link to='/menu'>МЕНЮ</Link>
           </li>
-          <li className="uk-active">
-            <Link to="/staff">Staff</Link>
+          <li className='uk-active'>
+            <Link to='/staff'>ПЕРСОНАЛ</Link>
           </li>
-          <li className="uk-active">
-            <Link to="/clients">Clients</Link>
+          <li className='uk-active'>
+            <Link to='/clients'>КЛИЕНТЫ</Link>
           </li>
-          <li className="uk-active">
-            <Link to="/orders">Orders</Link>
+          <li className='uk-active'>
+            <Link to='/orders'>ЗАКАЗЫ</Link>
           </li>
-          <li className="uk-active">
-            <Link to="/reservations">Reservations</Link>
+          <li className='uk-active'>
+            <Link to='/reservations'>РЕЗЕРВИРОВАНИЯ</Link>
           </li>
-          <li className="uk-active">
-            <Link to="/logout">Logout</Link>
+          <li className='uk-active'>
+            <Link onClick={logoutHandler}>ВЫХОД</Link>
           </li>
         </ul>
-
       </div>
     </nav>
   );

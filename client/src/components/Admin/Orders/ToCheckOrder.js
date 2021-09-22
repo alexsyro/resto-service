@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import * as ordersAC from '../../../redux/actionCreators/ordersAC'
 
 function ToCheckOrder({ order }) {
@@ -71,7 +71,7 @@ function ToCheckOrder({ order }) {
       </p>
 
       <button onClick={() => cancelOrder()} className="uk-button uk-button-primary"> Отменить заказ</button>
-      <Link to={`/reservations/edit/${order.id}`} className="uk-button uk-button-default">Скорректировать</Link>
+      <Link to={`/orders/${order.id}`} className="uk-button uk-button-default">Скорректировать</Link>
 
     </li >
   );
