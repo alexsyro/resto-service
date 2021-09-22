@@ -51,7 +51,7 @@ function Orders() {
   })
 
   const finishedOrders = useSelector(state => state.ordersReducer.orders?.filter(order => [2, 6, 7].includes(order['state_id'])));
-  const toCheckOrders = useSelector(state => state.ordersReducer.orders?.filter(order => [1, 4, 5].includes(order['state_id'])));
+  const toCheckOrders = useSelector(state => state.ordersReducer.orders?.filter(order => [1, 3, 4, 5].includes(order['state_id'])));
   return (
     <div className={styles.container}>
 

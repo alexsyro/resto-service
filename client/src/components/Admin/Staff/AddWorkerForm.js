@@ -2,12 +2,19 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { GET_STAFF } from '../../../redux/actionTypes/actionType';
 
+const REGEXP_PHONE_VALIDATION = /[-+() ]*/gs;
+
+const checkCorrectNumber = (string) => {
+  const normilize = string.replace(REGEXP_PHONE_VALIDATION, '');
+  return normilize.length === 11;
+};
+
 function AddWorkerForm() {
   const dispatch = useDispatch();
   const [img, setImg] = useState(null);
 
-  const posts = useSelector((state) => state.staffReducer.positions); 
-  console.log(posts,'POSTS')
+  const posts = useSelector((state) => state.staffReducer.positions);
+  console.log(posts, 'POSTS');
 
   const fileUpload = (event) => {
     const [file] = event.target.files;
@@ -24,20 +31,23 @@ function AddWorkerForm() {
     e.preventDefault();
     const formData = new FormData();
     const [file] = e.target.file.files;
-    const { action, method, name, position, login, password, phone, postId } = e.target;
-    formData.append('file', file);
-    formData.append('name', name.value);
-    formData.append('position', position.value);
-    formData.append('login', login.value);
-    formData.append('password', password.value);
-    formData.append('phone', phone.value);
-    formData.append('postId', postId.value);
-    fetch(action, {
-      method,
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then((data) => dispatch({ type: GET_STAFF, action: data }));
+    const { action, method, name, login, password, phone, postId } = e.target;
+    if (checkCorrectNumber(phone.value)) {
+      formData.append('file', file);
+      formData.append('name', name.value);
+      formData.append('login', login.value);
+      formData.append('password', password.value);
+      formData.append('phone', phone.value);
+      formData.append('postId', postId.value);
+      fetch(action, {
+        method,
+        body: formData,
+      })
+        .then((res) => res.json())
+        .then((data) => dispatch({ type: GET_STAFF, action: data }));
+    } else {
+      alert('Не правильный формат телефона')
+    }
   };
 
   return (
@@ -48,10 +58,11 @@ function AddWorkerForm() {
       name='addWorkerForm'
     >
       <input type='text' name='name' placeholder='Имя сотрудника' />
-      <select name="postId"> 
-       {posts.map((post)=> <option value={post.id}>{post.name}</option> )}
+      <select name='postId'>
+        {posts.map((post) => (
+          <option value={post.id}>{post.name}</option>
+        ))}
       </select>
-      <input type='text' name='position' placeholder='Должность' />
       <input type='text' name='phone' placeholder='Телефон' />
       <input type='text' name='login' placeholder='Логин' />
       <input type='text' name='password' placeholder='Пароль' />

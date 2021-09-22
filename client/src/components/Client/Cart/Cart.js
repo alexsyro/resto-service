@@ -66,6 +66,7 @@ export default function Cart() {
 
   useEffect(() => {
     // Меняем общую сумму, если поменялось количество
+    console.log('CAAART REDUCE', cart);
     const price = cart.reduce((acc, position) => acc + Number(position.price) * Number(position.quantity), 0);
     setFullPrice(price - (price * user.discount) / 100);
   }, [cart]);
@@ -73,7 +74,7 @@ export default function Cart() {
   const total = useSelector((state) => state.cartReducer.cart);
   console.log(total, 'TOTAL');
 
-  if (cart.length) {
+  if (cart?.length) {
     return (
       <form onSubmit={makeOrder}>
         <h3>Ваш заказ:</h3>
@@ -82,6 +83,7 @@ export default function Cart() {
             <tr>
               <td>Название</td>
               <td>Количество</td>
+              <td>Удалить</td>
               <td>Цена</td>
               <td>Всего</td>
             </tr>

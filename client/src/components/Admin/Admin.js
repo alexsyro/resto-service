@@ -18,6 +18,7 @@ import ClientInfo from './UsersPage/ClientInfo';
 import AddClientForm from './UsersPage/AddClientForm';
 import Reservation from '../Admin/Reservations/Reservations';
 import ReservationInfo from '../Admin/Reservations/ReservationInfo';
+import NoMatch from './NoMatch/NoMatch'
 
 function Admin() {
   return (
@@ -72,6 +73,10 @@ function Admin() {
           <Route exact path='/clients/addclient'>
             <AddClientForm />
           </Route>
+          <Route>
+            <NoMatch />
+          </Route>
+
         </Switch>
         {/* <Footer /> */}
       </Router>

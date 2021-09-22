@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 // import {GET_DISHES} from '../../../redux/actionTypes/actionType'
 import { dishAC } from '../../../redux/actionCreators/dishAC'
 import Dish from '../Dish/Dish';
 
 function SubcategoryItem(props) {
-
+  const history = useHistory();
   const dispatch = useDispatch();
   const { categoryId } = useParams()
 
@@ -24,6 +24,7 @@ function SubcategoryItem(props) {
   return (
     <>
       {dishes?.map((dish) => <Dish key={dish.id} dish={dish} />)}
+      <button onClick={() => history.goBack()}>Назад</button>
     </>
   );
 }

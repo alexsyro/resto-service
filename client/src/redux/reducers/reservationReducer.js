@@ -8,10 +8,14 @@ import {
   GET_RESERVATIONS,
   UPDATE_RESERVATION,
   COMPLETE_RESERVATION,
-  DELETE_RESERVATION
+  DELETE_RESERVATION,
+  CANCEL_RESERVATION,
 } from '../actionTypes/actionType';
 
-const initialState = { selectedTable: null, selectedHall: null, selectedDateTime: null, reservation: null, reservations: [] };
+const localReservation = JSON.parse(localStorage.getItem('reservation'));
+const initialState = localReservation
+  ? { ...localReservation }
+  : { selectedTable: null, selectedHall: null, selectedDateTime: null, reservation: null, reservations: [] };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
@@ -35,27 +39,44 @@ export default function reducer(state = initialState, action) {
       }
     case UPDATE_RESERVATION:
       return {
-        ...state, reservations: state.reservations.map((reservation) => {
+        ...state,
+        reservations: state.reservations.map((reservation) => {
           if (reservation.id === action.payload.id) {
-            return { ...reservation }
+            return { ...reservation };
           } else {
-            return reservation
+            return reservation;
           }
-        })
-      }
+        }),
+      };
     case COMPLETE_RESERVATION:
       return {
-        ...state, reservations: state.reservations.map((reservation) => {
+        ...state,
+        reservations: state.reservations.map((reservation) => {
           if (reservation.id === action.payload.id) {
-            return { ...reservation, 'State.id': 2, 'State.state': 'ПОДТВЕРЖДЁН' }
+            return { ...reservation, 'State.id': 2, 'State.state': 'ПОДТВЕРЖДЕНО' };
           } else {
-            return reservation
+            return reservation;
           }
-        })
-      }
+        }),
+      };
     case DELETE_RESERVATION:
-      return { ...state, reservations: state.reservations.filter((reservation) => reservation.id !== action.payload) }
-      
+      return {
+        ...state,
+        reservations: state.reservations.filter((reservation) => reservation.id !== action.payload),
+      };
+
+    case CANCEL_RESERVATION:
+      return {
+        ...state,
+        reservations: state.reservations.map((reservation) => {
+          if (reservation.id === action.payload.id) {
+            return { ...reservation, 'State.id': 7, 'State.state': 'ОТМЕНА' };
+          } else {
+            return reservation;
+          }
+        }),
+      };
+
     default:
       return state;
   }

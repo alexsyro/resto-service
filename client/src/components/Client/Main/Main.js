@@ -12,6 +12,7 @@ import Payment from '../Payment/Payment';
 import Menu from '../Menu/Menu';
 import SubcategoryItemClient from '../SubcategoryItem/SubcategoryItemClient';
 import Profile from '../Profile/Profile';
+import NoMatch from '../NoMatch/NoMatch';
 
 function Main() {
   return (
@@ -29,9 +30,9 @@ function Main() {
         <Route path='/menu/:categoryName/:categoryId' exact>
           <SubcategoryItemClient />
         </Route>
-        <Route exact path='/gallery'>
+        {/* <Route exact path='/gallery'>
           <Gallery />
-        </Route>
+        </Route> */}
         <Route exact path='/contacts'>
           <Contacts />
         </Route>
@@ -52,6 +53,9 @@ function Main() {
         </Route>
         <Route exact path='/payment'>
           <Payment />
+        </Route>
+        <Route>
+          <NoMatch />
         </Route>
       </Switch>
     </div>
