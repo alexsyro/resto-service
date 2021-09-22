@@ -59,7 +59,7 @@ function Header() {
                 Личный кабинет
               </Link>
             </p>
-            <p className={styles.navbar__links}>
+            <p  className={styles.navbar__links}>
               <button onClick={logoutHandler} type='submit' className={styles.navbar__link}>
                 Выйти
               </button>

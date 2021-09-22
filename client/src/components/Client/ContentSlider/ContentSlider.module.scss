@@ -108,7 +108,7 @@ input[name='r'] {
   0% {
     width: 0;
     height: 0;
-    border-top-color: #DCCA87;
+    border-top-color: #dcca87;
     border-right-color: transparent;
     border-bottom-color: transparent;
     border-left-color: transparent;
@@ -117,8 +117,8 @@ input[name='r'] {
   50% {
     width: 100%;
     height: 0;
-    border-top-color: #DCCA87;
-    border-right-color: #DCCA87;
+    border-top-color: #dcca87;
+    border-right-color: #dcca87;
     border-bottom-color: transparent;
     border-left-color: transparent;
   }
@@ -126,8 +126,8 @@ input[name='r'] {
   100% {
     width: 100%;
     height: 100%;
-    border-top-color: #DCCA87;
-    border-right-color: #DCCA87;
+    border-top-color: #dcca87;
+    border-right-color: #dcca87;
     border-bottom-color: transparent;
     border-left-color: transparent;
   }
@@ -145,7 +145,7 @@ input[name='r'] {
 }
 
 .slider__btn:hover:after {
-  animation: animate2 1s linear forwards;  
+  animation: animate2 1s linear forwards;
 }
 
 @keyframes animate2 {
@@ -155,7 +155,7 @@ input[name='r'] {
     border-top-color: transparent;
     border-right-color: transparent;
     border-bottom-color: transparent;
-    border-left-color: #DCCA87;
+    border-left-color: #dcca87;
   }
 
   50% {
@@ -163,8 +163,8 @@ input[name='r'] {
     height: 100%;
     border-top-color: transparent;
     border-right-color: transparent;
-    border-bottom-color: #DCCA87;
-    border-left-color: #DCCA87;
+    border-bottom-color: #dcca87;
+    border-left-color: #dcca87;
   }
 
   100% {
@@ -172,22 +172,21 @@ input[name='r'] {
     height: 100%;
     border-top-color: transparent;
     border-right-color: transparent;
-    border-bottom-color: #DCCA87;
-    border-left-color: #DCCA87;
+    border-bottom-color: #dcca87;
+    border-left-color: #dcca87;
   }
 }
 
 .slider__btn__text {
   z-index: 1000;
   position: relative;
-  color: #DCCA87;
+  color: #dcca87;
   background: none;
   font-size: 1.3rem;
   transition: all 1s linear;
-
 }
 
 .slider__btn__text:hover {
-  color: #DCCA87;
+  color: #dcca87;
   text-decoration: none;
 }
