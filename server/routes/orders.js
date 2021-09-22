@@ -1,7 +1,11 @@
 const express = require('express');
+const axios = require('axios');
+const qs = require('qs');
 const checkStaff = require('../middlewares/staffValidation');
-const { Reservation, Table, State, Order, Client, OrderPosition, Position, User } = require('../db/models');
+const { Reservation, Table, State, Order, Client, OrderPosition, Position } = require('../db/models');
 const isAuthenticated = require('../middlewares/authenticationValidation');
+
+const { BEARER } = process.env;
 
 const { Router } = express;
 const router = Router();
@@ -120,13 +124,36 @@ router.put('/done', checkStaff, async (req, res) => {
     orderToChange.StateId = 2;
     await orderToChange.save();
     // API для СМС
-    const user = await User.findOne({
+    const client = await Client.findOne({
       where: {
-        id: orderToChange.ClientId,
+        id: orderToChange.dataValues.ClientId,
       },
       raw: true,
     });
-    
+
+    // const myHeaders = new Headers();
+    // myHeaders.append(
+    //   'Authorization',
+    //   'Bearer eyJhbGciOiJIUzI1NiJ9.eyJjdXN0b21lcl9pZCI6MjcxMSwiZGF0ZXRpbWUiOjE2MzIzMTkzNjh9.O4KECeIgMYb4E89WkUgjSuO5IUAZz6gpxkvcMJe0jmU',
+    // );
+    // myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
+
+    const data = qs.stringify({
+      phone: client.phone,
+      text: `${client.name}, ваш заказ ${orderToChange.id} Подтверждён`,
+    });
+    const config = {
+      method: 'post',
+      url: 'https://api.pushsms.ru/api/v1/delivery',
+      headers: {
+        Authorization:
+          'eyJhbGciOiJIUzI1NiJ9.eyJjdXN0b21lcl9pZCI6MjcxMSwiZGF0ZXRpbWUiOjE2MzIzMTkzNjh9.O4KECeIgMYb4E89WkUgjSuO5IUAZz6gpxkvcMJe0jmU',
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      data,
+    };
+
+    const response = await axios(config);
     res.json({ message: 'Вы успешно подтвердили заказ' });
   } catch (error) {
     console.log(`::::::::::::::::::::::DATABASE ERROR: ${error.message}`);
