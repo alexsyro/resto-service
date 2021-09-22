@@ -1,6 +1,5 @@
 module.exports = function isAuthenticated(req, res, next) {
-  console.log('CHECK', req.session, req.session.user);
-  if (req.session && req.session.isAuthenticated) {
+  if (req.session && req.session.isAuthorized) {
     console.log(`[${new Date()}]--[ACCESS]--[USER]-${req.session.user.login} GRANTED`);
     next();
   } else {

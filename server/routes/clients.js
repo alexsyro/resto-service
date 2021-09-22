@@ -1,14 +1,13 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const { Op } = require('sequelize');
-const { Client } = require('../db/models');
+const { Client, Order, OrderPosition, Position, Discount } = require('../db/models');
 
 const { Router } = express;
 const router = Router();
 
 // Регистрация
 router.post('/new', async (req, res) => {
-  console.log('[INCOMING BODY TO REG CLIENT]', req.body);
   const { name, email, phone, password, discountId } = req.body;
   try {
     const [userEntry, isNew] = await Client.findOrCreate({
@@ -34,14 +33,13 @@ router.post('/new', async (req, res) => {
       res.status(409).json({ error: 'User already exists', user: { isAuth: false } });
     }
   } catch (error) {
-    console.log(error);
+    console.log(`DATABASE ERROR: ${error.message}`);
     res.status(500).json({ error: error.message, user: { isAuth: false } });
   }
 });
 
 // Логин
 router.post('/', async (req, res) => {
-  console.log('[INCOMING BODY TO LOGIN CLIENT]', req.body);
   const { credentials, password } = req.body;
   // Если в строке находится email проверяем среди клиентов
   try {
@@ -50,10 +48,51 @@ router.post('/', async (req, res) => {
     if (user) {
       // Если клиент с таким логином существует, тогда сравниваем пароли
       if (await bcrypt.compare(password, user.password)) {
+        const userData = { ...user, isAdmin: false, password: '', isAuth: true, isStaff: false };
         // Если пароль подходит, то пишем юзера в сессию
         req.session.isAuthorized = true;
-        req.session.user = { ...user, isAdmin: false, password: '', isAuth: true, isStaff: false };
-        res.json({ user: { ...user, password: '' }, isStaff: false });
+        req.session.user = userData;
+        const orders = await Order.findAll({
+          where: {
+            ClientId: user.id,
+          },
+          include: [
+            {
+              model: OrderPosition,
+              attributes: ['quantity'],
+              include: [{ model: Position, attributes: ['price'] }],
+            },
+          ],
+        });
+        const fullSpentMoney = orders.reduce((accum, order) => {
+          const allPosPrice = order.OrderPositions.reduce((acc, position) => {
+            // eslint-disable-next-line max-len
+            const posPrice = position.dataValues.quantity * position.dataValues.Position.dataValues.price;
+            return acc + posPrice;
+          }, 0);
+          return accum + allPosPrice;
+        }, 0);
+        const possibleDiscount = await Discount.findOne({
+          where: {
+            [Op.and]: [
+              {
+                minLimit: {
+                  [Op.lte]: fullSpentMoney,
+                },
+              },
+              {
+                maxLimit: {
+                  [Op.gte]: fullSpentMoney,
+                },
+              },
+            ],
+          },
+          raw: true,
+        });
+        const userEntry = await Client.findOne({ where: { id: user.id } });
+        userEntry.DiscountId = possibleDiscount.id;
+        await userEntry.save();
+        res.json({ user: { ...userData } });
       } else {
         // Если не подходит - кидаем на фронт ошибку
         res.status(403).json({ error: 'Wrong password', user: { isAuth: false } });
@@ -63,6 +102,7 @@ router.post('/', async (req, res) => {
       res.status(404).json({ error: 'User not found', user: { isAuth: false } });
     }
   } catch (error) {
+    console.log(`DATABASE ERROR: ${error.message}`);
     res.status(500).json({ error: error.message, user: { isAuth: false } });
   }
 });
