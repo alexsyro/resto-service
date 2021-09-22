@@ -5,15 +5,17 @@ import { Provider } from 'react-redux';
 import Admin from './components/Admin/Admin';
 import Client from './components/Client/Client';
 import store from './redux/store';
+import ComponentSwitcher from './components/ComponentSwitcher';
 
-const isAdmin = true;
+// const isAdmin = false;
 
 ReactDOM.render(
   <>
     <Provider store={store}>
       <Router>
         {/* Условный рендеринг isAdmin. */}
-        {isAdmin ? <Admin /> : <Client />}
+        {/* {isAdmin ? <Admin /> : <Client />} */}
+        <ComponentSwitcher />
       </Router>
     </Provider>
   </>,

@@ -1,18 +1,22 @@
 const posts = [
   {
-    name: 'admin',
+    name: 'Администратор',
     createdAt: new Date(),
   },
   {
-    name: 'manager',
+    name: 'Менеджер',
     createdAt: new Date(),
   },
   {
-    name: 'waiter',
+    name: 'Официант',
     createdAt: new Date(),
   },
   {
-    name: 'bartender',
+    name: 'Бармен',
+    createdAt: new Date(),
+  },
+  {
+    name: 'Повар',
     createdAt: new Date(),
   },
 ];

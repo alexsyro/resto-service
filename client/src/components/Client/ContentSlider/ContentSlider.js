@@ -42,10 +42,10 @@ function ContentSlider() {
 
       </div>
         <div className={styles.navigation}>
-          <label for={styles.r1} className={styles.bar}></label>
-          <label for={styles.r2} className={styles.bar}></label>
-          <label for={styles.r3} className={styles.bar}></label>
-          <label for={styles.r4} className={styles.bar}></label>
+          <label htmlFor={styles.r1} className={styles.bar}></label>
+          <label htmlFor={styles.r2} className={styles.bar}></label>
+          <label htmlFor={styles.r3} className={styles.bar}></label>
+          <label htmlFor={styles.r4} className={styles.bar}></label>
         </div>
 
       <button className={styles.slider__btn}>
