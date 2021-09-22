@@ -8,7 +8,7 @@ import styles from './SubcategoryItem.module.scss'
 
 function SubcategoryItem(props) {
   const dispatch = useDispatch();
-  const {  categoryId } = useParams();
+  const { categoryId } = useParams();
 
   useEffect(() => {
     fetch('http://localhost:1234/api/menu/categories/' + categoryId, { credentials: 'include' })
@@ -20,15 +20,15 @@ function SubcategoryItem(props) {
   console.log(dishes, 'DISHES');
 
   return (
-    <div>
-    <div className={styles.dish__block}>
-      {dishes.map((dish) => (
-        <Dish key={dish.id} dish={dish} />
-      ))}
-    </div>
-      <Link to={`/menu/subcategory/${categoryId}/new`} className='uk-button uk-button-default'>
-        Добавить позицию
+    <div className={styles.main__block}>
+      <Link to={`/menu/subcategory/${categoryId}/new`}>
+        <button className={`${styles.add__button} uk-button uk-button-primary`}>Добавить позицию</button>
       </Link>
+      <div className={styles.dish__block}>
+        {dishes.map((dish) => (
+          <Dish key={dish.id} dish={dish} />
+        ))}
+      </div>
     </div>
   );
 }
