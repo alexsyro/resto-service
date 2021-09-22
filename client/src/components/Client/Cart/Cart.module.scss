@@ -1,4 +1,29 @@
+
+.form{
+  
+  .order{
+    margin-top: 5rem;
+  }
+  
+  .table{
+    display: table-cell;
+    margin: 0rem;
+    border-spacing: 1rem;
+    text-align: start;
+  }
+  
+  .table_nav{
+   display: flex;
+  }
+}
+
+.empty{
+  height: 37.5vh;
+  align-items: center;
+  justify-content: center;
+
 .container {
+
   margin-top: 15rem;
   margin-bottom: 5rem;
   
@@ -8,4 +33,22 @@
     justify-content: center;
     margin-top: 15rem;
   }
+}
+
+td {
+  white-space: wrap;
+  width: 7rem;
+  text-align: start;
+}
+
+h3{
+  margin-bottom: 1rem;
+}
+
+.input{
+ margin-right: 1rem;
+}
+
+.total{
+  margin-top: 1rem;
 }
