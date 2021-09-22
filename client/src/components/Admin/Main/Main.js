@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import styles from './Main.module.scss';
-import Icons from 'react-uikit-icons';
 
 
 function Main() {
