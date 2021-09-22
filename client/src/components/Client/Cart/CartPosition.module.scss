@@ -11,4 +11,30 @@ td {
   white-space: wrap;
   width: 7rem;
   text-align: start;
+  color: #fff;
+  font-family: 'Comfortaa', cursive;
+}
+
+.scale{
+  height: 1.5rem;
+  margin-top: 0.5rem;
+  border-radius: 0.3rem;
+  // background-color: #cfa670;
+  // color:#fff;
+  // opacity: 60%;
+  font-size: 1rem;
+  width: 4rem;
+  // text-align: center;
+}
+
+.delete{
+  height: 1.5rem;
+  position: relative;
+  left: 19%;
+  transform: translateX(-50%);
+  width: 4rem;
+  border-radius: 0.3rem;
+  background-color: #cfa670;
+  color:#fff;
+  margin-top: 0.2rem;
 }

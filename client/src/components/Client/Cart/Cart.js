@@ -74,7 +74,7 @@ export default function Cart() {
       <div className={styles.fullCart}>
         <form className={styles.form} onSubmit={makeOrder}>
           <h3 className={styles.order}>Корзина</h3>
-          <p className={styles.your_order}>Ваш заказ:</p>
+          {/* <p className={styles.your_order}>Ваш заказ:</p> */}
           <table className={styles.table}>
             <thead className={styles.table_nav}>
               <tr className={styles.table_cell}>
@@ -91,14 +91,6 @@ export default function Cart() {
               ))}
             </tbody>
           </table>
-
-          <p className={styles.total}>{`Всего блюд на сумму:  ${cart.reduce(
-            (acc, position) => acc + Number(position.price) * Number(position.quantity),
-            0,
-          )} руб.`}</p>
-           {user.DiscountId > 1 && (
-            <p className={styles.bonus}>{`Цена с учётом вашей скидки ${user.discount}% - ${total.quantity} руб.`}</p>
-          )}
 
           <p className={styles.type_of_order}>Выберете тип заказа:</p>
           <div className={styles.inputs}>
@@ -120,14 +112,22 @@ export default function Cart() {
           </div>
 
           {orderType === TYPE_DELIVERY ? (
-            <button type='submit'>Oформить доставку</button>
+            <button  className={styles.shipping} type='submit'>Oформить доставку</button>
           ) : checkOrderPossibility() ? (
-            <button type='submit'>Оплатить</button>
+            <button className={styles.pay} type='submit'>Оплатить</button>
           ) : (
             <p className={styles.option}>
               Вам необходимо <Link to='/book'>забронировать</Link> столик, прежде чем делать предварительный
               заказ
             </p>
+          )}
+
+          <p className={styles.total}>{`Всего блюд на сумму:  ${cart.reduce(
+            (acc, position) => acc + Number(position.price) * Number(position.quantity),
+            0,
+          )} руб.`}</p>
+          {user.DiscountId > 1 && (
+            <p className={styles.bonus}>{`Цена с учётом вашей скидки ${user.discount}% - ${total.quantity} руб.`}</p>
           )}
 
         </form>

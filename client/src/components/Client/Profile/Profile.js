@@ -18,43 +18,43 @@ export default function Profile() {
     <div className={styles.profile__container}>
       <form onSubmit={onClickHandler}>
         <div className={styles.entry}>
-          <p>Полное имя: </p>
+          <p className={styles.title}>Полное имя: </p>
           {editMode ? (
             <input type="text" name="name" defaultValue={user.name} />
           ) : (
-            <p>{user.name}</p>
+            <p className={styles.p}>{user.name}</p>
           )}
         </div>
         <div className={styles.entry}>
-          <p>Почта: </p>
+          <p className={styles.title}>Почта: </p>
           {editMode ? (
             <input type="text" name="email" defaultValue={user.email} />
           ) : (
-            <p>{user.email}</p>
+            <p className={styles.p}>{user.email}</p>
           )}
         </div>
         <div className={styles.entry}>
-          <p>Телефон: </p>
+          <p className={styles.title}>Телефон: </p>
           {editMode ? (
             <input type="tel" name="phone" defaultValue={user.phone} />
           ) : (
-            <p>{user.phone}</p>
+            <p className={styles.p}>{user.phone}</p>
           )}
         </div>
         <div className={styles.entry}>
           {editMode && (
             <>
-              <p>Пароль: </p>
+              <p className={styles.title}>Пароль: </p>
               <input type="password" name="password" />
             </>
           )}
         </div>
         {editMode ? (
-          <button id="save" type="submit">
+          <button className={styles.save} id="save" type="submit">
             Сохранить
           </button>
         ) : (
-          <button id="edit" type="submit">
+          <button className={styles.change} id="edit" type="submit">
             Изменить данные
           </button>
         )}
