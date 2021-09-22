@@ -121,6 +121,8 @@ label #cancel {
   background-color: rgba(0, 0, 0, 0.6);
   border-radius: 5px;
 
+  transition: all 0.5s linear;
+
   // border: 1px solid rgba(50, 50, 50, 0.6);
 
 }
@@ -130,9 +132,10 @@ label #cancel {
 
 .navbar__links:first-child:hover {
   background-color: #cfa670;
-}
 
+}
 .navbar__link {
+  font-family: 'Comfortaa', cursive;
   font-size: 1.1rem;
   background: none;
   cursor: pointer;

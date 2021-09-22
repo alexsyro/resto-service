@@ -4,6 +4,7 @@ const qs = require('qs');
 const checkStaff = require('../middlewares/staffValidation');
 const { Reservation, Table, State, Order, Client, OrderPosition, Position } = require('../db/models');
 const isAuthenticated = require('../middlewares/authenticationValidation');
+const mailer = require('../nodemailer');
 
 const { BEARER } = process.env;
 
@@ -130,13 +131,14 @@ router.put('/done', checkStaff, async (req, res) => {
       },
       raw: true,
     });
-
-    // const myHeaders = new Headers();
-    // myHeaders.append(
-    //   'Authorization',
-    //   'Bearer eyJhbGciOiJIUzI1NiJ9.eyJjdXN0b21lcl9pZCI6MjcxMSwiZGF0ZXRpbWUiOjE2MzIzMTkzNjh9.O4KECeIgMYb4E89WkUgjSuO5IUAZz6gpxkvcMJe0jmU',
-    // );
-    // myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
+    console.log(client);
+    const message = {
+      from: '"Ресторан Точка" <restiktochka@ya.ru>',
+      to: `${client.email}`,
+      subject: 'Подтверждение бронирования',
+      text: `Уважаемый, ${client.name}! Подтверждаем бронирование заказа в ресторане Точка. Ждем Вас!`,
+    };
+    await mailer(message);
 
     const data = qs.stringify({
       phone: client.phone,

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { cartAddPositionAC } from '../../../redux/actionCreators/cartAC';
+import styles from './Dish.module.scss'
 
 function Dish({ dish }) {
   const dispatch = useDispatch();
@@ -22,15 +23,15 @@ function Dish({ dish }) {
   };
 
   return (
-    <div>
-      <img src={`data:${type};base64,${base64}`} width='250' height='200' alt='IMG' />
-      <p>{dish.name}</p>
-      <p>{dish.description}</p>
-      <p>{dish.kcal}</p>
-      <p>{dish.portionSize}</p>
-      <p>{dish.price}</p>
+    <div className={styles.container}>
+      <img  className={styles.img} src={`data:${type};base64,${base64}`}  alt='IMG' />
+      <p className={styles.dish_title} >{dish.name}</p>
+      <p className={styles.description}>{dish.description}</p>
+      <p className={styles.kcal}>Ккал: {dish.kcal}</p>
+      <p className={styles.portionSize}>Размер порции: {dish.portionSize}</p>
+      <p className={styles.text}> Цена: {dish.price}</p>
       {user?.isAuth && (
-        <button onClick={addToCart} type='text'>
+        <button className={styles.dish_button} onClick={addToCart} type='text'>
           Добавить в корзину
         </button>
       )}

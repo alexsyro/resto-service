@@ -4,6 +4,8 @@ import { useParams, useHistory } from 'react-router-dom';
 // import {GET_DISHES} from '../../../redux/actionTypes/actionType'
 import { dishAC } from '../../../redux/actionCreators/dishAC'
 import Dish from '../Dish/Dish';
+import styles from '../Dish/Dish.module.scss'
+
 
 function SubcategoryItem(props) {
   const history = useHistory();
@@ -23,8 +25,10 @@ function SubcategoryItem(props) {
 
   return (
     <>
-      {dishes?.map((dish) => <Dish key={dish.id} dish={dish} />)}
-      <button onClick={() => history.goBack()}>Назад</button>
+      <button className={styles.back} onClick={() => history.goBack()}>Назад</button>
+      <div className={styles.main_container}>
+        {dishes?.map((dish) => <Dish key={dish.id} dish={dish} />)}
+      </div>
     </>
   );
 }
