@@ -21,28 +21,29 @@ function Dish({ dish }) {
   };
 
   return (
-      <div className={`"uk-child-width-1-2@m" ${styles.card}`} uk-grid>
-        <div>
-          <div className="uk-card uk-card-default">
-            <div className="uk-card-media-top">
-              <img src={`data:${type};base64,${base64}`} width='250' height='200' alt='IMG' />
+    <div className={`"uk-child-width-1-2@m" ${styles.card}`} uk-grid>
+      <div>
+        <div className="uk-card uk-card-default">
+          <div className="uk-card-media-top">
+            <img src={`data:${type};base64,${base64}`} width='250' height='200' alt='IMG' />
+          </div>
+          <div className={`uk-card-body ${styles.card__body}`}>
+            <h3 className="uk-card-title">{dish.name}</h3>
+            <p>Состав: {dish.description}</p>
+            <p>Ккал: {dish.kcal} ккал</p>
+            <p>Объём: {dish.portionSize} мл</p>
+            <p>Цена: {dish.price}р</p>
+            <div className={`uk-button-group ${styles.card__button}`}>
+              <Link to={`/menu/position/${dish.id}`}>
+                <button className="uk-button uk-button-primary">Редактировать</button>
+              </Link>
+              <button onClick={deleteDish} className="uk-button uk-button-primary">Удалить</button>
             </div>
-            <div className="uk-card-body">
-              <h3 className="uk-card-title">{dish.name}</h3>
-              <p>Состав: {dish.description}</p>
-              <p>Ккал: {dish.kcal} ккал</p>
-              <p>Объём: {dish.portionSize} мл</p>
-              <p>Цена: {dish.price}р</p>
-              <div className={styles.card__button}>
-                <Link to={`/menu/position/${dish.id}`} className='uk-button uk-button-default'>
-                  <button>Редактировать</button>
-                </Link>
-                <button onClick={deleteDish}>Удалить</button>
-              </div>
-            </div>
+
           </div>
         </div>
       </div>
+    </div>
   );
 }
 
