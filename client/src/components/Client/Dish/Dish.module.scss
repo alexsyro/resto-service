@@ -1,9 +1,75 @@
 .container{
- height: 100vh;
- width: 30rem;
- content:wrap;
+
+ width: 27%;
+ height: 20rem;
+
 }
 
 .back{
   height: 1rem;
 }
+
+.main_container{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  min-height: 100vh;
+  height: auto;
+  margin: 0 auto;
+}
+
+.text{
+  color: #fff;
+  font-family: 'Comfortaa', cursive;
+}
+
+.dish_title{
+  color: #fff;
+  font-family: 'Oswald', cursive;
+  margin-top: 1rem;
+  margin-bottom: 0.6rem;
+}
+
+.description{
+  color: #fff;
+  font-family: 'Comfortaa', cursive;
+  margin-top: 1rem;
+  margin-bottom: 0.6rem;
+}
+
+.portionSize{
+  color: #fff;
+  font-family: 'Comfortaa', cursive;
+  margin-bottom: 0.4rem;
+}
+
+.kcal{
+  color: #fff;
+  font-family: 'Comfortaa', cursive;
+  margin-bottom: 0.4rem;
+}
+
+.dish_button{
+  height: 1.5rem;
+  width: 6rem;
+  position: relative;
+  left: 28%;
+  transform: translateX(-50%);
+  width: 10rem;
+  border-radius: 0.3rem;
+  background-color: #cfa670;
+  color:#fff;
+  margin-top: 0.4rem;
+  font-family: 'Comfortaa', cursive;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+.img{
+  height: 15rem;
+  width: 15rem;
+  object-fit: cover; //будет полностью покрывать пространство
+
+}
+
