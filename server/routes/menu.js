@@ -54,14 +54,6 @@ router.post('/', checkStaff, async (req, res) => {
 router.put('/:id', checkStaff, async (req, res) => {
   const { id } = req.params;
   const { name, description, kcal, portionSize, price } = req.body;
-  console.log(
-    'AAAAAAAAAAAAA::::::::::::::::::::::::::::::::::::::',
-    name,
-    description,
-    kcal,
-    portionSize,
-    price,
-  );
   try {
     const position = await Position.findOne({ where: { id } });
     position.name = name || position.name;
@@ -130,53 +122,62 @@ router.get('/', async (req, res) => {
 // Блюда только определённой категории
 router.get('/categories/:id', async (req, res) => {
   const { id } = req.params;
-  const positions = await Position.findAll({
-    attributes: ['id', 'name', 'description', 'kcal', 'portionSize', 'price'],
-    where: {
-      SubcategoryId: id,
-    },
-    include: [
-      {
-        model: Subcategory,
-        attributes: ['name'],
+  try {
+    const positions = await Position.findAll({
+      attributes: ['id', 'name', 'description', 'kcal', 'portionSize', 'price'],
+      where: {
+        SubcategoryId: id,
       },
-      {
-        model: Measure,
-        attributes: ['type'],
-      },
-      {
-        model: File,
-        attributes: ['type', 'data', 'name'],
-      },
-    ],
-    raw: true,
-  });
-  console.log('POSITIONS', positions);
-  res.json({ positions });
+      include: [
+        {
+          model: Subcategory,
+          attributes: ['name'],
+        },
+        {
+          model: Measure,
+          attributes: ['type'],
+        },
+        {
+          model: File,
+          attributes: ['type', 'data', 'name'],
+        },
+      ],
+      raw: true,
+    });
+    res.json({ positions });
+  } catch (error) {
+    console.log(`::::::::::::::::::::::DATABASE ERROR: ${error.message}`);
+    res.status(500).json({ error: error.message, user: { isAuth: false } });
+  }
 });
 
 // Запрос на категории с подкатегориями
 router.get('/categories', async (req, res) => {
-  const categories = await Category.findAll({ attributes: ['id', 'name'], raw: true });
-  const categoriesWithSubcategory = await Promise.all(
-    categories.map(async (category) => {
-      const subcategories = await Subcategory.findAll({
-        attributes: ['id', 'name', 'category_id'],
-        where: {
-          CategoryId: category.id,
-        },
-        raw: true,
-      });
-      if (category.categories) {
-        category.categories.concat(subcategories);
-      } else {
-        category.categories = [...subcategories];
-      }
-      return category;
-    }),
-  );
-  console.log('CATEGORY', categoriesWithSubcategory);
-  res.json(categoriesWithSubcategory);
+  try {
+    const categories = await Category.findAll({ attributes: ['id', 'name'], raw: true });
+    const categoriesWithSubcategory = await Promise.all(
+      categories.map(async (category) => {
+        const subcategories = await Subcategory.findAll({
+          attributes: ['id', 'name', 'category_id'],
+          where: {
+            CategoryId: category.id,
+          },
+          raw: true,
+        });
+        if (category.categories) {
+          category.categories.concat(subcategories);
+        } else {
+          // eslint-disable-next-line no-param-reassign
+          category.categories = [...subcategories];
+        }
+        return category;
+      }),
+    );
+    res.json(categoriesWithSubcategory);
+  } catch (error) {
+    console.log(`::::::::::::::::::::::DATABASE ERROR: ${error.message}`);
+    res.status(500).json({ error: error.message, user: { isAuth: false } });
+  }
 });
 
 module.exports = router;
