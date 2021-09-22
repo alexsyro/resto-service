@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { sagaLogoutAC } from '../../../redux/actionCreators/sagaAC';
+import logo from './assets/img/logo.png'
 import styles from './Header.module.scss';
 
 function Header() {
@@ -20,7 +21,7 @@ function Header() {
         <i className='fas fa-times' id={styles.cancel}></i>
       </label>
       <nav className={styles.sidebar}>
-        <header>Точка</header>
+        <header><img className={styles.sidebar__logo} src={logo}/></header>
         <ul>
           <li>
             <Link className={styles.sidebar__links} to='/'>
