@@ -1,11 +1,12 @@
 const express = require('express');
 const checkStaff = require('../middlewares/staffValidation');
+const { Reservation, Table, State, Order, Client, OrderPosition, Position, User } = require('../db/models');
 const isAuthenticated = require('../middlewares/authenticationValidation');
 
 const { Router } = express;
 const router = Router();
-const { Reservation, Table, State, Order, Client, OrderPosition, Position } = require('../db/models');
 
+// Получение всех заказов
 router.get('/', checkStaff, async (req, res) => {
   try {
     const reservations = await Reservation.findAll({
@@ -82,6 +83,7 @@ router.get('/', checkStaff, async (req, res) => {
   }
 });
 
+// Создание заказа
 router.post('/', isAuthenticated, async (req, res) => {
   try {
     const { reservation, user, cart, StateId } = req.body.order;
@@ -118,6 +120,13 @@ router.put('/done', checkStaff, async (req, res) => {
     orderToChange.StateId = 2;
     await orderToChange.save();
     // API для СМС
+    const user = await User.findOne({
+      where: {
+        id: orderToChange.ClientId,
+      },
+      raw: true,
+    });
+    
     res.json({ message: 'Вы успешно подтвердили заказ' });
   } catch (error) {
     console.log(`::::::::::::::::::::::DATABASE ERROR: ${error.message}`);
