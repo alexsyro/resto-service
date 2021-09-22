@@ -10,7 +10,7 @@ const reservations = [
     createdAt: new Date(),
   },
   {
-    table_id: 15,
+    table_id: 3,
     date_time: '2021-09-21 21:00:00.505+03',
     guest_count: 5,
     guest_name: 'Еремей',
@@ -20,7 +20,7 @@ const reservations = [
     createdAt: new Date(),
   },
   {
-    table_id: 9,
+    table_id: 7,
     date_time: '2021-09-22 19:30:00.505+03',
     guest_count: 2,
     guest_name: 'Матриславль',
@@ -30,7 +30,7 @@ const reservations = [
     createdAt: new Date(),
   },
   {
-    table_id: 14,
+    table_id: 19,
     date_time: '2021-09-20 20:30:00.505+03',
     guest_count: 1,
     guest_name: 'Кутихлёст',
@@ -40,7 +40,7 @@ const reservations = [
     createdAt: new Date(),
   },
   {
-    table_id: 39,
+    table_id: 30,
     date_time: '2021-09-20 18:30:00.505+03',
     guest_count: 1,
     guest_name: 'Вернизад',
@@ -50,7 +50,7 @@ const reservations = [
     createdAt: new Date(),
   },
   {
-    table_id: 13,
+    table_id: 35,
     date_time: '2021-09-20 17:30:00.505+03',
     guest_count: 1,
     guest_name: 'Стоша Говнозад',
@@ -60,7 +60,7 @@ const reservations = [
     createdAt: new Date(),
   },
   {
-    table_id: 116,
+    table_id: 32,
     date_time: '2021-09-21 12:30:00.505+03',
     guest_count: 2,
     guest_name: 'Sam',
@@ -70,7 +70,7 @@ const reservations = [
     createdAt: new Date(),
   },
   {
-    table_id: 116,
+    table_id: 39,
     date_time: '2021-09-21 20:30:00.505+03',
     guest_count: 3,
     guest_name: 'Petr',
@@ -80,7 +80,7 @@ const reservations = [
     createdAt: new Date(),
   },
   {
-    table_id: 30,
+    table_id: 36,
     date_time: '2021-09-21 18:30:00.505+03',
     guest_count: 1,
     guest_name: 'Tiger',
@@ -90,7 +90,7 @@ const reservations = [
     createdAt: new Date(),
   },
   {
-    table_id: 116,
+    table_id: 40,
     date_time: '2021-09-21 15:30:00.505+03',
     guest_count: 5,
     guest_name: 'Lion',

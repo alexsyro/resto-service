@@ -51,9 +51,9 @@ export default function Cart() {
     if (response.status === 200) {
       dispatch(clearReservationAC());
       dispatch(cartCleanAC());
-      return alert(response.code);
+      alert('Заказ оформлен, ожидайте подтверждения');
     } else {
-      return alert(response.message);
+      alert('Ой, кажется что-то пошло не так.');
     }
   };
 
@@ -96,7 +96,7 @@ export default function Cart() {
             (acc, position) => acc + Number(position.price) * Number(position.quantity),
             0,
           )} руб.`}</p>
-           {user.DiscountId !== 1 && (
+           {user.DiscountId > 1 && (
             <p className={styles.bonus}>{`Цена с учётом вашей скидки ${user.discount}% - ${total.quantity} руб.`}</p>
           )}
 
