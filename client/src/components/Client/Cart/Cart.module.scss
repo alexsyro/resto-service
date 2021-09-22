@@ -1,37 +1,35 @@
-
-.form{
-  
-  .order{
+.form {
+  .order {
     margin-top: 5rem;
   }
-  
-  .table{
+
+  .table {
     display: table-cell;
     margin: 0rem;
     border-spacing: 1rem;
     text-align: start;
   }
-  
-  .table_nav{
-   display: flex;
+
+  .table_nav {
+    display: flex;
   }
 }
 
-.empty{
+.empty {
   height: 37.5vh;
   align-items: center;
   justify-content: center;
 
-.container {
-
-  margin-top: 15rem;
-  margin-bottom: 5rem;
-  
-  .empty {
-    height: 37.5vh;
-    align-items: center;
-    justify-content: center;
+  .container {
     margin-top: 15rem;
+    margin-bottom: 5rem;
+
+    .empty {
+      height: 37.5vh;
+      align-items: center;
+      justify-content: center;
+      margin-top: 15rem;
+    }
   }
 }
 
@@ -41,14 +39,14 @@ td {
   text-align: start;
 }
 
-h3{
+h3 {
   margin-bottom: 1rem;
 }
 
-.input{
- margin-right: 1rem;
+.input {
+  margin-right: 1rem;
 }
 
-.total{
+.total {
   margin-top: 1rem;
 }
