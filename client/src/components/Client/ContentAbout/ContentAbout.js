@@ -10,7 +10,8 @@ function ContentAbout() {
       <div className={styles.about__img}>
       </div>
       <div className={styles.text_container}>
-        <p className={styles.about__title}>О нас</p>
+        <p className={styles.about__gold}>Настоящая</p>
+        <p className={styles.about__title}>РУССКАЯ КУХНЯ</p>
         <p className={styles.about__text}>
           “Кулинария похожа на моду. Нам всегда нравится меняться к лучшему.
           Когда мы путешествуем в разные регионы Италии – в Венецию, Ломбардию,

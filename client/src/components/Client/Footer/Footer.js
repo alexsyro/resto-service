@@ -10,13 +10,13 @@ function Footer() {
 
       <div className={styles.hours}>
         <h6 className={styles.header}> МЫ ОТКРЫТЫ</h6>
-        <p>Пн – Пт 12:00 – 23:00</p>
-        <p>Сб – Вс 13:00 – 23:00</p>
+        <p className={styles.p}>Пн – Пт 12:00 – 23:00</p>
+        <p className={styles.p}>Сб – Вс 13:00 – 23:00</p>
       </div>
       <div className={styles.hours}>
         <h6 className={styles.header}> БРОНИРОВАНИЕ</h6>
-        <p>+7 (962) 724-89-40</p>
-        <p>Забронируйте столик</p>
+        <p className={styles.p}>+7 (962) 724-89-40</p>
+        <p className={styles.p}>Забронируйте столик</p>
       </div>
       <div className={styles.hours}>
         <h6 className={styles.header}>Социальные сети</h6>
@@ -32,7 +32,7 @@ function Footer() {
       </div>
       <div className={styles.hours}>
         <h6 className={styles.header}> ПОСЕТИТЕ НАС</h6>
-        <p>Санкт-Петербург, Литейный пр-т, 7</p>
+        <p className={styles.p}>Санкт-Петербург, Литейный пр-т, 7</p>
       </div>
     </div>
   )

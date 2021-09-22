@@ -59,29 +59,32 @@ export default function Reservation() {
 
   return (
     <>
-      <div className='mainContainer'>
-        <div className='upperMenu'>
-          <p>Выберете интересующую дату и время</p>
+      <div className={styles.mainContainer}>
+        <div className={styles.upperMenu}>
+          <p className={styles.pick_date}>Выберете интересующую дату и время</p>
           <form onSubmit={dateTimeSelect}>
-            <input name='date' type='date' min={today} defaultValue={today} max={maxDate} />
-            <input name='time' type='time' />
-            <button type='submit'>Выбрать</button>
+            <input className={styles.input_date} name='date' type='date' min={today} defaultValue={today} max={maxDate} />
+            <input className={styles.input_time} name='time' type='time' />
+            <button className={styles.button} type='submit'>Выбрать</button>
           </form>
         </div>
-        <div className='hallSelect'>
+        <div className={styles.hallSelect}>
+
           {selectedDateTime &&
             hallsArray.length &&
             hallsArray.map((hall) => (
-              <button key={hall.id} onClick={selectHall} id={hall.id} type='submit'>
+              <button className={styles.pick_room} key={hall.id} onClick={selectHall} id={hall.id} type='submit'>
                 {hall.name}
               </button>
             ))}
-        </div>
 
+        </div>
         <div className={styles.tableContainer}>
           {selectedHall && <Hall />}
           {selectedTable && <TableInfo />}
         </div>
+
+
       </div>
     </>
   );

@@ -49,9 +49,9 @@ function ContentSlider() {
         </div>
 
       <button className={styles.slider__btn}>
-        <Link className={styles.slider__btn__text} to="/menu">
+        {/* <Link className={styles.slider__btn__text} to="/menu">
           Меню
-        </Link>
+        </Link> */}
       </button>
     </div>
   )

@@ -5,27 +5,39 @@ import { sagaLoginAC } from '../../../redux/actionCreators/sagaAC';
 import styles from './LoginForm.module.scss';
 
 function LoginForm() {
-const history = useHistory()
+  const history = useHistory()
   const dispatch = useDispatch();
 
   const loginSubmit = (e) => {
     e.preventDefault();
     const { email, password } = e.target;
-      const user = {
-        email: email.value,
-        password: password.value,
-      }
+    const user = {
+      email: email.value,
+      password: password.value,
+    }
     const payload = user;
     dispatch(sagaLoginAC(payload));
-      history.push('/')
+    history.push('/')
   };
 
   return (
-    <form className={styles.center} name="loginForm" onSubmit={loginSubmit}>
-      <input type="text" name="email" placeholder="Email" />
-      <input type="password" name="password" placeholder="Enter your password" />
-      <button type="submit">Войти</button>
-    </form>
+    <div className={styles.back__block}>
+      <div className={styles.black__div}>
+        <form className={styles.center__form} name="loginForm" onSubmit={loginSubmit}>
+          <div className={styles.group}>
+            <input type='text' name='email' required />
+            <span className={styles.bar}></span>
+            <label>Ваш Email</label>
+          </div>
+          <div className={styles.group}>
+            <input type='password' name='password' required />
+            <span className={styles.bar}></span>
+            <label>Пароль</label>
+          </div>
+          <button type="submit">Войти</button>
+        </form>
+      </div>
+    </div>
   )
 }
 
