@@ -38,7 +38,7 @@ router.get('/', checkStaff, async (req, res) => {
       raw: true,
     });
 
-    const orders = await Order.findAll({
+    await Order.findAll({
       attributes: ['id', 'client_id', 'reservation_id', 'state_id'],
       include: [
         {
@@ -153,7 +153,7 @@ router.put('/done', checkStaff, async (req, res) => {
       data,
     };
 
-    const response = await axios(config);
+    await axios(config);
     res.json({ message: 'Вы успешно подтвердили заказ' });
   } catch (error) {
     console.log(`::::::::::::::::::::::DATABASE ERROR: ${error.message}`);

@@ -107,4 +107,14 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.get('/', async (req, res) => {
+  try {
+    const clients = await Client.findAll({ raw: true });
+    res.json({ clients });
+  } catch (error) {
+    console.log(`DATABASE ERROR: ${error.message}`);
+    res.status(500).json({ error: error.message, user: { isAuth: false } });
+  }
+});
+
 module.exports = router;
