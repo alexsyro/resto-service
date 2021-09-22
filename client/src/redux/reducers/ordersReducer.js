@@ -5,17 +5,13 @@ const initialState = { orders: [] };
 const ordersReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.GET_ORDERS:
-      if (state.orders.length) {
-        return state;
-      } else {
-        return { ...state, orders: action.payload };
-      }
+      return { ...state, orders: action.payload };
 
     case actionTypes.UPDATE_ORDER:
       return {
         ...state, orders: state.orders.map((order) => {
           if (order.id === action.payload.id) {
-            return { ...order }
+            return { ...order, reservation_id: action.payload.ReservationId, Reservation: { ...order.Reservation, id: action.payload.ReservationId } }
           } else {
             return order
           }

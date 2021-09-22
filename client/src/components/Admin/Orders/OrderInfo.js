@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { useParams, useHistory } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import * as ordersAC from '../../../redux/actionCreators/ordersAC'
@@ -9,44 +9,33 @@ function OrderInfo() {
   const dispatch = useDispatch();
   const history = useHistory();
   const { id } = useParams();
+  const [selectValue, setSelectValue] = useState(id)
 
   const allOrders = useSelector((state) => state.ordersReducer.orders);
+  const reservationsToSelect = useSelector((state) => state.reservationReducer.reservations);
   const currentOrder = allOrders.find((order) => order.id === +id);
-  console.log(currentOrder, 'currentOrder')
-
-
-  const inputClientName = useRef(null)
-  const inputClientPhone = useRef(null)
-  const inputTable = useRef(null)
-  const inputTime = useRef(null)
-  const inputQuantity = useRef(null)
 
 
   const handlerSave = () => {
-    // логика работы с заказом
+    // console.log(inputReservationSelect);
     const updateOrder = {
       id: currentOrder.id,
-      inputClientName: inputClientName.current.value,
-      inputClientPhone: inputClientPhone.current.value,
-      inputTable: inputTable.current.value,
-      inputTime: inputTime.current.value,
-      inputQuantity: inputQuantity.current.value,
+      ReservationId: +selectValue,
     }
-    console.log(updateOrder);
-
-    fetch('http://localhost:1234/api/orders/edit', {
+    fetch(`http://localhost:1234/api/orders/edit/${currentOrder.id}`, {
       method: 'PUT',
-      mode: 'cors', 
-      credentials: 'include', 
+      mode: 'cors',
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(updateOrder) 
+      body: JSON.stringify(updateOrder)
     })
       .then(res => res.json())
       .then(console.log)
 
     dispatch(ordersAC.updateOrderAC(updateOrder))
+    history.goBack();
   }
 
   return (
@@ -54,27 +43,18 @@ function OrderInfo() {
       <div className="uk-card uk-card-primary uk-card-body">
         <h3 className="uk-card-title">order ID: #{currentOrder?.id}</h3>
 
-        <div className="uk-margin">
-          <input ref={inputClientName} className="uk-input" type="text" defaultValue={currentOrder['Client.name']} placeholder="name" />
-        </div>
+        {/* <div className="uk-margin">
+          <input ref={inputReservationId} className="uk-input" type="number" defaultValue={currentOrder['Reservation.id']} placeholder="номер резервирования столика" />
+        </div> */}
 
-        <div className="uk-margin">
-          <input ref={inputClientPhone} className="uk-input" type="text" defaultValue={currentOrder['Client.phone']} placeholder="phone" />
-        </div>
 
         <div className="uk-margin">
-          <input ref={inputTable} className="uk-input" type="text" defaultValue={currentOrder['Reservation.table_id']} placeholder="table" />
+          <label htmlFor="reservation-select">Выберите нужное резервирование:</label>
+          <select className=".uk-select" defaultValue={id} id="reservation-select" onChange={ }>
+            <option value="">--Please choose an option--</option>
+            {reservationsToSelect.map(el => <option value={el.id} key={el['id']}>{`номер резерва:${el.id}, номер столика: ${el['Table.id']}`}</option>)}
+          </select>
         </div>
-
-        <div className="uk-margin">
-          <input ref={inputTime} className="uk-input" type="text" defaultValue={currentOrder['Reservation.date_time']} placeholder="time" />
-        </div>
-
-        <div className="uk-margin">
-          <input ref={inputQuantity} className="uk-input" type="number" defaultValue={currentOrder['OrderPositions.quantity']} placeholder="quantity" />
-        </div>
-
-
 
         <button onClick={() => history.goBack()} className="uk-button uk-button-default uk-margin">Назад</button>
 
