@@ -24,12 +24,12 @@
 }
 
 .book__right {
-  background: url('https://psv4.userapi.com/c534536/u144953147/docs/d41/8518aee9d9e4/img.png?extra=TeyqC0TcgeezcJOWXxmUVlF8K-Tw0Kd4LrdftchM309R280Sd1Z5DjkHFjT9OC0R25yx27CMP52si_8j6gEwMYdX5A5csGJoVFA3E3JDShX5WABsXQITJbqz5WLQNR2l1jtHKCz67ljPEglGKuZQ-w5O')
+  background: url('https://psv4.userapi.com/c536236/u144953147/docs/d21/db2d10f88942/img_1.png?extra=cOCATkpML3nm362130HAcrXqyVNEySR-q18rCxOtkhVxrZe21mrkwTG-Xrb1ylB71fXD1IWt3rvf9nO_tmpuAUaAP86y0N8iYty9coMlNBmBvKhdNq_6ufBTiMdGG7a71962_k3Jj3-mMc8MgVgnBoKQ')
     no-repeat center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: 20rem;
+  background-size: 19em;
   width: 50%;
   height: 60%;
 
@@ -43,12 +43,21 @@
   align-items: flex-start;
 
   .left_title {
-    color: #DCCA87;
-    font-size: 3rem;
+    color: #fff;
+    font-family: 'Oswald', sans-serif;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 0.4rem;
+  }
+
+  .left_gold{
+    font-family: 'Caveat', cursive;
+    font-size: 1.8rem;
+    color: #cfa670;
   }
   
   .left_text {
-    color: #AAAAAA;
+    color: #fff;
     font-size: 1.3rem;
   }
 
@@ -81,7 +90,7 @@
   0% {
     width: 0;
     height: 0;
-    border-top-color: #DCCA87;
+    border-top-color: #cfa670;
     border-right-color: transparent;
     border-bottom-color: transparent;
     border-left-color: transparent;
@@ -90,8 +99,8 @@
   50% {
     width: 100%;
     height: 0;
-    border-top-color: #DCCA87;
-    border-right-color: #DCCA87;
+    border-top-color: #cfa670;
+    border-right-color: #cfa670;
     border-bottom-color: transparent;
     border-left-color: transparent;
   }
@@ -99,8 +108,8 @@
   100% {
     width: 100%;
     height: 100%;
-    border-top-color: #DCCA87;
-    border-right-color: #DCCA87;
+    border-top-color: #cfa670;
+    border-right-color: #cfa670;
     border-bottom-color: transparent;
     border-left-color: transparent;
   }
@@ -130,7 +139,7 @@
     border-top-color: transparent;
     border-right-color: transparent;
     border-bottom-color: transparent;
-    border-left-color: #DCCA87;
+    border-left-color: #cfa670;
   }
 
   50% {
@@ -138,8 +147,8 @@
     height: 100%;
     border-top-color: transparent;
     border-right-color: transparent;
-    border-bottom-color: #DCCA87;
-    border-left-color: #DCCA87;
+    border-bottom-color: #cfa670;
+    border-left-color: #cfa670;
   }
 
   100% {
@@ -147,8 +156,8 @@
     height: 100%;
     border-top-color: transparent;
     border-right-color: transparent;
-    border-bottom-color: #DCCA87;
-    border-left-color: #DCCA87;
+    border-bottom-color: #cfa670;
+    border-left-color: #cfa670;
   }
 }
 
@@ -156,13 +165,13 @@
 .book__btn__text {
   z-index: 1000;
   position: relative;
-  color: #DCCA87;
+  color: #cfa670;
   background: none;
   font-size: 1.3rem;
   transition: all 1s linear;
 }
 
 .book__btn__text:hover {
-  color: #DCCA87;
+  color: #cfa670;
   text-decoration: none;
 }

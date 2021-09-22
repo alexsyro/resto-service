@@ -1,8 +1,6 @@
 .svg {
-  max-width: 1000;
-  width: 1000;
-  max-height: 700;
-  height: 700;
+  width: 100%;
+  height: 45rem;
   background-repeat: no-repeat;
 }
 
@@ -13,4 +11,53 @@
 .tableInfoContainer {
   display: flex;
   flex-direction: column;
+}
+
+.mainContainer{
+  height:auto;
+  // width:70%;
+
+  // width: 70%;
+  // display :flex;
+  // flex-wrap: wrap;
+
+  .upperMenu {
+    margin-top: 5rem;
+  }
+}
+
+.pick_date{
+  margin-bottom: 0.5rem;
+}
+
+.input_date{
+  margin-right: 1rem;
+  font-size: 0.9rem;
+  border-radius: 0.2rem;
+}
+
+.input_time{
+  margin-right: 1.1rem;
+  font-size: 0.9rem;
+  border-radius: 0.2rem;
+}
+
+.button{
+  height: 1.5rem;
+  width: 5.5rem;
+  border-radius: 0.2rem;
+}
+
+.pick_room{
+  height: 1.5rem;
+  width: 5.5rem;
+  border-radius: 0.2rem;
+  margin-right: 1.5rem;
+  margin-top: 1rem;
+}
+
+.tableContainer{
+  display: flex;
+  flex-direction: column;
+  height: auto;
 }

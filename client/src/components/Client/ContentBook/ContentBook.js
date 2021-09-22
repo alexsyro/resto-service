@@ -12,7 +12,8 @@ function ContentBook() {
 
       <div className={styles.book__left}>
         <div className={styles.book__left_content}>
-          <p className={styles.left_title}>Еда, напитки, шоу</p>
+          <p className={styles.left_gold}>Уникальные</p>
+          <p className={styles.left_title}>ЕДА, НАПИТКИ, ШОУ</p>
           <p className={styles.left_text}>
             “Кулинария похожа на моду. Нам всегда нравится меняться к лучшему.
             Когда мы путешествуем в разные регионы Италии – в Венецию,
@@ -21,7 +22,7 @@ function ContentBook() {
           </p>
           <button className={styles.book__btn}>
             <Link className={styles.book__btn__text} to="/about">
-              Забронировать
+              Меню
             </Link>
           </button>
         </div>
