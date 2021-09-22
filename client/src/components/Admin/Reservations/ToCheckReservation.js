@@ -38,7 +38,7 @@ function ToCheckReservation({ reservation }) {
     <li>
       <button onClick={() => finishReservation()} className="uk-button uk-button-primary"> перевести в статус подтвержденного</button>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <span>Номер заказа:   {reservation.id}</span>
+        <span>Номер резерва:   {reservation.id}</span>
         <span>Имя клиента:  {reservation.guest_name}</span>
         <span>Телефон клиента:   {reservation.guest_phone}</span>
       </div>

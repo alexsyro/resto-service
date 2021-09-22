@@ -32,11 +32,7 @@ export default function reducer(state = initialState, action) {
     case RESERVATION_CLEAR_CURRENT:
       return { ...state, selectedTable: null, selectedHall: null, selectedDateTime: null, reservation: null };
     case GET_RESERVATIONS:
-      if (state.reservations.length) {
-        return state;
-      } else {
-        return { ...state, reservations: action.payload };
-      }
+      return { ...state, reservations: action.payload };
     case UPDATE_RESERVATION:
       return {
         ...state,
