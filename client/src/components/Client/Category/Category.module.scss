@@ -1,0 +1,34 @@
+.category__container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2.5rem;
+  text-align: center;
+
+  .category__name {
+    font-family: 'Oswald', cursive;
+    color: white;
+    font-size: 2.3rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.category__element {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  btn {
+    font-family: 'Comforta', cursive;
+    font-weight: bold;
+    font-size: 1.3rem;
+    padding: 0.4rem 0.9rem;
+    background-color: #cfa670;
+    color: white;
+    margin-right: 1rem;
+    border-radius: 0.3rem;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+}
