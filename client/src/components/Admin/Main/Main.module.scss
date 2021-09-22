@@ -1,4 +1,17 @@
 .container {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  align-items: center;
+  height: 86vh;
+  .block {
+    width: 15rem;
+    height: 15rem;
+    display: flex;
+    justify-content: center;
+    border-radius: 3rem;
+    margin: 1rem;
+  }
+  .block:hover {
+    box-shadow: 0.2rem 0.2rem 0.5rem rgba(154, 147, 140, 0.5), 0.1rem 0.1rem 0.5rem rgba(255, 255, 255, 1);
+  }
 }

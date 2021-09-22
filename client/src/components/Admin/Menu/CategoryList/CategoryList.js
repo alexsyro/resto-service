@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { GET_CATEGORY, GET_MEASURES } from '../../../../redux/actionTypes/actionType';
 import Category from '../Category/Category';
+import styles from './CategoryList.module.scss';
 
 function CategoryList(props) {
   const dispatch = useDispatch();
@@ -19,11 +20,11 @@ function CategoryList(props) {
   const allCategories = useSelector((state) => state.menuReducer.menu);
 
   return (
-    <>
+    <div className={styles.category}>
       {allCategories.map((category) => (
         <Category key={category.id} category={category} />
       ))}
-    </>
+    </div>
   );
 }
 
