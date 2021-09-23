@@ -54,7 +54,6 @@ function Orders() {
       .then((data) => {
         const allOrders = data.orders.filter((order) => order.state_id !== 4); // Фильтруем доставку, ибо она всё сломает
         const ordersForState = allOrders.map((order) => {
-          console.log('AAAAAAAAAAAAAAA', order);
           return { ...order, timeFormat: myDateParse(order.Reservation?.date_time) };
         });
         dispatch(ordersAC.getOrdersAC(ordersForState));

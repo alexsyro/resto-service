@@ -48,7 +48,6 @@ export default function Reservation() {
   }, [selectedDateTime]);
 
   const selectHall = (event) => {
-    console.log(event.target.dataset);
     const { id } = event.target;
     const currHall = hallsArray.find((hall) => hall.id === Number(id));
     dispatch(selectReservHallAC({ hall: currHall }));

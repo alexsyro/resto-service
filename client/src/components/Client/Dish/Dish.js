@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { cartAddPositionAC } from '../../../redux/actionCreators/cartAC'
+import { cartAddPositionAC, cartUpdateTotalAC } from '../../../redux/actionCreators/cartAC'
 import styles from './Dish.module.scss'
 
 function Dish({ dish }) {
@@ -20,6 +20,7 @@ function Dish({ dish }) {
       price: currentDish.price,
     }
     dispatch(cartAddPositionAC(payload))
+    dispatch(cartUpdateTotalAC());
   }
 
   return (

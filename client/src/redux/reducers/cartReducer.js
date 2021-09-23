@@ -3,10 +3,18 @@ import {
   CART_REMOVE_POSITION,
   CART_CLEAN_POSITIONS,
   CART_CHANGE_QUANTITY,
+  CART_INCR_QUANTITY,
+  CART_DECR_QUANTITY,
+  CART_UPDATE_TOTAL,
 } from '../actionTypes/actionType';
 
 const localCart = JSON.parse(localStorage.getItem('cart'));
-const initialState = localCart ? { cart: localCart } : { cart: [] };
+const initialState = localCart
+  ? {
+      cart: localCart,
+      total: localCart.reduce((acc, pos) => acc + pos.quantity * pos.price, 0),
+    }
+  : { cart: [], total: 0 };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
@@ -35,8 +43,32 @@ export default function reducer(state = initialState, action) {
           return position;
         }),
       };
+    case CART_INCR_QUANTITY:
+      return {
+        ...state,
+        cart: state.cart.map((position) => {
+          if (position.id === action.payload.id) {
+            position.quantity += 1;
+          }
+          position.total = +position.quantity * +position.price;
+          return position;
+        }),
+      };
+    case CART_DECR_QUANTITY:
+      return {
+        ...state,
+        cart: state.cart.map((position) => {
+          if (position.id === action.payload.id) {
+            position.quantity -= 1;
+          }
+          position.total = +position.quantity * +position.price;
+          return position;
+        }),
+      };
     case CART_CLEAN_POSITIONS:
       return { ...state, cart: [] };
+    case CART_UPDATE_TOTAL:
+      return { ...state, total: state.cart.reduce((acc, pos) => acc + pos.total, 0) };
     default:
       return state;
   }
