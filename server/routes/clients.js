@@ -92,7 +92,7 @@ router.post('/', async (req, res) => {
         const userEntry = await Client.findOne({ where: { id: user.id } });
         userEntry.DiscountId = possibleDiscount.id;
         await userEntry.save();
-        res.json({ user: { ...userData } });
+        res.json({ user: { ...userData, discount: possibleDiscount.size} });
       } else {
         // Если не подходит - кидаем на фронт ошибку
         res.status(403).json({ error: 'Wrong password', user: { isAuth: false } });

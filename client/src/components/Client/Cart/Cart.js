@@ -127,7 +127,7 @@ export default function Cart() {
             0,
           )} руб.`}</p>
           {user.DiscountId > 1 && (
-            <p className={styles.bonus}>{`Цена с учётом вашей скидки ${user.discount}% - ${total.quantity} руб.`}</p>
+            <p className={styles.bonus}>{`Цена с учётом вашей скидки ${user.discount}% - ${fullPrice} руб.`}</p>
           )}
 
         </form>

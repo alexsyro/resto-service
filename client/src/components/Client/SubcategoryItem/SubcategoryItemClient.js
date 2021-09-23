@@ -4,7 +4,7 @@ import { useParams, useHistory } from 'react-router-dom';
 // import {GET_DISHES} from '../../../redux/actionTypes/actionType'
 import { dishAC } from '../../../redux/actionCreators/dishAC'
 import Dish from '../Dish/Dish';
-import styles from '../Dish/Dish.module.scss'
+import styles from './SubcategoryItem.module.scss'
 
 
 function SubcategoryItem(props) {
