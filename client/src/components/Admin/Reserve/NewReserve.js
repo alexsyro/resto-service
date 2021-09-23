@@ -49,7 +49,7 @@ function NewReserve({ reservation }) {
       <td>{`${reservation.timeFormat.hours}:${reservation.timeFormat.minutes}`}</td>
       <td>{reservation['State.state']}</td>
       <td>
-        <button onClick={() => finishReservation()} className='uk-button uk-button-primary'>
+        <button  onClick={() => finishReservation()} className='uk-button uk-button-primary'>
           Подтвердить
         </button>
       </td>

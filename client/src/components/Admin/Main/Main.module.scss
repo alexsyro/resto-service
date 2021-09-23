@@ -1,17 +1,25 @@
 .container {
+  width: 80%;
+  margin: 4rem auto 0;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
-  height: 100vh;
+  flex-wrap: wrap;
+  height: 30rem;
+
+  a {
+    width: 20rem;
+    text-decoration: none;
+  }
   .block {
-    width: 15rem;
-    height: 15rem;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    border-radius: 3rem;
+    align-items: center;
     margin: 1rem;
   }
   .block:hover {
-    box-shadow: 0.2rem 0.2rem 0.5rem rgba(154, 147, 140, 0.5), 0.1rem 0.1rem 0.5rem rgba(255, 255, 255, 1);
+    box-shadow: 0.2rem 0.2rem 0.5rem rgba(154, 147, 140, 0.5),
+      0.1rem 0.1rem 0.5rem rgba(255, 255, 255, 1);
   }
 }

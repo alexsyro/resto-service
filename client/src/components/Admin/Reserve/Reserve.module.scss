@@ -1,7 +1,14 @@
+.order__title {
+  margin-left: 1rem;
+  color: white;
+}
+
 .container {
-  background-color: white;
+  height: 100vh;
+  background-color: #0c0c0c;
 
   .listButton {
+    white-space: nowrap;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,8 +18,8 @@
     border-radius: 0.1rem;
     color: white;
     text-transform: uppercase;
-    width: 18rem;
-    font-size: 14pt;
+    width: auto;
+    font-size: 1rem;
     margin: 1rem;
   }
   .backButton {
@@ -26,7 +33,7 @@
     color: white;
     text-transform: uppercase;
     width: 9rem;
-    font-size: 14pt;
+    font-size: 1rem;
     margin: 1rem;
   }
 
