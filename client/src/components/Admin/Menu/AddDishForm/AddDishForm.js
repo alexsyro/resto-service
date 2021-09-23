@@ -70,7 +70,7 @@ function AddDishForm() {
             <input className="uk-input" type='number' name='portionSize' placeholder='Введите размер порции' required />
             <select className={`uk-select ${styles.select__input}`} name='measureId'>
               {measures?.map((measure) => (
-                <option value={measure?.id}>{measure?.type}</option>
+                <option key={measure?.id} value={measure?.id}>{measure?.type}</option>
               ))}
             </select>
           </div>
