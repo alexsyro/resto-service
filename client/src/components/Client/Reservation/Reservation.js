@@ -10,10 +10,13 @@ import TableInfo from './TableInfo';
 import ChooseDate from '../ChooseDate/ChooseDate';
 
 import styles from './Reservation.module.scss';
+import { useTranslation } from 'react-i18next';
 
 const { REACT_APP_URL } = process.env;
 
 export default function Reservation() {
+
+  const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const { selectedHall, selectedDateTime, selectedTable } = useSelector((state) => state.reservationReducer);
 
@@ -57,12 +60,10 @@ export default function Reservation() {
     <>
       <div className={styles.mainContainer}>
         <div className={styles.upperMenu}>
-          <p className={styles.pick_date}>Выберете интересующую дату и время</p>
+          <p className={styles.pick_date}>{t('booking.1')}</p>
           <form onSubmit={dateTimeSelect}>
             <ChooseDate />
-            <button className={styles.button} type='submit'>
-              Подтвердить
-            </button>
+            <button className={styles.button} type='submit'>{t('booking.2')}</button>
           </form>
         </div>
         <div className={styles.hallSelect}>

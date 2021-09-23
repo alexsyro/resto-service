@@ -8,8 +8,9 @@ import ContentSlider from '../ContentSlider/ContentSlider'
 function Content() {
   return (
     <div className={styles.content__div}>
+      
       <ContentVideo />
-      <ContentAbout />
+      <ContentAbout /> 
       <ContentBook />
       <ContentSlider/>
     </div>

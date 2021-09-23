@@ -3,8 +3,11 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import { sagaLoginAC } from '../../../redux/actionCreators/sagaAC';
 import styles from './LoginForm.module.scss';
+import { useTranslation } from 'react-i18next';
 
 function LoginForm() {
+  const { t, i18n } = useTranslation();
+
   const history = useHistory()
   const dispatch = useDispatch();
 
@@ -27,14 +30,14 @@ function LoginForm() {
           <div className={styles.group}>
             <input type='text' name='email' required />
             <span className={styles.bar}></span>
-            <label>Ваш Email</label>
+            <label>{t('login.1')}</label>
           </div>
           <div className={styles.group}>
             <input type='password' name='password' required />
             <span className={styles.bar}></span>
-            <label>Пароль</label>
+            <label>{t('login.2')}</label>
           </div>
-          <button type="submit">Войти</button>
+          <button type="submit">{t('login.3')}</button>
         </form>
       </div>
     </div>
