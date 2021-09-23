@@ -8,15 +8,13 @@ function Staff() {
 
   return (
     <>
-      <div >
+      <div className={styles.find__block}>
+        <p>Поиск сотрудника:</p>
         <StaffList />
       </div>
-      <br />
-      <div className={styles.container} >
-      <button className={styles.back} onClick={() => history.goBack()}>Назад</button>
-      <br />
-      <br />
-      <Link  to={'/staff/new'} ><button className={styles.add}>Добавить работника</button></Link>
+      <div className={styles.container}>
+      <button className="uk-button uk-button-primary" onClick={() => history.goBack()}>Назад</button>
+      <Link  to={'/staff/new'} ><button className="uk-button uk-button-primary">Добавить работника</button></Link>
       </div>
     </>
   );

@@ -56,26 +56,26 @@ function DishInfo() {
 
             <div className="uk-margin">
               <label htmlFor="name">Название:</label>
-              <input className="uk-input" type='text' name='name' defaultValue={currentDish?.name} required />
+              <input className="uk-input" type='text' name='name' defaultValue={currentDish?.name} />
             </div>
             <div className="uk-margin">
               <label htmlFor="description">Состав:</label>
-              <input className="uk-input" type='text' name='description' defaultValue={currentDish?.description} placeholder='Добавьте описание' required />
+              <input className="uk-input" type='text' name='description' defaultValue={currentDish?.description} placeholder='Добавьте описание'  />
             </div>
             <div className="uk-margin">
               <label htmlFor="kcal">Ккал:</label>
-              <input className="uk-input" type='number' name='kcal' placeholder='Введите  kcal' defaultValue={currentDish?.kcal} required />
+              <input className="uk-input" type='number' name='kcal' placeholder='Введите  kcal' defaultValue={currentDish?.kcal} />
             </div>
             <label htmlFor="portionSize">Объём порции:</label>
             <div className={`uk-margin ${styles.double__input}`}>
-              <input className="uk-input" type='number' name='portionSize' placeholder='Введите размер порции' defaultValue={currentDish?.portionSize} required />
+              <input className="uk-input" type='number' name='portionSize' placeholder='Введите размер порции' defaultValue={currentDish?.portionSize} />
               <select className={`uk-select ${styles.select__input}`} name='measureId'>
 
               </select>
             </div>
             <div className="uk-margin">
               <label style={{color: 'white'}} htmlFor="price">Цена:</label>
-              <input className="uk-input" type='number' name='price' placeholder='Введите цену' defaultValue={currentDish?.price} required />
+              <input className="uk-input" type='number' name='price' placeholder='Введите цену' defaultValue={currentDish?.price} />
             </div>
             <div className={styles.center}>
               <button className={`uk-button uk-button-primary ${styles.submit__btn}`} type='submit'>Сохранить</button>
