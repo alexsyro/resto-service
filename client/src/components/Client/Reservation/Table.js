@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectReservTableAC } from '../../../redux/actionCreators/actionCreators';
+import { useTranslation } from 'react-i18next';
 
 export default function Table({ table }) {
+  const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const { selectedDateTime, selectedTable } = useSelector((state) => state.reservationReducer);
 

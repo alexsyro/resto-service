@@ -8,6 +8,7 @@ import {
 import Hall from './Hall';
 import TableInfo from './TableInfo';
 import styles from './Reservation.module.scss';
+import { useTranslation } from 'react-i18next';
 
 //Текущая дата
 const CURR_DATE = new Date();
@@ -22,6 +23,8 @@ const formatDate = (timestamp = CURR_DATE.getTime()) => {
 };
 
 export default function Reservation() {
+  
+  const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const { selectedHall, selectedDateTime, selectedTable } = useSelector((state) => state.reservationReducer);
   const today = formatDate();
@@ -61,11 +64,11 @@ export default function Reservation() {
     <>
       <div className={styles.mainContainer}>
         <div className={styles.upperMenu}>
-          <p className={styles.pick_date}>Выберете интересующую дату и время</p>
+          <p className={styles.pick_date}>{t('booking.1')}</p>
           <form onSubmit={dateTimeSelect}>
             <input className={styles.input_date} name='date' type='date' min={today} defaultValue={today} max={maxDate} />
             <input className={styles.input_time} name='time' type='time' />
-            <button className={styles.button} type='submit'>Выбрать</button>
+            <button className={styles.button} type='submit'>{t('booking.2')}</button>
           </form>
         </div>
         <div className={styles.hallSelect}>

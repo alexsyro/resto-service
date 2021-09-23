@@ -7,9 +7,8 @@ import styles from './Client.module.scss';
 function Client() {
   return (
     <div className={styles.container}>
-       <Suspense fallback="loading">
+    
       <Header />
-      </Suspense>
       <Main />
       <Footer />
     </div>

@@ -9,10 +9,9 @@ import Footer from '../Footer/Footer'
 function Content() {
   return (
     <div className={styles.content__div}>
-      <ContentVideo />
       
-      <ContentAbout />
-    
+      <ContentVideo />
+      <ContentAbout /> 
       <ContentBook />
       <ContentSlider/>
     </div>

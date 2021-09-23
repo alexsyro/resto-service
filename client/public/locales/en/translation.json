@@ -1,0 +1,61 @@
+{
+  "main": {
+    "1": "Main",
+    "2": "About",
+    "3": "Menu",
+    "4": "Contacts"
+  },
+  "nav": {
+    "1": "Book",
+    "2": "Profile",
+    "3": "Log In",
+    "4": "Log out",
+    "5": "Cart",
+    "6": "Register"
+  },
+  "about": {
+    "1": "Real",
+    "2": "RUSSIAN CUISINE",
+    "3": "Cooking is like fashion. We always like to change for the better. When we travel to different regions and see new ingredients, we try to use them in your new dishes. ",
+    "4": "More",
+    "5": "Cart",
+    "6": "Register"
+  },
+  "book": {
+    "1": "Unique",
+    "2": "FOOD, DRINKS, SHOW",
+    "3": "Do not be surprised when a beautiful stewardess meets you at the entrance - you are not on the plane or at the resort, but in the most unique and conceptual restaurant Tochka.",
+    "4": "Menu",
+    "5": "Cart",
+    "6": "Register"
+  },
+  "footer": {
+    "1": "WORKING HOURS",
+    "2": "Mon – Fr 12:00 – 23:00",
+    "3": "Sat – Sun 13:00 – 23:00",
+    "4": "BOOKING",
+    "5": "Book a table",
+    "6": "Social media",
+    "7": "VISIT US",
+    "8": "Lenin Avenue 121, Obninsk"
+  },
+  "us": {
+    "1": "The unique location, which includes a panoramic view of the embankment, makes it possible to compare a visit to our restaurant with an arrival in a small town. We paid special attention to the interior design and as a result we got a cozy atmosphere that is conducive to relaxation.",
+    "2": "Simple",
+    "3": "Philosophy",
+    "4": " The naturalness of the products in an elegantly simple culinary reading.This, in principle, is famous for our cuisine, which has won gastronomic  podiums of the world with amazingly tasty simplicity of solutions.",
+    "5": "Favorite",
+    "6": "Chef ",
+    "7": "Thanks to my grandmother, I took up culinary experiments myself and cooked his first dish at the age of 13. These were cheesecakes. And my family's endorsement of my experience inspired even more"
+  },
+  "contacts": {
+    "1": "Our contacts:",
+    "2": "Lenin Avenue 121, Obninsk",
+    "3": "We are open for you from 12:00 - 23:55",   
+    "4": "Book"    
+  },
+  "booking": {
+    "1": "Choose the date and time of interest",
+    "2": "Done"
+  }
+}

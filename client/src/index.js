@@ -10,9 +10,9 @@ ReactDOM.render(
   <>
     <Provider store={store}>
       <Router>
-      {/* <Suspense fallback="loading"> */}
+      <Suspense fallback="loading">
         <ComponentSwitcher />
-        {/* </Suspense> */}
+        </Suspense>
       </Router>
     </Provider>
   </>,

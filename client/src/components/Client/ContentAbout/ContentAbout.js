@@ -1,32 +1,30 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-
+import { useTranslation } from 'react-i18next';
 import styles from './ContentAbout.module.scss'
 
 function ContentAbout() {
+  const { t, i18n } = useTranslation();
 
   return (
     <div className={styles.main__container}>
-     
+
       <div className={styles.about__img}>
       </div>
       <div className={styles.text_container}>
-        <p className={styles.about__gold}>Настоящая</p>
-        <p className={styles.about__title}>РУССКАЯ КУХНЯ</p>
+        <p className={styles.about__gold}> {t('about.1')}</p>
+        <p className={styles.about__title}> {t('about.2')}</p>
         <p className={styles.about__text}>
-          “Кулинария похожа на моду. Нам всегда нравится меняться к лучшему.
-          Когда мы путешествуем в разные регионы Италии – в Венецию, Ломбардию,
-          Тоскану – и видим новые ингредиенты, то мы пробуем использовать их в
-          своих новых блюдах.”
+          “{t('about.3')}”
         </p>
         <button className={styles.about__btn}>
           <Link className={styles.about__btn__text} to="/about">
-            Подробнее
+          {t('about.4')}
           </Link>
         </button>
       </div>
     </div>
+
   )
 }
-
 export default ContentAbout
