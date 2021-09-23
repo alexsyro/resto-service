@@ -11,3 +11,41 @@
     }
   }
 }
+
+.content {
+  position: relative;
+}
+
+.counter {
+  color: black;
+  border-radius: 50%;
+  background-color: rgb(196, 39, 39);
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  height: 1.2rem;
+  width: 1.2rem;
+  top: 1.4rem;
+  left: 6.4rem;
+  z-index: 3; 
+  opacity: 0.8;
+}
+
+.counter2 {
+  color: black;
+  border-radius: 50%;
+  background-color: rgb(196, 39, 39);
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  height: 1.2rem;
+  width: 1.2rem;
+  top: 1.4rem;
+  left: 11rem;
+  z-index: 3; 
+  opacity: 0.8;
+}
