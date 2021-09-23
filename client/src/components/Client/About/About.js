@@ -34,6 +34,7 @@ function About() {
 
 
             <div className={styles.text_container}>
+              <p className={styles.about__small}>Простая </p>
               <p className={styles.about__title}>Философия </p>
               <p className={styles.about__text}>
                 Натуральность продуктов в изящно простом кулинарном прочтении.
@@ -41,12 +42,13 @@ function About() {
                 подиумы мира именно удивительно вкусной простотой решений.
               </p>
             </div>
-            <div className={styles.about__img}>
+            <div className={styles.about__philosophy}>
             </div>
           </div>
 
           <div className={styles.about__container}>
-            <p className={styles.about__title}> Наш шеф-повар</p>
+            <p className={styles.about__small}> Любимый</p>
+            <p className={styles.about__title}> Шеф-повар</p>
 
             <div className={styles.paragraph}>
               <div className={styles.chef__img}>
