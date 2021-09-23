@@ -108,7 +108,7 @@ function Reservations() {
         </table>
       ) : null}
       <br />
-      <h2>Заказы, ожидающие обработки </h2>
+      <h2 className={styles.order__title}>Заказы, ожидающие обработки </h2>
       {toCheckReservations.length ? (
         <table>
           <thead>
