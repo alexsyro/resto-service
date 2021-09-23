@@ -1,6 +1,7 @@
 .find__block {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  
   p {
     color: white;
     margin: 1.3rem 0.1rem 1rem 0.5rem;
@@ -8,9 +9,33 @@
 }
 
 .container {
-  height: 90vh;
+  // height: 90vh;
   button{
     margin: 1rem;
   }
 }
 
+.worker{
+  margin-left: 1rem !important;
+}
+
+.back{
+  width: 9.2rem;
+  height: 1.7rem;
+  background-color: #1e87f0;
+  font-size: 1rem;
+  color:white;
+  margin-top: 0.5rem;
+  margin-right: 0.6rem;
+  font-family: 'Arial', cursive;
+}
+
+.add{
+  width: 10.2rem;
+  height: 1.7rem;
+  background-color: #1e87f0;
+  font-size: 1rem;
+  color:white;
+  margin-top: 0.5rem;
+
+}

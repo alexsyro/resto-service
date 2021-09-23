@@ -6,7 +6,7 @@ function Category({category}) {
 
   return (
     <>
-      <p>{category.name}</p>
+      <p className={styles.category}>{category.name}</p>
       <div className={styles.subcategory}>
       {category.categories.map((category)=> <Subcategory key={category.id} subcategory={category}/>)}
       </div>
