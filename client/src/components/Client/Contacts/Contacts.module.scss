@@ -188,3 +188,14 @@
   align-items: center;
   margin-top: 3rem;
 }
+
+
+a[href^="tel:"] {
+  text-decoration: none;
+  color: #DCCA87;
+}
+
+a[href^="tel:"]:before {
+  content: "\2713";
+  margin-right: 0.5em;
+}

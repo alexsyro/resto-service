@@ -31,7 +31,7 @@ export default function Reservation() {
       const datetime = { date, time };
       dispatch(selectReservDateTimeAC({ datetime }));
     } else {
-      alert('Необходимо выбрать и дату и время.');
+      alert('Необходимо выбрать и дату, и время.');
     }
   };
 

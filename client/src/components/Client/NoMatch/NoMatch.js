@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 function NoMatch() {
   return (
     <div>
-      <p>Что-то пошло не так! Вы попали на несуществующую страницу. Просьба вернуться на <Link to="/">
+      <p>Что-то пошло не так! Вы попали на несуществующую страницу</p>
+      <p>Просьба вернуться на <Link to="/">
         <button className='uk-button uk-button-primary' type="button">
           Главную
         </button>

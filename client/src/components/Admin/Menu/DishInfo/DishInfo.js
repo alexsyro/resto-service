@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams, useHistory } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import { UPD_DISH } from '../../../../redux/actionTypes/actionType';
+import styles from './DishInfo.module.scss';
 
 const { REACT_APP_URL } = process.env;
 
@@ -47,65 +48,46 @@ function DishInfo() {
   };
 
   return (
-    <>
-      <form onSubmit={handlerSave}>
-        <div className='uk-card uk-card-primary uk-card-body'>
-          <div className='uk-margin'>
-            <input
-              name='name'
-              className='uk-input'
-              type='text'
-              defaultValue={currentDish?.name}
-              placeholder='Name'
-            />
-          </div>
+      <div className={styles.form__block}>
+        <form onSubmit={handlerSave} className={styles.form}>
+          <fieldset className="uk-fieldset">
 
-          <div className='uk-margin'>
-            <input
-              className='uk-input'
-              name='description'
-              type='text'
-              defaultValue={currentDish?.description}
-              placeholder='Description'
-            />
-          </div>
+            <legend className="uk-legend" style={{ color: 'white' }}>Редактирование блюда</legend>
 
-          <div className='uk-margin'>
-            <input
-              className='uk-input'
-              type='text'
-              name='kcal'
-              defaultValue={currentDish?.kcal}
-              placeholder='Kcal'
-            />
-          </div>
+            <div className="uk-margin">
+              <label htmlFor="name">Название:</label>
+              <input className="uk-input" type='text' name='name' defaultValue={currentDish?.name} required />
+            </div>
+            <div className="uk-margin">
+              <label htmlFor="description">Состав:</label>
+              <input className="uk-input" type='text' name='description' defaultValue={currentDish?.description} placeholder='Добавьте описание' required />
+            </div>
+            <div className="uk-margin">
+              <label htmlFor="kcal">Ккал:</label>
+              <input className="uk-input" type='number' name='kcal' placeholder='Введите  kcal' defaultValue={currentDish?.kcal} required />
+            </div>
+            <label htmlFor="portionSize">Объём порции:</label>
+            <div className={`uk-margin ${styles.double__input}`}>
+              <input className="uk-input" type='number' name='portionSize' placeholder='Введите размер порции' defaultValue={currentDish?.portionSize} required />
+              <select className={`uk-select ${styles.select__input}`} name='measureId'>
 
-          <div className='uk-margin'>
-            <input
-              className='uk-input'
-              type='text'
-              name='portionSize'
-              defaultValue={currentDish?.portionSize}
-              placeholder='PortionSize'
-            />
-          </div>
+              </select>
+            </div>
+            <div className="uk-margin">
+              <label style={{color: 'white'}} htmlFor="price">Цена:</label>
+              <input className="uk-input" type='number' name='price' placeholder='Введите цену' defaultValue={currentDish?.price} required />
+            </div>
+            <div className={styles.center}>
+              <button className={`uk-button uk-button-primary ${styles.submit__btn}`} type='submit'>Сохранить</button>
 
-          <div className='uk-margin'>
-            <input
-              className='uk-input'
-              type='text'
-              name='price'
-              defaultValue={currentDish?.price}
-              placeholder='Price'
-            />
-          </div>
-          <button className='uk-button uk-button-default uk-margin-left'>Сохранить</button>
-        </div>
-      </form>
-      <button onClick={() => history.goBack()} className='uk-button uk-button-default uk-margin'>
-        Назад
-      </button>
-    </>
+            </div>
+
+          </fieldset>
+          <button onClick={() => history.goBack()} className={`uk-button uk-button-default ${styles.back_btn}`}>
+            Назад
+          </button>
+        </form>
+      </div>
   );
 }
 

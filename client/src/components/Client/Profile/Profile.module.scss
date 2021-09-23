@@ -83,3 +83,20 @@
   font-family: 'Comfortaa', cursive;
   font-weight: bold;
 }
+
+.back{
+  height: 1.5rem;
+  width: 6rem;
+  cursor: pointer;
+  position: absolute;
+  left: 50%;
+  top: 6rem;
+  transform: translateX(-50%);
+
+  font-family: 'Comfortaa', cursive;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 0.3rem;
+  background-color: #cfa670;
+  color: #fff;
+}
