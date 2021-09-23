@@ -46,6 +46,7 @@ function Reservations() {
         const allOrders = [...data.orders];
         const idToDelete = allOrders.map((el) => el['Reservation.id']);
         const allReservations = [...data.reservations];
+        // eslint-disable-next-line array-callback-return
         const reservationsWithoutOrders = allReservations.filter((reservation) => {
           if (!idToDelete.includes(reservation.id)) {
             return true;
@@ -58,7 +59,7 @@ function Reservations() {
 
         dispatch(reservationsAC.getReservationsAC(reservationsForState));
       });
-    // здесь fetch (сага) в базу для получения списка заказов (причем только тех, что в обработке)
+      // здесь fetch (сага) в базу для получения списка заказов (причем только тех, что в обработке)
   }, [dispatch]);
 
   const finishedReservations = useSelector((state) =>
@@ -76,13 +77,12 @@ function Reservations() {
   return (
     <div className={styles.container}>
       {completedList ? (
-        <button className='uk-button uk-button-default' onClick={() => setCompletedList((prev) => !prev)}>
-          {' '}
-          Скрыть список завершенных(обработанных) заказов
+        <button className={styles.listButton} onClick={() => setCompletedList((prev) => !prev)}>
+          Скрыть обработанные резервы
         </button>
       ) : (
-        <button className='uk-button uk-button-default' onClick={() => setCompletedList((prev) => !prev)}>
-          Вывести список завершенных(обработанных) заказов
+        <button className={styles.listButton} onClick={() => setCompletedList((prev) => !prev)}>
+          Вывести обработанные резервы
         </button>
       )}
       <br />
@@ -90,14 +90,14 @@ function Reservations() {
         <table>
           <thead>
             <tr>
-              <td>Номер резерва</td>
+              <td>Резерва ID</td>
               <td>Имя клиента</td>
-              <td>Номер столика</td>
-              <td>Количество гостей</td>
+              <td>Столик#</td>
+              <td>Кол-во гостей</td>
               <td>Телефон</td>
-              <td>Дата бронирования</td>
-              <td>Какое время (UTC:0)</td>
-              <td>Статус заказа</td>
+              <td>Дата</td>
+              <td>Время (UTC:0)</td>
+              <td>Статус</td>
             </tr>
           </thead>
           <tbody>
@@ -113,14 +113,14 @@ function Reservations() {
         <table>
           <thead>
             <tr>
-              <td>Номер резерва</td>
+              <td>Резерв ID</td>
               <td>Имя клиента</td>
-              <td>Номер столика</td>
-              <td>Количество гостей</td>
+              <td>Столик#</td>
+              <td>Кол-во гостей</td>
               <td>Телефон</td>
-              <td>Дата бронирования</td>
-              <td>Какое время (UTC:0)</td>
-              <td>Статус заказа</td>
+              <td>Дата</td>
+              <td>Время (UTC:0)</td>
+              <td>Статус</td>
               <td>Подтвердить</td>
               <td>Отменить</td>
             </tr>
@@ -133,7 +133,7 @@ function Reservations() {
         </table>
       ) : null}
 
-      <button className='uk-button uk-button-default' onClick={() => history.goBack()}>
+      <button className={styles.backButton} onClick={() => history.goBack()}>
         Назад
       </button>
     </div>
