@@ -1,28 +1,16 @@
-.container{
+.find__block {
   display: flex;
-  height:61vh;
+  flex-direction: row;
+  p {
+    color: white;
+    margin: 1.3rem 0.1rem 1rem 0.5rem;
+  }
 }
 
-.back{
-  width: 5.2rem;
-  height: 1.5rem;
-  background-color: #1e87f0;
-  font-size: 1rem;
-  color:white;
-  border-radius: 0.3rem;
-  margin-top: 0.5rem;
-  margin-right: 0.6rem;
-  margin-left: 1rem;
+.container {
+  height: 90vh;
+  button{
+    margin: 1rem;
+  }
 }
 
-.add{
-  width: 12rem;
-  height: 1.5rem;
-  background-color: #1e87f0;
-  font-size: 1rem;
-  color:white;
-  border-radius: 0.3rem;
-  margin-top: 0.5rem;
-  margin-right: 0.6rem;
-  margin-left: 1rem;
-}
