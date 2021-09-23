@@ -98,9 +98,8 @@ router.post('/', isAuthenticated, async (req, res) => {
     const order = await Order.create({
       ClientId: user.id,
       StateId,
-      ReservationId: reservation.id || null,
+      ReservationId: reservation?.id || null,
     });
-
     const promissesArrayOfOrderPositions = cart.map(async (position) => {
       const orderPosition = await OrderPosition.create({
         OrderId: order.id,
