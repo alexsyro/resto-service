@@ -3,6 +3,8 @@ import { useParams, useHistory } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import { UPD_DISH } from '../../../../redux/actionTypes/actionType';
 
+const { REACT_APP_URL } = process.env;
+
 function DishInfo() {
   const dispatch = useDispatch();
 
@@ -31,7 +33,7 @@ function DishInfo() {
     dispatch({ type: UPD_DISH, payload: updateDishCard });
     formData.append('updatedDish', updateDishCard);
 
-    fetch(`http://localhost:1234/api/menu/${dishId}`, {
+    fetch(`${REACT_APP_URL}api/menu/${dishId}`, {
       method: 'PUT',
       credentials: 'include',
       headers: {

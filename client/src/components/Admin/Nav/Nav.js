@@ -4,7 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { sagaLogoutAC } from '../../../redux/actionCreators/sagaAC';
 import styles from './Nav.module.scss';
 
-function Nav(props) {
+function Nav() {
   const dispatch = useDispatch();
   const history = useHistory();
 

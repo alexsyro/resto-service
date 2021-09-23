@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import styles from './Orders.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import * as ordersAC from '../../../redux/actionCreators/ordersAC';
 import * as reservationsAC from '../../../redux/actionCreators/actionCreators';
-
 import DoneOrder from './DoneOrder';
 import ToCheckOrder from './ToCheckOrder';
+import styles from './Orders.module.scss';
+
+const { REACT_APP_URL } = process.env;
 
 function Orders() {
   const [completedList, setCompletedList] = useState(false);
@@ -38,7 +39,7 @@ function Orders() {
     };
   }
   useEffect(() => {
-    fetch('http://localhost:1234/api/orders', { credentials: 'include' })
+    fetch(`${REACT_APP_URL}api/orders`, { credentials: 'include' })
       .then((res) => res.json())
       .then((data) => {
         const allOrders = data.orders;
@@ -48,7 +49,7 @@ function Orders() {
         dispatch(ordersAC.getOrdersAC(ordersForState));
       });
 
-    fetch('http://localhost:1234/api/reservations', { credentials: 'include' })
+    fetch(`${REACT_APP_URL}api/reservations`, { credentials: 'include' })
       .then((res) => res.json())
       .then((data) => {
         const allOrders = [...data.orders];

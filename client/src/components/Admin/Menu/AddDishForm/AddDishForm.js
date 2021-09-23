@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { GET_DISHES } from '../../../../redux/actionTypes/actionType';
 import { useParams } from 'react-router';
 
+const { REACT_APP_URL } = process.env;
+
 function AddDishForm() {
   const dispatch = useDispatch();
   const { categoryId } = useParams();
@@ -37,7 +39,7 @@ function AddDishForm() {
     formData.append('measureId', measureId.value);
     formData.append('price', price.value);
 
-    fetch(`http://localhost:1234/api/menu`, {
+    fetch(`${REACT_APP_URL}api/menu`, {
       method,
       credentials: 'include',
       body: formData,
@@ -49,16 +51,16 @@ function AddDishForm() {
 
   return (
     <form onSubmit={addDish} method='POST' name='AddDishForm'>
-      <input type='text' name='name' placeholder='Введите название блюда' required/>
-      <input type='text' name='description' placeholder='Добавьте описание' required/>
+      <input type='text' name='name' placeholder='Введите название блюда' required />
+      <input type='text' name='description' placeholder='Добавьте описание' required />
       <input type='number' name='kcal' placeholder='Введите  kcal' />
       <select name='measureId'>
         {measures.map((measure) => (
           <option value={measure.id}>{measure.type}</option>
         ))}
       </select>
-      <input type='number' name='portionSize' placeholder='Введите размер порции' required/>
-      <input type='number' name='price' placeholder='Введите цену' required/>
+      <input type='number' name='portionSize' placeholder='Введите размер порции' required />
+      <input type='number' name='price' placeholder='Введите цену' required />
       <div>
         <img src={img} width='250' height='200' alt='IMG' />
         <input onChange={fileUpload} type='file' name='file' />
