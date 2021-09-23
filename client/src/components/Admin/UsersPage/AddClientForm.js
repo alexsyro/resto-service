@@ -1,11 +1,15 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom'
 import { GET_CLIENTS } from '../../../redux/actionTypes/actionType';
+import styles from './AddClientForm.module.scss';
 
 const { REACT_APP_URL } = process.env;
 
 function AddClientForm() {
   const dispatch = useDispatch();
+
+  const history = useHistory();
 
   const addWorker = (e) => {
     e.preventDefault();
@@ -25,18 +29,40 @@ function AddClientForm() {
   };
 
   return (
-    <form
-      onSubmit={addWorker}
-      action={`${REACT_APP_URL}api/clients/new`}
-      method='POST'
-      name='addClientForm'
-    >
-      <input type='text' name='name' placeholder='Имя сотрудника' />
-      <input type='text' name='email' placeholder='Должность' />
-      <input type='text' name='phone' placeholder='Телефон' />
-      <input type='text' name='discount' placeholder='Cкидка' />
-      <button type='submit'>Добавить</button>
-    </form>
+      <div className={styles.form__block}>
+        <form className={styles.form}
+          onSubmit={addWorker}
+          action={`${REACT_APP_URL}api/clients/new`}
+          method='POST'
+          name='addClientForm'
+        >
+          <fieldset className="uk-fieldset">
+
+            <legend className="uk-legend" style={{ color: 'white' }}>Добавление клиента</legend>
+
+            <div className="uk-margin">
+              <input className="uk-input" type='text' name='name' placeholder='Имя клиента' required />
+            </div>
+            <div className="uk-margin">
+              <input className='uk-input' type='email' name='email' placeholder='Email' required />
+            </div>
+            <div className="uk-margin">
+              <input className="uk-input" type='phone' name='phone' placeholder='Телефон' required />
+            </div>
+            <div className="uk-margin">
+              <input className="uk-input" type='text' name='discount' placeholder='Cкидка' required />
+            </div>
+            <div className={styles.center}>
+              <button className={`uk-button uk-button-primary ${styles.submit__btn}`} type='submit'>Добавить</button>
+            </div>
+
+            <button onClick={() => history.goBack()} className={`uk-button uk-button-default uk-margin ${styles.back_btn}`}>
+              Назад
+            </button>
+
+          </fieldset>
+        </form>
+      </div>
   );
 }
 

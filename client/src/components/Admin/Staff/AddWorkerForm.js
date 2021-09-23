@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { GET_STAFF } from '../../../redux/actionTypes/actionType';
 import styles from './AddWorkerForm.module.scss';
@@ -13,6 +14,7 @@ const checkCorrectNumber = (string) => {
 
 function AddWorkerForm() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [img, setImg] = useState(null);
 
   const posts = useSelector((state) => state.staffReducer.positions);
@@ -91,6 +93,10 @@ function AddWorkerForm() {
             <div className={styles.center}>
               <button className={`uk-button uk-button-primary ${styles.submit__btn}`} type='submit'>Добавить</button>
             </div>
+
+            <button onClick={() => history.goBack()} className={`uk-button uk-button-default uk-margin ${styles.back_btn}`}>
+              Назад
+            </button>
 
           </fieldset>
         </form>
