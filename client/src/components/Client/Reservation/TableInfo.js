@@ -72,16 +72,16 @@ export default function TableInfo() {
                 <p className={styles.text}>Вы можете сделать предзаказ блюд, после бронирования </p>
               ) : (
                 <>
-                  <label htmlFor='guestName'>Ваше имя</label>
-                  <input
+                  <label className={styles.info_guests} htmlFor='guestName'>Ваше имя:</label>
+                  <input className={styles.info_input}
                     id='guestName'
                     type='text'
                     name='guestName'
                     placeholder='Введите ваше имя'
                     required
                   />
-                  <label htmlFor='guestPhone'>Ваш телефон</label>
-                  <input
+                  <label className={styles.info_guests} htmlFor='guestPhone'>Ваш телефон:</label>
+                  <input className={styles.info_input}
                     id='guestPhone'
                     type='tel'
                     name='guestPhone'
