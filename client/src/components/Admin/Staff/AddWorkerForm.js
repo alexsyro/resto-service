@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { GET_STAFF } from '../../../redux/actionTypes/actionType';
+import styles from './AddWorkerForm.module.scss';
 
 const REGEXP_PHONE_VALIDATION = /[-+() ]*/gs;
 const { REACT_APP_URL } = process.env;
@@ -53,27 +54,69 @@ function AddWorkerForm() {
   };
 
   return (
-    <form
-      onSubmit={addWorker}
-      action={`${REACT_APP_URL}api/staff/new`}
-      method='POST'
-      name='addWorkerForm'
-    >
-      <input type='text' name='name' placeholder='Имя сотрудника' />
-      <select name='postId'>
-        {posts.map((post) => (
-          <option value={post.id}>{post.name}</option>
-        ))}
-      </select>
-      <input type='text' name='phone' placeholder='Телефон' />
-      <input type='text' name='login' placeholder='Логин' />
-      <input type='text' name='password' placeholder='Пароль' />
-      <div>
-        <img src={img} width='250' height='200' alt='IMG' />
-        <input onChange={fileUpload} type='file' name='file' />
+    <>
+      <div className={styles.form__block}>
+        <form onSubmit={addWorker}
+          action={`${REACT_APP_URL}api/staff/new`}
+          method='POST'
+          name='addWorkerForm'
+          className={styles.form}>
+          <fieldset className="uk-fieldset">
+
+            <legend className="uk-legend" style={{ color: 'white' }}>Добавление сотрудника</legend>
+
+            <div className="uk-margin">
+              <input className="uk-input" type='text' name='name' placeholder="Имя сотрудника" required />
+            </div>
+            <div className={`uk-margin`}>
+              <select className={`uk-select`} name='postId'>
+                {posts.map((post) => (
+                  <option value={post.id}>{post.name}</option>
+                ))}
+              </select>
+            </div>
+            <div className="uk-margin">
+              <input className="uk-input" type='phone' name='phone' placeholder='Номер телефона' required />
+            </div>
+            <div className="uk-margin">
+              <input className="uk-input" type='text' name='login' placeholder='Логин сотрудника' required />
+            </div>
+            <div className="uk-margin">
+              <input className="uk-input" type='text' name='password' placeholder='Пароль сотрудника' required />
+            </div>
+            <div className={styles.margin__left}>
+              <img src={img} width='250' height='200' alt='IMG' />
+              <input onChange={fileUpload} type='file' name='file' />
+            </div>
+            <div className={styles.center}>
+              <button className={`uk-button uk-button-primary ${styles.submit__btn}`} type='submit'>Добавить</button>
+            </div>
+
+          </fieldset>
+        </form>
       </div>
-      <button type='submit'>Добавить</button>
-    </form>
+      <form
+        onSubmit={addWorker}
+        action={`${REACT_APP_URL}api/staff/new`}
+        method='POST'
+        name='addWorkerForm'
+      >
+        <input type='text' name='name' placeholder='Имя сотрудника' />
+        <select name='postId'>
+          {posts.map((post) => (
+            <option value={post.id}>{post.name}</option>
+          ))}
+        </select>
+        <input type='text' name='phone' placeholder='Телефон' />
+        <input type='text' name='login' placeholder='Логин' />
+        <input type='text' name='password' placeholder='Пароль' />
+        <div>
+          <img src={img} width='250' height='200' alt='IMG' />
+          <input onChange={fileUpload} type='file' name='file' />
+        </div>
+        <button type='submit'>Добавить</button>
+      </form>
+    </>
   );
 }
 
