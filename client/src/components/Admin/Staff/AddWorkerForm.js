@@ -95,27 +95,6 @@ function AddWorkerForm() {
           </fieldset>
         </form>
       </div>
-      <form
-        onSubmit={addWorker}
-        action={`${REACT_APP_URL}api/staff/new`}
-        method='POST'
-        name='addWorkerForm'
-      >
-        <input type='text' name='name' placeholder='Имя сотрудника' />
-        <select name='postId'>
-          {posts.map((post) => (
-            <option value={post.id}>{post.name}</option>
-          ))}
-        </select>
-        <input type='text' name='phone' placeholder='Телефон' />
-        <input type='text' name='login' placeholder='Логин' />
-        <input type='text' name='password' placeholder='Пароль' />
-        <div>
-          <img src={img} width='250' height='200' alt='IMG' />
-          <input onChange={fileUpload} type='file' name='file' />
-        </div>
-        <button type='submit'>Добавить</button>
-      </form>
     </>
   );
 }

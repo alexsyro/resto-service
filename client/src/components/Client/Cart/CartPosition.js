@@ -53,7 +53,7 @@ export default function CartPosition({ position }) {
       <td>{position.name}</td>
       <td>
         <div className={styles.quantityContainer}>
-          <button onClick={decrementQuantity}> - </button>
+          <button className={styles.minus__btn} onClick={decrementQuantity}> - </button>
           {/* <input
           className={styles.scale}
           name='quantity'
@@ -65,7 +65,7 @@ export default function CartPosition({ position }) {
           max='10'
         /> */}
           <p>{quantity}</p>
-          <button onClick={incrementQuantity}> + </button>
+          <button className={styles.plus__btn} onClick={incrementQuantity}> + </button>
         </div>
       </td>
       <td>

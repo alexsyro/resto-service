@@ -54,6 +54,8 @@
 }
 
 .save {
+  cursor: pointer;
+
   font-size: 1.2rem;
   height: 1.5rem;
   width: 6rem;
@@ -70,6 +72,8 @@
 }
 
 .change {
+  cursor: pointer;
+
   font-size: 1.2rem;
   height: 1.5rem;
   width: 14rem !important;
@@ -89,9 +93,9 @@
   width: 6rem;
   cursor: pointer;
   position: absolute;
-  left: 50%;
-  top: 6rem;
-  transform: translateX(-50%);
+  top: 25rem;
+  left: 43%;
+  // transform: translateX(-40%);
 
   font-family: 'Comfortaa', cursive;
   font-weight: bold;

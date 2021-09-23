@@ -43,59 +43,46 @@ function WorkerInfo() {
   };
 
   return (
-    <div className={styles.form__block}>
-      <div className='uk-card  uk-card-body'>
-        <div className='uk-margin'>
-          <input
-            ref={inputName}
-            className='uk-input'
-            type='text'
-            defaultValue={currentWorker?.name}
-            placeholder='Name'
-          />
-        </div>
+    <>
+      <div className={styles.form__block}>
+        <form className={styles.form}>
+          <fieldset className="uk-fieldset">
 
-        {/* <div className='uk-margin'>
-          <input
-            ref={inputPosition}
-            className='uk-input'
-            type='text'
-            defaultValue={currentWorker?.position}
-            placeholder='Position'
-          />
-        </div> */}
+            <legend className="uk-legend" style={{ color: 'white' }}>Редактирование данных сотрудника</legend>
 
-        <div className='uk-margin'>
-          <input
-            ref={inputLogin}
-            className='uk-input'
-            type='text'
-            defaultValue={currentWorker?.login}
-            placeholder='Login'
-          />
-        </div>
+            <div className="uk-margin">
+              <input className="uk-input"
+                ref={inputName}
+                type='text'
+                defaultValue={currentWorker?.name}
+                placeholder='Name' />
+            </div>
+            <div className="uk-margin">
+              <input className="uk-input"
+                ref={inputLogin}
+                type='text'
+                defaultValue={currentWorker?.login}
+                placeholder='Login' />
+            </div>
+            <div className="uk-margin">
+              <input className="uk-input"
+                ref={inputPhone}
+                type='phone'
+                defaultValue={currentWorker?.phone}
+                placeholder='Phone' />
+            </div>
+            <div className={styles.center}>
+              <button className={`uk-button uk-button-primary ${styles.submit__btn}`} onClick={handlerSave}>Изменить</button>
+            </div>
 
-      
+            <button onClick={() => history.goBack()} className={`uk-button uk-button-default uk-margin ${styles.back_btn}`}>
+              Назад
+            </button>
 
-        <div className='uk-margin'>
-          <input
-            ref={inputPhone}
-            className='uk-input'
-            type='phone'
-            defaultValue={currentWorker?.phone}
-            placeholder='Phone'
-          />
-        </div>
-
-        <button onClick={() => history.goBack()} className='uk-button uk-button-default uk-margin'>
-          Назад
-        </button>
-
-        <button onClick={handlerSave} className='uk-button uk-button-default uk-margin-left'>
-          Сохранить
-        </button>
+          </fieldset>
+        </form>
       </div>
-    </div>
+    </>
   );
 }
 
