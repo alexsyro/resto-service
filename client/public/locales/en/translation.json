@@ -57,5 +57,40 @@
   "booking": {
     "1": "Choose the date and time of interest",
     "2": "Done"
+  },
+  "login": {
+    "1": "Your email",
+    "2": "Password",
+    "3": "Log In"
+  },
+  "reg": {
+    "1": "Your name",
+    "2": "Your Email",
+    "3": "Phone  mumber",
+    "4": "Password",
+    "5": "Register"    
+  },
+  "info": {
+    "1": "Table",
+    "2": "Maximum occupancy:",
+    "3": "Our administrator will also contact you to confirm your booking.",
+    "4": "We warn you that the reservation will be canceled,",
+    "5": "if our administrator cannot reach you within an hour",
+    "6": "Select the number of guests:",
+    "7": "You can pre-order meals after booking",
+    "8": "Your name:",
+    "9": "Your phone:",
+    "10": "Book now",   
+    "11": "Select a date to complete your booking",
+    "12": "Book on",
+    "13": "at",
+    "14": "Number of guests",
+    "15": "Enter your name",
+    "16": "Enter your phone",
+    "17": "You have booked a table",
+    "18": "for",
+    "19": "at",
+    "20": "You will receive an SMS and a letter by mail after booking confirmation"
+   
   }
 }
