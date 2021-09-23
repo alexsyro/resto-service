@@ -5,7 +5,7 @@ import styles from './Subactegory.model.scss'
 function Subcategory({ subcategory }) {
   return (
     <div className={styles.subcategory__container}>
-      <Link className={styles.subcategory__link} to={`/menu/${subcategory.name}/${subcategory.id}`}>
+      <Link className={styles.subcategory__link} to={`/menu/subcategory/${subcategory.id}`}>
         <button >{subcategory.name}</button>
       </Link>
     </div>
