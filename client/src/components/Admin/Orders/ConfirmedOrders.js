@@ -21,16 +21,16 @@ function DoneOrder({ order }) {
         <table className={styles.positionsTableList}>
           <thead>
             <tr>
-              <td>#</td>
+              {/* <td>#</td> */}
               <td>Имя</td>
-              <td>К-во</td>
+              <td>Количество</td>
             </tr>
           </thead>
           <tbody>
             {order.OrderPositions.map((position) => {
               return (
                 <tr key={position.id}>
-                  <td>{position.id}</td>
+                  {/* <td>{position.id}</td> */}
                   <td>{position.Position.name}</td>
                   <td>{position.quantity}</td>
                 </tr>

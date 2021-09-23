@@ -133,7 +133,7 @@ function Reservations() {
         </table>
       ) : null}
 
-      <button className='uk-button uk-button-default' onClick={() => history.goBack()}>
+      <button className={styles.backButton} onClick={() => history.goBack()}>
         Назад
       </button>
     </div>
