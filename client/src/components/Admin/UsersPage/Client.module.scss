@@ -1,0 +1,92 @@
+.card{
+  width: 25rem;
+  margin: 1.8rem 0rem 1rem 1rem;
+  color:white;
+  
+}
+
+html{
+  background-color: #0C0C0C;
+}
+
+
+.edit{
+  width: 9.2rem;
+  height: 1.7rem;
+  background-color: #1e87f0;
+  font-size: 1rem;
+  color:white;
+  margin-top: 0.5rem;
+  margin-right: 0.6rem;
+  font-family: 'Arial', cursive;
+}
+
+.delete{
+  width: 5.2rem;
+  height: 1.7rem;
+  background-color: #1e87f0;
+  font-size: 1rem;
+  color:white;
+  margin-top: 0.5rem;
+  // font-family: 'Comfortaa', cursive;
+}
+
+.input{
+  margin-top: 1rem;
+  margin-left: 1rem;
+  margin-bottom: 0.5rem;
+  height: 2rem;
+  width:15rem;
+  border-radius: 0.3rem;
+}
+
+.text{
+  color: white;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.block{
+  display: flex;
+  flex-direction: column;
+}
+
+.search{
+  color: white;
+  margin-top: 1.5rem;
+  margin-left: 1rem;
+}
+
+.section{
+  min-height: 100vh;
+  
+}
+
+.button{
+  display: flex;
+
+}
+
+
+
+.back{
+  width: 5.2rem;
+  height: 1.5rem;
+  background-color: #1e87f0;
+  font-size: 1rem;
+  color:white;
+  margin-top: 1rem;
+  margin-right: 0.6rem;
+  margin-left: 1rem;
+}
+
+.add{
+  width: 12rem;
+  height: 1.5rem;
+  background-color: #1e87f0;
+  font-size: 1rem;
+  color:white;
+  margin-top: 1rem;
+  margin-right: 0.6rem;
+  margin-left: 1rem;
+}
