@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import * as ordersAC from '../../../redux/actionCreators/ordersAC';
 import * as reservationsAC from '../../../redux/actionCreators/actionCreators';
-import DoneOrder from './ConfirmedOrders';
-import NewOrders from './NewOrders';
+import DoneOrder from './DoneOrder';
+import ToCheckOrder from './ToCheckOrder';
 import styles from './Orders.module.scss';
 
 const { REACT_APP_URL } = process.env;
@@ -78,64 +78,30 @@ function Orders() {
   );
   return (
     <div className={styles.container}>
-      <button className={styles.listButton} onClick={() => setCompletedList((prev) => !prev)}>
-        {completedList ? 'Скрыть' : 'Вывести'} обработанные заказы
+      <h2>Заказы, ожидающие обработки </h2>
+      {toCheckOrders.length ? (
+        <ul className='uk-list uk-list-striped'>
+          {' '}
+          {toCheckOrders.map((order) => (
+            <ToCheckOrder key={order.id} order={order} />
+          ))}{' '}
+        </ul>
+      ) : null}
+
+      <button className='uk-button uk-button-default' onClick={() => setCompletedList((prev) => !prev)}>
+        {' '}
+        {completedList ? 'Скрыть' : 'Вывести'} список завершенных(обработанных) заказов
       </button>
       <br />
       {completedList && finishedOrders.length ? (
-        <table>
-          <thead>
-            <tr>
-              <td>Заказ ID</td>
-              <td>Имя клиента</td>
-              <td>Телефон</td>
-              <td>Резерв ID</td>
-              <td>Столик#</td>
-              <td>Кол-во гостей</td>
-              <td>Дата</td>
-              <td>Время (UTC:0)</td>
-              <td>Список блюд</td>
-              <td>Статус</td>
-              <td>Сумма</td>
-            </tr>
-          </thead>
-          <tbody>
-            {finishedOrders.map((order) => (
-              <DoneOrder key={order.id} order={order} />
-            ))}
-          </tbody>
-        </table>
+        <ul className='uk-list uk-list-striped'>
+          {' '}
+          {finishedOrders.map((order) => (
+            <DoneOrder key={order.id} order={order} />
+          ))}
+        </ul>
       ) : null}
       <br />
-      <h2>Заказы, ожидающие обработки </h2>
-      {toCheckOrders.length ? (
-        <table>
-          <thead>
-            <tr>
-              <td>Заказ ID</td>
-              <td>Имя клиента</td>
-              <td>Телефон</td>
-              <td>Резерв ID</td>
-              <td>Изменить резерв</td>
-              <td>№ столика</td>
-              <td>Кол-во гостей</td>
-              <td>Дата</td>
-              <td>Время (UTC:0)</td>
-              <td>Список блюд</td>
-              <td>Статус</td>
-              <td>Сумма</td>
-              <td>Подтвердить</td>
-              <td>Удалить</td>
-            </tr>
-          </thead>
-          <tbody>
-            {toCheckOrders.map((order) => (
-              <NewOrders key={order.id} order={order} />
-            ))}
-          </tbody>
-        </table>
-      ) : null}
-
       <button className='uk-button uk-button-default' onClick={() => history.goBack()}>
         Назад
       </button>

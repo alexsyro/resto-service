@@ -1,12 +1,72 @@
 .container {
-  // display: flex;
-}
-
-.hoverRow {
   background-color: white;
-}
-  
 
-.hoverRow:hover {
-  background-color:green;
+  .listButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2rem;
+    padding: 0rem 0.5rem;
+    background-color: #1e87f0;
+    border-radius: 0.1rem;
+    color: white;
+    text-transform: uppercase;
+    width: 18rem;
+    font-size: 14pt;
+  }
+
+  table {
+    // background-color: gray;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    border: 1px solid black;
+
+    table {
+      thead{
+        font-size: 11pt;
+      }
+      tbody {
+        td {
+          font-size: 10pt;
+          text-transform: lowercase;
+        }
+        button {
+          background-color: #1e87f0;
+          width: 1rem;
+          height: 1rem;
+          font-weight: bolder;
+          font-size: 15pt;
+        }
+      }
+    }
+
+    thead {
+      background-color: #1e87f0;
+      td {
+        text-align: center;
+        font-weight: bold;
+        color: black;
+      }
+    }
+
+    tbody {
+      border: 2px solid black;
+      tr {
+        background-color: white;
+
+        td {
+          color: black;
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  .hoverRow {
+    background-color: white;
+  }
+
+  .hoverRow:hover {
+    background-color: green;
+  }
 }
