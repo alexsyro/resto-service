@@ -25,7 +25,15 @@ router.post('/new', async (req, res) => {
     });
     // If new - that's ok? Proceed to session creating
     if (isNew) {
-      const user = { ...userEntry.dataValues, password: '', isAdmin: false, isAuth: true, isStaff: false };
+      const discount = await Discount.findOne({ where: { id: 1 } });
+      const user = {
+        ...userEntry.dataValues,
+        password: '',
+        isAdmin: false,
+        isAuth: true,
+        isStaff: false,
+        discount: discount.size,
+      };
       req.session.isAuthorized = true;
       req.session.user = user;
       res.json({ user }); // send user back
@@ -92,7 +100,7 @@ router.post('/', async (req, res) => {
         const userEntry = await Client.findOne({ where: { id: user.id } });
         userEntry.DiscountId = possibleDiscount.id;
         await userEntry.save();
-        res.json({ user: { ...userData, discount: possibleDiscount.size} });
+        res.json({ user: { ...userData, discount: possibleDiscount.size } });
       } else {
         // Если не подходит - кидаем на фронт ошибку
         res.status(403).json({ error: 'Wrong password', user: { isAuth: false } });
@@ -107,9 +115,13 @@ router.post('/', async (req, res) => {
   }
 });
 
+// Показываю всех пользователей
 router.get('/', async (req, res) => {
   try {
-    const clients = await Client.findAll({ raw: true });
+    const clients = await Client.findAll({
+      attributes: ['id', 'name', 'DiscountId', 'email', 'phone', 'createdAt', 'updatedAt'],
+      raw: true,
+    });
     res.json({ clients });
   } catch (error) {
     console.log(`DATABASE ERROR: ${error.message}`);
