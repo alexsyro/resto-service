@@ -3,6 +3,8 @@ import { Link, useHistory } from 'react-router-dom';
 import { sagaLogoutAC } from '../../../redux/actionCreators/sagaAC';
 import logo from './assets/img/logo.png'
 import styles from './Header.module.scss';
+import i18next from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 function Header() {
   const dispatch = useDispatch();
@@ -13,6 +15,13 @@ function Header() {
     dispatch(sagaLogoutAC());
     history.push('/');
   };
+
+  i18next.t('namespace:key')
+  const { t, i18n } = useTranslation();
+  function handleClick(lang){
+    i18n.changeLanguage(lang);
+  }
+
   return (
     <>
       <input type='checkbox' id={styles.check} />
@@ -29,6 +38,9 @@ function Header() {
             </Link>
           </li>
           <li>
+          <p>{t('Main.1')}</p>
+          </li>
+          <li>
             <Link className={styles.sidebar__links} to='/about'>
               О нас
             </Link>
@@ -42,6 +54,12 @@ function Header() {
             <Link className={styles.sidebar__links} to='/contacts'>
               Контакты
             </Link>
+          </li>
+          <li>
+          <button onClick={()=> handleClick('en')}>EN</button>
+          </li>
+          <li>
+          <button onClick={()=> handleClick('ru')}>RU</button>
           </li>
         </ul>
       </nav>

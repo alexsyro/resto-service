@@ -10,7 +10,9 @@ function Content() {
   return (
     <div className={styles.content__div}>
       <ContentVideo />
+      
       <ContentAbout />
+    
       <ContentBook />
       <ContentSlider/>
     </div>
