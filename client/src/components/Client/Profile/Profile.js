@@ -44,6 +44,14 @@ export default function Profile() {
           )}
         </div>
         <div className={styles.entry}>
+          <p className={styles.title}>Ваша скидка: </p>
+          {editMode ? (
+            null
+          ) : (
+            <p className={styles.p}>{`${user.discount} %`}</p>
+          )}
+        </div>
+        <div className={styles.entry}>
           {editMode && (
             <>
               <p className={styles.title}>Пароль: </p>
@@ -51,6 +59,7 @@ export default function Profile() {
             </>
           )}
         </div>
+
         {editMode ? (
           <button className={styles.save} id="save" type="submit">
             Сохранить
