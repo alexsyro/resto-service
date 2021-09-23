@@ -34,10 +34,10 @@ export default function TableInfo() {
       dispatch(setReservationAC({ reservation }));
       dispatch(resetReservSelectionAC());
       alert(
-        `${user.isAuth ? user.name : guestName.value} забронировали столик ${selectedTable.number} на ${
+        `${user.isAuth ? user.name : guestName.value}, Вы забронировали столик ${selectedTable.number} на ${
           selectedDateTime.date
         } 
-        в ${selectedDateTime.time} часов. Вам придёт смс, после подтверждения бронирования`,
+        в ${selectedDateTime.time} часов. Вам придёт смс и письмо на почту, после подтверждения бронирования`,
       );
       history.push('/');
     }

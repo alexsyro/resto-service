@@ -38,7 +38,7 @@ function Contacts() {
         <div className={styles.contacts_mapInfo}>
           <p className={styles.contacts__p}>Ленина проспект 121, Обнинск</p>
           <p className={styles.contacts__p}>+7 (910) 865-01-01</p>
-          <p className={styles.contacts__p}>Мы открыты для вас с 12:00 - 23:55</p>
+          <p className={styles.contacts__p}>Мы открыты для вас с 12:00 - до 23:55</p>
           <button className={styles.contacts__button}>
             <Link className={styles.contacts_button__text} to="/book">
               Забронировать
