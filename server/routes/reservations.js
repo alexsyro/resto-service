@@ -29,6 +29,7 @@ router.get('/table/:id', async (req, res) => {
       where: {
         [Op.and]: [
           { TableId: id },
+          { StateId: 2 }, // Только если столик подтверждён
           {
             dateTime: {
               [Op.between]: [startDate, endDate],
