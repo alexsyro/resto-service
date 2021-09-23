@@ -14,7 +14,9 @@ function Footer() {
       </div>
       <div className={styles.hours}>
         <h6 className={styles.header}> БРОНИРОВАНИЕ</h6>
-        <p className={styles.p}>+7 (910) 865-01-01</p>
+        <p className={styles.p}><a href="tel:+79108650101">+7 (910) 865-01-01</a></p>
+        
+
         <p className={styles.p}>Забронируйте столик</p>
       </div>
       <div className={styles.hours}>

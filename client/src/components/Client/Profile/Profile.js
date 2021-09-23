@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import styles from './Profile.module.scss'
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 export default function Profile() {
   const [editMode, setEditMode] = useState(false)
-  let user = { name: 'Пониксандр', email: 'look@my.horse', phone: '8800200600' }
-
+  const history = useHistory();
+  const { user } = useSelector((state) => state.usersReducer);
   const onClickHandler = (event) => {
     event.preventDefault()
     if (event.nativeEvent.submitter.id === 'edit') {
@@ -18,7 +20,7 @@ export default function Profile() {
     <div className={styles.profile__container}>
       <form onSubmit={onClickHandler}>
         <div className={styles.entry}>
-          <p className={styles.title}>Полное имя: </p>
+          <p className={styles.title}> Имя: </p>
           {editMode ? (
             <input type="text" name="name" defaultValue={user.name} />
           ) : (
@@ -59,6 +61,7 @@ export default function Profile() {
           </button>
         )}
       </form>
+      <button className={styles.back} onClick={() => history.goBack()}>Назад</button>
     </div>
   )
 }
