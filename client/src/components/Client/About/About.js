@@ -1,9 +1,11 @@
 import React from 'react';
 import styles from './About.module.scss';
 import main_header from '../../../images/main_header.jpg';
+import { useTranslation } from 'react-i18next';
 
 
 function About() {
+  const { t, i18n } = useTranslation();
   return (
     <>
       <div>
@@ -22,10 +24,7 @@ function About() {
             <div className={styles.text_container}>
               {/* <p className={styles.about__title}>О нас</p> */}
               <p className={styles.about__text}>
-                “Кулинария похожа на моду. Нам всегда нравится меняться к лучшему.
-                Когда мы путешествуем в разные регионы Италии – в Венецию, Ломбардию,
-                Тоскану – и видим новые ингредиенты, то мы пробуем использовать их в
-                своих новых блюдах.”
+                “{t('us.1')}”
               </p>
             </div>
           </div>
@@ -34,12 +33,10 @@ function About() {
 
 
             <div className={styles.text_container}>
-              <p className={styles.about__small}>Простая </p>
-              <p className={styles.about__title}>Философия </p>
+              <p className={styles.about__small}>{t('us.2')} </p>
+              <p className={styles.about__title}>{t('us.3')} </p>
               <p className={styles.about__text}>
-                Натуральность продуктов в изящно простом кулинарном прочтении.
-                Этим, в принципе, славится итальянская кухня, завоевавшая гастрономические
-                подиумы мира именно удивительно вкусной простотой решений.
+              {t('us.4')}
               </p>
             </div>
             <div className={styles.about__philosophy}>
@@ -47,17 +44,15 @@ function About() {
           </div>
 
           <div className={styles.about__container}>
-            <p className={styles.about__small}> Любимый</p>
-            <p className={styles.about__title}> Шеф-повар</p>
+            <p className={styles.about__small}> {t('us.5')}</p>
+            <p className={styles.about__title}>{t('us.6')}</p>
 
             <div className={styles.paragraph}>
               <div className={styles.chef__img}>
               </div>
               <div className={styles.text_container}>
                 <p className={styles.about__text}>
-                  Благодаря бабушке я сам занялся кулинарными экспериментами
-                  и первое свое блюдо приготовил в 13 лет. Это было ризотто с морепродуктами.
-                  И одобрение моего опыта семьей вдохновило еще больше
+                {t('us.7')}
                 </p>
               </div>
             </div>

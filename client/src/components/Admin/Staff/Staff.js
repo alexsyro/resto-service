@@ -5,17 +5,19 @@ import StaffList from './StaffList';
 
 function Staff() {
   const history = useHistory()
+  
 
   return (
     <>
+     <div className={styles.container}>
+      <button  className={styles.back} onClick={() => history.goBack()}>Назад</button>
+      <Link  to={'/staff/new'} ><button  className={styles.add}>Добавить работника</button></Link>
+      </div>
       <div className={styles.find__block}>
-        <p>Поиск сотрудника:</p>
+        <p className={styles.worker}>Поиск сотрудника:</p>
         <StaffList />
       </div>
-      <div className={styles.container}>
-      <button className="uk-button uk-button-primary" onClick={() => history.goBack()}>Назад</button>
-      <Link  to={'/staff/new'} ><button className="uk-button uk-button-primary">Добавить работника</button></Link>
-      </div>
+     
     </>
   );
 }

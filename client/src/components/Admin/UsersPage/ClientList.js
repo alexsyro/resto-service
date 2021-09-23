@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { GET_CLIENTS } from '../../../redux/actionTypes/actionType';
 import Client from './Client';
-import styles from './Client.module.scss'
+import styles from './ClientList.module.scss'
 
 const { REACT_APP_URL } = process.env;
 
@@ -27,9 +27,9 @@ function ClientList() {
 
   return (
     <>
-      <div className={styles.block}>
-        <p className={styles.search}>Поиск клиента</p>
-        <input className={styles.input} onChange={(event) => setValue(event.target.value)} type='text' placeholder='Введите имя'></input>
+      <div className={styles.find__block}>
+        <p>Найти клиента:</p>
+        <input onChange={(event) => setValue(event.target.value)} type='text' placeholder='Введите имя'></input>
       </div>
       <div className={styles.section}>
       {filteredClients.map((client) => (
