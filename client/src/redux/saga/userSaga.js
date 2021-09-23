@@ -3,11 +3,13 @@ import { authUserAC, logoutUserAC, clearReservationAC } from '../actionCreators/
 import { cartCleanAC } from '../actionCreators/cartAC';
 import { SAGA_FETCH_REG, SAGA_FETCH_LOGIN, SAGA_FETCH_LOGOUT } from '../actionTypes/sagaTypes';
 
+const { REACT_APP_URL } = process.env;
+
 // Логин юзера
 const fetchLoginUser = async (action) => {
   const { email, password } = action.payload;
   console.log(email, password);
-  const res = await fetch('http://localhost:1234/login', {
+  const res = await fetch(`${REACT_APP_URL}login`, {
     method: 'POST',
     credentials: 'include',
     headers: { 'Content-Type': 'application/json' },
@@ -36,7 +38,7 @@ function* logInWatcher() {
 // Регистрация юзера
 const fetchRegUser = async (action) => {
   const { email, name, phone, password } = action.payload;
-  const res = await fetch('http://localhost:1234/api/clients/new', {
+  const res = await fetch(`${REACT_APP_URL}api/clients/new`, {
     method: 'POST',
     credentials: 'include',
     headers: { 'Content-Type': 'application/json' },
@@ -66,7 +68,7 @@ function* registrationWatcher() {
 
 // Логаут юзера
 const fetchLogoutUser = async () => {
-  const res = await fetch('http://localhost:1234/logout', {
+  const res = await fetch(`${REACT_APP_URL}logout`, {
     credentials: 'include',
   });
   console.log('AAAA LOGOUT');

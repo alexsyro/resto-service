@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import styles from './Reserve.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import * as reservationsAC from '../../../redux/actionCreators/actionCreators';
-
 import NewReserve from './NewReserve';
 import AcceptedReserve from './AcceptedReserve';
+import styles from './Reserve.module.scss';
+
+const { REACT_APP_URL } = process.env;
 
 function Reservations() {
   const [completedList, setCompletedList] = useState(false);
@@ -39,7 +40,7 @@ function Reservations() {
   }
 
   useEffect(() => {
-    fetch('http://localhost:1234/api/reservations', { credentials: 'include' })
+    fetch(`${REACT_APP_URL}api/reservations`, { credentials: 'include' })
       .then((res) => res.json())
       .then((data) => {
         const allOrders = [...data.orders];

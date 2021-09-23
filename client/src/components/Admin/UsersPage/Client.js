@@ -3,12 +3,14 @@ import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import {DEL_CLIENTS} from '../../../redux/actionTypes/actionType'
 
+const { REACT_APP_URL } = process.env;
+
 function Client({ client }) {
   const dispatch = useDispatch();
 
   const deleteClient = () => {    
     dispatch({ type: DEL_CLIENTS, payload: client.id })
-    fetch(`http://localhost:1234/api/сlients/delete/${client.id}`, {
+    fetch(`${REACT_APP_URL}api/сlients/delete/${client.id}`, {
       method: 'DELETE',
     })
     .then(console.log)

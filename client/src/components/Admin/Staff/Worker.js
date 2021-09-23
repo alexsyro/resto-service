@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { DEL_STAFF } from '../../../redux/actionTypes/actionType';
 
+const { REACT_APP_URL } = process.env;
+
 function Worker({ person }) {
   const dispatch = useDispatch();
 
@@ -12,7 +14,7 @@ function Worker({ person }) {
   const deleteWorker = () => {
     dispatch({ type: DEL_STAFF, payload: person.id });
     // console.log('delete')
-    fetch(`http://localhost:1234/api/staff/${person.id}`, {
+    fetch(`${REACT_APP_URL}api/staff/${person.id}`, {
       method: 'DELETE',
       credentials: 'include',
     }).then(console.log);

@@ -6,6 +6,8 @@ import * as reservationsAC from '../../../redux/actionCreators/actionCreators';
 import DoneReservations from './DoneReservations';
 import ToCheckReservation from './ToCheckReservation';
 
+const { REACT_APP_URL } = process.env;
+
 function Reservations() {
   const [completedList, setCompletedList] = useState(false);
   const history = useHistory();
@@ -38,7 +40,7 @@ function Reservations() {
   }
 
   useEffect(() => {
-    fetch('http://localhost:1234/api/reservations', { credentials: 'include' })
+    fetch(`${REACT_APP_URL}api/reservations`, { credentials: 'include' })
       .then((res) => res.json())
       .then((data) => {
         const allOrders = [...data.orders];

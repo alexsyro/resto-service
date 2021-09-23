@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { GET_CLIENTS } from '../../../redux/actionTypes/actionType';
 import Client from './Client';
 
-function ClientList(props) {
+const { REACT_APP_URL } = process.env;
+
+function ClientList() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetch(`http://localhost:1234/api/clients`, { credentials: 'include' })
+    fetch(`${REACT_APP_URL}api/clients`, { credentials: 'include' })
       .then((res) => res.json())
       .then((data) => dispatch({ type: GET_CLIENTS, payload: data }));
   }, [dispatch]);

@@ -6,6 +6,7 @@ import { dishAC } from '../../../redux/actionCreators/dishAC'
 import Dish from '../Dish/Dish';
 import styles from './SubcategoryItem.module.scss'
 
+// const { REACT_APP_URL } = process.env;
 
 function SubcategoryItem(props) {
   const history = useHistory();
@@ -13,15 +14,14 @@ function SubcategoryItem(props) {
   const { categoryId } = useParams()
 
   useEffect(() => {
-    console.log(categoryId);
-    // fetch('http://localhost:1234/api/menu/categories/' + categoryId)
+    // console.log(categoryId);
+    // fetch(`${REACT_APP_URL}api/menu/categories/` + categoryId)
     //   .then((res) => res.json())
     //   .then((categories) => dispatch({ type: GET_DISHES, payload: categories }))
     dispatch(dishAC(categoryId))
   }, [dispatch, categoryId]);
 
   const dishes = useSelector((state) => state.dishesReducer.dishes);
-  console.log(dishes, 'DISHES')
 
   return (
     <>

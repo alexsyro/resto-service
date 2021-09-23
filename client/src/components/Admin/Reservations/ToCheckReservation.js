@@ -2,10 +2,12 @@ import React from 'react';
 import { useDispatch } from 'react-redux'
 import * as reservationsAC from '../../../redux/actionCreators/actionCreators'
 
+const { REACT_APP_URL } = process.env;
+
 function ToCheckReservation({ reservation }) {
   const dispatch = useDispatch()
   const finishReservation = () => {
-    fetch('http://localhost:1234/api/reservations/done', {
+    fetch(`${REACT_APP_URL}api/reservations/done`, {
       method: 'PUT', // *GET, POST, PUT, DELETE, etc.
       mode: 'cors', // no-cors, *cors, same-origin
       credentials: 'include', // include, *same-origin, omit
@@ -20,7 +22,7 @@ function ToCheckReservation({ reservation }) {
   }
 
   const cancelReservation = () => {
-    fetch('http://localhost:1234/api/reservations/cancel', {
+    fetch(`${REACT_APP_URL}api/reservations/cancel`, {
       method: 'PUT', // *GET, POST, PUT, DELETE, etc.
       mode: 'cors', // no-cors, *cors, same-origin
       credentials: 'include', // include, *same-origin, omit
