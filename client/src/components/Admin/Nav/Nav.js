@@ -36,7 +36,9 @@ function Nav() {
             <Link to='/reservations'>РЕЗЕРВИРОВАНИЯ</Link>
           </li>
           <li className='uk-active'>
-            <Link onClick={logoutHandler}>ВЫХОД</Link>
+            <Link onClick={logoutHandler} to='/'>
+              ВЫХОД
+            </Link>
           </li>
         </ul>
       </div>

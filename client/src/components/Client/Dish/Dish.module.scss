@@ -14,7 +14,8 @@
 }
 
 .container:hover .img {
-  filter: blur(4px)
+  filter: blur(4px) brightness(50%);
+  // filter: brightness(10%);
 }
 
 .additional__info {

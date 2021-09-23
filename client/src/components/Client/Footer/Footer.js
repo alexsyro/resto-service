@@ -23,12 +23,12 @@ function Footer() {
       <div className={styles.hours}>
         <h6 className={styles.header}>{t('footer.6')}</h6>
         <div className={styles.logos__container}>
-          <a href="https://vk.com/tochkaobninsk" target="_blank">
-            <img src={vkLogo}></img>
+          <a href='https://vk.com/tochkaobninsk' target='_blank' rel='noreferrer'>
+            <img src={vkLogo} alt='VK'></img>
           </a>
 
-          <a href="https://www.instagram.com/tochka_rest/" target="_blank">
-            <img src={instaLogo}></img>
+          <a href='https://www.instagram.com/tochka_rest/' target='_blank' rel='noreferrer'>
+            <img src={instaLogo} alt='INST'></img>
           </a>
         </div>
       </div>
@@ -37,7 +37,7 @@ function Footer() {
         <p className={styles.p}>{t('footer.8')}</p>
       </div>
     </div>
-  )
+  );
 }
 
-export default Footer
+export default Footer;

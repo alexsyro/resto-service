@@ -4,7 +4,7 @@ import styles from './Main.module.scss';
 
 function Main() {
   return (
-    <div className={`${styles.container} uk-child-width-1-2@s`} uk-grid>
+    <div className={`${styles.container} uk-child-width-1-2@s`}>
       <Link to="/menu">
         <div>
           <div className={`uk-dark uk-background-muted uk-padding ${styles.block}`}>

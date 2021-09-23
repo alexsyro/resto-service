@@ -7,28 +7,18 @@ import {
 } from '../../../redux/actionCreators/actionCreators';
 import Hall from './Hall';
 import TableInfo from './TableInfo';
+import ChooseDate from '../ChooseDate/ChooseDate';
+
 import styles from './Reservation.module.scss';
 import { useTranslation } from 'react-i18next';
 
-//Текущая дата
-const CURR_DATE = new Date();
-//Для правильного формата даты в виде yyyy-mm-dd, по умолчанию берёт текущую дату.
-const formatDate = (timestamp = CURR_DATE.getTime()) => {
-  const date = new Date(timestamp);
-  const year = date.getFullYear();
-  const correctMonth = date.getMonth() + 1;
-  const month = ('' + correctMonth).length > 1 ? correctMonth : `0${correctMonth}`;
-  const day = ('' + date.getDate()).length > 1 ? date.getDate() : `0${date.getDate()}`;
-  return `${year}-${month}-${day}`;
-};
+const { REACT_APP_URL } = process.env;
 
 export default function Reservation() {
-  
+
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const { selectedHall, selectedDateTime, selectedTable } = useSelector((state) => state.reservationReducer);
-  const today = formatDate();
-  const maxDate = formatDate(CURR_DATE.getTime() + 1000 * 60 * 60 * 24 * 30);
 
   const [hallsArray, setHallsArray] = useState({});
 
@@ -36,14 +26,21 @@ export default function Reservation() {
   const dateTimeSelect = async (event) => {
     event.preventDefault();
     dispatch(resetReservSelectionAC());
-    const { date, time } = event.target;
-    const datetime = { date: date.value, time: time.value };
-    dispatch(selectReservDateTimeAC({ datetime }));
+    const fullTime = event.target[0].value;
+    const date = fullTime.split(',')[0].split('.').reverse().join('-');
+    const time = fullTime.split(',')[1].trim();
+
+    if (date && time) {
+      const datetime = { date, time };
+      dispatch(selectReservDateTimeAC({ datetime }));
+    } else {
+      alert('Необходимо выбрать и дату, и время.');
+    }
   };
 
   //Получаем список залов
   const fetchGetHalls = async () => {
-    const url = 'http://localhost:1234/api/reservations/halls';
+    const url = `${REACT_APP_URL}api/reservations/halls`;
     const response = await fetch(url, { credentials: 'include' });
     const { halls } = await response.json();
     setHallsArray(halls);
@@ -66,28 +63,29 @@ export default function Reservation() {
         <div className={styles.upperMenu}>
           <p className={styles.pick_date}>{t('booking.1')}</p>
           <form onSubmit={dateTimeSelect}>
-            <input className={styles.input_date} name='date' type='date' min={today} defaultValue={today} max={maxDate} />
-            <input className={styles.input_time} name='time' type='time' />
+            <ChooseDate />
             <button className={styles.button} type='submit'>{t('booking.2')}</button>
           </form>
         </div>
         <div className={styles.hallSelect}>
-
           {selectedDateTime &&
             hallsArray.length &&
             hallsArray.map((hall) => (
-              <button className={styles.pick_room} key={hall.id} onClick={selectHall} id={hall.id} type='submit'>
+              <button
+                className={styles.pick_room}
+                key={hall.id}
+                onClick={selectHall}
+                id={hall.id}
+                type='submit'
+              >
                 {hall.name}
               </button>
             ))}
-
         </div>
         <div className={styles.tableContainer}>
           {selectedHall && <Hall />}
           {selectedTable && <TableInfo />}
         </div>
-
-
       </div>
     </>
   );

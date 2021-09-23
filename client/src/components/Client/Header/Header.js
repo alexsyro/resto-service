@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { sagaLogoutAC } from '../../../redux/actionCreators/sagaAC';
-import logo from './assets/img/logo.png'
+import logo from './assets/img/logo.png';
 import styles from './Header.module.scss';
 import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 function Header() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.usersReducer);
+  const { cart } = useSelector((state) => state.cartReducer);
   const history = useHistory();
 
   const logoutHandler = () => {
@@ -27,7 +28,7 @@ function Header() {
   return (
     <>
       <input type='checkbox' id={styles.check} />
-      <label htmlFor={styles.check} >
+      <label htmlFor={styles.check}>
         <i className='fas fa-bars' id={styles.btn}></i>
         <i className='fas fa-times' id={styles.cancel}></i>
       </label>
@@ -85,6 +86,7 @@ function Header() {
             <p className={styles.navbar__links}>
               <Link className={styles.navbar__link} to='/cart'>
               {t('nav.5')}
+                Корзина {cart.length > 0 && cart.length}
               </Link>
             </p>
           </>

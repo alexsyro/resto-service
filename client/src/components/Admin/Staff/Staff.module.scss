@@ -1,3 +1,16 @@
-// .container {
+.find__block {
+  display: flex;
+  flex-direction: row;
+  p {
+    color: white;
+    margin: 1.3rem 0.1rem 1rem 0.5rem;
+  }
+}
 
-// }
+.container {
+  height: 90vh;
+  button{
+    margin: 1rem;
+  }
+}
+

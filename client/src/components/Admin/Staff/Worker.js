@@ -2,6 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { DEL_STAFF } from '../../../redux/actionTypes/actionType';
+import styles from '../Staff/Worker.module.scss'
+
+const { REACT_APP_URL } = process.env;
 
 function Worker({ person }) {
   const dispatch = useDispatch();
@@ -12,20 +15,20 @@ function Worker({ person }) {
   const deleteWorker = () => {
     dispatch({ type: DEL_STAFF, payload: person.id });
     // console.log('delete')
-    fetch(`http://localhost:1234/api/staff/${person.id}`, {
+    fetch(`${REACT_APP_URL}api/staff/${person.id}`, {
       method: 'DELETE',
       credentials: 'include',
     }).then(console.log);
   };
 
   return (
-    <div className='uk-card uk-card-primary uk-card-hover uk-card-body uk-light'>
-      <p>{person.name}</p>
-      <p>{currentPost.name}</p>
-      <Link to={`/staff/${person.id}`} className='uk-button uk-button-default'>
-        Редактировать
+    <div className={styles.card}>
+      <p className={styles.text}>Имя: {person.name}</p>
+      <p className={styles.text}>Должность: {currentPost.name}</p>
+      <Link to={`/staff/${person.id}`} >
+      <button className={styles.edit} >Редактировать</button>
       </Link>
-      <button onClick={deleteWorker}>Удалить</button>
+      <button className={styles.delete} onClick={deleteWorker}>Удалить</button>
     </div>
   );
 }

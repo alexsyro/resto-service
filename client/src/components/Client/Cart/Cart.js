@@ -8,6 +8,7 @@ import styles from './Cart.module.scss';
 
 const TYPE_PREORDER = 5;
 const TYPE_DELIVERY = 4;
+const { REACT_APP_URL } = process.env;
 
 export default function Cart() {
   console.log('RENDER CART');
@@ -42,7 +43,7 @@ export default function Cart() {
     console.log(reservation);
     const orderData = { user, cart, reservation, StateId: orderType };
     console.log('ORDEEEER', orderData);
-    const response = await fetch('http://localhost:1234/api/orders', {
+    const response = await fetch(`${REACT_APP_URL}api/orders`, {
       method: 'POST',
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
@@ -61,7 +62,7 @@ export default function Cart() {
     console.log('CAAART REDUCE', cart);
     const price = cart.reduce((acc, position) => acc + Number(position.price) * Number(position.quantity), 0);
     setFullPrice(price - (price * user.discount) / 100);
-  }, [cart]);
+  }, [cart, user.discount]);
 
   const total = useSelector((state) => state.cartReducer.cart);
   console.log(total, 'TOTAL');

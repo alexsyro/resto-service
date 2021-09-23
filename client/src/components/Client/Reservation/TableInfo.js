@@ -3,6 +3,8 @@ import { useHistory } from 'react-router-dom';
 import { setReservationAC, resetReservSelectionAC } from '../../../redux/actionCreators/actionCreators';
 import styles from './Reservation.module.scss';
 
+const { REACT_APP_URL } = process.env;
+
 export default function TableInfo() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.usersReducer);
@@ -20,7 +22,7 @@ export default function TableInfo() {
       date: selectedDateTime.date,
       time: selectedDateTime.time,
     };
-    const url = 'http://localhost:1234/api/reservations';
+    const url = `${REACT_APP_URL}api/reservations`;
     const response = await fetch(url, {
       method: 'POST',
       credentials: 'include',
@@ -32,10 +34,10 @@ export default function TableInfo() {
       dispatch(setReservationAC({ reservation }));
       dispatch(resetReservSelectionAC());
       alert(
-        `${user.isAuth ? user.name : guestName.value} забронировали столик ${selectedTable.number} на ${
+        `${user.isAuth ? user.name : guestName.value}, Вы забронировали столик ${selectedTable.number} на ${
           selectedDateTime.date
         } 
-        в ${selectedDateTime.time} часов. Вам придёт смс, после подтверждения бронирования`,
+        в ${selectedDateTime.time} часов. Вам придёт смс и письмо на почту, после подтверждения бронирования`,
       );
       history.push('/');
     }
@@ -70,16 +72,16 @@ export default function TableInfo() {
                 <p className={styles.text}>Вы можете сделать предзаказ блюд, после бронирования </p>
               ) : (
                 <>
-                  <label htmlFor='guestName'>Ваше имя</label>
-                  <input
+                  <label className={styles.info_guests} htmlFor='guestName'>Ваше имя:</label>
+                  <input className={styles.info_input}
                     id='guestName'
                     type='text'
                     name='guestName'
                     placeholder='Введите ваше имя'
                     required
                   />
-                  <label htmlFor='guestPhone'>Ваш телефон</label>
-                  <input
+                  <label className={styles.info_guests} htmlFor='guestPhone'>Ваш телефон:</label>
+                  <input className={styles.info_input}
                     id='guestPhone'
                     type='tel'
                     name='guestPhone'

@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { GET_CLIENTS } from '../../../redux/actionTypes/actionType';
 import Client from './Client';
+import styles from './Client.module.scss'
 
-function ClientList(props) {
+const { REACT_APP_URL } = process.env;
+
+function ClientList() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetch(`http://localhost:1234/api/clients`, { credentials: 'include' })
+    fetch(`${REACT_APP_URL}api/clients`, { credentials: 'include' })
       .then((res) => res.json())
       .then((data) => dispatch({ type: GET_CLIENTS, payload: data }));
   }, [dispatch]);
@@ -24,10 +27,15 @@ function ClientList(props) {
 
   return (
     <>
-      <input onChange={(event) => setValue(event.target.value)} type='text' placeholder='Введите имя'></input>
+      <div className={styles.block}>
+        <p className={styles.search}>Поиск клиента</p>
+        <input className={styles.input} onChange={(event) => setValue(event.target.value)} type='text' placeholder='Введите имя'></input>
+      </div>
+      <div className={styles.section}>
       {filteredClients.map((client) => (
         <Client key={client.id} client={client} />
       ))}
+      </div>
     </>
   );
 }

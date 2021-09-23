@@ -1,10 +1,16 @@
 const express = require('express');
+const axios = require('axios');
+const qs = require('qs');
+const dotenv = require('dotenv');
 const { Op } = require('sequelize');
 
 const { Router } = express;
 const router = Router();
 const { Reservation, Table, Hall, State, Client, Order } = require('../db/models');
 const checkStaff = require('../middlewares/staffValidation');
+
+dotenv.config();
+const { BEARER } = process.env;
 
 // Список всех залов
 router.get('/halls', async (req, res) => {
@@ -29,6 +35,7 @@ router.get('/table/:id', async (req, res) => {
       where: {
         [Op.and]: [
           { TableId: id },
+          { StateId: 2 }, // Только если столик подтверждён
           {
             dateTime: {
               [Op.between]: [startDate, endDate],
@@ -149,6 +156,7 @@ router.get('/', checkStaff, async (req, res) => {
   }
 });
 
+// Подтверждение резервирование
 router.put('/done', checkStaff, async (req, res) => {
   try {
     const { id } = req.body;
@@ -159,6 +167,23 @@ router.put('/done', checkStaff, async (req, res) => {
     });
     reservationToChange.StateId = 2;
     await reservationToChange.save();
+
+    const data = qs.stringify({
+      phone: reservationToChange.guestPhone,
+      text: `${reservationToChange.guestName}, ваше резервирование столика на ${new Date(reservationToChange.dateTime)} подтверждено.`,
+    });
+    const config = {
+      method: 'post',
+      url: 'https://api.pushsms.ru/api/v1/delivery',
+      headers: {
+        Authorization:
+          BEARER,
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      data,
+    };
+
+    await axios(config);
 
     res.json({ message: 'Вы успешно подтвердили заказ' });
   } catch (error) {

@@ -3,6 +3,8 @@ import { useParams, useHistory } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import { UPD_CLIENTS } from '../../../redux/actionTypes/actionType';
 
+const { REACT_APP_URL } = process.env;
+
 function ClientInfo() {
   const dispatch = useDispatch();
 
@@ -29,7 +31,7 @@ function ClientInfo() {
     console.log(updateClient);
     dispatch({ type: UPD_CLIENTS, payload: updateClient });
 
-    fetch(`http://localhost:1234/api/clients/edit/${clientId}`, {
+    fetch(`${REACT_APP_URL}api/clients/edit/${clientId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

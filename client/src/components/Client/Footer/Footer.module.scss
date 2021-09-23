@@ -41,6 +41,16 @@
 .logos__container {
   margin-top: 0.5rem;
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
+}
+
+a[href^="tel:"] {
+  text-decoration: none;
+  color: #DCCA87;
+}
+
+a[href^="tel:"]:before {
+  content: "\2713";
+  margin-right: 0.5em;
 }
 

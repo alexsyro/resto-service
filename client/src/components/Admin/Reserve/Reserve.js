@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import styles from './Reserve.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import * as reservationsAC from '../../../redux/actionCreators/actionCreators';
-
 import NewReserve from './NewReserve';
 import AcceptedReserve from './AcceptedReserve';
+import styles from './Reserve.module.scss';
+
+const { REACT_APP_URL } = process.env;
 
 function Reservations() {
   const [completedList, setCompletedList] = useState(false);
@@ -39,12 +40,13 @@ function Reservations() {
   }
 
   useEffect(() => {
-    fetch('http://localhost:1234/api/reservations', { credentials: 'include' })
+    fetch(`${REACT_APP_URL}api/reservations`, { credentials: 'include' })
       .then((res) => res.json())
       .then((data) => {
         const allOrders = [...data.orders];
         const idToDelete = allOrders.map((el) => el['Reservation.id']);
         const allReservations = [...data.reservations];
+        // eslint-disable-next-line array-callback-return
         const reservationsWithoutOrders = allReservations.filter((reservation) => {
           if (!idToDelete.includes(reservation.id)) {
             return true;
@@ -57,7 +59,7 @@ function Reservations() {
 
         dispatch(reservationsAC.getReservationsAC(reservationsForState));
       });
-    // здесь fetch (сага) в базу для получения списка заказов (причем только тех, что в обработке)
+      // здесь fetch (сага) в базу для получения списка заказов (причем только тех, что в обработке)
   }, [dispatch]);
 
   const finishedReservations = useSelector((state) =>
@@ -75,13 +77,12 @@ function Reservations() {
   return (
     <div className={styles.container}>
       {completedList ? (
-        <button className='uk-button uk-button-default' onClick={() => setCompletedList((prev) => !prev)}>
-          {' '}
-          Скрыть список завершенных(обработанных) заказов
+        <button className={styles.listButton} onClick={() => setCompletedList((prev) => !prev)}>
+          Скрыть обработанные резервы
         </button>
       ) : (
-        <button className='uk-button uk-button-default' onClick={() => setCompletedList((prev) => !prev)}>
-          Вывести список завершенных(обработанных) заказов
+        <button className={styles.listButton} onClick={() => setCompletedList((prev) => !prev)}>
+          Вывести обработанные резервы
         </button>
       )}
       <br />
@@ -89,14 +90,14 @@ function Reservations() {
         <table>
           <thead>
             <tr>
-              <td>Номер резерва</td>
+              <td>Резерва ID</td>
               <td>Имя клиента</td>
-              <td>Номер столика</td>
-              <td>Количество гостей</td>
+              <td>Столик#</td>
+              <td>Кол-во гостей</td>
               <td>Телефон</td>
-              <td>Дата бронирования</td>
-              <td>На какое время</td>
-              <td>Статус заказа</td>
+              <td>Дата</td>
+              <td>Время (UTC:0)</td>
+              <td>Статус</td>
             </tr>
           </thead>
           <tbody>
@@ -112,14 +113,14 @@ function Reservations() {
         <table>
           <thead>
             <tr>
-              <td>Номер резерва</td>
+              <td>Резерв ID</td>
               <td>Имя клиента</td>
-              <td>Номер столика</td>
-              <td>Количество гостей</td>
+              <td>Столик#</td>
+              <td>Кол-во гостей</td>
               <td>Телефон</td>
-              <td>Дата бронирования</td>
-              <td>На какое время</td>
-              <td>Статус заказа</td>
+              <td>Дата</td>
+              <td>Время (UTC:0)</td>
+              <td>Статус</td>
               <td>Подтвердить</td>
               <td>Отменить</td>
             </tr>
@@ -132,7 +133,7 @@ function Reservations() {
         </table>
       ) : null}
 
-      <button className='uk-button uk-button-default' onClick={() => history.goBack()}>
+      <button className={styles.backButton} onClick={() => history.goBack()}>
         Назад
       </button>
     </div>

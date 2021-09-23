@@ -1,11 +1,14 @@
 const express = require('express');
 const axios = require('axios');
 const qs = require('qs');
+const dotenv = require('dotenv');
+const mailer = require('../nodemailer');
+
 const checkStaff = require('../middlewares/staffValidation');
 const { Reservation, Table, State, Order, Client, OrderPosition, Position } = require('../db/models');
 const isAuthenticated = require('../middlewares/authenticationValidation');
-const mailer = require('../nodemailer');
 
+dotenv.config();
 const { BEARER } = process.env;
 
 const { Router } = express;
@@ -95,9 +98,8 @@ router.post('/', isAuthenticated, async (req, res) => {
     const order = await Order.create({
       ClientId: user.id,
       StateId,
-      ReservationId: reservation.id || null,
+      ReservationId: reservation?.id || null,
     });
-
     const promissesArrayOfOrderPositions = cart.map(async (position) => {
       const orderPosition = await OrderPosition.create({
         OrderId: order.id,
@@ -114,6 +116,7 @@ router.post('/', isAuthenticated, async (req, res) => {
   }
 });
 
+// Подтверждение заказа также подтверждает резервирование, если оно есть
 router.put('/done', checkStaff, async (req, res) => {
   try {
     const { id } = req.body;
@@ -122,6 +125,11 @@ router.put('/done', checkStaff, async (req, res) => {
         id,
       },
     });
+    if (orderToChange.ReservationId) {
+      const reservation = await Reservation.findOne({ where: { id: orderToChange.ReservationId } });
+      reservation.StateId = 2;
+      await reservation.save();
+    }
     orderToChange.StateId = 2;
     await orderToChange.save();
     // API для СМС
@@ -131,7 +139,7 @@ router.put('/done', checkStaff, async (req, res) => {
       },
       raw: true,
     });
-    console.log(client);
+    // Формирование уведомления по почте
     const message = {
       from: '"Ресторан Точка" <restiktochka@ya.ru>',
       to: `${client.email}`,
@@ -140,6 +148,7 @@ router.put('/done', checkStaff, async (req, res) => {
     };
     await mailer(message);
 
+    // Формирование уведомления по телефону
     const data = qs.stringify({
       phone: client.phone,
       text: `${client.name}, ваш заказ ${orderToChange.id} Подтверждён`,
@@ -148,8 +157,7 @@ router.put('/done', checkStaff, async (req, res) => {
       method: 'post',
       url: 'https://api.pushsms.ru/api/v1/delivery',
       headers: {
-        Authorization:
-          'eyJhbGciOiJIUzI1NiJ9.eyJjdXN0b21lcl9pZCI6MjcxMSwiZGF0ZXRpbWUiOjE2MzIzMTkzNjh9.O4KECeIgMYb4E89WkUgjSuO5IUAZz6gpxkvcMJe0jmU',
+        Authorization: BEARER,
         'Content-Type': 'application/x-www-form-urlencoded',
       },
       data,

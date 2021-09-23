@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { cartChangeQuantityAC, cartRemovePositionAC } from '../../../redux/actionCreators/cartAC';
 import styles from './CartPosition.module.scss';
 
@@ -8,23 +8,23 @@ export default function CartPosition({ position }) {
   const [quantity, setQuantity] = useState(position.quantity);
   const dispatch = useDispatch();
 
-  const changeQuantity = (event) => {
-    // Reducer на изменение количества блюд в корзине
-    event.preventDefault();
-    const { value } = event.target;
-    if (value > 0 && value !== '') {
-      setQuantity(value);
-    } else {
-      event.target.value = 1;
-      event.target.setAttribute('value', 1);
-      setQuantity(1);
-    }
-    const payload = {
-      quantity: value,
-      id: position.id,
-    };
-    dispatch(cartChangeQuantityAC(payload));
-  };
+  // const changeQuantity = (event) => {
+  //   // Reducer на изменение количества блюд в корзине
+  //   event.preventDefault();
+  //   const { value } = event.target;
+  //   if (value > 0 && value !== '') {
+  //     setQuantity(value);
+  //   } else {
+  //     event.target.value = 1;
+  //     event.target.setAttribute('value', 1);
+  //     setQuantity(1);
+  //   }
+  //   const payload = {
+  //     quantity: value,
+  //     id: position.id,
+  //   };
+  //   dispatch(cartChangeQuantityAC(payload));
+  // };
 
   const incrementQuantity = (event) => {
     event.preventDefault();

@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectReservTableAC } from '../../../redux/actionCreators/actionCreators';
 import { useTranslation } from 'react-i18next';
 
+const { REACT_APP_URL } = process.env;
+
 export default function Table({ table }) {
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
@@ -11,7 +13,7 @@ export default function Table({ table }) {
   const [isReserved, setisReserved] = useState(false);
 
   const fetchGetState = async () => {
-    const url = `http://localhost:1234/api/reservations/table/${table.id}?date=${selectedDateTime.date}&time=${selectedDateTime.time}`;
+    const url = `${REACT_APP_URL}api/reservations/table/${table.id}?date=${selectedDateTime.date}&time=${selectedDateTime.time}`;
     const response = await fetch(url, { credentials: 'include' });
     const { reserved } = await response.json();
     console.log('');
