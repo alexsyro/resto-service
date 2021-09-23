@@ -1,3 +1,147 @@
-.center {
-  margin-top: 30%;
+.back__block{
+  height: 100vh;
+  width: 98.8vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url(../../../images/main_header.jpg)  center no-repeat;
+  background-size:contain;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  .black__div {
+    width: 30vw;
+    height: 40vh;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 4rem;
+    justify-content: center;
+    align-items: center;
+    .center__form{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .group:first-child {
+        margin-top: 4.5rem;
+      }
+      .group {
+        position: relative;
+        margin-top: 2.5rem;
+        input {
+          border-radius: 0.3rem;
+          font-size: 1rem;
+          padding: 0.2rem;
+          display: block;
+          width: 15rem;
+          border: none;
+          border-bottom: 1px solid #ccc;
+        }
+        input:focus {
+          outline: none;
+        }
+        label {
+          color: rgb(51, 50, 50);
+          font-size: 1rem;
+          font-weight: bold;
+          position: absolute;
+          pointer-events: none;
+          left: 0.3rem;
+          top: 0.1rem;
+          transition: 0.5s ease all;
+          -moz-transition: 0.5s ease all;
+          -webkit-transition: 0.5s ease all;
+        }
+        
+        /* active state */
+        input:focus ~ label, input:valid ~ label {
+          top: -1.3rem;
+          font-size: 1rem;
+          color: rgb(233, 233, 233);
+        }
+        
+        
+        /* BOTTOM BARS ================================= */
+        .bar {
+          position: relative;
+          display: block;
+          width: 15rem;
+        }
+        .bar:before, .bar:after {
+          content: "";
+          height: 0.2rem;
+          width: 0;
+          bottom: 0;
+          position: absolute;
+          background: #000000;
+          transition: 0.5s ease all;
+          -moz-transition: 0.5s ease all;
+          -webkit-transition: 0.5s ease all;
+        }
+        .bar:before {
+          left: 50%;
+        }
+        .bar:after {
+          right: 50%;
+        }
+        
+        /* active state */
+        input:focus ~ .bar:before,
+        input:focus ~ .bar:after {
+          width: 50%;
+        }
+      }
+      button {
+        cursor: pointer;
+        margin-top: 3rem;
+        position: relative;
+        display: inline-block;
+        font-size: 90%;
+        font-weight: 700;
+        color: rgb(209,209,217);
+        text-decoration: none;
+        text-shadow: 0 -1px 2px rgba(0,0,0,.2);
+        padding: .5em 1em;
+        outline: none;
+        border-radius: 3px;
+        // border: 0.3rem solid rgb(255,255,255);
+        // background: linear-gradient(rgb(255, 0, 0),rgb(218, 132, 20), rgb(251, 255, 0),  rgb(0, 255, 13), rgb(0, 238, 255),  rgb(0, 17, 255), rgb(255, 0, 255)) rgb(160, 144, 86);
+        // background: linear-gradient(rgb(243, 238, 220) ) rgb(160, 144, 86);
+        background: linear-gradient(rgb(110,112,120), rgb(81,81,86)) rgb(110,112,120);
+        box-shadow:
+         0 1px rgba(255,255,255,.2) inset,
+         0 3px 5px rgba(0,1,6,.5),
+         0 0 1px 1px rgba(0,1,6,.2);
+        transition: .2s ease-in-out;
+      }
+      button:hover:not(:active) {
+        background: linear-gradient(rgb(126,126,134), rgb(70,71,76)) rgb(126,126,134);
+      }
+      button:active {
+        top: 1px;
+        background: linear-gradient(rgb(76,77,82), rgb(56,57,62)) rgb(76,77,82);
+        box-shadow:
+         0 0 1px rgba(0,0,0,.5) inset,
+         0 2px 3px rgba(0,0,0,.5) inset,
+         0 1px 1px rgba(255,255,255,.1);
+      }
+
+    }
+
+  }
 }
+
+.back__block::before {
+  content: '';
+  position: absolute; /* Абсолютное позиционирование */
+  left: 0; right: 0; top: 0; bottom: 0;
+  z-index: 0;
+  background: rgba(27, 3, 3, 0.4)  center no-repeat;
+  background-size:contain;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  backdrop-filter: blur(6px);
+}
+
+

@@ -2,20 +2,22 @@ import { useHistory, Link } from 'react-router-dom';
 import styles from './Staff.module.scss';
 import StaffList from './StaffList';
 
+
 function Staff() {
   const history = useHistory()
 
-
   return (
     <>
-      <div className={styles.container}>
+      <div >
         <StaffList />
       </div>
       <br />
-      <button className='uk-button uk-button-default' onClick={() => history.goBack()}>Назад</button>
+      <div className={styles.container} >
+      <button className={styles.back} onClick={() => history.goBack()}>Назад</button>
       <br />
       <br />
-      <Link to={'/staff/new'} className="uk-button uk-button-default"><button>Добавить работника</button></Link>
+      <Link  to={'/staff/new'} ><button className={styles.add}>Добавить работника</button></Link>
+      </div>
     </>
   );
 }

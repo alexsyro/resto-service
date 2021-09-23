@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import styles from './Orders.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import * as ordersAC from '../../../redux/actionCreators/ordersAC';
-import DoneOrder from './DoneOrder';
-import ToCheckOrder from './ToCheckOrder';
+import * as reservationsAC from '../../../redux/actionCreators/actionCreators';
+import DoneOrder from './ConfirmedOrders';
+import NewOrders from './NewOrders';
+import styles from './Orders.module.scss';
+
+const { REACT_APP_URL } = process.env;
 
 function Orders() {
   const [completedList, setCompletedList] = useState(false);
@@ -36,18 +39,37 @@ function Orders() {
     };
   }
   useEffect(() => {
-    fetch('http://localhost:1234/api/orders', { credentials: 'include' })
+    fetch(`${REACT_APP_URL}api/orders`, { credentials: 'include' })
       .then((res) => res.json())
       .then((data) => {
-        const allOrders = [...data.orders];
+        const allOrders = data.orders;
         const ordersForState = allOrders.map((order) => {
           return { ...order, timeFormat: myDateParse(order.Reservation.date_time) };
         });
-        console.log(ordersForState);
         dispatch(ordersAC.getOrdersAC(ordersForState));
       });
+
+    fetch(`${REACT_APP_URL}api/reservations`, { credentials: 'include' })
+      .then((res) => res.json())
+      .then((data) => {
+        const allOrders = [...data.orders];
+        const idToDelete = allOrders.map((el) => el['Reservation.id']);
+        const allReservations = [...data.reservations];
+        // eslint-disable-next-line array-callback-return
+        const reservationsWithoutOrders = allReservations.filter((reservation) => {
+          if (!idToDelete.includes(reservation.id)) {
+            return true;
+          }
+        });
+
+        const reservationsForState = reservationsWithoutOrders.map((reservation) => {
+          return { ...reservation, timeFormat: myDateParse(reservation.date_time) };
+        });
+
+        dispatch(reservationsAC.getReservationsAC(reservationsForState));
+      });
     // здесь fetch (сага) в базу для получения списка заказов (причем только тех, что в обработке)
-  });
+  }, [dispatch]);
 
   const finishedOrders = useSelector((state) =>
     state.ordersReducer.orders?.filter((order) => [2, 6, 7].includes(order['state_id'])),
@@ -57,31 +79,65 @@ function Orders() {
   );
   return (
     <div className={styles.container}>
-      <h2>Заказы, ожидающие обработки </h2>
-      {toCheckOrders.length ? (
-        <ul className='uk-list uk-list-striped'>
-          {' '}
-          {toCheckOrders.map((order) => (
-            <ToCheckOrder key={order.id} order={order} />
-          ))}{' '}
-        </ul>
-      ) : null}
-
-      <button className='uk-button uk-button-default' onClick={() => setCompletedList((prev) => !prev)}>
-        {' '}
-        {completedList ? 'Скрыть' : 'Вывести'} список завершенных(обработанных) заказов
+      <button className={styles.listButton} onClick={() => setCompletedList((prev) => !prev)}>
+        {completedList ? 'Скрыть' : 'Вывести'} обработанные заказы
       </button>
       <br />
       {completedList && finishedOrders.length ? (
-        <ul className='uk-list uk-list-striped'>
-          {' '}
-          {finishedOrders.map((order) => (
-            <DoneOrder key={order.id} order={order} />
-          ))}
-        </ul>
+        <table>
+          <thead>
+            <tr>
+              <td>Заказ ID</td>
+              <td>Имя клиента</td>
+              <td>Телефон</td>
+              <td>Резерв ID</td>
+              <td>Столик#</td>
+              <td>Кол-во гостей</td>
+              <td>Дата</td>
+              <td>Время (UTC:0)</td>
+              <td>Список блюд</td>
+              <td>Статус</td>
+              <td>Сумма</td>
+            </tr>
+          </thead>
+          <tbody>
+            {finishedOrders.map((order) => (
+              <DoneOrder key={order.id} order={order} />
+            ))}
+          </tbody>
+        </table>
       ) : null}
       <br />
-      <button className='uk-button uk-button-default' onClick={() => history.goBack()}>
+      <h2>Заказы, ожидающие обработки </h2>
+      {toCheckOrders.length ? (
+        <table>
+          <thead>
+            <tr>
+              <td>Заказ ID</td>
+              <td>Имя клиента</td>
+              <td>Телефон</td>
+              <td>Резерв ID</td>
+              <td>Изменить резерв</td>
+              <td>№ столика</td>
+              <td>Кол-во гостей</td>
+              <td>Дата</td>
+              <td>Время (UTC:0)</td>
+              <td>Список блюд</td>
+              <td>Статус</td>
+              <td>Сумма</td>
+              <td>Подтвердить</td>
+              <td>Удалить</td>
+            </tr>
+          </thead>
+          <tbody>
+            {toCheckOrders.map((order) => (
+              <NewOrders key={order.id} order={order} />
+            ))}
+          </tbody>
+        </table>
+      ) : null}
+
+      <button className={styles.backButton} onClick={() => history.goBack()}>
         Назад
       </button>
     </div>

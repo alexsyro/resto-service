@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.4",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
@@ -18,8 +19,10 @@
     "express-session": "^1.17.2",
     "morgan": "^1.10.0",
     "multer": "^1.4.3",
+    "nodemailer": "^6.6.3",
     "pg": "^8.7.1",
     "pg-hstore": "^2.3.4",
+    "qs": "^6.10.1",
     "sequelize": "^6.6.5",
     "sequelize-cli": "^6.2.0",
     "session-file-store": "^1.5.0"

@@ -5,25 +5,28 @@ const initialState = { clients: [] };
 const clientsReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_CLIENTS:
-      if (state.clients.length) {
-        return state;
-      } else {
-        return { ...state, clients: action.payload };
-      }
+      return { ...state, clients: action.payload.clients };
 
     case UPD_CLIENTS:
       return {
-        ...state, clients: state.clients.map((client) => {
+        ...state,
+        clients: state.clients.map((client) => {
           if (client.id === action.payload.id) {
-            return { ...client, name: action.payload.inputName, email: action.payload.inputEmail, phone:action.payload.inputPhone, discount: action.payload.inputDiscount }
+            return {
+              ...client,
+              name: action.payload.inputName,
+              email: action.payload.inputEmail,
+              phone: action.payload.inputPhone,
+              discount: action.payload.inputDiscount,
+            };
           } else {
-            return client
+            return client;
           }
-        })
-      }
+        }),
+      };
 
     case DEL_CLIENTS:
-      return { ...state, clients: state.clients.filter((client) => client.id !== action.payload) }
+      return { ...state, clients: state.clients.filter((client) => client.id !== action.payload) };
 
     default:
       return state;

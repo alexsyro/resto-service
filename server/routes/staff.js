@@ -11,9 +11,9 @@ router.get('/posts', async (req, res) => {
   try {
     const posts = await Post.findAll({ attributes: ['id', 'name'], raw: true });
     res.json({ posts });
-  } catch (err) {
-    console.log('------------ERROR', new Date(), err);
-    res.status(500).json({ error: err.message });
+  } catch (error) {
+    console.log(`::::::::::::::::::::::DATABASE ERROR: ${error.message}`);
+    res.status(500).json({ error: error.message });
   }
 });
 
@@ -22,15 +22,14 @@ router.get('/', checkStaff, async (req, res) => {
     const staffs = await Staff.findAll({ raw: true });
     res.json({ staffs });
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: error.message, user: {} });
+    console.log(`::::::::::::::::::::::DATABASE ERROR: ${error.message}`);
+    res.status(500).json({ error: error.message });
   }
 });
 
 // Регистрация персонала
 router.post('/new', checkStaff, async (req, res) => {
   const { file } = req.files;
-  console.log('[INCOMING BODY TO REG STA]', file);
   const { name, login, phone, password, postId } = req.body;
   try {
     const image = await File.create(
@@ -42,7 +41,6 @@ router.post('/new', checkStaff, async (req, res) => {
       },
       { raw: true },
     );
-    console.log('-----------------IMAGE CREATED', image.id, name, login, phone, password);
     const [, isNew] = await Staff.findOrCreate({
       where: {
         [Op.or]: [{ login }, { phone }],
@@ -67,8 +65,8 @@ router.post('/new', checkStaff, async (req, res) => {
       res.status(409).json({ error: 'User already exists', user: {} });
     }
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: error.message, user: {} });
+    console.log(`::::::::::::::::::::::DATABASE ERROR: ${error.message}`);
+    res.status(500).json({ error: error.message });
   }
 });
 
@@ -97,9 +95,9 @@ router.put('/:id', checkStaff, async (req, res) => {
     }
     await staff.save();
     res.json({ staff });
-  } catch (err) {
-    console.log('------------ERROR', new Date(), err);
-    res.status(500).json({ error: err.message });
+  } catch (error) {
+    console.log(`::::::::::::::::::::::DATABASE ERROR: ${error.message}`);
+    res.status(500).json({ error: error.message });
   }
 });
 
@@ -109,15 +107,14 @@ router.delete('/:id', checkStaff, async (req, res) => {
   try {
     await Staff.destroy({ where: { id } });
     res.json({ deleted: true });
-  } catch (err) {
-    console.log('------------ERROR', new Date(), err);
-    res.status(500).json({ error: err.message });
+  } catch (error) {
+    console.log(`::::::::::::::::::::::DATABASE ERROR: ${error.message}`);
+    res.status(500).json({ error: error.message });
   }
 });
 
 // Логин
 router.post('/', async (req, res) => {
-  console.log('[INCOMING BODY TO LOGIN STAFF]', req.body);
   const { credentials, password } = req.body;
   try {
     const user = await Staff.findOne({ where: { login: credentials }, raw: true });
@@ -144,7 +141,8 @@ router.post('/', async (req, res) => {
       res.status(404).json({ error: 'User not found', user: { isAuth: false } });
     }
   } catch (error) {
-    res.status(500).json({ error: error.message, user: { isAuth: false } });
+    console.log(`::::::::::::::::::::::DATABASE ERROR: ${error.message}`);
+    res.status(500).json({ error: error.message });
   }
 });
 

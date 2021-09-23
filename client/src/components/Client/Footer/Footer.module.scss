@@ -6,6 +6,7 @@
   justify-content: space-between;
   align-items: flex-start;
   background-color: #0c0c0c;
+ 
 }
 
 
@@ -26,12 +27,30 @@
 
 .header {
   font-size: 0.9rem;
+  color:#fff;
+  font-family: 'Oswald', sans-serif;
+  margin-bottom: 0.4rem;
   
+}
+
+.p{
+  color:#fff;
+  font-family: 'Comfortaa', cursive;
 }
 
 .logos__container {
   margin-top: 0.5rem;
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
+}
+
+a[href^="tel:"] {
+  text-decoration: none;
+  color: #DCCA87;
+}
+
+a[href^="tel:"]:before {
+  content: "\2713";
+  margin-right: 0.5em;
 }
 

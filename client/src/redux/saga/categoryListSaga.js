@@ -2,8 +2,10 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 import { getCategoryListAC } from '../actionCreators/categoryListAC';
 import { SAGA_FETCH_CATEGORYLIST } from '../actionTypes/actionType';
 
+const { REACT_APP_URL } = process.env;
+
 const fetchCategoryList = async () => {
-  const res = await fetch('http://localhost:1234/api/menu/categories', { credentials: 'include' });
+  const res = await fetch(`${REACT_APP_URL}api/menu/categories`, { credentials: 'include' });
   const resJson = await res.json();
   return resJson;
 };

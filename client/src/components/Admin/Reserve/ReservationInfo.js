@@ -1,12 +1,11 @@
 import React, { useRef } from 'react'
 import { useParams, useHistory } from 'react-router';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 // import * as ordersAC from '../../../redux/actionCreators/ordersAC'
 
+const { REACT_APP_URL } = process.env;
 
 function ReservationInfo() {
-
-  const dispatch = useDispatch();
   const history = useHistory();
   const { id } = useParams();
 
@@ -34,7 +33,7 @@ function ReservationInfo() {
     }
     console.log(updateOrder);
 
-    fetch('http://localhost:1234/api/orders/edit', {
+    fetch(`${REACT_APP_URL}api/orders/edit`, {
       method: 'PUT',
       mode: 'cors',
       credentials: 'include',

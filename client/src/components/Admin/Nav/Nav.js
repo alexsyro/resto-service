@@ -2,8 +2,9 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { sagaLogoutAC } from '../../../redux/actionCreators/sagaAC';
+import styles from './Nav.module.scss';
 
-function Nav(props) {
+function Nav() {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -13,7 +14,7 @@ function Nav(props) {
     history.push('/');
   };
   return (
-    <nav className='uk-navbar-container' uk-navbar='true'>
+    <nav className={`uk-navbar-container ${styles.nav}`} uk-navbar='true'>
       <div className='uk-navbar-left'>
         <ul className='uk-navbar-nav'>
           <li className='uk-active'>
@@ -35,7 +36,9 @@ function Nav(props) {
             <Link to='/reservations'>РЕЗЕРВИРОВАНИЯ</Link>
           </li>
           <li className='uk-active'>
-            <Link onClick={logoutHandler}>ВЫХОД</Link>
+            <Link onClick={logoutHandler} to='/'>
+              ВЫХОД
+            </Link>
           </li>
         </ul>
       </div>

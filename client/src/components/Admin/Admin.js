@@ -1,5 +1,4 @@
 import Main from './Main/Main';
-import SideMenu from './SideMenu/SideMenu';
 import styles from './Admin.module.scss';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Header from './Header/Header';
@@ -16,16 +15,16 @@ import AddDishForm from './Menu/AddDishForm/AddDishForm';
 import UsersPage from './UsersPage/UsersPage'
 import ClientInfo from './UsersPage/ClientInfo';
 import AddClientForm from './UsersPage/AddClientForm';
-import Reservation from '../Admin/Reservations/Reservations';
-import ReservationInfo from '../Admin/Reservations/ReservationInfo';
+import Reserve from '../Admin/Reserve/Reserve';
+import ReservationInfo from '../Admin/Reserve/ReservationInfo';
 import NoMatch from './NoMatch/NoMatch'
+// import ChooseDate from '../Client/ChooseDate/ChooseDate';
 
 function Admin() {
   return (
     <div className={styles.container}>
       <Router>
         <Header />
-        <SideMenu />
         <Switch>
           <Route path='/' exact>
             <Main />
@@ -52,7 +51,7 @@ function Admin() {
             <Orders />
           </Route>
           <Route path='/reservations' exact>
-            <Reservation />
+            <Reserve />
           </Route>
           <Route exact path='/staff/new'>
             <AddWorkerForm />

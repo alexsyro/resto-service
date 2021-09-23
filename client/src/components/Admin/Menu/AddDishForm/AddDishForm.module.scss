@@ -1,0 +1,48 @@
+.form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 35rem;
+  margin: 5rem 0;
+  legend {
+    margin-left: 3.5rem;
+    margin-bottom: 2rem;
+  }
+  fieldset {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    input{
+      color: black !important;
+    }
+    .center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .submit__btn{
+      align-items: center;
+      width: 10rem;
+    }
+    .double__input {
+      display: flex;
+      flex-direction: row;
+      .select__input{
+        width: 7rem;
+        margin-left: 1rem;
+      }
+    }
+  }
+}
+
+.margin__left {
+  margin: 2rem 0 2rem 6rem;
+}
+
+.form__block {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

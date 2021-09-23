@@ -5,7 +5,6 @@ import Client from './Client/Client';
 
 export default function ComponentSwitcher() {
   const { user } = useSelector((state) => state.usersReducer);
-  console.log('USER!!!!!!!', user);
   return (
     <>
       {/* Условный рендеринг isAdmin. */}

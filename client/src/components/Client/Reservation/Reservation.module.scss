@@ -1,9 +1,8 @@
 .svg {
-  max-width: 1000;
-  width: 1000;
-  max-height: 700;
-  height: 700;
+  width: 100%;
+  height: auto;
   background-repeat: no-repeat;
+  margin-bottom: 4rem;
 }
 
 .tableContainer {
@@ -14,3 +13,133 @@
   display: flex;
   flex-direction: column;
 }
+
+.mainContainer{
+ min-height: 76vh;
+  // height:auto;
+
+
+  // width:70%;
+
+  // width: 70%;
+  // display :flex;
+  // flex-wrap: wrap;
+
+  .upperMenu {
+    margin-top: 5rem;
+  }
+}
+
+.pick_date{
+  margin-bottom: 0.5rem;
+  color: #fff;
+  font-family: 'Oswald', cursive;
+  font-size: 1.1rem;
+}
+
+.input_date{
+  margin-right: 1rem;
+  font-size: 0.9rem;
+  border-radius: 0.2rem;
+}
+
+.input_time{
+  margin-right: 1.1rem;
+  font-size: 0.9rem;
+  border-radius: 0.2rem;
+}
+
+.button{
+  cursor: pointer;
+  margin-top: 1rem;
+  height: 1.5rem;
+  width: 7.5rem;
+  border-radius: 0.2rem;
+  background-color: #2b68608a;
+  font-size: 0.8rem;
+  color:#fff;
+  font-family: 'Comfortaa', cursive;
+  font-weight: bold;
+}
+
+.pick_room{
+  cursor: pointer;
+
+  height: 1.5rem;
+  width: 5.5rem;
+  border-radius: 0.2rem;
+  margin-right: 1.5rem;
+  margin-top: 1rem;
+  font-family: 'Comfortaa', cursive;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color:#fff;
+  background-color: #cfa670;
+  margin-bottom: 2rem;
+}
+
+.info_button{
+  cursor: pointer;
+
+  height: 1.5rem;
+  width: 7.5rem;
+  border-radius: 0.2rem;
+  margin-right: 1.5rem;
+  margin-top: 1rem;
+  font-family: 'Comfortaa', cursive;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color:#fff;
+  background-color: #cfa670;
+  margin-bottom: 4rem;
+}
+
+.tableContainer{
+  display: flex;
+  flex-direction: column;
+  height: auto;
+}
+
+.text{
+  font-family: 'Comfortaa', cursive;
+  // font-size: 0.8rem;
+  // font-weight: bold;
+  color:#fff;
+}
+
+.text_last{
+  font-family: 'Comfortaa', cursive;
+  // font-size: 0.8rem;
+  // font-weight: bold;
+  color:#fff;
+  margin-bottom: 1rem;
+}
+
+.info_header{
+  font-family: 'Oswald', cursive;
+  color:#fff;
+}
+
+.info_guests{
+  font-size: 1.2rem;
+  font-family: 'Oswald', cursive;
+  color:#fff;
+}
+
+.info_book{
+  font-family: 'Oswald', cursive;
+  color:#fff;
+  margin-bottom: 1.5rem;
+}
+
+.info_input{
+  font-family: 'Oswald', cursive;
+
+  padding-left: 0.4rem;
+  margin-right: 2rem;
+  margin-left: 1rem;
+  font-size: 1rem;
+  border-radius: 00.3rem;
+  
+}
+

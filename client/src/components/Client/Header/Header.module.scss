@@ -43,7 +43,7 @@
 }
 
 .sidebar__links:hover {
-  color: white;
+  color: #cfa670;
   text-decoration: none;
 }
 
@@ -119,18 +119,36 @@ label #cancel {
   margin-right: 1rem;
   background-color: rgba(0, 0, 0, 0.6);
   border-radius: 5px;
-  border: 1px solid rgba(50, 50, 50, 0.6);
+
+  transition: all 0.5s linear;
+
+  // border: 1px solid rgba(50, 50, 50, 0.6);
 }
+
+.navbar__links button {
+  margin-top: 0.2rem;
+}
+
+
 .navbar__links:first-child {
-  background-color: rgba(100, 0, 0, 0.6);
+  background-color: #204d488a;
+}
+
+.navbar__links:first-child:hover {
+  background-color: #cfa670;
 }
 
 .navbar__link {
+  font-family: 'Comfortaa', cursive;
+  font-size: 1.1rem;
+  background: none;
+  cursor: pointer;
   position: relative;
   color: white;
   opacity: 0.8;
   transition: opacity 0.5s linear;
 }
+
 
 .navbar__link:after {
   content: '';
@@ -139,7 +157,7 @@ label #cancel {
   bottom: -0.1rem;
   width: 0;
   height: 0;
-  border: 2px solid transparent;
+  border: 1px solid transparent;
 }
 
 .navbar__link:hover:after {

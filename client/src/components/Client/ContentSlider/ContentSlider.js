@@ -1,6 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-
 import styles from './ContentSlider.module.scss'
 
 function ContentSlider() {
@@ -49,9 +47,9 @@ function ContentSlider() {
         </div>
 
       <button className={styles.slider__btn}>
-        <Link className={styles.slider__btn__text} to="/menu">
+        {/* <Link className={styles.slider__btn__text} to="/menu">
           Меню
-        </Link>
+        </Link> */}
       </button>
     </div>
   )

@@ -3,6 +3,8 @@ import { useHistory } from 'react-router-dom';
 import { setReservationAC, resetReservSelectionAC } from '../../../redux/actionCreators/actionCreators';
 import styles from './Reservation.module.scss';
 
+const { REACT_APP_URL } = process.env;
+
 export default function TableInfo() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.usersReducer);
@@ -20,7 +22,7 @@ export default function TableInfo() {
       date: selectedDateTime.date,
       time: selectedDateTime.time,
     };
-    const url = 'http://localhost:1234/api/reservations';
+    const url = `${REACT_APP_URL}api/reservations`;
     const response = await fetch(url, {
       method: 'POST',
       credentials: 'include',
@@ -32,10 +34,10 @@ export default function TableInfo() {
       dispatch(setReservationAC({ reservation }));
       dispatch(resetReservSelectionAC());
       alert(
-        `${user.isAuth ? user.name : guestName.value} забронировали столик ${selectedTable.number} на ${
+        `${user.isAuth ? user.name : guestName.value}, Вы забронировали столик ${selectedTable.number} на ${
           selectedDateTime.date
         } 
-        в ${selectedDateTime.time} часов. Вам придёт смс, после подтверждения бронирования`,
+        в ${selectedDateTime.time} часов. Вам придёт смс и письмо на почту, после подтверждения бронирования`,
       );
       history.push('/');
     }
@@ -43,21 +45,21 @@ export default function TableInfo() {
 
   return (
     <div className={styles.tableInfoContainer}>
-      <h3>{`Столик №${selectedTable.number}`}</h3>
-      <h4>{`Максимальная вместимость: ${selectedTable.seatsLimit}`}</h4>
+      <h3 className={styles.info_header}>{`Столик № ${selectedTable.number}`}</h3>
+      <h4 className={styles.info_header}>{`Максимальная вместимость: ${selectedTable.seatsLimit}`}</h4>
       <hr></hr>
       {selectedDateTime ? (
         <>
-          <h3>{`Забронировать на ${selectedDateTime.date} в ${selectedDateTime.time}`}</h3>
+          <h4 className={styles.info_book}>{`Забронировать на ${selectedDateTime.date} в ${selectedDateTime.time}`}</h4>
           <div>
-            <p>С вами также свяжется наш администратор для подтверждения бронирования.</p>
-            <p>Предупреждаем вас, что бронь будет снята, </p>
-            <p> если наш администратор не сможет до вас дозвониться в течении часа</p>
+            <p className={styles.text}>С вами также свяжется наш администратор для подтверждения бронирования.</p>
+            <p className={styles.text}>Предупреждаем вас, что бронь будет снята, </p>
+            <p className={styles.text_last}> если наш администратор не сможет до вас дозвониться в течении часа</p>
           </div>
           <form onSubmit={createReservation}>
             <div>
-              <label htmlFor='guestCount'>Выберите количество гостей:</label>
-              <input
+              <label className={styles.info_guests} htmlFor='guestCount'>Выберите количество гостей:</label>
+              <input className={styles.info_input}
                 id='guestCount'
                 type='number'
                 name='guestCount'
@@ -67,19 +69,19 @@ export default function TableInfo() {
                 max={selectedTable.seatsLimit}
               />
               {user.isAuth ? (
-                <p>Вы можете сделать предзаказ блюд, после бронирования :)</p>
+                <p className={styles.text}>Вы можете сделать предзаказ блюд, после бронирования </p>
               ) : (
                 <>
-                  <label htmlFor='guestName'>Ваше имя</label>
-                  <input
+                  <label className={styles.info_guests} htmlFor='guestName'>Ваше имя:</label>
+                  <input className={styles.info_input}
                     id='guestName'
                     type='text'
                     name='guestName'
                     placeholder='Введите ваше имя'
                     required
                   />
-                  <label htmlFor='guestPhone'>Ваш телефон</label>
-                  <input
+                  <label className={styles.info_guests} htmlFor='guestPhone'>Ваш телефон:</label>
+                  <input className={styles.info_input}
                     id='guestPhone'
                     type='tel'
                     name='guestPhone'
@@ -89,7 +91,7 @@ export default function TableInfo() {
                 </>
               )}
             </div>
-            <button type='submit'>Забронировать</button>
+            <button className={styles.info_button} type='submit'>Забронировать</button>
           </form>
         </>
       ) : (

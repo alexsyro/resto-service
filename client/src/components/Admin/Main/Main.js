@@ -1,32 +1,51 @@
 import { Link } from 'react-router-dom';
 import styles from './Main.module.scss';
 
+
 function Main() {
   return (
-    <div className={`${styles.container} uk-button-group `}>
+    <div className={`${styles.container} uk-child-width-1-2@s`}>
       <Link to="/menu">
-        <button className='uk-button uk-button-primary' type="button">
-          menu
-        </button>
-      </Link>
-
-      <Link to="/orders">
-        <button className='uk-button uk-button-primary' type="button">
-          orders
-        </button>
-      </Link>
-
-      <Link to="/reservations">
-        <button className='uk-button uk-button-primary' type="button">
-          reservations
-        </button>
+        <div>
+          <div className={`uk-dark uk-background-muted uk-padding ${styles.block}`}>
+            <h3>Меню</h3>
+          </div>
+        </div>
       </Link>
 
       <Link to="/staff">
-        <button className='uk-button uk-button-primary' type="button">
-          staff
-        </button>
+        <div>
+          <div className={`uk-dark uk-background-muted uk-padding ${styles.block}`}>
+            <h3>Персонал</h3>
+          </div>
+        </div>
       </Link>
+
+      <Link to="/clients">
+        <div>
+          <div className={`uk-dark uk-background-muted uk-padding ${styles.block}`}>
+            <h3>Клиенты</h3>
+          </div>
+        </div>
+      </Link>
+
+      <Link to="/orders">
+        <div>
+          <div className={`uk-dark uk-background-muted uk-padding ${styles.block}`}>
+            <h3>Заказы</h3>
+          </div>
+        </div>
+      </Link>
+
+
+      <Link to="/reservations">
+        <div>
+          <div className={`uk-dark uk-background-muted uk-padding ${styles.block}`}>
+            <h3>Резервирования</h3>
+          </div>
+        </div>
+      </Link>
+
     </div>
   );
 }

@@ -9,8 +9,14 @@
   
 }
 
+.about__gold{
+  font-family: 'Caveat', cursive;
+  font-size: 1.8rem;
+  color: #cfa670;
+}
+
 .about__img {
-  background: url('https://psv4.userapi.com/c520036/u144953147/docs/d43/d2be4e3e2568/Image.png?extra=hY2Od32fr1v2fGCsWitKHHqN8kJRqXM8yecmp7JSoWkgmXI0aoDmQFlU4Eww3M5qg_ArPUNfCb848TvZ99pu8HbkRY4HrpBB45KcbLnBXCGIwKHlA-2skYfPoAPU87ZbzKKfAyO5ryKOGp8fHjCNY2Ii') no-repeat
+  background: url('https://psv4.userapi.com/c536132/u144953147/docs/d5/fe32a7b0a3d1/img_3.png?extra=XREKut-yJlDjiH0cIiRwANLf5bI3cQGjJKHHFj41dR3v--IeldjvSXtoNDeYk1anRmTC_bCXi7ZizGvy_Hols0hHT4o4HN2n1iGAcZIY20wVq74E0XGMPmcLkKALbnIWNBVHPXxvyqIOsKedC_1-TNSY') no-repeat
     center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -27,12 +33,15 @@
 }
 
 .about__title {
-  color: #DCCA87;
-  font-size: 3rem;
+  color: #fff;
+  font-size: 2.5rem;
+  font-family: 'Oswald', sans-serif;
+  font-weight: bold;
+  margin-bottom: 0.4rem;
 }
 
 .about__text {
-  color: #AAAAAA;
+  color: #fff;
   font-size: 1.3rem;
 }
 
@@ -63,7 +72,7 @@
   0% {
     width: 0;
     height: 0;
-    border-top-color: #DCCA87;
+    border-top-color: #cfa670;
     // border-top-color: #fff;
     border-right-color: transparent;
     border-bottom-color: transparent;
@@ -73,8 +82,8 @@
   50% {
     width: 100%;
     height: 0;
-    border-top-color: #DCCA87;
-    border-right-color: #DCCA87;
+    border-top-color: #cfa670;
+    border-right-color: #cfa670;
     border-bottom-color: transparent;
     border-left-color: transparent;
   }
@@ -82,8 +91,8 @@
   100% {
     width: 100%;
     height: 100%;
-    border-top-color: #DCCA87;
-    border-right-color: #DCCA87;
+    border-top-color: #cfa670;
+    border-right-color: #cfa670;
     border-bottom-color: transparent;
     border-left-color: transparent;
   }
@@ -112,7 +121,7 @@
     border-top-color: transparent;
     border-right-color: transparent;
     border-bottom-color: transparent;
-    border-left-color: #DCCA87;
+    border-left-color: #cfa670;
   }
 
   50% {
@@ -120,8 +129,8 @@
     height: 100%;
     border-top-color: transparent;
     border-right-color: transparent;
-    border-bottom-color: #DCCA87;
-    border-left-color: #DCCA87;
+    border-bottom-color: #cfa670;
+    border-left-color: #cfa670;
   }
 
   100% {
@@ -129,20 +138,20 @@
     height: 100%;
     border-top-color: transparent;
     border-right-color: transparent;
-    border-bottom-color: #DCCA87;
-    border-left-color: #DCCA87;
+    border-bottom-color: #cfa670;
+    border-left-color: #cfa670;
   }
 }
 
 .about__btn__text {
   z-index: 1000;
   position: relative;
-  color: #DCCA87;
+  color: #cfa670;
   background: none;
   font-size: 1.3rem;
   transition: all 1s linear;
 }
 .about__btn__text:hover {
-  color: #DCCA87;
+  color: #cfa670;
   text-decoration: none;
 }

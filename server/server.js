@@ -5,6 +5,7 @@ const fileUpload = require('express-fileupload');
 const logger = require('morgan');
 const dotenv = require('dotenv');
 const cors = require('cors');
+const checkStaff = require('./middlewares/staffValidation');
 
 // Routers
 const clientRouter = require('./routes/clients');
@@ -12,6 +13,7 @@ const staffRouter = require('./routes/staff');
 const menuRouter = require('./routes/menu');
 const ordersRouter = require('./routes/orders');
 const reserveRouter = require('./routes/reservations');
+const { Reservation, Table, State, Order, Client, OrderPosition, Position } = require('./db/models');
 
 // Инициализируем хранение переменных окружения в файл .env
 dotenv.config();
@@ -63,6 +65,82 @@ server.post('/login', (req, res) => {
   } else {
     console.log('REDIRECTED TO STAFF', req.session);
     res.redirect(307, '/api/staff');
+  }
+});
+
+server.get('/', checkStaff, async (req, res) => {
+  try {
+    const reservations = await Reservation.findAll({
+      attributes: [
+        'id',
+        'table_id',
+        'date_time',
+        'guest_count',
+        'guest_name',
+        'guest_phone',
+        'time_interval',
+      ],
+      include: [
+        {
+          model: Table,
+          key: 'id',
+          attributes: ['id', 'hall_id', 'number', 'seats_limit'],
+        },
+        {
+          model: State,
+          key: 'id',
+          attributes: ['id', 'state'],
+        },
+      ],
+      raw: true,
+    });
+
+    const orders = await Order.findAll({
+      attributes: ['id', 'client_id', 'reservation_id', 'state_id'],
+      include: [
+        {
+          model: Client,
+          key: 'id',
+          attributes: ['id', 'name', 'phone', 'discount_id'],
+        },
+        {
+          model: Reservation,
+          key: 'id',
+          attributes: [
+            'id',
+            'table_id',
+            'date_time',
+            'guest_count',
+            'guest_name',
+            'guest_phone',
+            'time_interval',
+          ],
+          include: {
+            model: Table,
+            attributes: ['number'],
+          },
+        },
+        {
+          model: State,
+          key: 'id',
+          attributes: ['state'],
+        },
+        {
+          model: OrderPosition,
+          key: 'id',
+          attributes: ['id', 'quantity'],
+          include: {
+            model: Position,
+            attributes: ['name', 'price'],
+          },
+        },
+      ],
+      raw: false,
+    });
+    res.json({ orders, reservations });
+  } catch (error) {
+    console.log(`::::::::::::::::::::::DATABASE ERROR: ${error.message}`);
+    res.status(500).json({ error: error.message, user: { isAuth: false } });
   }
 });
 
