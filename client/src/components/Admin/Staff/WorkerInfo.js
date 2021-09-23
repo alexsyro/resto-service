@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { useParams, useHistory } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import { UPD_STAFF } from '../../../redux/actionTypes/actionType';
+import styles from './WorkerInfo.module.scss'
 
 const { REACT_APP_URL } = process.env;
 
@@ -42,8 +43,8 @@ function WorkerInfo() {
   };
 
   return (
-    <div>
-      <div className='uk-card uk-card-primary uk-card-body'>
+    <div className={styles.form__block}>
+      <div className='uk-card  uk-card-body'>
         <div className='uk-margin'>
           <input
             ref={inputName}
@@ -54,7 +55,7 @@ function WorkerInfo() {
           />
         </div>
 
-        <div className='uk-margin'>
+        {/* <div className='uk-margin'>
           <input
             ref={inputPosition}
             className='uk-input'
@@ -62,7 +63,7 @@ function WorkerInfo() {
             defaultValue={currentWorker?.position}
             placeholder='Position'
           />
-        </div>
+        </div> */}
 
         <div className='uk-margin'>
           <input
@@ -74,15 +75,7 @@ function WorkerInfo() {
           />
         </div>
 
-        <div className='uk-margin'>
-          <input
-            ref={inputPassword}
-            className='uk-input'
-            type='text'
-            defaultValue={currentWorker?.password}
-            placeholder='Password'
-          />
-        </div>
+      
 
         <div className='uk-margin'>
           <input
