@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { GET_STAFF, GET_POSITIONS } from '../../../redux/actionTypes/actionType';
 import Worker from './Worker';
+import styles from './StaffList.module.scss'
 
 const { REACT_APP_URL } = process.env;
 
@@ -30,7 +31,7 @@ function StaffList() {
 
   return (
     <>
-      <input onChange={(event) => setValue(event.target.value)} type='text' placeholder='Введите имя'></input>
+      <input className={styles.input} onChange={(event) => setValue(event.target.value)} type='text' placeholder='Введите имя'></input>
       {filteredWorkers?.map((person) => (
         <Worker key={person.id} person={person} />
       ))}
