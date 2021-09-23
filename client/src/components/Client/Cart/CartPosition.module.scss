@@ -1,13 +1,11 @@
-.table{
+.table {
   text-align: left;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
- 
 }
 
 td {
-
   white-space: wrap;
   width: 7rem;
   text-align: start;
@@ -15,7 +13,7 @@ td {
   font-family: 'Comfortaa', cursive;
 }
 
-.scale{
+.scale {
   height: 1.5rem;
   margin-top: 0.5rem;
   border-radius: 0.3rem;
@@ -27,14 +25,39 @@ td {
   // text-align: center;
 }
 
-.delete{
+.delete {
+  font-size: 1rem;
   height: 1.5rem;
   position: relative;
-  left: 19%;
+  left: 2.35rem;
   transform: translateX(-50%);
-  width: 4rem;
+  width: 5rem;
   border-radius: 0.3rem;
   background-color: #cfa670;
-  color:#fff;
+  color: #fff;
   margin-top: 0.2rem;
+}
+
+.quantityContainer {
+  display: flex;
+  align-items: center;
+
+  p {
+    text-align: center;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    background-color: white;
+    color: black;
+    width: 2rem;
+    border-radius: 5px;
+  }
+
+  button {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 5px;
+    font-weight: bolder;
+    font-size: 14pt;
+    background-color: #cfa670;
+  }
 }

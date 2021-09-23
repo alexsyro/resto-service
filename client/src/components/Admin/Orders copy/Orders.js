@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import styles from './Reservations.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import * as ordersAC from '../../../redux/actionCreators/ordersAC';
 import * as reservationsAC from '../../../redux/actionCreators/actionCreators';
-import DoneReservations from './DoneReservations';
-import ToCheckReservation from './ToCheckReservation';
+import DoneOrder from './DoneOrder';
+import ToCheckOrder from './ToCheckOrder';
+import styles from './Orders.module.scss';
 
 const { REACT_APP_URL } = process.env;
 
-function Reservations() {
+function Orders() {
   const [completedList, setCompletedList] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
-
   function myDateParse(rawString) {
     let arr = rawString.split(/\D/);
     arr[6] = arr[6].substr(0, 3); // Microseconds to milliseconds
@@ -38,8 +38,17 @@ function Reservations() {
       year: arr[0],
     };
   }
-
   useEffect(() => {
+    fetch(`${REACT_APP_URL}api/orders`, { credentials: 'include' })
+      .then((res) => res.json())
+      .then((data) => {
+        const allOrders = data.orders;
+        const ordersForState = allOrders.map((order) => {
+          return { ...order, timeFormat: myDateParse(order.Reservation.date_time) };
+        });
+        dispatch(ordersAC.getOrdersAC(ordersForState));
+      });
+
     fetch(`${REACT_APP_URL}api/reservations`, { credentials: 'include' })
       .then((res) => res.json())
       .then((data) => {
@@ -59,48 +68,36 @@ function Reservations() {
         dispatch(reservationsAC.getReservationsAC(reservationsForState));
       });
     // здесь fetch (сага) в базу для получения списка заказов (причем только тех, что в обработке)
-  }, [dispatch]);
+  }, []);
 
-  const finishedReservations = useSelector((state) =>
-    state.reservationReducer.reservations?.filter((reservation) =>
-      [2, 6, 7].includes(reservation['State.id']),
-    ),
+  const finishedOrders = useSelector((state) =>
+    state.ordersReducer.orders?.filter((order) => [2, 6, 7].includes(order['state_id'])),
   );
-
-  const toCheckReservations = useSelector((state) =>
-    state.reservationReducer.reservations?.filter((reservation) =>
-      [1, 3, 4, 5].includes(reservation['State.id']),
-    ),
+  const toCheckOrders = useSelector((state) =>
+    state.ordersReducer.orders?.filter((order) => [1, 3, 4, 5].includes(order['state_id'])),
   );
-
   return (
     <div className={styles.container}>
       <h2>Заказы, ожидающие обработки </h2>
-      {toCheckReservations.length ? (
+      {toCheckOrders.length ? (
         <ul className='uk-list uk-list-striped'>
           {' '}
-          {toCheckReservations.map((reservation) => (
-            <ToCheckReservation key={reservation.id} reservation={reservation} />
+          {toCheckOrders.map((order) => (
+            <ToCheckOrder key={order.id} order={order} />
           ))}{' '}
         </ul>
       ) : null}
 
-      {completedList ? (
-        <button className='uk-button uk-button-default' onClick={() => setCompletedList((prev) => !prev)}>
-          {' '}
-          Скрыть список завершенных(обработанных) заказов
-        </button>
-      ) : (
-        <button className='uk-button uk-button-default' onClick={() => setCompletedList((prev) => !prev)}>
-          Вывести список завершенных(обработанных) заказов
-        </button>
-      )}
+      <button className='uk-button uk-button-default' onClick={() => setCompletedList((prev) => !prev)}>
+        {' '}
+        {completedList ? 'Скрыть' : 'Вывести'} список завершенных(обработанных) заказов
+      </button>
       <br />
-      {completedList && finishedReservations.length ? (
+      {completedList && finishedOrders.length ? (
         <ul className='uk-list uk-list-striped'>
           {' '}
-          {finishedReservations.map((reservation) => (
-            <DoneReservations key={reservation.id} reservation={reservation} />
+          {finishedOrders.map((order) => (
+            <DoneOrder key={order.id} order={order} />
           ))}
         </ul>
       ) : null}
@@ -112,4 +109,4 @@ function Reservations() {
   );
 }
 
-export default Reservations;
+export default Orders;

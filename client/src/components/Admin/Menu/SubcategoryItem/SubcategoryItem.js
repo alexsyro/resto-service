@@ -6,12 +6,14 @@ import { GET_DISHES } from '../../../../redux/actionTypes/actionType';
 import Dish from '../Dish/Dish';
 import styles from './SubcategoryItem.module.scss'
 
+const { REACT_APP_URL } = process.env;
+
 function SubcategoryItem(props) {
   const dispatch = useDispatch();
   const { categoryId } = useParams();
 
   useEffect(() => {
-    fetch('http://localhost:1234/api/menu/categories/' + categoryId, { credentials: 'include' })
+    fetch(`${REACT_APP_URL}api/menu/categories/${categoryId}`, { credentials: 'include' })
       .then((res) => res.json())
       .then((categories) => dispatch({ type: GET_DISHES, payload: categories }));
   }, [dispatch, categoryId]);

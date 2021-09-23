@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { GET_STAFF } from '../../../redux/actionTypes/actionType';
 
 const REGEXP_PHONE_VALIDATION = /[-+() ]*/gs;
+const { REACT_APP_URL } = process.env;
 
 const checkCorrectNumber = (string) => {
   const normilize = string.replace(REGEXP_PHONE_VALIDATION, '');
@@ -54,7 +55,7 @@ function AddWorkerForm() {
   return (
     <form
       onSubmit={addWorker}
-      action='http://localhost:1234/api/staff/new'
+      action={`${REACT_APP_URL}api/staff/new`}
       method='POST'
       name='addWorkerForm'
     >

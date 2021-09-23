@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { GET_STAFF, GET_POSITIONS } from '../../../redux/actionTypes/actionType';
 import Worker from './Worker';
 
+const { REACT_APP_URL } = process.env;
+
 function StaffList() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetch(`http://localhost:1234/api/staff/`, {credentials: 'include'})
+    fetch(`${REACT_APP_URL}api/staff/`, { credentials: 'include' })
       .then((res) => res.json())
       .then(({ staffs }) => dispatch({ type: GET_STAFF, payload: staffs }));
   }, [dispatch]); // запросом получаем весь стафф из бд //dispatch({type: GET_STAFF, payload: staffs})
@@ -15,7 +17,7 @@ function StaffList() {
   const staffList = useSelector((state) => state.staffReducer.staff);
   console.log(staffList, 'STAFF');
 
-  fetch('http://localhost:1234/api/staff/posts', { credentials: 'include' })
+  fetch(`${REACT_APP_URL}api/staff/posts`, { credentials: 'include' })
     .then((res) => res.json())
     .then(({ posts }) => dispatch({ type: GET_POSITIONS, payload: posts }));
 

@@ -3,6 +3,8 @@ import { useHistory } from 'react-router-dom';
 import { setReservationAC, resetReservSelectionAC } from '../../../redux/actionCreators/actionCreators';
 import styles from './Reservation.module.scss';
 
+const { REACT_APP_URL } = process.env;
+
 export default function TableInfo() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.usersReducer);
@@ -20,7 +22,7 @@ export default function TableInfo() {
       date: selectedDateTime.date,
       time: selectedDateTime.time,
     };
-    const url = 'http://localhost:1234/api/reservations';
+    const url = `${REACT_APP_URL}api/reservations`;
     const response = await fetch(url, {
       method: 'POST',
       credentials: 'include',

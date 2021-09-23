@@ -2,7 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { DEL_DISH } from '../../../../redux/actionTypes/actionType';
-import styles from './Dish.module.scss'
+import styles from './Dish.module.scss';
+
+const { REACT_APP_URL } = process.env;
 
 function Dish({ dish }) {
   let { data } = dish['File.data'];
@@ -14,7 +16,7 @@ function Dish({ dish }) {
   const deleteDish = () => {
     dispatch({ type: DEL_DISH, payload: dish.id });
     // console.log('delete')
-    fetch(`http://localhost:1234/api/menu/${dish.id}`, {
+    fetch(`${REACT_APP_URL}api/menu/${dish.id}`, {
       method: 'DELETE',
       credentials: 'include',
     }).then(console.log);

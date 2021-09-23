@@ -1,6 +1,35 @@
 .container {
   background-color: white;
 
+  .listButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2rem;
+    padding: 0rem 0.5rem;
+    background-color: #1e87f0;
+    border-radius: 0.1rem;
+    color: white;
+    text-transform: uppercase;
+    width: 18rem;
+    font-size: 14pt;
+    margin: 1rem;
+  }
+  .backButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2rem;
+    padding: 0rem 0.5rem;
+    background-color: #1e87f0;
+    border-radius: 0.1rem;
+    color: white;
+    text-transform: uppercase;
+    width: 9rem;
+    font-size: 14pt;
+    margin: 1rem;
+  }
+
   .hoverRow {
     background-color: white;
   }
@@ -16,11 +45,11 @@
     border: 1px solid black;
 
     thead {
-      background-color: gray;
+      background-color: #1E87F0;
       td {
         text-align: center;
         font-weight: bold;
-        color: black;
+        color: white;
       }
     }
 

@@ -4,6 +4,8 @@ import { GET_DISHES } from '../../../../redux/actionTypes/actionType';
 import { useParams } from 'react-router';
 import styles from './AddDishForm.module.scss'
 
+const { REACT_APP_URL } = process.env;
+
 function AddDishForm() {
   const dispatch = useDispatch();
   const { categoryId } = useParams();
@@ -38,7 +40,7 @@ function AddDishForm() {
     formData.append('measureId', measureId.value);
     formData.append('price', price.value);
 
-    fetch(`http://localhost:1234/api/menu`, {
+    fetch(`${REACT_APP_URL}api/menu`, {
       method,
       credentials: 'include',
       body: formData,

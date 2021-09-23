@@ -5,7 +5,6 @@ import StaffList from './StaffList';
 function Staff() {
   const history = useHistory()
 
-
   return (
     <>
       <div className={styles.container}>

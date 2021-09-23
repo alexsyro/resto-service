@@ -2,6 +2,8 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { GET_CLIENTS } from '../../../redux/actionTypes/actionType';
 
+const { REACT_APP_URL } = process.env;
+
 function AddClientForm() {
   const dispatch = useDispatch();
 
@@ -25,7 +27,7 @@ function AddClientForm() {
   return (
     <form
       onSubmit={addWorker}
-      action='http://localhost:1234/api/clients/new'
+      action={`${REACT_APP_URL}api/clients/new`}
       method='POST'
       name='addClientForm'
     >

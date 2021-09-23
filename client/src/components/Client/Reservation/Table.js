@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectReservTableAC } from '../../../redux/actionCreators/actionCreators';
 
+const { REACT_APP_URL } = process.env;
+
 export default function Table({ table }) {
   const dispatch = useDispatch();
   const { selectedDateTime, selectedTable } = useSelector((state) => state.reservationReducer);
@@ -9,7 +11,7 @@ export default function Table({ table }) {
   const [isReserved, setisReserved] = useState(false);
 
   const fetchGetState = async () => {
-    const url = `http://localhost:1234/api/reservations/table/${table.id}?date=${selectedDateTime.date}&time=${selectedDateTime.time}`;
+    const url = `${REACT_APP_URL}api/reservations/table/${table.id}?date=${selectedDateTime.date}&time=${selectedDateTime.time}`;
     const response = await fetch(url, { credentials: 'include' });
     const { reserved } = await response.json();
     console.log('');

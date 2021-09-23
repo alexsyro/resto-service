@@ -35,27 +35,26 @@
     margin-top: 0.5rem;
     border-radius: 0.3rem;
     background-color: #2b68608a;
-    color:#fff;
+    color: #fff;
     opacity: 60%;
     font-size: 1rem;
   }
 }
 
-
-.title{
+.title {
   color: #fff;
   font-family: 'Oswald', sans-serif;
   font-size: 1.5rem;
 }
 
-.p{
+.p {
   color: #fff;
   font-family: 'Comfortaa', cursive;
   font-size: 1.7rem;
- 
 }
 
-.save{
+.save {
+  font-size: 1.2rem;
   height: 1.5rem;
   width: 6rem;
   position: relative;
@@ -64,23 +63,23 @@
   width: 10rem;
   border-radius: 0.3rem;
   margin-top: 0.5rem;
-  color:#fff;
+  color: #fff;
   background-color: #2b68608a;
   font-family: 'Comfortaa', cursive;
   font-weight: bold;
-
 }
 
-.change{
+.change {
+  font-size: 1.2rem;
   height: 1.5rem;
-  width: 6rem;
+  width: 14rem !important;
   position: relative;
   left: 40%;
   transform: translateX(-50%);
   width: 10rem;
   border-radius: 0.3rem;
   background-color: #cfa670;
-  color:#fff;
+  color: #fff;
   font-family: 'Comfortaa', cursive;
   font-weight: bold;
 }

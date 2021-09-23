@@ -6,7 +6,6 @@ import {
 } from '../actionTypes/actionType';
 
 const localCart = JSON.parse(localStorage.getItem('cart'));
-console.log('LOCALCART', localCart);
 const initialState = localCart ? { cart: localCart } : { cart: [] };
 
 export default function reducer(state = initialState, action) {

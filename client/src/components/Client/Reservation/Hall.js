@@ -6,13 +6,14 @@ import Table from './Table';
 import styles from './Reservation.module.scss';
 
 const images = { 1: restTablesImg, 2: clubTablesImg };
+const { REACT_APP_URL } = process.env;
 
 export default function Hall() {
   const { selectedHall } = useSelector((state) => state.reservationReducer);
   const [thisHallTables, setThisHallTables] = useState([]);
 
   const fetchGetAllTables = async () => {
-    const url = `http://localhost:1234/api/reservations/hall/${selectedHall.id}`;
+    const url = `${REACT_APP_URL}api/reservations/hall/${selectedHall.id}`;
     const response = await fetch(url, { credentials: 'include' });
     const { tables } = await response.json();
     setThisHallTables(tables);

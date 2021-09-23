@@ -7,8 +7,11 @@ import {
 } from '../../../redux/actionCreators/actionCreators';
 import Hall from './Hall';
 import TableInfo from './TableInfo';
+import ChooseDate from '../ChooseDate/ChooseDate';
+
 import styles from './Reservation.module.scss';
 
+const { REACT_APP_URL } = process.env;
 //Текущая дата
 const CURR_DATE = new Date();
 //Для правильного формата даты в виде yyyy-mm-dd, по умолчанию берёт текущую дату.
@@ -33,14 +36,21 @@ export default function Reservation() {
   const dateTimeSelect = async (event) => {
     event.preventDefault();
     dispatch(resetReservSelectionAC());
-    const { date, time } = event.target;
-    const datetime = { date: date.value, time: time.value };
-    dispatch(selectReservDateTimeAC({ datetime }));
+    const fullTime = event.target[0].value;
+    const date = fullTime.split(',')[0].split('.').reverse().join('-');
+    const time = fullTime.split(',')[1].trim();
+
+    if (date && time) {
+      const datetime = { date, time };
+      dispatch(selectReservDateTimeAC({ datetime }));
+    } else {
+      alert('Необходимо выбрать и дату и время.');
+    }
   };
 
   //Получаем список залов
   const fetchGetHalls = async () => {
-    const url = 'http://localhost:1234/api/reservations/halls';
+    const url = `${REACT_APP_URL}api/reservations/halls`;
     const response = await fetch(url, { credentials: 'include' });
     const { halls } = await response.json();
     setHallsArray(halls);
@@ -63,28 +73,31 @@ export default function Reservation() {
         <div className={styles.upperMenu}>
           <p className={styles.pick_date}>Выберете интересующую дату и время</p>
           <form onSubmit={dateTimeSelect}>
-            <input className={styles.input_date} name='date' type='date' min={today} defaultValue={today} max={maxDate} />
-            <input className={styles.input_time} name='time' type='time' />
-            <button className={styles.button} type='submit'>Выбрать</button>
+            <ChooseDate />
+            <button className={styles.button} type='submit'>
+              Подтвердить
+            </button>
           </form>
         </div>
         <div className={styles.hallSelect}>
-
           {selectedDateTime &&
             hallsArray.length &&
             hallsArray.map((hall) => (
-              <button className={styles.pick_room} key={hall.id} onClick={selectHall} id={hall.id} type='submit'>
+              <button
+                className={styles.pick_room}
+                key={hall.id}
+                onClick={selectHall}
+                id={hall.id}
+                type='submit'
+              >
                 {hall.name}
               </button>
             ))}
-
         </div>
         <div className={styles.tableContainer}>
           {selectedHall && <Hall />}
           {selectedTable && <TableInfo />}
         </div>
-
-
       </div>
     </>
   );

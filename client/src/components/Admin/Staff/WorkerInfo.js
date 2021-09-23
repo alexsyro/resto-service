@@ -3,6 +3,8 @@ import { useParams, useHistory } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import { UPD_STAFF } from '../../../redux/actionTypes/actionType';
 
+const { REACT_APP_URL } = process.env;
+
 function WorkerInfo() {
   const dispatch = useDispatch();
 
@@ -29,7 +31,7 @@ function WorkerInfo() {
     };
     dispatch({ type: UPD_STAFF, payload: updateWorker });
 
-    fetch(`http://localhost:1234/api/staff/${staffId}`, {
+    fetch(`${REACT_APP_URL}api/staff/${staffId}`, {
       method: 'PUT',
       credentials: 'include',
       headers: {

@@ -1,75 +1,86 @@
-.container{
-
- width: 27%;
- height: 20rem;
-
+.container {
+  position: relative;
+  // border: 2px solid red;
+  width: 15rem;
+  height: 22rem;
+  margin-bottom: 2rem;
+  
 }
 
-.back{
-  height: 1rem;
+.container:hover .additional__info {
+  opacity: 1;
+  visibility: visible;
+  
 }
 
-.main_container{
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-around;
-  min-height: 100vh;
-  height: auto;
-  margin: 0 auto;
+.container:hover .img {
+  filter: blur(4px) brightness(50%);
+  // filter: brightness(10%);
 }
 
-.text{
+.additional__info {
+  text-transform: capitalize;
+  visibility: hidden;
+  height: 15rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: .55s opacity, .55s visibility;
+  
+}
+
+.img {
+  height: 15rem;
+  width: 15rem;
+  object-fit: cover; //будет полностью покрывать пространство
+  transition: all 0.3s linear;
+}
+
+.text {
   color: #fff;
   font-family: 'Comfortaa', cursive;
 }
 
-.dish_title{
+.dish_title {
   color: #fff;
   font-family: 'Oswald', cursive;
   margin-top: 1rem;
   margin-bottom: 0.6rem;
 }
 
-.description{
+.description {
   color: #fff;
   font-family: 'Comfortaa', cursive;
   margin-top: 1rem;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.8rem;
 }
 
-.portionSize{
+.portionSize {
   color: #fff;
   font-family: 'Comfortaa', cursive;
-  margin-bottom: 0.4rem;
+  // margin-bottom: 0.4rem;
 }
 
-.kcal{
+.kcal {
   color: #fff;
   font-family: 'Comfortaa', cursive;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.8rem;
 }
 
-.dish_button{
+.dish_button {
+  cursor: pointer;
   height: 1.5rem;
   width: 6rem;
   position: relative;
-  left: 28%;
-  transform: translateX(-50%);
+  left: 0;
+  // transform: translateX(-25%);
   width: 10rem;
   border-radius: 0.3rem;
   background-color: #cfa670;
-  color:#fff;
+  color: #fff;
   margin-top: 0.4rem;
   font-family: 'Comfortaa', cursive;
   font-weight: bold;
   font-size: 0.8rem;
 }
-
-.img{
-  height: 15rem;
-  width: 15rem;
-  object-fit: cover; //будет полностью покрывать пространство
-
-}
-
