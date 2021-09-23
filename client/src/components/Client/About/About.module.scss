@@ -41,7 +41,7 @@
   width: 100%;
 
   .first__img {
-    background: url('https://gluten.org/wp-content/uploads/2019/10/Chef-GFFS-Restaurant.jpg') no-repeat
+    background: url('https://www.passion.ru/imgs/2017/05/13/15/895479/17f13eb495ce34e4fa3f4d2d3ddd8ee565b1d504.jpg') no-repeat
       center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -54,7 +54,7 @@
   }
   
   .second__img {
-    background: url('https://hardcore-electric.com/wp-content/uploads/chef-in-restaurant-kitchen.jpg') no-repeat
+    background: url('https://www.restoclub.ru/uploads/newsinner_thumbnail_big/b/9/f/5/b9f51d0a2e05bbe9f77625d7c2fb3dbf.jpg') no-repeat
       center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -70,7 +70,19 @@
 
 
 .about__img {
-  background: url('https://ilmilanese.ru/wp-content/uploads/2018/04/about_1.jpg') no-repeat
+  background: url('https://psv4.userapi.com/c536436/u144953147/docs/d43/51b43bf332e3/img_4.png?extra=oLVsor8tH-vgidVZneDqS1bXCY1Hez5_isftlovWq7kdi_CSdZB9KmFxo6uuc9f1gsaYqJdKNgea62AEcF1IgJW3QFg7kQspazyL5kUrY1PhCfq5EVgsnkJbr54eOOcJ1ijUEtL76aZBaRvuCXtl49aL') no-repeat
+    center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: 20rem;
+  width: 50%;
+  height: 70%;
+  margin-right: 6rem;
+}
+
+.about__philosophy {
+  background: url('https://psv4.userapi.com/c520036/u144953147/docs/d37/7e20fa9c1de8/img_5.png?extra=gA8anjbZJxM94jtnjpR8vQxgxolO8XUK4eazfelqbk7aYR9Gml3uMrL2tTBvqyAdEWkTjSKPo4RIJ_1zANH7KobDUaB1xB0RphvdeIbwGwCFVuHuyS2ZrgGpenuIlIJl_X0b2wDSQW0SVBnWki3f8kCd') no-repeat
     center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -83,12 +95,12 @@
 
 
 .chef__img {
-  background: url('https://www.wmj.ru/imgs/2018/11/30/12/2840413/3aab19cf4b7400ec528ed1c278a0bda868019248.jpg') no-repeat
+  background: url('https://ca.slack-edge.com/T023CH3KU72-U026CHAUH7E-900435799bc8-512') no-repeat
     center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: 35rem;
+  background-size: 30rem;
   width: 50%;
   height: 70%;
   margin-right: 3rem;
@@ -101,12 +113,15 @@
 }
 
 .about__title {
-  color: #DCCA87;
-  font-size: 3rem;
+  color: #fff;
+  font-family: 'Oswald', sans-serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 0.4rem;
 }
 
 .about__text {
-  color: #AAAAAA;
+  color: #fff;
   font-size: 1.3rem;
 }
 
@@ -117,4 +132,10 @@
   justify-content: center;
   align-items: center;
   margin: 0 auto;
+}
+
+.about__small{
+  font-family: 'Caveat', cursive;
+  font-size: 1.8rem;
+  color: #cfa670;
 }
