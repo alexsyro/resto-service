@@ -67,7 +67,7 @@ function NewOrders({ order }) {
       </td>
       <td> {order.Reservation.Table ? <p>{order.Reservation.Table.number}</p> : null}</td>
       <td>
-        <td>{order.Reservation.guest_count}</td>
+        {order.Reservation.guest_count}
       </td>
       <td>{order.Reservation.date_time.split('T')[0]}</td>
       <td>{`${order.timeFormat.hours}:${order.timeFormat.minutes}`}</td>

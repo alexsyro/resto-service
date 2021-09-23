@@ -1,6 +1,6 @@
-import styles from './Footer.module.scss'
-import vkLogo from './assets/img/vk.png'
-import instaLogo from './assets/img/instagram.png'
+import styles from './Footer.module.scss';
+import vkLogo from './assets/img/vk.png';
+import instaLogo from './assets/img/instagram.png';
 
 function Footer() {
   return (
@@ -21,12 +21,12 @@ function Footer() {
       <div className={styles.hours}>
         <h6 className={styles.header}>Социальные сети</h6>
         <div className={styles.logos__container}>
-          <a href="https://vk.com/tochkaobninsk" target="_blank">
-            <img src={vkLogo}></img>
+          <a href='https://vk.com/tochkaobninsk' target='_blank' rel='noreferrer'>
+            <img src={vkLogo} alt='VK'></img>
           </a>
 
-          <a href="https://www.instagram.com/tochka_rest/" target="_blank">
-            <img src={instaLogo}></img>
+          <a href='https://www.instagram.com/tochka_rest/' target='_blank' rel='noreferrer'>
+            <img src={instaLogo} alt='INST'></img>
           </a>
         </div>
       </div>
@@ -35,7 +35,7 @@ function Footer() {
         <p className={styles.p}>Санкт-Петербург, Литейный пр-т, 7</p>
       </div>
     </div>
-  )
+  );
 }
 
-export default Footer
+export default Footer;

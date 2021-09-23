@@ -16,9 +16,9 @@ import UsersPage from './UsersPage/UsersPage'
 import ClientInfo from './UsersPage/ClientInfo';
 import AddClientForm from './UsersPage/AddClientForm';
 import Reserve from '../Admin/Reserve/Reserve';
-import ReservationInfo from '../Admin/Reservations/ReservationInfo';
+import ReservationInfo from '../Admin/Reserve/ReservationInfo';
 import NoMatch from './NoMatch/NoMatch'
-import ChooseDate from '../Client/ChooseDate/ChooseDate';
+// import ChooseDate from '../Client/ChooseDate/ChooseDate';
 
 function Admin() {
   return (

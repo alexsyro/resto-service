@@ -6,7 +6,6 @@ import RegForm from '../RegForm/RegForm';
 import About from '../About/About';
 import Contacts from '../Contacts/Contacts';
 import Reservation from '../Reservation/Reservation';
-import Gallery from '../Gallery/Gallery';
 import Cart from '../Cart/Cart';
 import Payment from '../Payment/Payment';
 import Menu from '../Menu/Menu';

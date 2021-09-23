@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { cartAddPositionAC } from '../../../redux/actionCreators/cartAC'
 import styles from './Dish.module.scss'

@@ -22,6 +22,7 @@ export default function Hall() {
 
   useEffect(() => {
     fetchGetAllTables();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedHall]);
 
   return (

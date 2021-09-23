@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { useParams, useHistory } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import * as ordersAC from '../../../redux/actionCreators/ordersAC';

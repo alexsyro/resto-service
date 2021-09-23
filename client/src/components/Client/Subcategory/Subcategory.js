@@ -6,7 +6,7 @@ function Subcategory({ subcategory }) {
   return (
     <div className={styles.subcategory__container}>
       <Link className={styles.subcategory__link} to={`/menu/${subcategory.name}/${subcategory.id}`}>
-        <btn >{subcategory.name}</btn>
+        <button >{subcategory.name}</button>
       </Link>
     </div>
   )

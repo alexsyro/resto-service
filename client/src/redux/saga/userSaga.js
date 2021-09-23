@@ -68,13 +68,13 @@ function* registrationWatcher() {
 
 // Логаут юзера
 const fetchLogoutUser = async () => {
-  const res = await fetch(`${REACT_APP_URL}logout`, {
+  const response = await fetch(`${REACT_APP_URL}logout`, {
     credentials: 'include',
   });
-  console.log('AAAA LOGOUT');
+  if (response.status !== 200) {
+    alert('Ой, что то пошло не так.')
+  }
   return;
-  // const resJson = await res.json();
-  // return resJson;
 };
 
 function* workerLogoutUser() {

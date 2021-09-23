@@ -1,13 +1,11 @@
 import React, { useRef } from 'react'
 import { useParams, useHistory } from 'react-router';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 // import * as ordersAC from '../../../redux/actionCreators/ordersAC'
 
 const { REACT_APP_URL } = process.env;
 
 function ReservationInfo() {
-
-  const dispatch = useDispatch();
   const history = useHistory();
   const { id } = useParams();
 

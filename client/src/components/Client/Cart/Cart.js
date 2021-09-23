@@ -62,7 +62,7 @@ export default function Cart() {
     console.log('CAAART REDUCE', cart);
     const price = cart.reduce((acc, position) => acc + Number(position.price) * Number(position.quantity), 0);
     setFullPrice(price - (price * user.discount) / 100);
-  }, [cart]);
+  }, [cart, user.discount]);
 
   const total = useSelector((state) => state.cartReducer.cart);
   console.log(total, 'TOTAL');

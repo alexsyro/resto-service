@@ -55,6 +55,7 @@ function Orders() {
         const allOrders = [...data.orders];
         const idToDelete = allOrders.map((el) => el['Reservation.id']);
         const allReservations = [...data.reservations];
+        // eslint-disable-next-line array-callback-return
         const reservationsWithoutOrders = allReservations.filter((reservation) => {
           if (!idToDelete.includes(reservation.id)) {
             return true;
@@ -68,7 +69,7 @@ function Orders() {
         dispatch(reservationsAC.getReservationsAC(reservationsForState));
       });
     // здесь fetch (сага) в базу для получения списка заказов (причем только тех, что в обработке)
-  }, []);
+  }, [dispatch]);
 
   const finishedOrders = useSelector((state) =>
     state.ordersReducer.orders?.filter((order) => [2, 6, 7].includes(order['state_id'])),
