@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { useParams, useHistory } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import { UPD_CLIENTS } from '../../../redux/actionTypes/actionType';
+import styles from './ClientInfo.module.scss';
 
 const { REACT_APP_URL } = process.env;
 
@@ -41,55 +42,56 @@ function ClientInfo() {
   };
 
   return (
-    <div>
-      <div className='uk-card uk-card-primary uk-card-body'>
-        <div className='uk-margin'>
-          <input
-            ref={inputName}
-            className='uk-input'
-            type='text'
-            defaultValue={currentClient?.name}
-            placeholder='Name'
-          />
-        </div>
+      <div className={styles.form__block}>
+        <form className={styles.form}>
+          <fieldset className="uk-fieldset">
 
-        <div className='uk-margin'>
-          <input
-            ref={inputEmail}
-            className='uk-input'
-            type='text'
-            defaultValue={currentClient?.position}
-            placeholder='Email'
-          />
-        </div>
+            <legend className="uk-legend" style={{ color: 'white' }}>Редактирование данных клиента</legend>
 
-        <div className='uk-margin'>
-          <input
-            ref={inputPhone}
-            className='uk-input'
-            type='phone'
-            defaultValue={currentClient?.phone}
-            placeholder='Phone'
-          />
-        </div>
-        <div className='uk-margin'>
-          <input
-            ref={inputDiscount}
-            className='uk-input'
-            type='text'
-            defaultValue={currentClient?.discount}
-            placeholder='Discount'
-          />
-        </div>
+            <div className="uk-margin">
+              <input className="uk-input"
+                ref={inputName}
+                type='text'
+                defaultValue={currentClient?.name}
+                placeholder='Имя'
+                required />
+            </div>
+            <div className="uk-margin">
+              <input
+                className='uk-input'
+                ref={inputEmail}
+                type='text'
+                defaultValue={currentClient?.position}
+                placeholder='Email'
+                required />
+            </div>
+            <div className="uk-margin">
+              <input className="uk-input"
+                ref={inputPhone}
+                type='phone'
+                defaultValue={currentClient?.phone}
+                placeholder='Номер телефона'
+                required />
+            </div>
+            <div className="uk-margin">
+              <input className="uk-input"
+                ref={inputDiscount}
+                type='text'
+                defaultValue={currentClient?.discount}
+                placeholder='Скидка'
+                required />
+            </div>
+            <div className={styles.center}>
+              <button className={`uk-button uk-button-primary ${styles.submit__btn}`} onClick={handlerSave}>Сохранить</button>
+            </div>
 
-        <button onClick={() => history.goBack()} className='uk-button uk-button-default uk-margin'>
-          Назад
-        </button>
-        <button onClick={handlerSave} className='uk-button uk-button-default uk-margin-left'>
-          Сохранить
-        </button>
+            <button onClick={() => history.goBack()} className={`uk-button uk-button-default uk-margin ${styles.back_btn}`}>
+              Назад
+            </button>
+
+          </fieldset>
+        </form>
       </div>
-    </div>
   );
 }
 

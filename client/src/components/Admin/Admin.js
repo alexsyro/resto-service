@@ -65,11 +65,11 @@ function Admin() {
           <Route path='/clients' exact>
             <UsersPage />
           </Route>
-          <Route path='/clients/:clientId' exact>
-            <ClientInfo />
-          </Route>
           <Route exact path='/clients/new'>
             <AddClientForm />
+          </Route>
+          <Route path='/clients/:clientId' exact>
+            <ClientInfo />
           </Route>
           <Route>
             <NoMatch />
