@@ -14,37 +14,47 @@ function Orders() {
   const history = useHistory();
   const dispatch = useDispatch();
   function myDateParse(rawString) {
-    let arr = rawString.split(/\D/);
-    arr[6] = arr[6].substr(0, 3); // Microseconds to milliseconds
-    let months = {
-      '01': 'Январь',
-      '02': 'Февраль',
-      '03': 'Март',
-      '04': 'Апрель',
-      '05': 'Май',
-      '06': 'Июнь',
-      '07': 'Июль',
-      '08': 'Август',
-      '09': 'Сентябрь',
-      10: 'Октябрь',
-      11: 'Ноябрь',
-      12: 'Декабрь',
-    };
-    return {
-      hours: arr[3],
-      minutes: arr[4],
-      day: arr[2],
-      month: months[arr[1]],
-      year: arr[0],
-    };
+    if (rawString) {
+      let arr = rawString.split(/\D/);
+      arr[6] = arr[6].substr(0, 3); // Microseconds to milliseconds
+      let months = {
+        '01': 'Январь',
+        '02': 'Февраль',
+        '03': 'Март',
+        '04': 'Апрель',
+        '05': 'Май',
+        '06': 'Июнь',
+        '07': 'Июль',
+        '08': 'Август',
+        '09': 'Сентябрь',
+        10: 'Октябрь',
+        11: 'Ноябрь',
+        12: 'Декабрь',
+      };
+      return {
+        hours: arr[3],
+        minutes: arr[4],
+        day: arr[2],
+        month: months[arr[1]],
+        year: arr[0],
+      };
+    } else {
+      return {
+        hours: null,
+        minutes: null,
+        day: null,
+        month: null,
+        year: null,
+      };
+    }
   }
   useEffect(() => {
     fetch(`${REACT_APP_URL}api/orders`, { credentials: 'include' })
       .then((res) => res.json())
       .then((data) => {
-        const allOrders = data.orders;
+        const allOrders = data.orders.filter((order) => order.state_id !== 4); // Фильтруем доставку, ибо она всё сломает
         const ordersForState = allOrders.map((order) => {
-          return { ...order, timeFormat: myDateParse(order.Reservation.date_time) };
+          return { ...order, timeFormat: myDateParse(order.Reservation?.date_time) };
         });
         dispatch(ordersAC.getOrdersAC(ordersForState));
       });

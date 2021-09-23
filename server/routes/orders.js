@@ -174,7 +174,6 @@ router.put('/done', checkStaff, async (req, res) => {
 router.put('/cancel', checkStaff, async (req, res) => {
   try {
     const { id } = req.body;
-    console.log(id);
     const orderToChange = await Order.findOne({
       where: {
         id,
@@ -209,7 +208,6 @@ router.put('/edit/:id', checkStaff, async (req, res) => {
   try {
     const { id } = req.params;
     const { ReservationId } = req.body;
-    console.log(id, ReservationId);
     const orderToChange = await Order.findOne({
       where: {
         id,

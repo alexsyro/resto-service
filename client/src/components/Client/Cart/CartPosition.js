@@ -1,65 +1,50 @@
 import { useState } from 'react';
 
 import { useDispatch } from 'react-redux';
-import { cartChangeQuantityAC, cartRemovePositionAC } from '../../../redux/actionCreators/cartAC';
+import {
+  cartDecrQuantityAC,
+  cartIncrQuantityAC,
+  cartRemovePositionAC,
+  cartUpdateTotalAC,
+} from '../../../redux/actionCreators/cartAC';
 import styles from './CartPosition.module.scss';
 
 export default function CartPosition({ position }) {
   const [quantity, setQuantity] = useState(position.quantity);
   const dispatch = useDispatch();
 
-  // const changeQuantity = (event) => {
-  //   // Reducer на изменение количества блюд в корзине
-  //   event.preventDefault();
-  //   const { value } = event.target;
-  //   if (value > 0 && value !== '') {
-  //     setQuantity(value);
-  //   } else {
-  //     event.target.value = 1;
-  //     event.target.setAttribute('value', 1);
-  //     setQuantity(1);
-  //   }
-  //   const payload = {
-  //     quantity: value,
-  //     id: position.id,
-  //   };
-  //   dispatch(cartChangeQuantityAC(payload));
-  // };
-
-  const incrementQuantity = (event) => {
-    event.preventDefault();
+  const incrementQuantity = () => {
     if (quantity <= 100) {
       setQuantity(quantity + 1);
       const payload = {
-        quantity,
         id: position.id,
       };
-      dispatch(cartChangeQuantityAC(payload));
+      dispatch(cartIncrQuantityAC(payload));
+      dispatch(cartUpdateTotalAC());
     } else {
       alert('Вы не можете установить количество блюд больше 100');
     }
   };
 
-  const decrementQuantity = (event) => {
-    event.preventDefault();
+  const decrementQuantity = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
       const payload = {
-        quantity,
         id: position.id,
       };
-      dispatch(cartChangeQuantityAC(payload));
+      dispatch(cartDecrQuantityAC(payload));
+      dispatch(cartUpdateTotalAC());
     } else {
       alert('Хоспади, там есть кнопка удалить. Жмакните туда.');
     }
   };
 
-  const removeItem = (event) => {
-    event.preventDefault();
+  const removeItem = () => {
     const payload = {
       id: position.id,
     };
     dispatch(cartRemovePositionAC(payload));
+    dispatch(cartUpdateTotalAC());
   };
 
   return (
@@ -68,7 +53,7 @@ export default function CartPosition({ position }) {
       <td>{position.name}</td>
       <td>
         <div className={styles.quantityContainer}>
-          <button onClick={decrementQuantity}> - </button>
+          <button className={styles.minus__btn} onClick={decrementQuantity}> - </button>
           {/* <input
           className={styles.scale}
           name='quantity'
@@ -80,7 +65,7 @@ export default function CartPosition({ position }) {
           max='10'
         /> */}
           <p>{quantity}</p>
-          <button onClick={incrementQuantity}> + </button>
+          <button className={styles.plus__btn} onClick={incrementQuantity}> + </button>
         </div>
       </td>
       <td>

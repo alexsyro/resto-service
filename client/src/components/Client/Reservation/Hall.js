@@ -17,7 +17,6 @@ export default function Hall() {
     const response = await fetch(url, { credentials: 'include' });
     const { tables } = await response.json();
     setThisHallTables(tables);
-    console.log('ALL TABLES', tables);
   };
 
   useEffect(() => {
