@@ -37,23 +37,23 @@ function Header() {
         <ul>
           <li>
             <Link className={styles.sidebar__links} to='/'>
-            {t('main.1')}
+              {t('main.1')}
             </Link>
           </li>
-        
+
           <li>
             <Link className={styles.sidebar__links} to='/about'>
-            {t('main.2')}
+              {t('main.2')}
             </Link>
           </li>
           <li>
             <Link className={styles.sidebar__links} to='/menu'>
-            {t('main.3')}
+              {t('main.3')}
             </Link>
           </li>
           <li>
             <Link className={styles.sidebar__links} to='/contacts'>
-            {t('main.4')}
+              {t('main.4')}
             </Link>
           </li>
         </ul>
@@ -62,52 +62,62 @@ function Header() {
       <div className={styles.navbar__container}>
         <p className={styles.navbar__links}>
           <Link className={styles.navbar__link} to='/book'>
-          {t('nav.1')}
+            {t('nav.1')}
           </Link>
         </p>
         {user.isAuth ? (
           <>
-            <li>
+           
+            {/* <li>
               <button onClick={() => handleClick('en')}>EN</button>
             </li>
             <li>
               <button onClick={() => handleClick('ru')}>RU</button>
-            </li>
+            </li> */}
             <p className={styles.navbar__links}>
               <Link className={styles.navbar__link} to='/profile'>
-              {t('nav.2')}
+                {t('nav.2')}
               </Link>
             </p>
             <p className={styles.navbar__links}>
               <button onClick={logoutHandler} type='submit' className={styles.navbar__link}>
-              {t('nav.4')}
+                {t('nav.4')}
               </button>
             </p>
             <p className={styles.navbar__links}>
               <Link className={styles.navbar__link} to='/cart'>
-              {t('nav.5')}
-                Корзина {cart.length > 0 && cart.length}
+                {t('nav.5')}
+                 {cart.length > 0 && cart.length}
               </Link>
             </p>
+            <select className={styles.select} onChange={(event) => handleClick(event.target.value)} name="select"> 
+              <option value="en" >EN</option>
+              <option value="ru" >RU</option>
+            </select>
           </>
         ) : (
           <>
-            <li>
+            {/* <li>
               <button onClick={() => handleClick('en')}>EN</button>
             </li>
             <li>
               <button onClick={() => handleClick('ru')}>RU</button>
-            </li>
+            </li> */}
+           
             <p className={styles.navbar__links}>
               <Link className={styles.navbar__link} to='/login'>
-              {t('nav.3')}
+                {t('nav.3')}
               </Link>
             </p>
             <p className={styles.navbar__links}>
               <Link className={styles.navbar__link} to='/registration'>
-              {t('nav.6')}
+                {t('nav.6')}
               </Link>
             </p>
+            <select className={styles.select} onChange={(event) => handleClick(event.target.value)} name="select"> 
+              <option value="en" >EN</option>
+              <option value="ru" >RU</option>
+            </select>
           </>
         )}
       </div>
