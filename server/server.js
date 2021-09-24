@@ -5,7 +5,7 @@ const fileUpload = require('express-fileupload');
 const logger = require('morgan');
 const dotenv = require('dotenv');
 const cors = require('cors');
-const Stripe = require('stripe');
+const Stripe = require('stripe'); // импортируем платежную систему
 
 const checkStaff = require('./middlewares/staffValidation');
 
@@ -21,7 +21,7 @@ const { Reservation, Table, State, Order, Client, OrderPosition, Position } = re
 dotenv.config();
 
 const { PORT, SECRET_PHRASE } = process.env;
-const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
+const stripe = Stripe(process.env.STRIPE_SECRET_KEY); // передаем secret key который берем из кабинета разработчика
 const REGEXP_EMAIL_PATTERN = /[\s\S]+[@]{1}.+[.]{1}/gi;
 
 const server = express();
@@ -161,17 +161,22 @@ server.use('/api/menu', menuRouter);
 server.use('/api/orders', ordersRouter);
 server.use('/api/reservations', reserveRouter);
 
+// запрос к серверу с клиента
 server.post('/pay', async (req, res) => {
   try {
-    const amount = 2000;
+    const amount = 2000; // сумма платежа
+    // создаем платеж в котрый передаем нужные нам данные
+    // нужно использовать валюту которая указана в кабинете разработчика
     const paymentIntent = await stripe.paymentIntents.create({
       amount,
       currency: 'usd',
       payment_method_types: ['card'],
       metadata: {
-        name: 'value',
+        name: 'value', // metadata это для тех случаев когда нам нужно знать кто имеенно сделал
+        // платеж чтобы после подтверждения платежа мы могли обновить какте либо данные
       },
     });
+    // это строка которая отправляется клиенту для подтверждения платежа
     const clientSecret = paymentIntent.client_secret;
     res.json({ clientSecret, message: 'Payment initiated successfully!' });
   } catch (err) {
@@ -180,6 +185,8 @@ server.post('/pay', async (req, res) => {
   }
 });
 
+// все отправляется в апи для проверки всего
+// отправляет event.type
 server.post('/stripe', (req, res) => {
   if (req.body.type === 'payment_intent.created') {
     console.log(`${req.body.data.object.metadata.name} initated payment`);

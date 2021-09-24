@@ -4,6 +4,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import Checkout from "../Checkout/Checkout";
 
+// передаем сюда публичный клюс который берем из кабинета разработчика
 const stripePromise = loadStripe("pk_test_51Jcz9sLTKBoxXCLRX4WDcZU7uq2oOx7qUmRISsN7Pd0j8Rmhn6i3Rh3CIlauVPWnYzcWIzeJvJHMYdqTgxQBraLo00iKViXBYU");
 
 function Payment(props) {
