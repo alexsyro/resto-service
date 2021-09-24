@@ -26,11 +26,16 @@ export default function reducer(state = initialState, action) {
             if (position.id === action.payload.id) {
               position.quantity += 1;
             }
+            position.total = Number(position.quantity) * Number(position.price);
+
             return position;
           }),
         };
       }
-      return { ...state, cart: [...state.cart, { ...action.payload, quantity: 1 }] };
+      return {
+        ...state,
+        cart: [...state.cart, { ...action.payload, quantity: 1, total: Number(action.payload.price) }],
+      };
     case CART_REMOVE_POSITION:
       return { ...state, cart: state.cart.filter((position) => position.id !== action.payload.id) };
     case CART_CHANGE_QUANTITY:
@@ -66,9 +71,15 @@ export default function reducer(state = initialState, action) {
         }),
       };
     case CART_CLEAN_POSITIONS:
-      return { ...state, cart: [] };
+      return { ...state, cart: [], total: 0 };
+
     case CART_UPDATE_TOTAL:
-      return { ...state, total: state.cart.reduce((acc, pos) => acc + pos.total, 0) };
+      return {
+        ...state,
+        total: state.cart.reduce((acc, pos) => {
+          return acc + +pos.total;
+        }, 0),
+      };
     default:
       return state;
   }

@@ -39,6 +39,10 @@ export default function Cart() {
     setFullPrice(price - (price * user.discount) / 100);
   }, [cart, user.discount]);
 
+  useEffect(() => {
+    setFullPrice(total);
+  }, []);
+
   const makeOrder = async (event) => {
     event.preventDefault();
     history.push('/payment');
