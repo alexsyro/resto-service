@@ -48,7 +48,7 @@ function AddDishForm() {
     })
       .then((res) => res.json())
       .then((data) => dispatch({ type: GET_DISHES, action: data }))
-      .catch((err) => alert(err.message));
+      .catch((err) => console.log(err.message));
   };
 
   return (
