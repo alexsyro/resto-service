@@ -41,10 +41,10 @@ function Nav() {
             <Link to='/clients'>КЛИЕНТЫ</Link>
           </li>
           <li className={`uk-active ${styles.content}`}>
-            <Link to='/orders'><span>ЗАКАЗЫ</span><span className={`${styles.counter}`} >{` ${toCheckOrders?.length}`}</span></Link>
+            <Link to='/orders'><span>ЗАКАЗЫ</span>{toCheckOrders?.length ? <span className={`${styles.counter}`} >{` ${toCheckOrders?.length}`}</span> : null}</Link>
           </li>
           <li className={`uk-active ${styles.content}`}>
-            <Link to='/reservations'> <span>РЕЗЕРВИРОВАНИЯ</span><span className={`${styles.counter2}`}>{` ${toCheckReservations?.length}`}</span></Link>
+            <Link to='/reservations'> <span>РЕЗЕРВИРОВАНИЯ</span>{toCheckReservations?.length ? <span className={`${styles.counter2}`}>{` ${toCheckReservations?.length}`}</span> : null}</Link>
           </li>
           <li className='uk-active'>
             <Link onClick={logoutHandler} to='/'>
