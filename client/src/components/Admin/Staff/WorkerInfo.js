@@ -75,7 +75,7 @@ function WorkerInfo() {
               <button className={`uk-button uk-button-primary ${styles.submit__btn}`} onClick={handlerSave}>Изменить</button>
             </div>
 
-            <button onClick={() => history.goBack()} className={`uk-button uk-button-default uk-margin ${styles.back_btn}`}>
+            <button type='button' onClick={() => history.goBack()} className={`uk-button uk-button-default uk-margin ${styles.back_btn}`}>
               Назад
             </button>
 

@@ -87,7 +87,7 @@ function AddDishForm() {
 
           </div>
 
-          <button onClick={() => history.goBack()} className={`uk-button uk-button-default ${styles.back_btn}`}>
+          <button type='button' onClick={() => history.goBack()} className={`uk-button uk-button-default ${styles.back_btn}`}>
             Назад
           </button>
 

@@ -85,7 +85,7 @@ function ClientInfo() {
               <button className={`uk-button uk-button-primary ${styles.submit__btn}`} onClick={handlerSave}>Сохранить</button>
             </div>
 
-            <button onClick={() => history.goBack()} className={`uk-button uk-button-default uk-margin ${styles.back_btn}`}>
+            <button type='button' onClick={() => history.goBack()} className={`uk-button uk-button-default uk-margin ${styles.back_btn}`}>
               Назад
             </button>
 
