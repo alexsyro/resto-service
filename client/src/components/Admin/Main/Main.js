@@ -48,8 +48,8 @@ function Main() {
     fetch(`${REACT_APP_URL}api/orders`, { credentials: 'include' })
       .then((res) => res.json())
       .then((data) => {
-        const allOrders = data.orders.filter((order) => order.state_id !== 4); // Фильтруем доставку, ибо она всё сломает
-        const ordersForState = allOrders.map((order) => {
+        const allOrders = data.orders?.filter((order) => order.state_id !== 4); // Фильтруем доставку, ибо она всё сломает
+        const ordersForState = allOrders?.map((order) => {
           console.log('AAAAAAAAAAAAAAA', order);
           return { ...order, timeFormat: myDateParse(order.Reservation?.date_time) };
         });
@@ -60,16 +60,16 @@ function Main() {
       .then((res) => res.json())
       .then((data) => {
         const allOrders = [...data.orders];
-        const idToDelete = allOrders.map((el) => el['Reservation.id']);
+        const idToDelete = allOrders?.map((el) => el['Reservation.id']);
         const allReservations = [...data.reservations];
         // eslint-disable-next-line array-callback-return
-        const reservationsWithoutOrders = allReservations.filter((reservation) => {
+        const reservationsWithoutOrders = allReservations?.filter((reservation) => {
           if (!idToDelete.includes(reservation.id)) {
             return true;
           }
         });
 
-        const reservationsForState = reservationsWithoutOrders.map((reservation) => {
+        const reservationsForState = reservationsWithoutOrders?.map((reservation) => {
           return { ...reservation, timeFormat: myDateParse(reservation.date_time) };
         });
 

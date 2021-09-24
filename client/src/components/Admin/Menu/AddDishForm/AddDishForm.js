@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { GET_DISHES } from '../../../../redux/actionTypes/actionType';
-import { useParams } from 'react-router';
+import { useParams, useHistory } from 'react-router';
 import styles from './AddDishForm.module.scss'
 
 const { REACT_APP_URL } = process.env;
@@ -11,6 +11,7 @@ function AddDishForm() {
   const { categoryId } = useParams();
   const [img, setImg] = useState(null);
   const measures = useSelector((state) => state.dishesReducer.measures);
+  const history = useHistory();
 
   const fileUpload = (event) => {
     const [file] = event.target.files;
@@ -85,6 +86,10 @@ function AddDishForm() {
             <button className={`uk-button uk-button-primary ${styles.submit__btn}`} type='submit'>Добавить</button>
 
           </div>
+
+          <button onClick={() => history.goBack()} className={`uk-button uk-button-default ${styles.back_btn}`}>
+            Назад
+          </button>
 
         </fieldset>
       </form>
