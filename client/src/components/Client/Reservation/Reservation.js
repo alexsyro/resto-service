@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectReservHallAC,
@@ -13,9 +13,12 @@ import styles from './Reservation.module.scss';
 import { useTranslation } from 'react-i18next';
 
 const { REACT_APP_URL } = process.env;
+const scrollToRef = (ref) => window.scrollTo(0, 730);
 
 export default function Reservation() {
-
+  const inputTable = useRef(null)
+  console.log(inputTable);
+  const executeScroll = () => scrollToRef(inputTable)
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const { selectedHall, selectedDateTime, selectedTable } = useSelector((state) => state.reservationReducer);
@@ -49,6 +52,10 @@ export default function Reservation() {
   useEffect(() => {
     fetchGetHalls();
   }, [selectedDateTime]);
+
+  useEffect(() => {
+    executeScroll();
+  }, [selectedTable]);
 
   const selectHall = (event) => {
     const { id } = event.target;
@@ -84,6 +91,7 @@ export default function Reservation() {
         <div className={styles.tableContainer}>
           {selectedHall && <Hall />}
           {selectedTable && <TableInfo />}
+          <br ref={inputTable} />
         </div>
       </div>
     </>
