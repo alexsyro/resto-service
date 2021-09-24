@@ -67,7 +67,7 @@ function Checkout() {
   return (
     <div className={styles.checkout} style={{ width: '25%' }}>
       <CardElement />
-      <button onClick={pay}>Pay</button>
+      <button className={styles.pay} onClick={pay}>Pay</button>
     </div>
   );
 }
