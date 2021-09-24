@@ -57,19 +57,19 @@ function NewOrders({ order }) {
   return (
     <tr>
       <td>{order.id}</td>
-      <td>{order.Client?.name}</td>
-      <td>{order.Client?.phone}</td>
-      <td>{order.Reservation.id}</td>
+      <td>{order.Client? order.Client.name : '--УДАЛЕН--'}</td>
+      <td>{order.Client? order.Client.phone : '--УДАЛЕН--'}</td>
+      <td>{order.Reservation? order.Reservation.id : '--УДАЛЕН--'}</td>
       <td>
         <Link to={`/orders/${order.id}`} className='uk-button uk-button-primary'>
           Изменить
         </Link>
       </td>
-      <td> {order.Reservation.Table ? <p>{order.Reservation.Table.number}</p> : null}</td>
+      <td> {order.Reservation?.Table ? <p>{order.Reservation.Table.number}</p> : null}</td>
       <td>
-        {order.Reservation.guest_count}
+        {order.Reservation?.guest_count}
       </td>
-      <td>{order.Reservation.date_time.split('T')[0]}</td>
+      <td>{order.Reservation?.date_time.split('T')[0]}</td>
       <td>{`${order.timeFormat.hours}:${order.timeFormat.minutes}`}</td>
       <td>
         <button className='uk-button uk-button-primary' onClick={() => setMenuList((prev) => !prev)}>
