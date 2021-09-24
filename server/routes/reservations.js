@@ -72,6 +72,7 @@ router.get('/hall/:id', async (req, res) => {
 
 // Создание резерва столика
 router.post('/', async (req, res) => {
+  console.log('::::::::::::::::::::::::::::::::', req.body);
   try {
     const { tableId, guestCount, guestPhone, guestName, date, time } = req.body;
     const selectedDate = new Date(`${date}T${time}`);
@@ -170,14 +171,15 @@ router.put('/done', checkStaff, async (req, res) => {
 
     const data = qs.stringify({
       phone: reservationToChange.guestPhone,
-      text: `${reservationToChange.guestName}, ваше резервирование столика на ${new Date(reservationToChange.dateTime)} подтверждено.`,
+      text: `${reservationToChange.guestName}, ваше резервирование столика на ${new Date(
+        reservationToChange.dateTime,
+      )} подтверждено.`,
     });
     const config = {
       method: 'post',
       url: 'https://api.pushsms.ru/api/v1/delivery',
       headers: {
-        Authorization:
-          BEARER,
+        Authorization: BEARER,
         'Content-Type': 'application/x-www-form-urlencoded',
       },
       data,

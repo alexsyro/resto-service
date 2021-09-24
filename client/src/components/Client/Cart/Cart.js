@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { clearReservationAC } from '../../../redux/actionCreators/actionCreators';
 import { cartCleanAC } from '../../../redux/actionCreators/cartAC';
 import CartPosition from './CartPosition';
@@ -15,6 +15,7 @@ export default function Cart() {
   const { user } = useSelector((state) => state.usersReducer);
   const { cart, total } = useSelector((state) => state.cartReducer);
   const { reservation } = useSelector((state) => state.reservationReducer);
+  const history = useHistory();
 
   const [fullPrice, setFullPrice] = useState(0);
   const [orderType, setOrderType] = useState(TYPE_PREORDER);
@@ -40,23 +41,27 @@ export default function Cart() {
 
   const makeOrder = async (event) => {
     event.preventDefault();
-    console.log(reservation);
-    const orderData = { user, cart, reservation, StateId: orderType };
-    console.log('ORDEEEER', orderData);
-    const response = await fetch(`${REACT_APP_URL}api/orders`, {
-      method: 'POST',
-      credentials: 'include',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ order: orderData }),
-    });
-    if (response.status === 200) {
-      dispatch(clearReservationAC());
-      dispatch(cartCleanAC());
-      alert('Заказ оформлен, ожидайте подтверждения');
-    } else {
-      alert('Ой, кажется что-то пошло не так.');
-    }
+    history.push('/payment');
   };
+  // const makeOrder = async (event) => {
+  //   event.preventDefault();
+  //   console.log(reservation);
+  //   const orderData = { user, cart, reservation, StateId: orderType };
+  //   console.log('ORDEEEER', orderData);
+  //   const response = await fetch(`${REACT_APP_URL}api/orders`, {
+  //     method: 'POST',
+  //     credentials: 'include',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify({ order: orderData }),
+  //   });
+  //   if (response.status === 200) {
+  //     dispatch(clearReservationAC());
+  //     dispatch(cartCleanAC());
+  //     alert('Заказ оформлен, ожидайте подтверждения');
+  //   } else {
+  //     alert('Ой, кажется что-то пошло не так.');
+  //   }
+  // };
 
   if (cart && cart.length) {
     return (
@@ -111,6 +116,7 @@ export default function Cart() {
               Оплатить
             </button>
           ) : (
+            // <Payment />
             <p className={styles.option}>
               Вам необходимо <Link to='/book'>забронировать</Link> столик, прежде чем делать предварительный
               заказ

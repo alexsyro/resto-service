@@ -163,8 +163,9 @@ server.use('/api/reservations', reserveRouter);
 
 // запрос к серверу с клиента
 server.post('/pay', async (req, res) => {
+  console.log('REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEQ', req.body);
   try {
-    const amount = 2000; // сумма платежа
+    const { amount } = req.body; // сумма платежа
     // создаем платеж в котрый передаем нужные нам данные
     // нужно использовать валюту которая указана в кабинете разработчика
     const paymentIntent = await stripe.paymentIntents.create({
@@ -178,7 +179,7 @@ server.post('/pay', async (req, res) => {
     });
     // это строка которая отправляется клиенту для подтверждения платежа
     const clientSecret = paymentIntent.client_secret;
-    res.json({ clientSecret, message: 'Payment initiated successfully!' });
+    res.json({ clientSecret, message: 'Платёж прошёл успешно!' });
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: 'Internal server error' });
