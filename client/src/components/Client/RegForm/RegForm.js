@@ -5,8 +5,15 @@ import { sagaRegAC } from '../../../redux/actionCreators/sagaAC';
 import styles from './RegForm.module.scss';
 import { useTranslation } from 'react-i18next';
 
-
 const checkEmptyFields = (fields) => fields.every((field) => field.value.length);
+
+const REGEXP_PHONE_VALIDATION = /[-+() ]*/gs;
+const REGEXP_MAIL_VALIDATION = /[\s\S]+@.+[.]+[\s\S]{2,5}$/gis;
+
+const checkCorrectNumber = (string) => {
+  const normilize = string.replace(REGEXP_PHONE_VALIDATION, '');
+  return normilize.length === 11;
+};
 
 function RegForm() {
   const { t, i18n } = useTranslation();
@@ -17,21 +24,26 @@ function RegForm() {
     e.preventDefault();
     const { action, method, email, name, phone, password } = e.target;
     const fields = [email, password, phone];
-    const notEmpty = checkEmptyFields(fields);
-    if (notEmpty) {
-      const user = {
-        action,
-        method,
-        email: email.value,
-        name: name.value,
-        phone: phone.value,
-        password: password.value,
-      };
-      const payload = user;
-      dispatch(sagaRegAC(payload));
-      history.push('/');
+    const isCorrectEmail = email.value.match(REGEXP_MAIL_VALIDATION) !== null;
+    if (isCorrectEmail) {
+      const notEmpty = checkEmptyFields(fields);
+      if (notEmpty &&  checkCorrectNumber(phone.value)) {
+        const user = {
+          action,
+          method,
+          email: email.value,
+          name: name.value,
+          phone: phone.value.replace(REGEXP_PHONE_VALIDATION, ''),
+          password: password.value,
+        };
+        const payload = user;
+        dispatch(sagaRegAC(payload));
+        history.push('/');
+      } else {
+        alert('Заполните все поля или проверьте правильность телефона');
+      }
     } else {
-      alert('Заполните все поля');
+      alert('Не правильный формат почты');
     }
   };
 
@@ -45,12 +57,12 @@ function RegForm() {
             <label>{t('reg.1')}</label>
           </div>
           <div className={styles.group}>
-            <input type='text' name='email' required />
+            <input type='email' name='email' required />
             <span className={styles.bar}></span>
             <label>{t('reg.2')}</label>
           </div>
           <div className={styles.group}>
-            <input type='phone' name='phone' required />
+            <input type='number' name='phone' required />
             <span className={styles.bar}></span>
             <label>{t('reg.3')}</label>
           </div>

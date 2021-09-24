@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { GET_DISHES } from '../../../../redux/actionTypes/actionType';
 import { useParams, useHistory } from 'react-router';
-import styles from './AddDishForm.module.scss'
+import styles from './AddDishForm.module.scss';
 
 const { REACT_APP_URL } = process.env;
 
@@ -54,43 +54,70 @@ function AddDishForm() {
   return (
     <div className={styles.form__block}>
       <form onSubmit={addDish} method='POST' name='AddDishForm' className={styles.form}>
-        <fieldset className="uk-fieldset">
+        <fieldset className='uk-fieldset'>
+          <legend className='uk-legend' style={{ color: 'white' }}>
+            Добавление нового блюда в меню
+          </legend>
 
-          <legend className="uk-legend" style={{ color: 'white' }}>Добавление нового блюда в меню</legend>
-
-          <div className="uk-margin">
-            <input className="uk-input" type='text' name='name' placeholder='Введите название блюда' required />
+          <div className='uk-margin'>
+            <input
+              className='uk-input'
+              type='text'
+              name='name'
+              placeholder='Введите название блюда'
+              required
+            />
           </div>
-          <div className="uk-margin">
-            <input className="uk-input" type='text' name='description' placeholder='Добавьте описание' required />
+          <div className='uk-margin'>
+            <input
+              className='uk-input'
+              type='text'
+              name='description'
+              placeholder='Добавьте описание'
+              required
+            />
           </div>
-          <div className="uk-margin">
-            <input className="uk-input" type='number' name='kcal' placeholder='Введите  kcal' required />
+          <div className='uk-margin'>
+            <input className='uk-input' type='number' name='kcal' placeholder='Введите  kcal' required />
           </div>
           <div className={`uk-margin ${styles.double__input}`}>
-            <input className="uk-input" type='number' name='portionSize' placeholder='Введите размер порции' required />
+            <input
+              className='uk-input'
+              type='number'
+              name='portionSize'
+              placeholder='Введите размер порции'
+              required
+            />
             <select className={`uk-select ${styles.select__input}`} name='measureId'>
               {measures?.map((measure) => (
-                <option key={measure?.id} value={measure?.id}>{measure?.type}</option>
+                <option key={measure?.id} value={measure?.id}>
+                  {measure?.type}
+                </option>
               ))}
             </select>
           </div>
-          <div className="uk-margin">
-            <input className="uk-input" type='number' name='price' placeholder='Введите цену' required />
+          <div className='uk-margin'>
+            <input className='uk-input' type='number' name='price' placeholder='Введите цену' required />
           </div>
           <div className={styles.margin__left}>
             <img src={img} width='250' height='200' alt='IMG' />
             <input onChange={fileUpload} type='file' name='file' />
           </div>
           <div className={styles.center}>
-            <button className={`uk-button uk-button-primary ${styles.submit__btn}`} type='submit'>Добавить</button>
-
+            <button className={`uk-button uk-button-primary ${styles.submit__btn}`} type='submit'>
+              Добавить
+            </button>
           </div>
 
-          <button onClick={() => history.goBack()} className={`uk-button uk-button-default ${styles.back_btn}`}>
+          <button
+            onClick={(event) => {
+              event.preventDefault();
+              history.goBack();
+            }}
+            className={`uk-button uk-button-default ${styles.back_btn}`}
+          >
             Назад
           </button>
-
         </fieldset>
       </form>
     </div>
