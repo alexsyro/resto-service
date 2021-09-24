@@ -20,6 +20,7 @@ function LoginForm() {
     }
     const payload = user;
     dispatch(sagaLoginAC(payload));
+    localStorage.removeItem('reservation');
     history.push('/')
   };
 

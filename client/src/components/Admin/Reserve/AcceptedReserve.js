@@ -1,6 +1,7 @@
 import React from 'react';
 
 function AcceptedReserve({ reservation }) {
+  console.log('AAAASDASDASDASDASDA', reservation);
   return (
     <tr>
       <td>
@@ -10,7 +11,7 @@ function AcceptedReserve({ reservation }) {
         <span>{reservation.guest_name}</span>
       </td>
       <td>
-        <span>{reservation.table_id}</span>
+        <span>{reservation['Table.number']}</span>
       </td>
       <td>
         <span>{reservation.guest_count}</span>

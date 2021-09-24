@@ -40,7 +40,7 @@ function NewReserve({ reservation }) {
     <tr>
       <td>{reservation.id}</td>
       <td>{reservation.guest_name}</td>
-      <td>{reservation.table_id}</td>
+      <td>{reservation['Table.number']}</td>
       <td>{reservation.guest_count}</td>
       <td>{reservation.guest_phone}</td>
       <td>
