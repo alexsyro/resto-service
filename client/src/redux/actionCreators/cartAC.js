@@ -79,7 +79,6 @@ export const cartIncrQuantityAC = (payload) => {
 export const cartDecrQuantityAC = (payload) => {
   let cart = JSON.parse(localStorage.getItem('cart'));
   cart = cart.map((position) => {
-    console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAASSSSSS', position, payload);
     if (position.id === payload.id) {
       position.quantity -= 1;
     }
