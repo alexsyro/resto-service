@@ -3,10 +3,21 @@ import { useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { sagaLogoutAC } from '../../../redux/actionCreators/sagaAC';
 import styles from './Nav.module.scss';
+import { useSelector } from 'react-redux';
+
 
 function Nav() {
   const dispatch = useDispatch();
   const history = useHistory();
+  const toCheckOrders = useSelector((state) =>
+    state.ordersReducer.orders?.filter((order) => [1, 3, 4, 5].includes(order['state_id'])),
+  );
+
+  const toCheckReservations = useSelector((state) =>
+    state.reservationReducer.reservations?.filter((reservation) =>
+      [1, 3, 4, 5].includes(reservation['State.id']),
+    ),
+  );
 
   const logoutHandler = (event) => {
     event.preventDefault();
@@ -29,11 +40,11 @@ function Nav() {
           <li className='uk-active'>
             <Link to='/clients'>КЛИЕНТЫ</Link>
           </li>
-          <li className='uk-active'>
-            <Link to='/orders'>ЗАКАЗЫ</Link>
+          <li className={`uk-active ${styles.content}`}>
+            <Link to='/orders'><span>ЗАКАЗЫ</span>{toCheckOrders?.length ? <span className={`${styles.counter}`} >{` ${toCheckOrders?.length}`}</span> : null}</Link>
           </li>
-          <li className='uk-active'>
-            <Link to='/reservations'>РЕЗЕРВИРОВАНИЯ</Link>
+          <li className={`uk-active ${styles.content}`}>
+            <Link to='/reservations'> <span>РЕЗЕРВИРОВАНИЯ</span>{toCheckReservations?.length ? <span className={`${styles.counter2}`}>{` ${toCheckReservations?.length}`}</span> : null}</Link>
           </li>
           <li className='uk-active'>
             <Link onClick={logoutHandler} to='/'>
@@ -42,7 +53,7 @@ function Nav() {
           </li>
         </ul>
       </div>
-    </nav>
+    </nav >
   );
 }
 

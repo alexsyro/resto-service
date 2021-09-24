@@ -1,11 +1,10 @@
 import { Link } from 'react-router-dom';
 import styles from './Main.module.scss';
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import * as ordersAC from '../../../redux/actionCreators/ordersAC';
 import * as reservationsAC from '../../../redux/actionCreators/actionCreators';
 const { REACT_APP_URL } = process.env;
-
 
 function Main() {
   const dispatch = useDispatch();
@@ -82,48 +81,46 @@ function Main() {
   return (
     <div className={`${styles.container} uk-child-width-1-2@s`}>
       <Link to="/menu">
-        <div>
-          <div className={`uk-dark uk-background-muted uk-padding ${styles.block}`}>
-            <h3>Меню</h3>
-          </div>
+        <div
+          className={`uk-dark uk-background-muted uk-padding ${styles.block}`}
+        >
+          <h3>Меню</h3>
         </div>
       </Link>
 
       <Link to="/staff">
-        <div>
-          <div className={`uk-dark uk-background-muted uk-padding ${styles.block}`}>
-            <h3>Персонал</h3>
-          </div>
+        <div
+          className={`uk-dark uk-background-muted uk-padding ${styles.block}`}
+        >
+          <h3>Персонал</h3>
         </div>
       </Link>
 
       <Link to="/clients">
-        <div>
-          <div className={`uk-dark uk-background-muted uk-padding ${styles.block}`}>
-            <h3>Клиенты</h3>
-          </div>
+        <div
+          className={`uk-dark uk-background-muted uk-padding ${styles.block}`}
+        >
+          <h3>Клиенты</h3>
         </div>
       </Link>
 
       <Link to="/orders">
-        <div>
-          <div className={`uk-dark uk-background-muted uk-padding ${styles.block}`}>
-            <h3>Заказы</h3>
-          </div>
+        <div
+          className={`uk-dark uk-background-muted uk-padding ${styles.block}`}
+        >
+          <h3>Заказы</h3>
         </div>
       </Link>
-
 
       <Link to="/reservations">
-        <div>
-          <div className={`uk-dark uk-background-muted uk-padding ${styles.block}`}>
-            <h3>Резервирования</h3>
-          </div>
+        <div
+          className={`uk-dark uk-background-muted uk-padding ${styles.block}`}
+        >
+          <h3>Резервирования</h3>
         </div>
       </Link>
-
     </div>
-  );
+  )
 }
 
-export default Main;
+export default Main
