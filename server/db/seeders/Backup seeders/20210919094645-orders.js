@@ -1,4 +1,4 @@
-const orders = require('./Data/orders');
+const orders = require('../Data/orders');
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {

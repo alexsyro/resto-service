@@ -1,4 +1,4 @@
-const reservations = require('./Data/reservations');
+const reservations = require('../Data/reservations');
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {

@@ -1,9 +1,8 @@
-const orderPositions = require('./Data/orderPositions');
+const clients = require('../Data/clients');
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkInsert('Order_positions', orderPositions);
-
+    await queryInterface.bulkInsert('Clients', clients);
     /**
      * Add seed commands here.
      *
@@ -16,13 +15,12 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkDelete('Order_positions', null, {});
-
+    await queryInterface.bulkDelete('Clients', null, {});
     /**
      * Add commands to revert seed here.
      *
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-  },
+  }
 };
