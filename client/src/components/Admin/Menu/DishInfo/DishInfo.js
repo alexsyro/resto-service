@@ -83,7 +83,7 @@ function DishInfo() {
             </div>
 
           </fieldset>
-          <button onClick={() => history.goBack()} className={`uk-button uk-button-default ${styles.back_btn}`}>
+          <button type='button' onClick={() => history.goBack()} className={`uk-button uk-button-default ${styles.back_btn}`}>
             Назад
           </button>
         </form>
