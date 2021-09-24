@@ -5,6 +5,8 @@ const fileUpload = require('express-fileupload');
 const logger = require('morgan');
 const dotenv = require('dotenv');
 const cors = require('cors');
+const Stripe = require('stripe');
+
 const checkStaff = require('./middlewares/staffValidation');
 
 // Routers
@@ -19,6 +21,7 @@ const { Reservation, Table, State, Order, Client, OrderPosition, Position } = re
 dotenv.config();
 
 const { PORT, SECRET_PHRASE } = process.env;
+const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 const REGEXP_EMAIL_PATTERN = /[\s\S]+[@]{1}.+[.]{1}/gi;
 
 const server = express();
@@ -157,6 +160,34 @@ server.use('/api/staff', staffRouter);
 server.use('/api/menu', menuRouter);
 server.use('/api/orders', ordersRouter);
 server.use('/api/reservations', reserveRouter);
+
+server.post('/pay', async (req, res) => {
+  try {
+    const amount = 2000;
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount,
+      currency: 'usd',
+      payment_method_types: ['card'],
+      metadata: {
+        name: 'value',
+      },
+    });
+    const clientSecret = paymentIntent.client_secret;
+    res.json({ clientSecret, message: 'Payment initiated successfully!' });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+server.post('/stripe', (req, res) => {
+  if (req.body.type === 'payment_intent.created') {
+    console.log(`${req.body.data.object.metadata.name} initated payment`);
+  }
+  if (req.body.type === 'payment_intent.succeeded') {
+    console.log(`${req.body.data.object.metadata.name} succeeded payment`);
+  }
+});
 
 server.listen(PORT, () => {
   console.log(`${'\n'.repeat(10)}[------] SERVER STARTED AT PORT ${PORT} [------]\n`);
