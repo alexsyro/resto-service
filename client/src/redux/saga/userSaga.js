@@ -8,7 +8,6 @@ const { REACT_APP_URL } = process.env;
 // Логин юзера
 const fetchLoginUser = async (action) => {
   const { email, password } = action.payload;
-  console.log(email, password);
   const res = await fetch(`${REACT_APP_URL}login`, {
     method: 'POST',
     credentials: 'include',

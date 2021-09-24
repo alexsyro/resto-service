@@ -6,6 +6,7 @@ import styles from './LoginForm.module.scss';
 import { useTranslation } from 'react-i18next';
 
 function LoginForm() {
+  // eslint-disable-next-line no-unused-vars
   const { t, i18n } = useTranslation();
 
   const history = useHistory()

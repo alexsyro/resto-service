@@ -1,7 +1,6 @@
 import React from 'react';
 
 function AcceptedReserve({ reservation }) {
-  console.log('AAAASDASDASDASDASDA', reservation);
   return (
     <tr>
       <td>

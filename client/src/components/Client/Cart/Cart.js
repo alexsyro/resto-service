@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
-import { clearReservationAC } from '../../../redux/actionCreators/actionCreators';
-import { cartCleanAC } from '../../../redux/actionCreators/cartAC';
 import CartPosition from './CartPosition';
 import styles from './Cart.module.scss';
 
 const TYPE_PREORDER = 5;
 const TYPE_DELIVERY = 4;
-const { REACT_APP_URL } = process.env;
 
 export default function Cart() {
-  const dispatch = useDispatch();
   const { user } = useSelector((state) => state.usersReducer);
   const { cart, total } = useSelector((state) => state.cartReducer);
   const { reservation } = useSelector((state) => state.reservationReducer);
@@ -41,6 +37,7 @@ export default function Cart() {
 
   useEffect(() => {
     setFullPrice(total);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const makeOrder = async (event) => {

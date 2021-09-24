@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import styles from './ContentAbout.module.scss'
 
 function ContentAbout() {
+  // eslint-disable-next-line no-unused-vars
   const { t, i18n } = useTranslation();
 
   return (

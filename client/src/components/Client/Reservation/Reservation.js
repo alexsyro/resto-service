@@ -17,8 +17,8 @@ const scrollToRef = (ref) => window.scrollTo(0, 730);
 
 export default function Reservation() {
   const inputTable = useRef(null)
-  console.log(inputTable);
   const executeScroll = () => scrollToRef(inputTable)
+  // eslint-disable-next-line no-unused-vars
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const { selectedHall, selectedDateTime, selectedTable } = useSelector((state) => state.reservationReducer);

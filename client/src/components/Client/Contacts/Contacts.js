@@ -6,6 +6,7 @@ import main_header from '../../../images/main_header.jpg';
 import { useTranslation } from 'react-i18next';
 
 function Contacts() {
+  // eslint-disable-next-line no-unused-vars
   const { t, i18n } = useTranslation();
   return (
     <div className={styles.contacts__container}>

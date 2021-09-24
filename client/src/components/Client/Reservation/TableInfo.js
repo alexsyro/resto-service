@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 const { REACT_APP_URL } = process.env;
 
 export default function TableInfo() {
+  // eslint-disable-next-line no-unused-vars
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.usersReducer);

@@ -16,6 +16,7 @@ const checkCorrectNumber = (string) => {
 };
 
 function RegForm() {
+  // eslint-disable-next-line no-unused-vars
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const history = useHistory();

@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 
 function About() {
+  // eslint-disable-next-line no-unused-vars
   const { t, i18n } = useTranslation();
   return (
     <>

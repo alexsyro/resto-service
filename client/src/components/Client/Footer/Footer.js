@@ -4,6 +4,7 @@ import instaLogo from './assets/img/instagram.png'
 import { useTranslation } from 'react-i18next';
 
 function Footer() {
+  // eslint-disable-next-line no-unused-vars
   const { t, i18n } = useTranslation();
   return (
     <div className={styles.container}>
