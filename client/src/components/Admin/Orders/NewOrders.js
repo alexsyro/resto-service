@@ -57,8 +57,8 @@ function NewOrders({ order }) {
   return (
     <tr>
       <td>{order.id}</td>
-      <td>{order.Client.name}</td>
-      <td>{order.Client.phone}</td>
+      <td>{order.Client?.name}</td>
+      <td>{order.Client?.phone}</td>
       <td>{order.Reservation.id}</td>
       <td>
         <Link to={`/orders/${order.id}`} className='uk-button uk-button-primary'>

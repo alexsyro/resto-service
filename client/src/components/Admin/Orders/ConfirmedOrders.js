@@ -7,8 +7,8 @@ function DoneOrder({ order }) {
   return (
     <tr>
       <td>{order.id}</td>
-      <td>{order.Client.name}</td>
-      <td>{order.Client.phone}</td>
+      <td>{order.Client?.name}</td>
+      <td>{order.Client?.phone}</td>
       <td>{order.Reservation.id}</td>
       <td>{order.Reservation.table_id}</td>
       <td>{order.Reservation.date_time.split('T')[0]}</td>

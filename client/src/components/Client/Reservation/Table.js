@@ -16,7 +16,6 @@ export default function Table({ table }) {
     const url = `${REACT_APP_URL}api/reservations/table/${table.id}?date=${selectedDateTime.date}&time=${selectedDateTime.time}`;
     const response = await fetch(url, { credentials: 'include' });
     const { reserved } = await response.json();
-    console.log('');
     setisReserved(reserved);
   };
 
