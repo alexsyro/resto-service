@@ -26,6 +26,8 @@ function* workerLoginUser(action) {
   try {
     const user = yield call(fetchLoginUser, action);
     yield put(authUserAC(user));
+    yield put(clearReservationAC());
+    yield put(cartCleanAC());
   } catch (err) {
     console.error(err);
   }
@@ -57,6 +59,8 @@ function* workerRegUser(action) {
   try {
     const user = yield call(fetchRegUser, action);
     yield put(authUserAC(user));
+    yield put(clearReservationAC());
+    yield put(cartCleanAC());
   } catch (err) {
     console.error(err);
   }

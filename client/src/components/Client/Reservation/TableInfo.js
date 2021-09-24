@@ -86,7 +86,7 @@ export default function TableInfo() {
                   <label className={styles.info_guests} htmlFor='guestPhone'>{t('info.9')}</label>
                   <input className={styles.info_input}
                     id='guestPhone'
-                    type='tel'
+                    type='number'
                     name='guestPhone'
                     placeholder={`${t('info.16')}`}
                     required
