@@ -91,8 +91,8 @@ function Header() {
               </Link>
             </p>
             <select className={styles.select} onChange={(event) => handleClick(event.target.value)} name="select"> 
-              <option value="en" >EN</option>
               <option value="ru" >RU</option>
+              <option value="en" >EN</option>
             </select>
           </>
         ) : (
@@ -115,8 +115,8 @@ function Header() {
               </Link>
             </p>
             <select className={styles.select} onChange={(event) => handleClick(event.target.value)} name="select"> 
-              <option value="en" >EN</option>
               <option value="ru" >RU</option>
+              <option value="en" >EN</option>
             </select>
           </>
         )}
