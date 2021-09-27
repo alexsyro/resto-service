@@ -51,9 +51,8 @@ router.put('/:id', checkStaff, async (req, res) => {
 router.delete('/:id', checkStaff, async (req, res) => {
   const { id } = req.params;
   try {
-    const category = await Category.findOne({ id });
+    const category = await Category.findOne({ where: { id: Number(id) } });
     await category.destroy();
-
     res.json({ category });
   } catch (err) {
     res.status(500).json({ error: err });

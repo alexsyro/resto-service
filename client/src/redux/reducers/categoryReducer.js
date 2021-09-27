@@ -29,9 +29,9 @@ export default function reducer(state = initialState, action) {
         }),
       };
     case DELETE_CATEGORY:
-      return { ...state, categories: state.categories.filter((category) => category !== action.payload.id) };
+      console.log('DELETEEEEE', action);
+      return { ...state, categories: state.categories.filter((category) => category.id !== action.payload.id) };
     case SET_CURRENT_CATEGORY:
-      console.log('PAYLOAD', action.payload, state.categories);
       return {
         ...state,
         currentCategory: state.categories.find((category) => category.id === Number(action.payload.id)),
@@ -41,7 +41,7 @@ export default function reducer(state = initialState, action) {
         ...state,
         categories: state.categories.map((category) => {
           if (category.id === state.currentCategory.id) {
-            category.Subcategories = [category.Subcategories, action.payload.subcategory];
+            category.Subcategories = [...category.Subcategories, action.payload.subcategory];
           }
           return category;
         }),
@@ -77,7 +77,7 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         currentSubcategory: state.currentCategory.Subcategories.find(
-          (subcategory) => subcategory.id === action.payload.id,
+          (subcategory) => subcategory.id === Number(action.payload.id),
         ),
       };
     default:

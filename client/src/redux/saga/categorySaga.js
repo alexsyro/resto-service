@@ -2,20 +2,15 @@ import { call, put, takeEvery, all } from 'redux-saga/effects';
 import { getCategoryListAC } from '../actionCreators/categoryListAC';
 import { SAGA_FETCH_CATEGORYLIST } from '../actionTypes/sagaTypes';
 import {
-  GET_CATEGORIES,
-  ADD_CATEGORY,
-  CHANGE_CATEGORY,
-  DELETE_CATEGORY,
-  SET_CURRENT_CATEGORY,
-  ADD_SUBCATEGORY,
-  CHANGE_SUBCATEGORY,
-  DELETE_SUBCATEGORY,
-  SET_CURRENT_SUBCATEGORY,
   SAGA_FETCH_GET_CATEGORIES,
   SAGA_FETCH_ADD_CATEGORY,
   SAGA_FETCH_CHANGE_CATEGORY,
   SAGA_FETCH_DELETE_CATEGORY,
   SAGA_SET_CURRENT_CATEGORY,
+  SAGA_FETCH_ADD_SUBCATEGORY,
+  SAGA_SET_CURRENT_SUBCATEGORY,
+  SAGA_FETCH_DELETE_SUBCATEGORY,
+  SAGA_FETCH_CHANGE_SUBCATEGORY,
 } from '../actionTypes/categoryTypes';
 import {
   getCategoriesAC,
@@ -23,6 +18,10 @@ import {
   changeCategoryAC,
   deleteCategoryAC,
   setCurrentCategoryAC,
+  addSubCategoryAC,
+  deleteSubCategoryAC,
+  setCurrentSubCategoryAC,
+  changeSubCategoryAC,
 } from '../actionCreators/categoriesAC';
 
 const { REACT_APP_URL } = process.env;
@@ -47,12 +46,12 @@ function* categorySaga() {
 }
 
 // NEW SAGA
+// CATEGORY
 // Получаем список всех категорий с подкатегориями
 const fetchGetCategories = async () => {
   try {
     const response = await fetch(`${REACT_APP_URL}api/categories`, { credentials: 'include' });
     const { categories } = await response.json();
-    console.log('CAAAAAAAAAACACACAC', categories);
     return categories;
   } catch (err) {
     alert(err);
@@ -117,8 +116,9 @@ function* changeCategoryWatcher() {
 }
 // Удаляем категорию
 const fetchDeleteCategory = async (action) => {
+  console.log('AAAAAAAAAAAAAAAAAa', action);
   const { id } = action.payload;
-  const response = await fetch(`${REACT_APP_URL}api/categories/${action.payload.id}`, {
+  const response = await fetch(`${REACT_APP_URL}api/categories/${id}`, {
     method: 'DELETE',
     credentials: 'include',
     headers: { 'Content-Type': 'application/json' },
@@ -129,7 +129,7 @@ const fetchDeleteCategory = async (action) => {
 function* deleteCategoryWorker(action) {
   try {
     yield call(fetchDeleteCategory, action);
-    yield put(deleteCategoryAC(action));
+    yield put(deleteCategoryAC({ id: action.payload.id }));
   } catch (error) {
     console.log(error);
   }
@@ -140,13 +140,95 @@ function* deleteCategoryWatcher() {
 // Устанавливаем
 function* setCurrentCategoryWorker(action) {
   try {
-    yield put(setCurrentCategoryAC(action.payload));
+    yield put(setCurrentCategoryAC({ id: action.payload.id }));
   } catch (error) {
     console.log(error);
   }
 }
 function* setCurrentCategoryWatcher() {
   yield takeEvery(SAGA_SET_CURRENT_CATEGORY, setCurrentCategoryWorker);
+}
+
+// SUBCATEGORY
+// Добавляем новую подкатегорию
+const fetchAddSubcategory = async (action) => {
+  const { category, name } = action.payload;
+  const response = await fetch(`${REACT_APP_URL}api/subcategories`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ category, name }),
+  });
+  const { subcategory } = await response.json();
+  return subcategory;
+};
+function* addSubcategoryWorker(action) {
+  try {
+    const subcategory = yield call(fetchAddSubcategory, action);
+    yield put(addSubCategoryAC({ subcategory }));
+  } catch (error) {
+    console.log(error);
+  }
+}
+function* addSubcategoryWatcher() {
+  yield takeEvery(SAGA_FETCH_ADD_SUBCATEGORY, addSubcategoryWorker);
+}
+// Меняем подкатегорию
+const fetchChangeSubcategory = async (action) => {
+  const { id, name } = action.payload;
+  const response = await fetch(`${REACT_APP_URL}api/subcategories/${action.payload.id}`, {
+    method: 'PUT',
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ id, name }),
+  });
+  const { subcategory } = await response.json();
+  return subcategory;
+};
+function* changeSubcategoryWorker(action) {
+  try {
+    const subcategory = yield call(fetchChangeSubcategory, action);
+    yield put(changeSubCategoryAC({ subcategory }));
+  } catch (error) {
+    console.log(error);
+  }
+}
+function* changeSubcategoryWatcher() {
+  yield takeEvery(SAGA_FETCH_CHANGE_SUBCATEGORY, changeSubcategoryWorker);
+}
+// Удаляем подкатегорию
+const fetchDeleteSubcategory = async (action) => {
+  const { id } = action.payload;
+  const response = await fetch(`${REACT_APP_URL}api/subcategories/${id}`, {
+    method: 'DELETE',
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json' },
+  });
+  const { subcategory } = await response.json();
+  return subcategory;
+};
+function* deleteSubcategoryWorker(action) {
+  try {
+    yield call(fetchDeleteSubcategory, action);
+    yield put(deleteSubCategoryAC({ id: action.payload.id }));
+  } catch (error) {
+    console.log(error);
+  }
+}
+function* deleteSubcategoryWatcher() {
+  yield takeEvery(SAGA_FETCH_DELETE_SUBCATEGORY, deleteSubcategoryWorker);
+}
+// Устанавливаем подкатегорию
+function* setCurrentSubcategoryWorker(action) {
+  console.log('SAGASUB', action);
+  try {
+    yield put(setCurrentSubCategoryAC({ id: action.payload.id }));
+  } catch (error) {
+    console.log(error);
+  }
+}
+function* setCurrentSubcategoryWatcher() {
+  yield takeEvery(SAGA_SET_CURRENT_SUBCATEGORY, setCurrentSubcategoryWorker);
 }
 
 export default function* CategorySaga() {
@@ -157,5 +239,9 @@ export default function* CategorySaga() {
     changeCategoryWatcher(),
     deleteCategoryWatcher(),
     setCurrentCategoryWatcher(),
+    addSubcategoryWatcher(),
+    changeSubcategoryWatcher(),
+    deleteSubcategoryWatcher(),
+    setCurrentSubcategoryWatcher(),
   ]);
 }

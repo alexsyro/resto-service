@@ -16,13 +16,15 @@ const menuRouter = require('./routes/menu');
 const ordersRouter = require('./routes/orders');
 const reserveRouter = require('./routes/reservations');
 const categoryRouter = require('./routes/categories');
+const subcategoryRouter = require('./routes/subcategories');
 const { Reservation, Table, State, Order, Client, OrderPosition, Position } = require('./db/models');
 
 // Инициализируем хранение переменных окружения в файл .env
 dotenv.config();
 
 const { PORT, SECRET_PHRASE } = process.env;
-const stripe = Stripe(process.env.STRIPE_SECRET_KEY); // передаем secret key который берем из кабинета разработчика
+// передаем secret key который берем из кабинета разработчика
+const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 const REGEXP_EMAIL_PATTERN = /[\s\S]+[@]{1}.+[.]{1}/gi;
 
 const server = express();
@@ -162,6 +164,7 @@ server.use('/api/menu', menuRouter);
 server.use('/api/orders', ordersRouter);
 server.use('/api/reservations', reserveRouter);
 server.use('/api/categories', categoryRouter);
+server.use('/api/subcategories', subcategoryRouter);
 
 // запрос к серверу с клиента
 server.post('/pay', async (req, res) => {
