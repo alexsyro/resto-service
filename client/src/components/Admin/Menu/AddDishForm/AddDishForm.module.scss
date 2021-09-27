@@ -1,4 +1,4 @@
-.form{
+.form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11,9 +11,9 @@
   }
   fieldset {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     width: 100%;
-    input{
+    input {
       color: black !important;
     }
     .center {
@@ -21,23 +21,46 @@
       justify-content: center;
       align-items: center;
     }
-    .submit__btn{
+    .submit__btn {
       align-items: center;
       width: 10rem;
     }
     .double__input {
       display: flex;
       flex-direction: row;
-      .select__input{
+      .select__input {
         width: 7rem;
         margin-left: 1rem;
       }
     }
+    img {
+      background-color: white !important;
+      border: 1px solid white;
+      min-width: 16rem;
+      max-width: 16rem;
+      
+      min-height: 11.3rem;
+      max-height: 11.3rem;
+      visibility: visible;
+      margin-right: 0.8rem;
+    }
+    .buttonContainer {
+      justify-content: space-between;
+      margin-top: 1rem;
+      margin-right: 0.8rem;
+      display: flex;
+      flex-direction: row;
+      input{
+        // background-color: white;
+        max-width: 12rem;
+        // width: 8rem;
+      }
+      button {
+        width: 4rem;
+        max-width: 4rem;
+      }
+    }
   }
-}
-
-.margin__left {
-  margin: 2rem 0 2rem 9.3rem;
 }
 
 .form__block {
@@ -47,10 +70,10 @@
   align-items: center;
 }
 
-.back_btn{
+.back_btn {
   background-color: white;
   width: 7rem;
-  margin: 2rem 0 0 14rem;
+  margin: 0 0 0 14rem;
 }
 
 .back_btn:hover {

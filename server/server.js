@@ -15,6 +15,7 @@ const staffRouter = require('./routes/staff');
 const menuRouter = require('./routes/menu');
 const ordersRouter = require('./routes/orders');
 const reserveRouter = require('./routes/reservations');
+const categoryRouter = require('./routes/categories');
 const { Reservation, Table, State, Order, Client, OrderPosition, Position } = require('./db/models');
 
 // Инициализируем хранение переменных окружения в файл .env
@@ -160,10 +161,10 @@ server.use('/api/staff', staffRouter);
 server.use('/api/menu', menuRouter);
 server.use('/api/orders', ordersRouter);
 server.use('/api/reservations', reserveRouter);
+server.use('/api/categories', categoryRouter);
 
 // запрос к серверу с клиента
 server.post('/pay', async (req, res) => {
-  console.log('REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEQ', req.body);
   try {
     const { amount } = req.body; // сумма платежа
     // создаем платеж в котрый передаем нужные нам данные

@@ -1,4 +1,9 @@
-import { SAGA_FETCH_REG, SAGA_FETCH_LOGIN, SAGA_FETCH_LOGOUT } from '../actionTypes/sagaTypes';
+import {
+  SAGA_FETCH_REG,
+  SAGA_FETCH_LOGIN,
+  SAGA_FETCH_LOGOUT,
+  SAGA_FETCH_CATEGORYLIST,
+} from '../actionTypes/sagaTypes';
 
 //Работа с пользователем при аутентификации
 export const sagaRegAC = (payload) => {
@@ -18,5 +23,11 @@ export const sagaLoginAC = (payload) => {
 export const sagaLogoutAC = () => {
   return {
     type: SAGA_FETCH_LOGOUT,
+  };
+};
+
+export const sagaGetCategoriesAC = () => {
+  return {
+    type: SAGA_FETCH_CATEGORYLIST,
   };
 };

@@ -1,0 +1,62 @@
+.container {
+  margin: 1rem;
+  display: flex;
+
+  .categoryContainer {
+    min-width: 20rem;
+    max-width: 20rem;
+    .categories {
+      height: 10rem;
+      min-height: 10rem;
+      max-height: 10rem;
+      background-color: white;
+      color: black;
+      display: flex;
+      flex-direction: column;
+      div:focus {
+        color: white;
+        background-color: rgb(92, 172, 246);
+      }
+    }
+    .buttons {
+      margin-top: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #1f87f0;
+        color: #fff;
+        font-size: 1rem;
+        // text-transform: uppercase;
+        height: 2rem;
+        padding: 1rem;
+        border-radius: 0.1rem;
+      }
+      button:active {
+        background-color: #0d4a88;
+      }
+    }
+    .nameInputContainer {
+      margin-top: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      input{
+        width:13rem;
+      }
+      button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #1f87f0;
+        color: #fff;
+        font-size: 0.5rem;
+        // text-transform: uppercase;
+        height: 1rem;
+        padding: 0.5rem;
+        border-radius: 0.1rem;
+      }
+    }
+  }
+}

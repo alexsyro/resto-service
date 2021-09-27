@@ -18,7 +18,7 @@ import AddClientForm from './UsersPage/AddClientForm';
 import Reserve from '../Admin/Reserve/Reserve';
 import ReservationInfo from '../Admin/Reserve/ReservationInfo';
 import NoMatch from './NoMatch/NoMatch'
-// import ChooseDate from '../Client/ChooseDate/ChooseDate';
+import AddCategory from './Menu/AddCategory/AddCategory';
 
 function Admin() {
   return (
@@ -70,6 +70,9 @@ function Admin() {
           </Route>
           <Route path='/clients/:clientId' exact>
             <ClientInfo />
+          </Route>
+          <Route path='/category/new' exact>
+            <AddCategory />
           </Route>
           <Route>
             <NoMatch />

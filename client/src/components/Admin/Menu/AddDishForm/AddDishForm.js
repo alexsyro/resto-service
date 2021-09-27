@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { GET_DISHES } from '../../../../redux/actionTypes/actionType';
 import { useParams, useHistory } from 'react-router';
+import dishIco from '../../../../images/dish_ico.png';
 import styles from './AddDishForm.module.scss';
 
 const { REACT_APP_URL } = process.env;
@@ -9,7 +10,8 @@ const { REACT_APP_URL } = process.env;
 function AddDishForm() {
   const dispatch = useDispatch();
   const { categoryId } = useParams();
-  const [img, setImg] = useState(null);
+  const fileInput = useRef();
+  const [img, setImg] = useState(dishIco);
   const measures = useSelector((state) => state.dishesReducer.measures);
   const history = useHistory();
 
@@ -54,70 +56,90 @@ function AddDishForm() {
   return (
     <div className={styles.form__block}>
       <form onSubmit={addDish} method='POST' name='AddDishForm' className={styles.form}>
-        <fieldset className='uk-fieldset'>
+        <fieldset className={styles.fieldsContainer}>
           <legend className='uk-legend' style={{ color: 'white' }}>
             Добавление нового блюда в меню
           </legend>
-
-          <div className='uk-margin'>
-            <input
-              className='uk-input'
-              type='text'
-              name='name'
-              placeholder='Введите название блюда'
-              required
-            />
-          </div>
-          <div className='uk-margin'>
-            <input
-              className='uk-input'
-              type='text'
-              name='description'
-              placeholder='Добавьте описание'
-              required
-            />
-          </div>
-          <div className='uk-margin'>
-            <input className='uk-input' type='number' name='kcal' placeholder='Введите  kcal' required />
-          </div>
-          <div className={`uk-margin ${styles.double__input}`}>
-            <input
-              className='uk-input'
-              type='number'
-              name='portionSize'
-              placeholder='Введите размер порции'
-              required
-            />
-            <select className={`uk-select ${styles.select__input}`} name='measureId'>
-              {measures?.map((measure) => (
-                <option key={measure?.id} value={measure?.id}>
-                  {measure?.type}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className='uk-margin'>
-            <input className='uk-input' type='number' name='price' placeholder='Введите цену' required />
-          </div>
           <div className={styles.margin__left}>
-            <img src={img} width='250' height='200' alt='IMG' />
-            <input onChange={fileUpload} type='file' name='file' />
+            <img src={img} alt='Изображение для загрузки' />
+            <div className={styles.buttonContainer}>
+              <input
+                visibility='hidden'
+                ref={fileInput}
+                onChange={fileUpload}
+                type='file'
+                name='file'
+                accept='image/png, image/jpeg'
+              />
+              {img !== dishIco && (
+                <button
+                  onClick={() => {
+                    setImg(dishIco);
+                    fileInput.current.value = '';
+                  }}
+                  type='reset'
+                >
+                  Отмена
+                </button>
+              )}
+            </div>
           </div>
-          <div className={styles.center}>
-            <button className={`uk-button uk-button-primary ${styles.submit__btn}`} type='submit'>
-              Добавить
-            </button>
+          <div>
+            <div className='uk-margin'>
+              <input
+                className='uk-input'
+                type='text'
+                name='name'
+                placeholder='Введите название блюда'
+                required
+              />
+            </div>
+            <div className='uk-margin'>
+              <input
+                className='uk-input'
+                type='text'
+                name='description'
+                placeholder='Добавьте описание'
+                required
+              />
+            </div>
+            <div className='uk-margin'>
+              <input className='uk-input' type='number' name='kcal' placeholder='Введите  kcal' required />
+            </div>
+            <div className={`uk-margin ${styles.double__input}`}>
+              <input
+                className='uk-input'
+                type='number'
+                name='portionSize'
+                placeholder='Введите размер порции'
+                required
+              />
+              <select className={`uk-select ${styles.select__input}`} name='measureId'>
+                {measures?.map((measure) => (
+                  <option key={measure?.id} value={measure?.id}>
+                    {measure?.type}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className='uk-margin'>
+              <input className='uk-input' type='number' name='price' placeholder='Введите цену' required />
+            </div>
+            <div className={styles.center}>
+              <button className={`uk-button uk-button-primary ${styles.submit__btn}`} type='submit'>
+                Добавить
+              </button>
+              <button
+                onClick={(event) => {
+                  event.preventDefault();
+                  history.goBack();
+                }}
+                className={`uk-button uk-button-default ${styles.back_btn}`}
+              >
+                Назад
+              </button>
+            </div>
           </div>
-
-          <button
-            onClick={(event) => {
-              event.preventDefault();
-              history.goBack();
-            }}
-            className={`uk-button uk-button-default ${styles.back_btn}`}
-          >
-            Назад
-          </button>
         </fieldset>
       </form>
     </div>

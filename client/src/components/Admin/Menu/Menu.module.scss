@@ -1,7 +1,23 @@
-.mainblock{
+.mainblock {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background: #0c0c0c;
+}
+
+.buttonMain {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1f87f0;
+  color: #fff;
+  font-size: 1rem;
+  // text-transform: uppercase;
+  height: 2rem;
+  padding: 1rem;
+  border-radius: 0.1rem
+}
+.buttonMain:active {
+  background-color: #0d4a88;
 }

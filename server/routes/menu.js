@@ -3,7 +3,6 @@ const express = require('express');
 const { Router } = express;
 const router = Router();
 const { Position, Subcategory, Category, Measure, File } = require('../db/models');
-const isAuthenticated = require('../middlewares/authenticationValidation');
 const checkStaff = require('../middlewares/staffValidation');
 
 // Запрос единиц измерения

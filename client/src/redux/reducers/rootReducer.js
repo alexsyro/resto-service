@@ -6,8 +6,9 @@ import ordersReducer from './ordersReducer';
 import menuReducer from './menuReducer';
 import reservationReducer from './reservationReducer';
 import dishesReducer from './dishesReducer';
-import clientsReducer from './сlientsReducer'
+import clientsReducer from './сlientsReducer';
 import cartReducer from './cartReducer';
+import categoryReducer from './categoryReducer';
 
 const rootReducer = combineReducers({
   menuReducer,
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   dishesReducer,
   clientsReducer,
   cartReducer,
+  categoryReducer,
 });
 
 export default rootReducer;

@@ -1,8 +1,8 @@
 import { all } from 'redux-saga/effects';
-import { categoryListSaga } from './categoryListSaga';
 import { dishSaga } from './dishSaga';
 import watcherUserSaga from './userSaga';
+import categorySaga from './categorySaga';
 
 export function* rootSaga() {
-  yield all([categoryListSaga(), dishSaga(), watcherUserSaga()]);
+  yield all([categorySaga(), dishSaga(), watcherUserSaga()]);
 }
