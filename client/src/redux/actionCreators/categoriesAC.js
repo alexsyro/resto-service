@@ -9,10 +9,14 @@ import {
   DELETE_SUBCATEGORY,
   SET_CURRENT_SUBCATEGORY,
   SAGA_FETCH_GET_CATEGORIES,
+  SAGA_SET_CURRENT_CATEGORY,
   SAGA_FETCH_ADD_CATEGORY,
   SAGA_FETCH_CHANGE_CATEGORY,
   SAGA_FETCH_DELETE_CATEGORY,
-  SAGA_SET_CURRENT_CATEGORY,
+  SAGA_SET_CURRENT_SUBCATEGORY,
+  SAGA_FETCH_ADD_SUBCATEGORY,
+  SAGA_FETCH_CHANGE_SUBCATEGORY,
+  SAGA_FETCH_DELETE_SUBCATEGORY,
 } from '../actionTypes/categoryTypes';
 
 // AC for reducer
@@ -72,6 +76,7 @@ export const setCurrentSubCategoryAC = (payload) => {
 };
 
 // AC for saga
+// CATEGORY
 export const sagaGetCategoriesAC = () => {
   return {
     type: SAGA_FETCH_GET_CATEGORIES,
@@ -98,10 +103,38 @@ export const sagaDeleteCategoryAC = (payload) => {
     payload,
   };
 };
-
 export const sagaSetCurrentCategoryAC = (payload) => {
   return {
     type: SAGA_SET_CURRENT_CATEGORY,
+    payload,
+  };
+};
+
+// SUBCATEGORY
+export const sagaAddSubcategoryAC = (payload) => {
+  return {
+    type: SAGA_FETCH_ADD_SUBCATEGORY,
+    payload,
+  };
+};
+
+export const sagaChangeSubcategoryAC = (payload) => {
+  return {
+    type: SAGA_FETCH_CHANGE_SUBCATEGORY,
+    payload,
+  };
+};
+
+export const sagaDeleteSubcategoryAC = (payload) => {
+  return {
+    type: SAGA_FETCH_DELETE_SUBCATEGORY,
+    payload,
+  };
+};
+
+export const sagaSetCurrentSubcategoryAC = (payload) => {
+  return {
+    type: SAGA_SET_CURRENT_SUBCATEGORY,
     payload,
   };
 };

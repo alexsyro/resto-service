@@ -1,0 +1,30 @@
+.categoryTreeContaner {
+  background-color: white;
+
+  .tree {
+    width: 20rem;
+    overflow-y: auto;
+    height: 10rem;
+    min-height: 10rem;
+    max-height: 10rem;
+    background-color: white;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    ul {
+      font-size: 1.5rem;
+      font-weight: bolder;
+    }
+    li {
+      cursor: pointer;
+      margin-top: 1rem;
+      font-size: 1rem;
+      margin-left: 2rem;
+      font-weight: normal;
+    }
+    li:focus {
+      color: white;
+      background-color: rgb(92, 172, 246);
+    }
+  }
+}

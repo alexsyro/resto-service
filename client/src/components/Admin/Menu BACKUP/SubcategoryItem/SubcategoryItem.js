@@ -4,27 +4,27 @@ import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import { GET_DISHES } from '../../../../redux/actionTypes/actionType';
 import Dish from '../Dish/Dish';
-import styles from './SubcategoryItem.module.scss';
+import styles from './SubcategoryItem.module.scss'
 
 const { REACT_APP_URL } = process.env;
 
-function SubcategoryItem() {
+function SubcategoryItem(props) {
   const dispatch = useDispatch();
-  const { subcategoryId } = useParams();
+  const { categoryId } = useParams();
 
   useEffect(() => {
-    fetch(`${REACT_APP_URL}api/menu/categories/${subcategoryId}`, { credentials: 'include' })
+    fetch(`${REACT_APP_URL}api/menu/categories/${categoryId}`, { credentials: 'include' })
       .then((res) => res.json())
       .then((categories) => dispatch({ type: GET_DISHES, payload: categories }));
-  }, [dispatch, subcategoryId]);
+  }, [dispatch, categoryId]);
 
   const dishes = useSelector((state) => state.dishesReducer.dishes);
   console.log(dishes, 'DISHES');
 
   return (
     <div className={styles.main__block}>
-      <Link to={`/menu/subcategory/${subcategoryId}/new`}>
-        <button className={styles.buttonMain}>Добавить позицию</button>
+      <Link to={`/menu/subcategory/${categoryId}/new`}>
+        <button className={`${styles.add__button} uk-button uk-button-primary`}>Добавить позицию</button>
       </Link>
       <div className={styles.dish__block}>
         {dishes.map((dish) => (

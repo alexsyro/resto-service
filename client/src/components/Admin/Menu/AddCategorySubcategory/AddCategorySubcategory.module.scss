@@ -1,0 +1,88 @@
+.container {
+  margin: 1rem;
+  display: flex;
+
+  .categoryContainer {
+    // width: 70rem;
+    // max-width: 70rem;
+    display: flex;
+    flex-direction: row;
+    .categories {
+      width: 20rem;
+      overflow-y: auto;
+      height: 10rem;
+      min-height: 10rem;
+      max-height: 10rem;
+      background-color: white;
+      color: black;
+      display: flex;
+      flex-direction: column;
+      div:focus {
+        color: white;
+        background-color: rgb(92, 172, 246);
+      }
+    }
+    .subcategories {
+      width: 20rem;
+      overflow-y: auto;
+      height: 10rem;
+      min-height: 10rem;
+      max-height: 10rem;
+      background-color: white;
+      color: black;
+      display: flex;
+      flex-direction: column;
+      div:focus {
+        color: white;
+        background-color: rgb(92, 172, 246);
+      }
+      div:selection {
+        color: white;
+        background-color: rgb(92, 172, 246);
+      }
+    }
+    .buttons {
+      border-radius: 0.1rem;
+      margin-top: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #1f87f0;
+        color: #fff;
+        font-size: 1rem;
+        height: 2rem;
+        padding: 1rem;
+        border-radius: 0.1rem;
+      }
+      button:active {
+        background-color: #0d4a88;
+      }
+      button:disabled {
+        background-color: gray;
+      }
+    }
+    .nameInputContainer {
+      margin-top: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      input{
+        width:13rem;
+      }
+      button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #1f87f0;
+        color: #fff;
+        font-size: 0.5rem;
+        // text-transform: uppercase;
+        height: 1rem;
+        padding: 0.5rem;
+        border-radius: 0.1rem;
+      }
+    }
+  }
+}

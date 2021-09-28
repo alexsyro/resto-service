@@ -1,20 +1,19 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Category from '../Category/Category';
-import {categoryListAC} from '../../../redux/actionCreators/categoryListAC'
+import { sagaGetCategoriesAC } from '../../../redux/actionCreators/categoriesAC';
 
 function CategoryList() {
   const dispatch = useDispatch();
+  const { categories } = useSelector((state) => state.categoryReducer);
 
   useEffect(() => {
-    dispatch(categoryListAC())
+    dispatch(sagaGetCategoriesAC());
   }, [dispatch]);
-
-  const allCategories =  useSelector((state) => state.menuReducer.menu);
 
   return (
     <>
-      {allCategories.map((category)=> <Category key={category.id} category={category}/>)}
+      {categories.map((category)=> <Category key={category.id} category={category}/>)}
     </>
   );
 }

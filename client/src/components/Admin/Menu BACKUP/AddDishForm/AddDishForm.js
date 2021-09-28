@@ -9,7 +9,7 @@ const { REACT_APP_URL } = process.env;
 
 function AddDishForm() {
   const dispatch = useDispatch();
-  const { subcategoryId } = useParams();
+  const { categoryId } = useParams();
   const fileInput = useRef();
   const [img, setImg] = useState(dishIco);
   const measures = useSelector((state) => state.dishesReducer.measures);
@@ -39,7 +39,7 @@ function AddDishForm() {
     formData.append('description', description.value);
     formData.append('kcal', kcal.value);
     formData.append('portionSize', portionSize.value);
-    formData.append('categoryId', subcategoryId);
+    formData.append('categoryId', categoryId);
     formData.append('measureId', measureId.value);
     formData.append('price', price.value);
 

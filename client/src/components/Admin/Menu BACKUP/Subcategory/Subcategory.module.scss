@@ -1,0 +1,14 @@
+.subcategory__block {
+  margin: 1rem;
+  .subcategory {
+    padding: 1rem;
+    color: white;
+   
+  }
+  .subcategory:hover {
+    color: black;
+  }
+}
+.subcategory__block:hover {
+  background-color: #fff;
+}

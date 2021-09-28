@@ -1,16 +1,12 @@
 .mainblock {
   display: flex;
-  flex-direction: row;
-  // justify-content: center;
-  // align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background: #0c0c0c;
-}
-.sideTree {
-  justify-self: left;
 }
 
 .buttonMain {
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,16 +16,8 @@
   // text-transform: uppercase;
   height: 2rem;
   padding: 1rem;
-  border-radius: 0.1rem;
+  border-radius: 0.1rem
 }
-
 .buttonMain:active {
   background-color: #0d4a88;
-}
-
-.content {
-  width: 100%;
-  justify-self: center;
-  // margin-left: 1rem;
-  align-self: start;
 }
