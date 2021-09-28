@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   sagaAddCategoryAC,
   sagaChangeCategoryAC,
   sagaSetCurrentCategoryAC,
-  sagaGetCategoriesAC,
   sagaDeleteCategoryAC,
 } from '../../../../redux/actionCreators/categoriesAC';
 import styles from './AddCategorySubcategory.module.scss';
@@ -50,16 +49,12 @@ export default function Category() {
     setState(NO_STATE);
   };
 
-  useEffect(() => {
-    dispatch(sagaGetCategoriesAC());
-  }, [dispatch]);
-
   return (
     <div className={styles.container}>
       <div className={styles.categoryContainer}>
         <div>
           <h4>Выберите категорию:</h4>
-          <h4>{currentCategory? currentCategory.name : 'Не выбрано'}</h4>
+          <h4>{currentCategory ? currentCategory.name : 'Не выбрано'}</h4>
           <div className={styles.categories}>
             {categories &&
               categories.map((category, index) => (

@@ -1,30 +1,60 @@
-
-.card{
-  width: 25rem;
+.card {
+  width: 15rem;
   height: 100%;
-  margin: 2rem;
-  img{
-    width: 25rem;
-    height: 15rem;
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2rem;
+
+  img {
+    margin: 0.1rem;
+    width: 14rem;
+    height: 9rem;
+    border-radius: 0.3rem;
   }
 
   .card__button {
-    button {
-      margin-right: 1rem;
-      margin-top: 2rem;
-    }
-  }
-  .card__body{
     display: flex;
     flex-direction: column;
-    h3 {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
+    width: 100%;
+    button {
+      width: 15rem;
+      margin-top: 1rem;
     }
-    p {
-      margin: 0.4rem 0;
+  }
+  .card__body {
+    display: flex;
+    flex-direction: column;
+  }
+  .title {
+    background-color: #0c0c0c;
+    color: white;
+    height: 3rem;
+  }
+
+  .buttonsGroup {
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    flex-direction: column;
+
+    .buttonMain {
+      margin: 0.5rem 1rem;
+      width: 10rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #1f87f0;
+      color: #fff;
+      font-size: 1rem;
+      height: 2rem;
+      padding: 1rem;
+      border-radius: 0.1rem;
+    }
+
+    .buttonMain:active {
+      background-color: #0d4a88;
     }
   }
 }

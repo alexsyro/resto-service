@@ -116,7 +116,6 @@ function* changeCategoryWatcher() {
 }
 // Удаляем категорию
 const fetchDeleteCategory = async (action) => {
-  console.log('AAAAAAAAAAAAAAAAAa', action);
   const { id } = action.payload;
   const response = await fetch(`${REACT_APP_URL}api/categories/${id}`, {
     method: 'DELETE',
@@ -220,7 +219,6 @@ function* deleteSubcategoryWatcher() {
 }
 // Устанавливаем подкатегорию
 function* setCurrentSubcategoryWorker(action) {
-  console.log('SAGASUB', action);
   try {
     yield put(setCurrentSubCategoryAC({ id: action.payload.id }));
   } catch (error) {

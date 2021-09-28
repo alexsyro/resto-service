@@ -1,0 +1,15 @@
+.main__block {
+  background-color: #0c0c0c;
+  display: flex;
+  flex-direction: column;
+  // align-items: center;
+  .add__button{
+    margin: 2rem 0 0 2rem;
+  }
+  .dish__block{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: #0c0c0c;
+  }
+}

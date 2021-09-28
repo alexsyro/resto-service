@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  sagaAddSubcategoryAC,
-  sagaChangeSubcategoryAC,
-  sagaDeleteSubcategoryAC,
-  sagaSetCurrentSubcategoryAC,
+  sagaAddCategoryAC,
+  sagaChangeCategoryAC,
+  sagaSetCurrentCategoryAC,
+  sagaGetCategoriesAC,
+  sagaDeleteCategoryAC,
 } from '../../../../redux/actionCreators/categoriesAC';
 import styles from './AddCategorySubcategory.module.scss';
 
@@ -12,14 +13,14 @@ const NO_STATE = 0;
 const EDIT_STATE = 1;
 const ADD_STATE = 2;
 
-export default function AddCategorySubcategory() {
+export default function Category() {
   const dispatch = useDispatch();
-  const { currentCategory, currentSubcategory } = useSelector((state) => state.categoryReducer);
+  const { categories, currentCategory } = useSelector((state) => state.categoryReducer);
   const [state, setState] = useState(NO_STATE);
 
-  const selectSubcategory = (event) => {
+  const selectCategory = (event) => {
     const { id } = event.target.dataset;
-    dispatch(sagaSetCurrentSubcategoryAC({ id }));
+    dispatch(sagaSetCurrentCategoryAC({ id }));
   };
 
   const editHandler = () => {
@@ -30,7 +31,7 @@ export default function AddCategorySubcategory() {
     setState(ADD_STATE);
   };
   const deleteHandler = () => {
-    dispatch(sagaDeleteSubcategoryAC({ id: currentSubcategory.id }));
+    dispatch(sagaDeleteCategoryAC({ id: currentCategory.id }));
   };
 
   const resetHandler = (event) => {
@@ -42,33 +43,32 @@ export default function AddCategorySubcategory() {
     event.preventDefault();
     const { name } = event.target;
     if (state === EDIT_STATE) {
-      dispatch(sagaChangeSubcategoryAC({ id: currentSubcategory.id, name: name.value }));
+      dispatch(sagaChangeCategoryAC({ name: name.value }));
     } else if (state === ADD_STATE) {
-      dispatch(sagaAddSubcategoryAC({ category: currentCategory, name: name.value }));
+      dispatch(sagaAddCategoryAC({ name: name.value }));
     }
     setState(NO_STATE);
   };
+
+  useEffect(() => {
+    dispatch(sagaGetCategoriesAC());
+  }, [dispatch]);
 
   return (
     <div className={styles.container}>
       <div className={styles.categoryContainer}>
         <div>
-          <h4>Выберите подкатегорию:</h4>
-          <h4>{currentSubcategory ? currentSubcategory.name : 'Не выбрано'}</h4>
-          <div className={styles.subcategories}>
-            {currentCategory &&
-              currentCategory.Subcategories &&
-              currentCategory.Subcategories.map((subcategory, index) => (
-                <div
-                  onClick={selectSubcategory}
-                  key={subcategory.id}
-                  tabIndex={index}
-                  data-id={subcategory.id}
-                >
-                  {subcategory.name}
+          <h4>Выберите категорию:</h4>
+          <h4>{currentCategory? currentCategory.name : 'Не выбрано'}</h4>
+          <div className={styles.categories}>
+            {categories &&
+              categories.map((category, index) => (
+                <div key={category.id} onClick={selectCategory} tabIndex={index} data-id={category.id}>
+                  {category.name}
                 </div>
               ))}
           </div>
+
           {state !== NO_STATE && (
             <form onSubmit={saveHandler} className={styles.nameInputContainer}>
               <input type='text' name='name' />
@@ -76,12 +76,13 @@ export default function AddCategorySubcategory() {
               <button onClick={resetHandler}>Отмена</button>
             </form>
           )}
+
           <div className={styles.buttons}>
             <button onClick={addHandler}>Добавить</button>
-            <button onClick={editHandler} disabled={!currentSubcategory}>
+            <button onClick={editHandler} disabled={!currentCategory}>
               Изменить
             </button>
-            <button onClick={deleteHandler} disabled={!currentSubcategory}>
+            <button onClick={deleteHandler} disabled={!currentCategory}>
               Удалить
             </button>
           </div>

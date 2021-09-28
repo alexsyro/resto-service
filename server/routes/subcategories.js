@@ -23,7 +23,7 @@ router.put('/:id', checkStaff, async (req, res) => {
   const { id } = req.params;
   const { name } = req.body;
   try {
-    const subcategory = await Subcategory.findOne({ id });
+    const subcategory = await Subcategory.findOne({ where: { id: Number(id) } });
     subcategory.name = name;
     await subcategory.save();
 

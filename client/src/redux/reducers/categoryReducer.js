@@ -29,7 +29,6 @@ export default function reducer(state = initialState, action) {
         }),
       };
     case DELETE_CATEGORY:
-      console.log('DELETEEEEE', action);
       return { ...state, categories: state.categories.filter((category) => category.id !== action.payload.id) };
     case SET_CURRENT_CATEGORY:
       return {
@@ -52,8 +51,8 @@ export default function reducer(state = initialState, action) {
         categories: state.categories.map((category) => {
           if (category.id === state.currentCategory.id) {
             category.Subcategories = category.Subcategories.map((subcategory) => {
-              if (subcategory.id === state.currentSubCategory.id) {
-                subcategory.name = action.payload.name;
+              if (subcategory.id === state.currentSubcategory.id) {
+                subcategory = action.payload.subcategory;
               }
               return subcategory;
             });
