@@ -8,8 +8,8 @@ function Category({ category }) {
       <div className={styles.category__container}>
         <p className={styles.category__name}>{category.name}</p>
         <div className={styles.category__element}>
-          {category.categories.map((category) => (
-            <Subcategory key={category.id} subcategory={category} />
+          {category.Subcategories.map((subcategory) => (
+            <Subcategory key={subcategory.id} subcategory={subcategory} />
           ))}
         </div>
       </div>
