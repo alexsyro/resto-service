@@ -40,3 +40,17 @@ JavaScript
 
 * Полнофункциональное внедрение оплаты с другими СО
 Интеграция со службами доставки
+
+### Установка:
+В директории 2 папки:
+* server Отвечает за back-end. 
+ 1. cd server
+ 2. npm ci
+ 3. npx sequelize db:create
+ 4. npx sequelize db:migrate
+ 5. npx sequelize db:seed:all
+ 6. npm run dev
+* client - front-end. 
+ 1. cd client 
+ 2. npm ci
+ 3. npm start
