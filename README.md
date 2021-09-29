@@ -1,8 +1,7 @@
 ## Resto-Service
 ### Web-приложение для ресторана
 
-Данное приложение разработано для ресторана [Точка](https://vk.com/tochkaobninsk).
-Оно включает в себя клиентскую часть и панель управления.
+Данное приложение разработано для ресторана [Точка](https://vk.com/tochkaobninsk). В функционал заложена возможность выбора столика для бронирования, оплата предзаказа с помощью платёжной системы Stripe, добавление блюд, персонала, клиентов, с помощью панели управления, регистрация для пользователей, корзина, оповещение пользователей посредством email и смс.
 
 #### Клиентская часть:
 ![](/ReadMe/main-client.png)
@@ -43,14 +42,14 @@ JavaScript
 
 ### Установка:
 В директории 2 папки:
-* server Отвечает за back-end. 
- 1. cd server
- 2. npm ci
- 3. npx sequelize db:create
- 4. npx sequelize db:migrate
- 5. npx sequelize db:seed:all
- 6. npm run dev
-* client - front-end. 
- 1. cd client 
- 2. npm ci
- 3. npm start
+* **server/** Отвечает за back-end. 
+   * cd server
+   * npm ci
+   * npx sequelize db:create
+   * npx sequelize db:migrate
+   * npx sequelize db:seed:all
+   * npm run dev
+* **client/** - front-end. 
+   * cd client 
+   * npm ci
+   * npm start
