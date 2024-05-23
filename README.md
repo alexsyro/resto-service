@@ -1,28 +1,43 @@
 ## Resto-Service
-### Web-приложение для ресторана
+### Web Application for a Restaurant
 
-Данное приложение разработано для ресторана [Точка](https://vk.com/tochkaobninsk). В функционал заложена возможность выбора столика для бронирования, оплата предзаказа с помощью платёжной системы Stripe, добавление блюд, персонала, клиентов, с помощью панели управления, регистрация для пользователей, корзина, оповещение пользователей посредством email и смс.
+This application is developed for the restaurant [Tochka](https://vk.com/tochkaobninsk). It includes functionality for table reservations, pre-order payment via Stripe, adding dishes, staff, and customers through the admin panel, user registration, shopping cart, and user notifications via email and SMS.
 
-#### Клиентская часть:
+#### Client Side:
 ![](/ReadMe/main-client.png)
-- Бронирование определённого стола на интересующую дату
+
+
+- Reserving a specific table for a desired date
+  
 ![](/ReadMe/reservation-client.png)
-- Просмотр меню с описанием позиций.
+
+
+- Viewing the menu with item descriptions
+  
 ![](/ReadMe/menu-client.png)
-- Добавление позиции в корзину (доступно только авторизованным пользователям)
-- Возможность оформления предзаказа или доставки
-- Оплата предзаказа, используя платёжную систему Stripe.
 
-#### Панель управления:
+
+- Adding items to the cart (available only to authorized users)
+- Placing a pre-order or delivery
+- Paying for the pre-order using the Stripe payment system
+
+#### Admin Panel:
+  Requirements - minimalist interface for POS terminals
+
 ![](/ReadMe/main-admin.png)
-- Добавление, изменение, удаление категории, подкатегории, блюд
-![](/ReadMe/add-admin.png)
-- Просмотр актуальных заказов и бронирование столов, подтверждение, удаление.
-- Рассылка смс и email оповещений, после подтверждения заказа или бронирования.
-- Редактирование информации о клиентах, добавление скидку и т.д.
-- Добавление, удаление, изменение персонала.
 
-## Стек технологий:
+
+- Adding, modifying, and deleting categories, subcategories, and dishes
+  
+![](/ReadMe/add-admin.png)
+
+
+- Viewing current orders and table reservations, confirming or deleting them
+- Sending SMS and email notifications after order or reservation confirmation
+- Editing client information, adding discounts, etc.
+- Adding, deleting, and modifying staff members
+
+## Technology Stack:
 JavaScript
 
 **DB**: PostgreSQL, Sequelize ORM
@@ -31,24 +46,16 @@ JavaScript
 
 **Front**: React + Redux, Redux Saga, SVG, HTML5, SCSS/CSS, UI Kit
 
-
-## Планы развития:
-
-* Интеграция с системами автоматизации  IIKO и RKeeper
-* Использование Redux Toolkit
-* Полнофункциональное внедрение оплаты с другими СО
-* Интеграция со службами доставки
-
-### Установка:
-В директории 2 папки:
-* **server/** Отвечает за back-end. 
+### Installation:
+There are 2 folders in the directory:
+* **server/** - responsible for the back-end.
    * cd server
    * npm ci
    * npx sequelize db:create
    * npx sequelize db:migrate
    * npx sequelize db:seed:all
    * npm run dev
-* **client/** - front-end. 
+* **client/** - front-end.
    * cd client 
    * npm ci
    * npm start
